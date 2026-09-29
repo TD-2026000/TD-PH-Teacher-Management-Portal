@@ -177,23 +177,6 @@ textarea{
   white-space:pre-wrap;
 }
 
-/* TEACHER SIGNATURE BELOW COMMENT */
-
-.teacher-signature{
-  margin-top:14px;
-  line-height:1.6;
-}
-
-.teacher-thank-you{
-  font-size:15px;
-}
-
-.teacher-name{
-  margin-top:4px;
-  font-weight:700;
-  font-size:16px;
-}
-
 .buttons{
   display:flex;
   gap:10px;
@@ -1517,8 +1500,6 @@ data-field="listening"
 </div>
 </div>
 
-<!-- TEACHER COMMENT -->
-
 <div class="section">
 
 <div
@@ -1535,26 +1516,6 @@ id="commentPreview"
 class="comment-box"
 >
 Select a student and fill in the lesson details. The teacher's comment will be generated automatically.
-</div>
-
-<!-- SEPARATE TEACHER CLOSING -->
-
-<div
-id="teacherSignature"
-class="teacher-signature"
->
-
-<div class="teacher-thank-you">
-Thank you for supporting your child's English learning journey.
-</div>
-
-<div
-id="teacherSignatureName"
-class="teacher-name"
->
-Teacher Danyeal
-</div>
-
 </div>
 
 </div>
@@ -1801,6 +1762,8 @@ Delete Student
    CONFIGURATION
 ========================================================= */
 
+/* EMAILJS — UNCHANGED */
+
 const EMAILJS_PUBLIC_KEY='c6EftsVJb2RHlRH_E';
 
 const EMAILJS_SERVICE_ID='service_wx3z91j';
@@ -1808,10 +1771,14 @@ const EMAILJS_SERVICE_ID='service_wx3z91j';
 const EMAILJS_TEMPLATE_ID='template_3kqt32w';
 
 
+/* LOCAL STORAGE */
+
 const STUDENTS_BASE_KEY='teacherDanyealStudents_v2';
 
 const EVALUATIONS_BASE_KEY='teacherDanyealEvaluations_v2';
 
+
+/* NEW SUPABASE */
 
 const SUPABASE_URL=
 'https://ibhmimpmeftzkrtzhkmp.supabase.co';
@@ -1819,6 +1786,8 @@ const SUPABASE_URL=
 const SUPABASE_PUBLISHABLE_KEY=
 'sb_publishable_HqQA24yJsm_PE_1TKi2W4g_Mpdr9GI3';
 
+
+/* GITHUB PAGES */
 
 const SUPABASE_REDIRECT_URL=
 'https://td-2026000.github.io/TD-PH-Teacher-Management-Portal/';
@@ -2393,6 +2362,12 @@ showAuthMessage(
 true
 );
 
+
+/*
+   Sign out after password recovery so the user
+   returns cleanly to the Login screen.
+*/
+
 setTimeout(
 async()=>{
 
@@ -2470,8 +2445,6 @@ document.getElementById(
 renderDashboard();
 
 populateStudentSelect();
-
-updateTeacherSignature();
 
 }
 
@@ -2679,10 +2652,8 @@ page.slice(1)
 if(page==='dashboard')
 renderDashboard();
 
-if(page==='evaluation'){
+if(page==='evaluation')
 populateStudentSelect();
-updateTeacherSignature();
-}
 
 if(page==='records')
 renderRecords();
@@ -3313,8 +3284,6 @@ updateOverallScore();
 
 generateComment();
 
-updateTeacherSignature();
-
 }
 
 
@@ -3434,6 +3403,16 @@ sum+(Number(stars[field])||0),
 const average=
 total/fields.length;
 
+/*
+   5 stars = 100 points
+   4 stars = 80 points
+   3 stars = 60 points
+   etc.
+
+   Average star rating is converted
+   directly into a 100-point score.
+*/
+
 const score=Math.round(
 (average/5)*100
 );
@@ -3475,6 +3454,11 @@ i<n
 ?'1'
 :'0.28'
 );
+
+/*
+   Every time a star rating changes,
+   recalculate the Overall Score.
+*/
 
 updateOverallScore();
 
@@ -3715,15 +3699,6 @@ understanding>=4
 )[variant]
 );
 
-
-/*
-   IMPORTANT:
-   The teacher closing/signature is NOT added here.
-
-   It is displayed separately below the
-   Teacher Comment box.
-*/
-
 return parts.join(' ');
 
 }
@@ -3767,28 +3742,14 @@ return box.textContent;
 
 
 /* =========================================================
-   SEPARATE TEACHER SIGNATURE
-========================================================= */
-
-function updateTeacherSignature(){
-
-const teacher=
-document.getElementById(
-'teacher'
-).value.trim() ||
-'Teacher Danyeal';
-
-document.getElementById(
-'teacherSignatureName'
-).textContent=
-teacher;
-
-}
-
-
-/* =========================================================
    LIVE SCORE / COMMENT
 ========================================================= */
+
+/*
+   Overall Score is now controlled by stars.
+   This listener only keeps the display synchronized
+   if the value is changed by code.
+*/
 
 document.getElementById(
 'score'
@@ -3837,19 +3798,6 @@ generateComment();
 );
 
 
-/*
-   Teacher field updates the separate signature only.
-   It does NOT modify the Teacher Comment box.
-*/
-
-document.getElementById(
-'teacher'
-).addEventListener(
-'input',
-updateTeacherSignature
-);
-
-
 /* =========================================================
    STATUS
 ========================================================= */
@@ -3886,6 +3834,12 @@ document.getElementById(
 'parentEmail'
 ).value.trim();
 
+/*
+   IMPORTANT:
+   Always calculate the score again before sending
+   so the email and saved record use the current
+   star ratings.
+*/
 
 const calculatedScore=
 updateOverallScore();
@@ -3933,10 +3887,12 @@ false
 
 /*
    IMPORTANT:
-   DO NOT regenerate the comment here.
+   DO NOT call generateComment() here.
 
-   The exact comment currently displayed
-   inside the Teacher Comment box will be sent.
+   The teacher may have clicked
+   "Generate / Update Comment" several times.
+   We must send EXACTLY the comment currently
+   displayed inside #commentPreview.
 */
 
 const currentComment=
@@ -3978,13 +3934,6 @@ document.getElementById(
 'time'
 ).value;
 
-const teacherName=
-document.getElementById(
-'teacher'
-).value.trim() ||
-'Teacher Danyeal';
-
-
 const templateParams={
 
 parent_email:email,
@@ -4017,7 +3966,10 @@ document.getElementById(
 'N/A',
 
 teacher:
-teacherName,
+document.getElementById(
+'teacher'
+).value.trim() ||
+'',
 
 vocabulary:
 document.getElementById(
@@ -4062,16 +4014,14 @@ stars.listening
 ),
 
 /*
-   ONLY the Teacher Comment box content.
-   The separate closing/signature is represented
-   by the teacher field.
+   THIS IS THE EXACT COMMENT
+   CURRENTLY DISPLAYED TO THE TEACHER.
 */
 
 teacher_comment:
 currentComment
 
 };
-
 
 const record={
 
@@ -4084,7 +4034,6 @@ createdAt:
 new Date().toISOString()
 
 };
-
 
 if(!window.emailjs){
 
@@ -4193,9 +4142,7 @@ document.getElementById(
 
 document.getElementById(
 'teacher'
-).value='Teacher Danyeal';
-
-updateTeacherSignature();
+).value='';
 
 Object.keys(stars).forEach(
 k=>setStars(k,5)
