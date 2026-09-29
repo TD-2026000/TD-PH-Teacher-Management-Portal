@@ -463,44 +463,189 @@ button.secondary,
 }
 
 /* =========================================================
-   USER BAR / TOP RIGHT MENU
+   USER BAR / PROFILE
 ========================================================= */
 
 .userbar{
   display:flex;
-  justify-content:space-between;
+  justify-content:flex-end;
   align-items:center;
-  gap:10px;
   padding:8px 15px;
   background:#f7ffff;
   border-bottom:1px solid #ddd;
   font-size:13px;
-}
-
-.userbar-actions{
-  display:flex;
-  align-items:center;
-  gap:6px;
-  margin-left:auto;
   position:relative;
 }
 
-.logout-btn{
+.profile-trigger{
+  display:flex;
+  align-items:center;
+  gap:8px;
   border:0;
-  border-radius:7px;
-  padding:7px 12px;
-  background:#ddd;
+  background:transparent;
+  border-radius:9px;
+  padding:5px 8px;
+  cursor:pointer;
+  font-weight:700;
+}
+
+.profile-trigger:hover{
+  background:#e9fafa;
+}
+
+.profile-avatar-small{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  background:#111;
+  color:#00e5e5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:16px;
+  font-weight:800;
+  overflow:hidden;
+  border:2px solid #00d9d9;
+}
+
+.profile-avatar-small img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.profile-name{
+  font-size:14px;
+}
+
+.profile-arrow{
+  font-size:11px;
+  color:#666;
+}
+
+.profile-dropdown{
+  position:absolute;
+  right:15px;
+  top:52px;
+  width:320px;
+  max-width:calc(100vw - 30px);
+  background:#fff;
+  border:1px solid #ccc;
+  border-radius:12px;
+  box-shadow:0 8px 25px rgba(0,0,0,.2);
+  padding:15px;
+  z-index:90;
+  display:none;
+}
+
+.profile-dropdown.show{
+  display:block;
+}
+
+.profile-header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding-bottom:12px;
+  border-bottom:1px solid #ddd;
+  margin-bottom:12px;
+}
+
+.profile-picture-wrap{
+  position:relative;
+  flex-shrink:0;
+}
+
+.profile-picture{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background:#111;
+  color:#00e5e5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  font-weight:800;
+  overflow:hidden;
+  border:3px solid #00d9d9;
+}
+
+.profile-picture img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.profile-picture-upload{
+  margin-top:6px;
+  font-size:11px;
+  color:#007b83;
   font-weight:700;
   cursor:pointer;
+  text-align:center;
 }
 
-.logout-btn:hover{
-  background:#ccc;
+.profile-picture-upload input{
+  display:none;
 }
 
-.account-dots-btn{
+.profile-header-info{
+  min-width:0;
+}
+
+.profile-header-info b{
+  display:block;
+  font-size:17px;
+  margin-bottom:4px;
+  word-break:break-word;
+}
+
+.profile-header-info span{
+  display:block;
+  font-size:12px;
+  color:#666;
+  word-break:break-word;
+}
+
+.profile-field{
+  margin-top:9px;
+}
+
+.profile-field label{
+  font-size:12px;
+  margin-bottom:4px;
+}
+
+.profile-field input,
+.profile-field select{
+  padding:8px;
+  font-size:13px;
+}
+
+.profile-actions{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  margin-top:13px;
+  padding-top:12px;
+  border-top:1px solid #ddd;
+}
+
+.profile-left-actions{
+  display:flex;
+  align-items:center;
+  gap:5px;
+}
+
+.profile-menu-wrap{
+  position:relative;
+}
+
+.profile-dots-btn{
   width:36px;
-  height:34px;
+  height:36px;
   border:0;
   border-radius:7px;
   background:transparent;
@@ -508,32 +653,31 @@ button.secondary,
   font-size:23px;
   line-height:1;
   font-weight:700;
-  padding:0;
 }
 
-.account-dots-btn:hover{
+.profile-dots-btn:hover{
   background:#eee;
 }
 
-.account-menu{
+.profile-menu{
   position:absolute;
-  right:0;
-  top:42px;
+  left:0;
+  bottom:42px;
   min-width:170px;
   background:#fff;
   border:1px solid #ccc;
   border-radius:8px;
   box-shadow:0 6px 20px rgba(0,0,0,.18);
   padding:5px;
-  z-index:80;
   display:none;
+  z-index:100;
 }
 
-.account-menu.show{
+.profile-menu.show{
   display:block;
 }
 
-.account-menu button{
+.profile-menu button{
   width:100%;
   border:0;
   background:#fff;
@@ -541,13 +685,65 @@ button.secondary,
   padding:10px 12px;
   border-radius:6px;
   cursor:pointer;
-  font-size:14px;
+  font-size:13px;
   font-weight:700;
+}
+
+.profile-menu button:hover{
+  background:#f1f1f1;
+}
+
+.profile-menu .clear-option{
   color:#b00020;
 }
 
-.account-menu button:hover{
-  background:#ffecec;
+.profile-logout{
+  border:0;
+  border-radius:7px;
+  padding:9px 13px;
+  background:#ddd;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.profile-logout:hover{
+  background:#ccc;
+}
+
+.profile-save{
+  width:100%;
+  border:0;
+  border-radius:7px;
+  padding:9px 12px;
+  background:#00d9d9;
+  font-weight:700;
+  cursor:pointer;
+  margin-top:12px;
+}
+
+.profile-save:hover{
+  background:#00c5c5;
+}
+
+.profile-message{
+  display:none;
+  margin-top:9px;
+  padding:8px;
+  border-radius:6px;
+  font-size:12px;
+}
+
+.profile-message.show{
+  display:block;
+}
+
+.profile-message.ok{
+  background:#dff6df;
+}
+
+.profile-message.error{
+  background:#ffe1e1;
+  color:#8a0000;
 }
 
 /* =========================================================
@@ -787,16 +983,9 @@ button.secondary,
     flex-direction:column;
   }
 
-  .userbar{
-    align-items:flex-start;
-  }
-
-  .userbar-actions{
-    margin-left:auto;
-  }
-
-  .account-menu{
-    right:0;
+  .profile-dropdown{
+    right:8px;
+    width:calc(100vw - 16px);
   }
 
 }
@@ -859,8 +1048,6 @@ Teacher Management Portal
 </div>
 
 <div class="auth-body">
-
-<!-- LOGIN -->
 
 <div id="loginPanel">
 
@@ -929,8 +1116,6 @@ Create Account
 </div>
 
 </div>
-
-<!-- SIGNUP -->
 
 <div id="signupPanel" class="hidden">
 
@@ -1016,8 +1201,6 @@ Login
 
 </div>
 
-<!-- VERIFY -->
-
 <div id="verifyPanel" class="hidden">
 
 <h2>Verify Your Email</h2>
@@ -1065,8 +1248,6 @@ Back to Login
 
 </div>
 
-<!-- FORGOT PASSWORD -->
-
 <div id="forgotPanel" class="hidden">
 
 <h2>Forgot Password?</h2>
@@ -1106,8 +1287,6 @@ Back to Login
 </div>
 
 </div>
-
-<!-- RESET PASSWORD -->
 
 <div id="resetPanel" class="hidden">
 
@@ -1195,48 +1374,218 @@ TD
 
 </div>
 
-<!-- USER BAR -->
+<!-- USER BAR / PROFILE -->
 
 <div class="userbar">
 
-<span>
-Logged in as
-<b id="currentTeacher">—</b>
+<button
+type="button"
+id="profileTrigger"
+class="profile-trigger"
+onclick="toggleProfileMenu(event)"
+aria-label="Open teacher profile"
+>
+
+<div
+id="profileAvatarSmall"
+class="profile-avatar-small"
+>
+TD
+</div>
+
+<span
+id="profileDisplayName"
+class="profile-name"
+>
+Teacher
 </span>
 
-<div class="userbar-actions">
+<span class="profile-arrow">
+▼
+</span>
+
+</button>
+
+<div
+id="profileDropdown"
+class="profile-dropdown"
+>
+
+<div class="profile-header">
+
+<div class="profile-picture-wrap">
+
+<div
+id="profilePicture"
+class="profile-picture"
+>
+TD
+</div>
+
+<label class="profile-picture-upload">
+
+Change Photo
+
+<input
+id="profilePictureInput"
+type="file"
+accept="image/*"
+>
+
+</label>
+
+</div>
+
+<div class="profile-header-info">
+
+<b id="profileHeaderName">
+Teacher
+</b>
+
+<span id="profileHeaderEmail">
+—
+</span>
+
+</div>
+
+</div>
+
+<div class="profile-field">
+
+<label>Username</label>
+
+<input
+id="profileUsername"
+placeholder="Username"
+>
+
+</div>
+
+<div class="profile-field">
+
+<label>Teacher Full Name</label>
+
+<input
+id="profileFullName"
+placeholder="Teacher Full Name"
+>
+
+</div>
+
+<div class="profile-field">
+
+<label>Email</label>
+
+<input
+id="profileEmail"
+type="email"
+readonly
+>
+
+</div>
+
+<div class="profile-field">
+
+<label>Phone Number</label>
+
+<input
+id="profilePhone"
+type="tel"
+placeholder="Phone Number"
+>
+
+</div>
+
+<div class="profile-field">
+
+<label>Gender</label>
+
+<select id="profileGender">
+
+<option value="">
+Select Gender
+</option>
+
+<option value="Male">
+Male
+</option>
+
+<option value="Female">
+Female
+</option>
+
+<option value="Prefer not to say">
+Prefer not to say
+</option>
+
+</select>
+
+</div>
 
 <button
 type="button"
-class="account-dots-btn"
-onclick="toggleAccountMenu(event)"
-aria-label="More options"
+class="profile-save"
+onclick="saveTeacherProfile()"
+>
+Save Profile
+</button>
+
+<div
+id="profileMessage"
+class="profile-message"
+></div>
+
+<div class="profile-actions">
+
+<div class="profile-left-actions">
+
+<div class="profile-menu-wrap">
+
+<button
+type="button"
+class="profile-dots-btn"
+onclick="toggleProfileDots(event)"
+aria-label="More profile options"
 title="More options"
 >
 ⋮
 </button>
 
-<button
-type="button"
-class="logout-btn"
-onclick="logoutTeacher()"
->
-Logout
-</button>
-
 <div
-id="accountMenu"
-class="account-menu"
+id="profileMenu"
+class="profile-menu"
 >
 
 <button
 type="button"
-onclick="openClearAllRecords()"
+onclick="openClearAllRecordsFromProfile()"
+class="clear-option"
 >
 Clear All Records
 </button>
 
 </div>
+
+</div>
+
+<button
+type="button"
+class="secondary"
+onclick="openChangePassword()"
+style="padding:9px 12px;font-size:13px"
+>
+Change Password
+</button>
+
+</div>
+
+<button
+type="button"
+class="profile-logout"
+onclick="logoutTeacher()"
+>
+Log Out
+</button>
 
 </div>
 
@@ -2013,6 +2362,103 @@ Clear All Records
 </div>
 </div>
 
+<!-- =========================================================
+     CHANGE PASSWORD MODAL
+========================================================= -->
+
+<div
+id="changePasswordModal"
+class="modal-backdrop"
+onclick="if(event.target===this) closeChangePassword()"
+>
+
+<div class="modal">
+
+<h3>
+Change Password
+</h3>
+
+<p>
+Enter your new password below.
+</p>
+
+<label>New Password</label>
+
+<div class="password-wrap">
+
+<input
+id="profileNewPassword"
+type="password"
+placeholder="At least 6 characters"
+autocomplete="new-password"
+>
+
+<button
+type="button"
+class="password-toggle"
+onclick="togglePassword('profileNewPassword',this)"
+>
+👁
+</button>
+
+</div>
+
+<label style="margin-top:10px">
+Confirm New Password
+</label>
+
+<div class="password-wrap">
+
+<input
+id="profileConfirmPassword"
+type="password"
+placeholder="Re-enter password"
+autocomplete="new-password"
+>
+
+<button
+type="button"
+class="password-toggle"
+onclick="togglePassword('profileConfirmPassword',this)"
+>
+👁
+</button>
+
+</div>
+
+<div
+id="changePasswordError"
+class="modal-error"
+></div>
+
+<div
+id="changePasswordSuccess"
+class="profile-message ok"
+></div>
+
+<div class="modal-actions">
+
+<button
+type="button"
+class="modal-cancel"
+onclick="closeChangePassword()"
+>
+Cancel
+</button>
+
+<button
+type="button"
+class="modal-save"
+onclick="changeTeacherPassword()"
+>
+Update Password
+</button>
+
+</div>
+
+</div>
+</div>
+
 <script>
 
 /* =========================================================
@@ -2028,6 +2474,8 @@ const EMAILJS_TEMPLATE_ID='template_3kqt32w';
 const STUDENTS_BASE_KEY='teacherDanyealStudents_v2';
 
 const EVALUATIONS_BASE_KEY='teacherDanyealEvaluations_v2';
+
+const PROFILE_BASE_KEY='teacherDanyealProfile_v1';
 
 const SUPABASE_URL=
 'https://ibhmimpmeftzkrtzhkmp.supabase.co';
@@ -2100,6 +2548,39 @@ function saveEvaluations(data){
 
 localStorage.setItem(
 userStorageKey(EVALUATIONS_BASE_KEY),
+JSON.stringify(data)
+);
+
+}
+
+function getTeacherProfile(){
+
+if(!currentUser)
+return {};
+
+try{
+
+return JSON.parse(
+localStorage.getItem(
+userStorageKey(PROFILE_BASE_KEY)
+)||'{}'
+);
+
+}catch{
+
+return {};
+
+}
+
+}
+
+function saveTeacherProfileData(data){
+
+if(!currentUser)
+return;
+
+localStorage.setItem(
+userStorageKey(PROFILE_BASE_KEY),
 JSON.stringify(data)
 );
 
@@ -2644,11 +3125,555 @@ false,
 
 async function logoutTeacher(){
 
-closeAccountMenu();
+closeProfileMenu();
+
+closeProfileDots();
 
 closeClearAllRecords();
 
 await supabaseClient.auth.signOut();
+
+}
+
+
+/* =========================================================
+   PROFILE SYSTEM
+========================================================= */
+
+function getInitials(name){
+
+const clean=String(name||'Teacher').trim();
+
+if(!clean)
+return 'TD';
+
+const parts=clean.split(/\s+/);
+
+if(parts.length===1)
+return parts[0].substring(0,2).toUpperCase();
+
+return (
+parts[0].charAt(0)+
+parts[parts.length-1].charAt(0)
+).toUpperCase();
+
+}
+
+function toggleProfileMenu(event){
+
+if(event)
+event.stopPropagation();
+
+const menu=
+document.getElementById(
+'profileDropdown'
+);
+
+menu.classList.toggle('show');
+
+if(menu.classList.contains('show')){
+
+loadTeacherProfile();
+
+}
+
+}
+
+function closeProfileMenu(){
+
+const menu=
+document.getElementById(
+'profileDropdown'
+);
+
+if(menu)
+menu.classList.remove('show');
+
+closeProfileDots();
+
+}
+
+function toggleProfileDots(event){
+
+if(event)
+event.stopPropagation();
+
+const menu=
+document.getElementById(
+'profileMenu'
+);
+
+menu.classList.toggle('show');
+
+}
+
+function closeProfileDots(){
+
+const menu=
+document.getElementById(
+'profileMenu'
+);
+
+if(menu)
+menu.classList.remove('show');
+
+}
+
+function showProfileMessage(msg,ok=true){
+
+const el=
+document.getElementById(
+'profileMessage'
+);
+
+el.textContent=msg;
+
+el.className=
+'profile-message show '+
+(ok?'ok':'error');
+
+setTimeout(
+()=>{
+
+el.classList.remove('show');
+
+},
+3000
+);
+
+}
+
+function loadTeacherProfile(){
+
+if(!currentUser)
+return;
+
+const stored=
+getTeacherProfile();
+
+const metadata=
+currentUser.user_metadata || {};
+
+const fullName=
+stored.fullName ||
+metadata.full_name ||
+currentUser.email ||
+'Teacher';
+
+const username=
+stored.username ||
+metadata.username ||
+fullName
+.toLowerCase()
+.replace(/\s+/g,'')
+.substring(0,30);
+
+const phone=
+stored.phone || '';
+
+const gender=
+stored.gender || '';
+
+const photo=
+stored.photo || '';
+
+document.getElementById(
+'profileUsername'
+).value=username;
+
+document.getElementById(
+'profileFullName'
+).value=fullName;
+
+document.getElementById(
+'profileEmail'
+).value=currentUser.email || '';
+
+document.getElementById(
+'profilePhone'
+).value=phone;
+
+document.getElementById(
+'profileGender'
+).value=gender;
+
+updateProfileVisual(
+fullName,
+photo
+);
+
+}
+
+function updateProfileVisual(name,photo){
+
+const displayName=
+name ||
+currentUser?.email ||
+'Teacher';
+
+document.getElementById(
+'profileDisplayName'
+).textContent=
+displayName;
+
+document.getElementById(
+'profileHeaderName'
+).textContent=
+displayName;
+
+document.getElementById(
+'profileHeaderEmail'
+).textContent=
+currentUser?.email || '';
+
+const small=
+document.getElementById(
+'profileAvatarSmall'
+);
+
+const big=
+document.getElementById(
+'profilePicture'
+);
+
+if(photo){
+
+small.innerHTML=
+`<img src="${photo}" alt="Profile">`;
+
+big.innerHTML=
+`<img src="${photo}" alt="Profile">`;
+
+}else{
+
+const initials=
+getInitials(displayName);
+
+small.textContent=initials;
+
+big.textContent=initials;
+
+}
+
+}
+
+async function saveTeacherProfile(){
+
+if(!currentUser)
+return;
+
+const username=
+document.getElementById(
+'profileUsername'
+).value.trim();
+
+const fullName=
+document.getElementById(
+'profileFullName'
+).value.trim();
+
+const phone=
+document.getElementById(
+'profilePhone'
+).value.trim();
+
+const gender=
+document.getElementById(
+'profileGender'
+).value;
+
+if(!username){
+
+return showProfileMessage(
+'Please enter a username.',
+false
+);
+
+}
+
+if(!fullName){
+
+return showProfileMessage(
+'Please enter your full name.',
+false
+);
+
+}
+
+const old=
+getTeacherProfile();
+
+const data={
+
+...old,
+
+username,
+
+fullName,
+
+phone,
+
+gender
+
+};
+
+saveTeacherProfileData(data);
+
+try{
+
+await supabaseClient.auth.updateUser({
+
+data:{
+
+...currentUser.user_metadata,
+
+full_name:fullName,
+
+username
+
+}
+
+});
+
+}catch(error){
+
+console.error(
+'Profile metadata update:',
+error
+);
+
+}
+
+currentUser={
+...currentUser,
+
+user_metadata:{
+...(currentUser.user_metadata||{}),
+full_name:fullName,
+username
+}
+
+};
+
+updateProfileVisual(
+fullName,
+data.photo || ''
+);
+
+showProfileMessage(
+'Profile saved successfully.',
+true
+);
+
+}
+
+function handleProfilePicture(event){
+
+const file=
+event.target.files?.[0];
+
+if(!file)
+return;
+
+if(!file.type.startsWith('image/')){
+
+return showProfileMessage(
+'Please select an image file.',
+false
+);
+
+}
+
+if(file.size>2*1024*1024){
+
+return showProfileMessage(
+'Please use an image smaller than 2MB.',
+false
+);
+
+}
+
+const reader=
+new FileReader();
+
+reader.onload=function(){
+
+const old=
+getTeacherProfile();
+
+const data={
+
+...old,
+
+photo:reader.result
+
+};
+
+saveTeacherProfileData(data);
+
+const name=
+document.getElementById(
+'profileFullName'
+).value ||
+'Teacher';
+
+updateProfileVisual(
+name,
+reader.result
+);
+
+showProfileMessage(
+'Profile picture updated.',
+true
+);
+
+};
+
+reader.readAsDataURL(file);
+
+}
+
+
+/* =========================================================
+   CHANGE PASSWORD FROM PROFILE
+========================================================= */
+
+function openChangePassword(){
+
+closeProfileDots();
+
+document.getElementById(
+'profileNewPassword'
+).value='';
+
+document.getElementById(
+'profileConfirmPassword'
+).value='';
+
+document.getElementById(
+'changePasswordError'
+).textContent='';
+
+document.getElementById(
+'changePasswordError'
+).classList.remove('show');
+
+document.getElementById(
+'changePasswordSuccess'
+).textContent='';
+
+document.getElementById(
+'changePasswordSuccess'
+).classList.remove('show');
+
+document.getElementById(
+'changePasswordModal'
+).classList.add('show');
+
+setTimeout(
+()=>{
+
+document.getElementById(
+'profileNewPassword'
+).focus();
+
+},
+50
+);
+
+}
+
+function closeChangePassword(){
+
+document.getElementById(
+'changePasswordModal'
+).classList.remove('show');
+
+}
+
+async function changeTeacherPassword(){
+
+const password=
+document.getElementById(
+'profileNewPassword'
+).value;
+
+const confirm=
+document.getElementById(
+'profileConfirmPassword'
+).value;
+
+const error=
+document.getElementById(
+'changePasswordError'
+);
+
+const success=
+document.getElementById(
+'changePasswordSuccess'
+);
+
+error.classList.remove('show');
+
+success.classList.remove('show');
+
+if(password.length<6){
+
+error.textContent=
+'Password must be at least 6 characters.';
+
+error.classList.add('show');
+
+return;
+
+}
+
+if(password!==confirm){
+
+error.textContent=
+'Passwords do not match.';
+
+error.classList.add('show');
+
+return;
+
+}
+
+const {error:authError}=
+await supabaseClient.auth.updateUser({
+
+password
+
+});
+
+if(authError){
+
+error.textContent=
+authError.message;
+
+error.classList.add('show');
+
+return;
+
+}
+
+success.textContent=
+'Password updated successfully.';
+
+success.classList.add('show');
+
+document.getElementById(
+'profileNewPassword'
+).value='';
+
+document.getElementById(
+'profileConfirmPassword'
+).value='';
+
+setTimeout(
+closeChangePassword,
+1200
+);
 
 }
 
@@ -2661,14 +3686,20 @@ async function handleSignedIn(user){
 
 currentUser=user;
 
+const stored=
+getTeacherProfile();
+
 const name=
+stored.fullName ||
 user.user_metadata?.full_name ||
 user.email ||
 'Teacher';
 
 document.getElementById(
-'currentTeacher'
+'profileDisplayName'
 ).textContent=name;
+
+loadTeacherProfile();
 
 document.getElementById(
 'authScreen'
@@ -2693,7 +3724,7 @@ function handleSignedOut(){
 
 currentUser=null;
 
-closeAccountMenu();
+closeProfileMenu();
 
 closeClearAllRecords();
 
@@ -2815,6 +3846,13 @@ updatePassword
 );
 
 document.getElementById(
+'profilePictureInput'
+).addEventListener(
+'change',
+handleProfilePicture
+);
+
+document.getElementById(
 'loginPassword'
 ).addEventListener(
 'keydown',
@@ -2864,58 +3902,38 @@ updatePassword();
 
 
 /* =========================================================
-   ACCOUNT 3-DOTS MENU
+   PROFILE OUTSIDE CLICK
 ========================================================= */
-
-function toggleAccountMenu(event){
-
-if(event){
-event.stopPropagation();
-}
-
-const menu=
-document.getElementById(
-'accountMenu'
-);
-
-menu.classList.toggle('show');
-
-}
-
-function closeAccountMenu(){
-
-const menu=
-document.getElementById(
-'accountMenu'
-);
-
-if(menu){
-
-menu.classList.remove('show');
-
-}
-
-}
 
 document.addEventListener(
 'click',
 e=>{
 
 if(
-!e.target.closest('.userbar-actions')
+!e.target.closest('.profile-trigger') &&
+!e.target.closest('.profile-dropdown')
 ){
 
-closeAccountMenu();
+closeProfileMenu();
 
 }
 
-}
-);
+});
 
 
 /* =========================================================
    CLEAR ALL RECORDS
 ========================================================= */
+
+function openClearAllRecordsFromProfile(){
+
+closeProfileDots();
+
+closeProfileMenu();
+
+openClearAllRecords();
+
+}
 
 function generateClearAllCaptcha(){
 
@@ -2949,7 +3967,8 @@ error.classList.remove('show');
 
 function openClearAllRecords(){
 
-closeAccountMenu();
+if(!currentUser)
+return;
 
 generateClearAllCaptcha();
 
@@ -3038,11 +4057,6 @@ error.classList.add('show');
 return;
 
 }
-
-/*
-   Delete only the current user's records.
-   The Supabase account itself is NOT deleted.
-*/
 
 localStorage.removeItem(
 userStorageKey(STUDENTS_BASE_KEY)
@@ -4122,15 +5136,9 @@ understanding>=4
 )[variant]
 );
 
-/*
-   No closing message is added here.
-   The closing message is handled by EmailJS.
-*/
-
 return parts.join(' ');
 
 }
-
 
 function generateComment(){
 
@@ -4147,7 +5155,6 @@ buildComment(0);
 return box.textContent;
 
 }
-
 
 function updateComment(){
 
@@ -4297,13 +5304,6 @@ return showStatus(
 'Please select the class time.',
 false
 );
-
-
-/*
-   IMPORTANT:
-   Send exactly the comment currently
-   displayed on the screen.
-*/
 
 const currentComment=
 document.getElementById(
@@ -4706,9 +5706,11 @@ closeDeleteStudent();
 
 closeStudentMenus();
 
-closeAccountMenu();
+closeProfileMenu();
 
 closeClearAllRecords();
+
+closeChangePassword();
 
 }
 
