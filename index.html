@@ -9,894 +9,914 @@
 *{box-sizing:border-box}
 
 body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f2f4f7;
-  color:#111;
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:#f2f4f7;
+color:#111;
 }
 
 .app{
-  max-width:1100px;
-  margin:20px auto;
-  padding:15px;
+max-width:1100px;
+margin:20px auto;
+padding:15px;
 }
 
 .card{
-  background:#fff;
-  border-radius:12px;
-  box-shadow:0 4px 18px rgba(0,0,0,.12);
-  overflow:hidden;
+background:#fff;
+border-radius:12px;
+box-shadow:0 4px 18px rgba(0,0,0,.12);
+overflow:hidden;
 }
 
 .topbar{
-  background:#00e5e5;
-  padding:14px 18px;
-  text-align:center;
-  font-size:22px;
-  font-weight:700;
+background:#00e5e5;
+padding:14px 18px;
+text-align:center;
+font-size:22px;
+font-weight:700;
 }
-
-.userbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  padding:8px 15px;
-  background:#f7ffff;
-  border-bottom:1px solid #ddd;
-  font-size:13px;
-}
-
-.userbar-actions{
-  display:flex;
-  align-items:center;
-  gap:6px;
-  margin-left:auto;
-  position:relative;
-}
-
-.logout-btn{
-  border:0;
-  border-radius:7px;
-  padding:7px 12px;
-  background:#ddd;
-  font-weight:700;
-  cursor:pointer;
-}
-
-.logout-btn:hover{background:#ccc}
-
-.account-dots-btn{
-  width:36px;
-  height:34px;
-  border:0;
-  border-radius:7px;
-  background:transparent;
-  cursor:pointer;
-  font-size:23px;
-  line-height:1;
-  font-weight:700;
-  padding:0;
-}
-
-.account-dots-btn:hover{background:#eee}
-
-.account-menu{
-  position:absolute;
-  right:0;
-  top:42px;
-  min-width:170px;
-  background:#fff;
-  border:1px solid #ccc;
-  border-radius:8px;
-  box-shadow:0 6px 20px rgba(0,0,0,.18);
-  padding:5px;
-  z-index:80;
-  display:none;
-}
-
-.account-menu.show{display:block}
-
-.account-menu button{
-  width:100%;
-  border:0;
-  background:#fff;
-  text-align:left;
-  padding:10px 12px;
-  border-radius:6px;
-  cursor:pointer;
-  font-size:14px;
-  font-weight:700;
-  color:#b00020;
-}
-
-.account-menu button:hover{background:#ffecec}
-
-/* =========================================================
-   MAIN NAVIGATION
-========================================================= */
-
-.nav{
-  display:flex;
-  gap:8px;
-  padding:10px 15px;
-  background:#fff;
-  border-bottom:1px solid #ddd;
-  flex-wrap:wrap;
-}
-
-.nav button{
-  border:0;
-  border-radius:8px;
-  padding:8px 14px;
-  font-weight:700;
-  cursor:pointer;
-  background:#eee;
-  font-size:13px;
-}
-
-.nav button.active{
-  background:#00d9d9;
-}
-
-/* =========================================================
-   PAGES
-========================================================= */
 
 .page{
-  display:none;
-  padding:18px;
+display:none;
+padding:18px;
 }
 
-.page.active{display:block}
-
-/* =========================================================
-   3D DASHBOARD
-========================================================= */
-
-.dashboard-home{
-  padding:12px 0 5px;
+.page.active{
+display:block;
 }
 
-.dashboard-welcome{
-  text-align:center;
-  margin:5px 0 25px;
+/* =========================
+   HOME 3D DASHBOARD
+========================= */
+
+.home-title{
+margin:0;
+font-size:27px;
 }
 
-.dashboard-welcome h2{
-  margin:0 0 8px;
-  font-size:28px;
+.home-subtitle{
+margin:6px 0 0;
+color:#666;
 }
 
-.dashboard-welcome p{
-  margin:0;
-  color:#666;
-  font-size:14px;
+.home-stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+margin:20px 0;
+}
+
+.stat{
+border:1px solid #aaa;
+border-radius:12px;
+padding:16px;
+background:#fafafa;
+}
+
+.stat b{
+font-size:28px;
+display:block;
+margin-top:5px;
 }
 
 .module-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:22px;
-  max-width:900px;
-  margin:0 auto;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:22px;
+margin-top:20px;
 }
 
 .module-card{
-  position:relative;
-  min-height:170px;
-  border:0;
-  border-radius:18px;
-  background:linear-gradient(145deg,#ffffff,#e8eeee);
-  box-shadow:
-    0 10px 0 #bfcaca,
-    0 16px 25px rgba(0,0,0,.15);
-  cursor:pointer;
-  padding:25px 15px;
-  transition:
-    transform .18s ease,
-    box-shadow .18s ease;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
+position:relative;
+min-height:180px;
+border:0;
+border-radius:20px;
+padding:25px 18px;
+background:linear-gradient(145deg,#ffffff,#e8eeee);
+box-shadow:
+0 9px 0 #aaa,
+0 16px 25px rgba(0,0,0,.18);
+cursor:pointer;
+text-align:center;
+transition:
+transform .15s ease,
+box-shadow .15s ease;
+user-select:none;
 }
 
 .module-card:hover{
-  transform:translateY(-7px);
-  box-shadow:
-    0 16px 0 #bfcaca,
-    0 23px 32px rgba(0,0,0,.18);
+transform:translateY(-7px);
+box-shadow:
+0 16px 0 #999,
+0 24px 30px rgba(0,0,0,.20);
 }
 
 .module-card:active{
-  transform:translateY(4px);
-  box-shadow:
-    0 5px 0 #bfcaca,
-    0 9px 15px rgba(0,0,0,.15);
+transform:translateY(5px);
+box-shadow:
+0 4px 0 #999,
+0 8px 14px rgba(0,0,0,.16);
 }
 
 .module-icon{
-  width:68px;
-  height:68px;
-  border-radius:18px;
-  background:#00e5e5;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:34px;
-  margin-bottom:14px;
-  box-shadow:
-    inset 0 -5px 0 rgba(0,0,0,.12),
-    0 5px 12px rgba(0,0,0,.12);
+font-size:48px;
+margin-bottom:12px;
 }
 
-.module-card h3{
-  margin:0;
-  font-size:18px;
+.module-title{
+font-size:18px;
+font-weight:900;
 }
 
-.module-card p{
-  margin:6px 0 0;
-  color:#666;
-  font-size:12px;
+.module-sub{
+font-size:12px;
+color:#666;
+margin-top:7px;
+line-height:1.4;
 }
 
-/* =========================================================
+.back-home-btn{
+border:0;
+border-radius:9px;
+padding:10px 16px;
+background:#eee;
+font-weight:700;
+cursor:pointer;
+}
+
+.back-home-btn:hover{
+background:#ddd;
+}
+
+.page-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:12px;
+flex-wrap:wrap;
+margin-bottom:16px;
+}
+
+/* =========================
+   USER BAR
+========================= */
+
+.userbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+padding:8px 15px;
+background:#f7ffff;
+border-bottom:1px solid #ddd;
+font-size:13px;
+}
+
+.userbar-actions{
+display:flex;
+align-items:center;
+gap:6px;
+margin-left:auto;
+position:relative;
+}
+
+.logout-btn{
+border:0;
+border-radius:7px;
+padding:7px 12px;
+background:#ddd;
+font-weight:700;
+cursor:pointer;
+}
+
+.logout-btn:hover{
+background:#ccc;
+}
+
+.account-dots-btn{
+width:36px;
+height:34px;
+border:0;
+border-radius:7px;
+background:transparent;
+cursor:pointer;
+font-size:23px;
+line-height:1;
+font-weight:700;
+padding:0;
+}
+
+.account-dots-btn:hover{
+background:#eee;
+}
+
+.account-menu{
+position:absolute;
+right:0;
+top:42px;
+min-width:170px;
+background:#fff;
+border:1px solid #ccc;
+border-radius:8px;
+box-shadow:0 6px 20px rgba(0,0,0,.18);
+padding:5px;
+z-index:80;
+display:none;
+}
+
+.account-menu.show{
+display:block;
+}
+
+.account-menu button{
+width:100%;
+border:0;
+background:#fff;
+text-align:left;
+padding:10px 12px;
+border-radius:6px;
+cursor:pointer;
+font-size:14px;
+font-weight:700;
+color:#b00020;
+}
+
+.account-menu button:hover{
+background:#ffecec;
+}
+
+/* =========================
    GENERAL
-========================================================= */
+========================= */
 
 .grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
 }
 
 label{
-  display:block;
-  font-weight:700;
-  margin-bottom:6px;
+display:block;
+font-weight:700;
+margin-bottom:6px;
 }
 
 input,textarea,select{
-  width:100%;
-  border:1px solid #bbb;
-  border-radius:7px;
-  padding:10px;
-  font-size:15px;
-  background:#fff;
+width:100%;
+border:1px solid #bbb;
+border-radius:7px;
+padding:10px;
+font-size:15px;
+background:#fff;
 }
 
-input[readonly]{background:#f4f4f4}
+input[readonly]{
+background:#f4f4f4;
+}
 
 textarea{
-  min-height:105px;
-  resize:vertical;
+min-height:105px;
+resize:vertical;
 }
 
 .section{
-  margin-top:16px;
-  border:1px solid #aaa;
-  border-radius:7px;
-  overflow:hidden;
+margin-top:16px;
+border:1px solid #aaa;
+border-radius:7px;
+overflow:hidden;
 }
 
 .section-title{
-  background:#00e5e5;
-  padding:7px 10px;
-  text-align:center;
-  font-weight:700;
+background:#00e5e5;
+padding:7px 10px;
+text-align:center;
+font-weight:700;
 }
 
-.section-body{padding:12px}
+.section-body{
+padding:12px;
+}
 
 .score-box{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
 }
 
 .rating{
-  background:#ffff00;
-  padding:7px;
-  font-weight:700;
-  text-align:center;
-  margin-top:8px;
-  border-radius:5px;
+background:#ffff00;
+padding:7px;
+font-weight:700;
+text-align:center;
+margin-top:8px;
+border-radius:5px;
 }
 
 .stars{
-  font-size:25px;
-  letter-spacing:2px;
-  color:#111;
-  white-space:nowrap;
+font-size:25px;
+letter-spacing:2px;
+color:#111;
+white-space:nowrap;
 }
 
 .stars button{
-  border:0;
-  background:none;
-  cursor:pointer;
-  font-size:25px;
-  padding:0 1px;
+border:0;
+background:none;
+cursor:pointer;
+font-size:25px;
+padding:0 1px;
 }
 
 .performance{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:0;
-  border:1px solid #aaa;
-  border-top:0;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:0;
+border:1px solid #aaa;
+border-top:0;
 }
 
 .perf-item{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:8px;
-  padding:7px 9px;
-  border-top:1px solid #aaa;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:8px;
+padding:7px 9px;
+border-top:1px solid #aaa;
 }
 
 .perf-item:nth-child(odd){
-  border-right:1px solid #aaa;
+border-right:1px solid #aaa;
 }
 
 .comment-box{
-  background:#f7f7f7;
-  border:1px dashed #999;
-  min-height:150px;
-  padding:12px;
-  line-height:1.5;
-  white-space:pre-wrap;
+background:#f7f7f7;
+border:1px dashed #999;
+min-height:150px;
+padding:12px;
+line-height:1.5;
+white-space:pre-wrap;
 }
 
 .buttons{
-  display:flex;
-  gap:10px;
-  margin-top:18px;
-  flex-wrap:wrap;
+display:flex;
+gap:10px;
+margin-top:18px;
+flex-wrap:wrap;
 }
 
 button.primary,
 button.secondary,
 .btn{
-  border:0;
-  border-radius:8px;
-  padding:12px 18px;
-  font-size:15px;
-  font-weight:700;
-  cursor:pointer;
+border:0;
+border-radius:8px;
+padding:12px 18px;
+font-size:15px;
+font-weight:700;
+cursor:pointer;
 }
 
-.primary{background:#00d9d9}
-.secondary{background:#ddd}
+.primary{
+background:#00d9d9;
+}
+
+.secondary{
+background:#ddd;
+}
 
 .status{
-  margin-top:12px;
-  padding:10px;
-  border-radius:7px;
-  display:none;
+margin-top:12px;
+padding:10px;
+border-radius:7px;
+display:none;
 }
 
-.status.show{display:block}
-.status.ok{background:#dff6df}
-.status.error{background:#ffe1e1}
+.status.show{
+display:block;
+}
+
+.status.ok{
+background:#dff6df;
+}
+
+.status.error{
+background:#ffe1e1;
+}
 
 .small{
-  font-size:12px;
-  color:#666;
-  margin-top:5px;
+font-size:12px;
+color:#666;
+margin-top:5px;
 }
 
-.dashboard-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-  margin-bottom:18px;
-}
-
-.stat{
-  border:1px solid #aaa;
-  border-radius:9px;
-  padding:16px;
-  background:#fafafa;
-}
-
-.stat b{
-  font-size:28px;
-  display:block;
-  margin-top:5px;
-}
+/* =========================
+   STUDENT
+========================= */
 
 .panel{
-  border:1px solid #aaa;
-  border-radius:9px;
-  overflow:hidden;
-  margin-top:15px;
+border:1px solid #aaa;
+border-radius:9px;
+overflow:hidden;
+margin-top:15px;
 }
 
 .panel-title{
-  background:#00e5e5;
-  padding:10px;
-  font-weight:700;
+background:#00e5e5;
+padding:10px;
+font-weight:700;
 }
 
-.panel-body{padding:14px}
+.panel-body{
+padding:14px;
+}
 
 .add-student-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr auto;
-  gap:10px;
-  align-items:end;
+display:grid;
+grid-template-columns:1fr 1fr 1fr auto;
+gap:10px;
+align-items:end;
 }
 
-.table-wrap{overflow-x:auto}
+.student-list{
+display:grid;
+gap:8px;
+}
+
+.student-row{
+position:relative;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border:1px solid #ccc;
+border-radius:8px;
+padding:10px 12px;
+gap:10px;
+}
+
+.student-info b{
+display:block;
+}
+
+.student-info span{
+font-size:12px;
+color:#666;
+}
+
+.student-actions{
+position:relative;
+margin-left:auto;
+}
+
+.dots-btn{
+width:38px;
+height:38px;
+border:0;
+background:transparent;
+border-radius:8px;
+cursor:pointer;
+font-size:24px;
+line-height:1;
+font-weight:700;
+padding:0;
+}
+
+.dots-btn:hover{
+background:#eee;
+}
+
+.student-menu{
+position:absolute;
+right:44px;
+top:50%;
+transform:translateY(-50%);
+min-width:130px;
+background:#fff;
+border:1px solid #ccc;
+border-radius:8px;
+box-shadow:0 6px 18px rgba(0,0,0,.15);
+padding:5px;
+z-index:50;
+display:none;
+}
+
+.student-menu.show{
+display:block;
+}
+
+.student-menu button{
+display:block;
+width:100%;
+border:0;
+background:#fff;
+text-align:left;
+padding:9px 11px;
+border-radius:6px;
+cursor:pointer;
+font-size:14px;
+font-weight:600;
+}
+
+.student-menu button:hover{
+background:#f1f1f1;
+}
+
+.student-menu .delete-option{
+color:#b00020;
+}
+
+.empty{
+padding:18px;
+text-align:center;
+color:#666;
+}
+
+/* =========================
+   RECORD TABLE
+========================= */
+
+.table-wrap{
+overflow-x:auto;
+}
 
 .record-table{
-  width:100%;
-  border-collapse:collapse;
-  font-size:14px;
+width:100%;
+border-collapse:collapse;
+font-size:14px;
 }
 
 .record-table th,
 .record-table td{
-  border:1px solid #aaa;
-  padding:9px;
-  text-align:left;
+border:1px solid #aaa;
+padding:9px;
+text-align:left;
 }
 
-.record-table th{background:#f1f1f1}
-
-.empty{
-  padding:18px;
-  text-align:center;
-  color:#666;
+.record-table th{
+background:#f1f1f1;
 }
 
-.student-list{
-  display:grid;
-  gap:8px;
-}
-
-.student-row{
-  position:relative;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  border:1px solid #ccc;
-  border-radius:8px;
-  padding:10px 12px;
-  gap:10px;
-}
-
-.student-info b{display:block}
-
-.student-info span{
-  font-size:12px;
-  color:#666;
-}
-
-.student-actions{
-  position:relative;
-  margin-left:auto;
-}
-
-.dots-btn{
-  width:38px;
-  height:38px;
-  border:0;
-  background:transparent;
-  border-radius:8px;
-  cursor:pointer;
-  font-size:24px;
-  line-height:1;
-  font-weight:700;
-  padding:0;
-}
-
-.dots-btn:hover{background:#eee}
-
-.student-menu{
-  position:absolute;
-  right:44px;
-  top:50%;
-  transform:translateY(-50%);
-  min-width:130px;
-  background:#fff;
-  border:1px solid #ccc;
-  border-radius:8px;
-  box-shadow:0 6px 18px rgba(0,0,0,.15);
-  padding:5px;
-  z-index:50;
-  display:none;
-}
-
-.student-menu.show{display:block}
-
-.student-menu button{
-  display:block;
-  width:100%;
-  border:0;
-  background:#fff;
-  text-align:left;
-  padding:9px 11px;
-  border-radius:6px;
-  cursor:pointer;
-  font-size:14px;
-  font-weight:600;
-}
-
-.student-menu button:hover{background:#f1f1f1}
-
-.student-menu .delete-option{color:#b00020}
-
-/* =========================================================
-   MODULE PLACEHOLDER PAGES
-========================================================= */
-
-.module-page{
-  text-align:center;
-  padding:35px 15px;
-}
-
-.module-page-icon{
-  width:85px;
-  height:85px;
-  margin:0 auto 15px;
-  border-radius:22px;
-  background:#00e5e5;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:42px;
-  box-shadow:
-    inset 0 -6px 0 rgba(0,0,0,.12),
-    0 8px 18px rgba(0,0,0,.15);
-}
-
-.module-page h2{margin:5px 0 8px}
-
-.module-page p{
-  color:#666;
-  max-width:600px;
-  margin:0 auto 20px;
-  line-height:1.5;
-}
-
-/* =========================================================
+/* =========================
    MODALS
-========================================================= */
+========================= */
 
 .modal-backdrop{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.45);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:18px;
-  z-index:100;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.45);
+display:none;
+align-items:center;
+justify-content:center;
+padding:18px;
+z-index:100;
 }
 
-.modal-backdrop.show{display:flex}
+.modal-backdrop.show{
+display:flex;
+}
 
 .modal{
-  width:100%;
-  max-width:460px;
-  background:#fff;
-  border-radius:12px;
-  box-shadow:0 10px 35px rgba(0,0,0,.25);
-  padding:20px;
+width:100%;
+max-width:460px;
+background:#fff;
+border-radius:12px;
+box-shadow:0 10px 35px rgba(0,0,0,.25);
+padding:20px;
 }
 
-.modal h3{margin:0 0 8px}
+.modal h3{
+margin:0 0 8px;
+}
 
 .modal p{
-  margin:8px 0 14px;
-  line-height:1.45;
+margin:8px 0 14px;
+line-height:1.45;
 }
 
 .modal-actions{
-  display:flex;
-  justify-content:flex-end;
-  gap:8px;
-  margin-top:16px;
-  flex-wrap:wrap;
+display:flex;
+justify-content:flex-end;
+gap:8px;
+margin-top:16px;
+flex-wrap:wrap;
 }
 
 .modal-actions button{
-  border:0;
-  border-radius:8px;
-  padding:10px 16px;
-  font-weight:700;
-  cursor:pointer;
+border:0;
+border-radius:8px;
+padding:10px 16px;
+font-weight:700;
+cursor:pointer;
 }
 
-.modal-cancel{background:#ddd}
-.modal-save{background:#00d9d9}
-.modal-delete{background:#d9534f;color:#fff}
+.modal-cancel{
+background:#ddd;
+}
+
+.modal-save{
+background:#00d9d9;
+}
+
+.modal-delete{
+background:#d9534f;
+color:#fff;
+}
 
 .modal-error{
-  display:none;
-  margin-top:10px;
-  padding:9px;
-  border-radius:7px;
-  background:#ffe1e1;
-  color:#8a0000;
-  font-size:13px;
+display:none;
+margin-top:10px;
+padding:9px;
+border-radius:7px;
+background:#ffe1e1;
+color:#8a0000;
+font-size:13px;
 }
 
-.modal-error.show{display:block}
+.modal-error.show{
+display:block;
+}
+
+/* =========================
+   CAPTCHA
+========================= */
 
 .captcha-box{
-  margin-top:15px;
-  padding:14px;
-  border:1px solid #ccc;
-  border-radius:9px;
-  background:#f7f7f7;
-  text-align:center;
+margin-top:15px;
+padding:14px;
+border:1px solid #ccc;
+border-radius:9px;
+background:#f7f7f7;
+text-align:center;
 }
 
 .captcha-code{
-  display:inline-block;
-  min-width:150px;
-  padding:12px 18px;
-  margin:5px 0 12px;
-  border:1px dashed #888;
-  border-radius:8px;
-  background:#fff;
-  font-size:27px;
-  font-weight:800;
-  letter-spacing:7px;
-  user-select:none;
+display:inline-block;
+min-width:150px;
+padding:12px 18px;
+margin:5px 0 12px;
+border:1px dashed #888;
+border-radius:8px;
+background:#fff;
+font-size:27px;
+font-weight:800;
+letter-spacing:7px;
+user-select:none;
 }
 
 .captcha-refresh{
-  display:block;
-  margin:0 auto 12px;
-  border:0;
-  background:none;
-  color:#007b83;
-  font-size:13px;
-  font-weight:700;
-  cursor:pointer;
+display:block;
+margin:0 auto 12px;
+border:0;
+background:none;
+color:#007b83;
+font-size:13px;
+font-weight:700;
+cursor:pointer;
 }
-
-.captcha-refresh:hover{text-decoration:underline}
 
 .captcha-input{
-  text-align:center;
-  font-size:18px;
-  font-weight:700;
-  letter-spacing:4px;
+text-align:center;
+font-size:18px;
+font-weight:700;
+letter-spacing:4px;
 }
 
-/* =========================================================
+/* =========================
    AUTH
-========================================================= */
+========================= */
 
 .auth-screen{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  background:#f2f4f7;
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+background:#f2f4f7;
 }
 
 .auth-card{
-  width:100%;
-  max-width:430px;
-  background:#fff;
-  border-radius:14px;
-  box-shadow:0 8px 30px rgba(0,0,0,.14);
-  overflow:hidden;
+width:100%;
+max-width:430px;
+background:#fff;
+border-radius:14px;
+box-shadow:0 8px 30px rgba(0,0,0,.14);
+overflow:hidden;
 }
 
 .auth-header{
-  background:#00e5e5;
-  padding:22px 20px;
-  text-align:center;
+background:#00e5e5;
+padding:22px 20px;
+text-align:center;
 }
 
 .brand-logo{
-  width:58px;
-  height:58px;
-  margin:0 auto 8px;
-  border-radius:15px;
-  background:#111;
-  color:#00e5e5;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:25px;
-  font-weight:800;
-  letter-spacing:-1px;
-  box-shadow:0 3px 10px rgba(0,0,0,.14);
+width:58px;
+height:58px;
+margin:0 auto 8px;
+border-radius:15px;
+background:#111;
+color:#00e5e5;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:25px;
+font-weight:800;
+letter-spacing:-1px;
+box-shadow:0 3px 10px rgba(0,0,0,.14);
 }
 
-.auth-header h1{margin:0;font-size:21px}
-.auth-header p{margin:5px 0 0;font-size:14px;font-weight:600}
-.auth-body{padding:22px}
-.auth-body h2{margin:0 0 15px}
-.auth-body label{margin-top:10px}
-.auth-body input{margin-bottom:2px}
+.auth-header h1{
+margin:0;
+font-size:21px;
+}
+
+.auth-header p{
+margin:5px 0 0;
+font-size:14px;
+font-weight:600;
+}
+
+.auth-body{
+padding:22px;
+}
+
+.auth-body h2{
+margin:0 0 15px;
+}
+
+.auth-body label{
+margin-top:10px;
+}
+
+.auth-body input{
+margin-bottom:2px;
+}
 
 .auth-btn{
-  width:100%;
-  margin-top:15px;
+width:100%;
+margin-top:15px;
 }
 
 .auth-switch{
-  margin-top:14px;
-  text-align:center;
-  font-size:14px;
+margin-top:14px;
+text-align:center;
+font-size:14px;
 }
 
 .auth-switch button{
-  border:0;
-  background:none;
-  color:#007b83;
-  font-weight:700;
-  cursor:pointer;
+border:0;
+background:none;
+color:#007b83;
+font-weight:700;
+cursor:pointer;
 }
 
 .auth-message{
-  display:none;
-  margin-top:12px;
-  padding:10px;
-  border-radius:7px;
-  font-size:13px;
-  line-height:1.4;
+display:none;
+margin-top:12px;
+padding:10px;
+border-radius:7px;
+font-size:13px;
+line-height:1.4;
 }
 
-.auth-message.show{display:block}
-.auth-message.ok{background:#dff6df}
+.auth-message.show{
+display:block;
+}
+
+.auth-message.ok{
+background:#dff6df;
+}
+
 .auth-message.error{
-  background:#ffe1e1;
-  color:#8a0000;
+background:#ffe1e1;
+color:#8a0000;
 }
 
 .password-wrap{
-  position:relative;
-  width:100%;
+position:relative;
+width:100%;
 }
 
-.password-wrap input{padding-right:50px}
+.password-wrap input{
+padding-right:50px;
+}
 
 .password-toggle{
-  position:absolute;
-  right:7px;
-  top:50%;
-  transform:translateY(-50%);
-  border:0;
-  background:transparent;
-  cursor:pointer;
-  font-size:18px;
-  padding:6px 8px;
-  border-radius:6px;
+position:absolute;
+right:7px;
+top:50%;
+transform:translateY(-50%);
+border:0;
+background:transparent;
+cursor:pointer;
+font-size:18px;
+padding:6px 8px;
+border-radius:6px;
 }
 
-.password-toggle:hover{background:#eee}
+.password-toggle:hover{
+background:#eee;
+}
 
 .forgot-password-wrap{
-  text-align:right;
-  margin-top:8px;
+text-align:right;
+margin-top:8px;
 }
 
 .forgot-password-btn{
-  border:0;
-  background:none;
-  color:#007b83;
-  font-size:13px;
-  font-weight:700;
-  cursor:pointer;
-  padding:0;
+border:0;
+background:none;
+color:#007b83;
+font-size:13px;
+font-weight:700;
+cursor:pointer;
+padding:0;
 }
 
-.forgot-password-btn:hover{text-decoration:underline}
+.hidden{
+display:none!important;
+}
 
-.hidden{display:none!important}
-
-/* =========================================================
-   MOBILE
-========================================================= */
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media(max-width:800px){
 
-  .grid,
-  .score-box,
-  .performance,
-  .dashboard-grid{
-    grid-template-columns:1fr;
-  }
-
-  .module-grid{
-    grid-template-columns:1fr 1fr;
-    gap:16px;
-  }
-
-  .module-card{
-    min-height:150px;
-  }
-
-  .perf-item:nth-child(odd){
-    border-right:0;
-  }
-
-  .add-student-grid{
-    grid-template-columns:1fr;
-  }
-
-  .nav button{
-    flex:1;
-    min-width:110px;
-  }
-
-  .student-row{
-    align-items:flex-start;
-    flex-direction:column;
-  }
-
-  .userbar{
-    align-items:flex-start;
-  }
-
-  .userbar-actions{
-    margin-left:auto;
-  }
+.grid,
+.score-box,
+.performance,
+.home-stats{
+grid-template-columns:1fr;
 }
 
-@media(max-width:500px){
+.module-grid{
+grid-template-columns:1fr 1fr;
+}
 
-  .app{
-    margin:0;
-    padding:0;
-  }
+.perf-item:nth-child(odd){
+border-right:0;
+}
 
-  .card{
-    border-radius:0;
-  }
+.add-student-grid{
+grid-template-columns:1fr;
+}
 
-  .module-grid{
-    grid-template-columns:1fr;
-    gap:18px;
-  }
+.student-row{
+align-items:flex-start;
+flex-direction:column;
+}
 
-  .module-card{
-    min-height:145px;
-  }
+.userbar{
+align-items:flex-start;
+}
 
-  .dashboard-welcome h2{
-    font-size:23px;
-  }
+.userbar-actions{
+margin-left:auto;
+}
+
+}
+
+@media(max-width:520px){
+
+.module-grid{
+grid-template-columns:1fr;
+}
+
+.module-card{
+min-height:155px;
+}
+
 }
 
 @media print{
 
-  .nav,
-  .buttons,
-  .small,
-  .status,
-  #dashboardPage,
-  #recordsPage,
-  .userbar{
-    display:none!important;
-  }
+.buttons,
+.small,
+.status,
+#homePage,
+#studentPage,
+#recordsPage,
+#contractPage,
+#schedulePage,
+#bookingsPage,
+#paymentPage,
+.userbar{
+display:none!important;
+}
 
-  .page{
-    display:block!important;
-  }
+.page{
+display:block!important;
+}
 
-  .app{
-    margin:0;
-    padding:0;
-  }
+.app{
+margin:0;
+padding:0;
+}
 
-  .card{
-    box-shadow:none;
-  }
+.card{
+box-shadow:none;
+}
+
 }
 </style>
 
@@ -907,7 +927,7 @@ button.secondary,
 <body>
 
 <!-- =========================================================
-     AUTH SCREEN
+AUTH SCREEN
 ========================================================= -->
 
 <div id="authScreen" class="auth-screen">
@@ -931,30 +951,24 @@ button.secondary,
 <h2>Login</h2>
 
 <label>Email</label>
-
-<input
-id="loginEmail"
+<input id="loginEmail"
 type="email"
 placeholder="teacher@email.com"
-autocomplete="email"
->
+autocomplete="email">
 
 <label>Password</label>
 
 <div class="password-wrap">
 
-<input
-id="loginPassword"
+<input id="loginPassword"
 type="password"
 placeholder="Password"
-autocomplete="current-password"
->
+autocomplete="current-password">
 
 <button
 type="button"
 class="password-toggle"
 onclick="togglePassword('loginPassword',this)"
-aria-label="Show password"
 >👁</button>
 
 </div>
@@ -994,6 +1008,8 @@ Create Account
 
 </div>
 
+<!-- SIGNUP -->
+
 <div id="signupPanel" class="hidden">
 
 <h2>Create Account</h2>
@@ -1030,7 +1046,6 @@ autocomplete="new-password"
 type="button"
 class="password-toggle"
 onclick="togglePassword('signupPassword',this)"
-aria-label="Show password"
 >👁</button>
 
 </div>
@@ -1050,7 +1065,6 @@ autocomplete="new-password"
 type="button"
 class="password-toggle"
 onclick="togglePassword('signupConfirm',this)"
-aria-label="Show password"
 >👁</button>
 
 </div>
@@ -1077,6 +1091,8 @@ Login
 </div>
 
 </div>
+
+<!-- VERIFY -->
 
 <div id="verifyPanel" class="hidden">
 
@@ -1118,6 +1134,8 @@ Back to Login
 
 </div>
 
+<!-- FORGOT -->
+
 <div id="forgotPanel" class="hidden">
 
 <h2>Forgot Password?</h2>
@@ -1156,6 +1174,8 @@ Back to Login
 
 </div>
 
+<!-- RESET -->
+
 <div id="resetPanel" class="hidden">
 
 <h2>Set New Password</h2>
@@ -1179,7 +1199,6 @@ autocomplete="new-password"
 type="button"
 class="password-toggle"
 onclick="togglePassword('resetPassword',this)"
-aria-label="Show password"
 >👁</button>
 
 </div>
@@ -1199,7 +1218,6 @@ autocomplete="new-password"
 type="button"
 class="password-toggle"
 onclick="togglePassword('resetConfirm',this)"
-aria-label="Show password"
 >👁</button>
 
 </div>
@@ -1221,7 +1239,7 @@ Update Password
 </div>
 
 <!-- =========================================================
-     MAIN APPLICATION
+MAIN APPLICATION
 ========================================================= -->
 
 <div id="appShell" class="hidden">
@@ -1231,14 +1249,9 @@ Update Password
 <div class="card">
 
 <div class="topbar">
-
 <span style="font-weight:800;letter-spacing:.5px">TD</span>
-
 &nbsp; TD-PH Teacher Management Portal
-
 </div>
-
-<!-- USER BAR -->
 
 <div class="userbar">
 
@@ -1253,8 +1266,6 @@ Logged in as
 type="button"
 class="account-dots-btn"
 onclick="toggleAccountMenu(event)"
-aria-label="More options"
-title="More options"
 >
 ⋮
 </button>
@@ -1267,10 +1278,7 @@ onclick="logoutTeacher()"
 Logout
 </button>
 
-<div
-id="accountMenu"
-class="account-menu"
->
+<div id="accountMenu" class="account-menu">
 
 <button
 type="button"
@@ -1285,51 +1293,34 @@ Clear All Records
 
 </div>
 
-<!-- SIMPLE NAVIGATION -->
+<!-- =====================================================
+HOME
+===================================================== -->
 
-<div class="nav">
+<div id="homePage" class="page active">
 
-<button
-id="navDashboard"
-class="active"
-onclick="showPage('dashboard')"
->
-Dashboard
-</button>
+<h2 class="home-title">Teacher Dashboard</h2>
 
-<button
-id="navEvaluation"
-onclick="showPage('evaluation')"
->
-Evaluation
-</button>
+<p class="home-subtitle">
+Select a module below.
+</p>
 
-<button
-id="navRecords"
-onclick="showPage('records')"
->
-Record of Evaluation
-</button>
+<div class="home-stats">
 
+<div class="stat">
+Students
+<b id="homeStudentCount">0</b>
 </div>
 
-<!-- =========================================================
-     MAIN DASHBOARD
-========================================================= -->
+<div class="stat">
+Evaluations
+<b id="homeEvaluationCount">0</b>
+</div>
 
-<div id="dashboardPage" class="page active">
-
-<div class="dashboard-home">
-
-<div class="dashboard-welcome">
-
-<h2>
-Welcome, <span id="dashboardTeacherName">Teacher</span> 👋
-</h2>
-
-<p>
-Manage your students, classes, evaluations, bookings and payments in one place.
-</p>
+<div class="stat">
+Last Evaluation
+<b id="homeLastEvaluation">—</b>
+</div>
 
 </div>
 
@@ -1343,9 +1334,13 @@ onclick="showPage('student')"
 
 <div class="module-icon">👨‍🎓</div>
 
-<h3>STUDENT</h3>
+<div class="module-title">
+STUDENT
+</div>
 
-<p>Student information and records</p>
+<div class="module-sub">
+Student records & profiles
+</div>
 
 </button>
 
@@ -1357,9 +1352,13 @@ onclick="showPage('contract')"
 
 <div class="module-icon">📄</div>
 
-<h3>STUDENT CONTRACT</h3>
+<div class="module-title">
+STUDENT CONTRACT
+</div>
 
-<p>Manage student contracts</p>
+<div class="module-sub">
+Contracts & enrollment
+</div>
 
 </button>
 
@@ -1371,9 +1370,13 @@ onclick="showPage('evaluation')"
 
 <div class="module-icon">⭐</div>
 
-<h3>EVALUATION</h3>
+<div class="module-title">
+EVALUATION
+</div>
 
-<p>Evaluate and email parents</p>
+<div class="module-sub">
+Class evaluation & parent email
+</div>
 
 </button>
 
@@ -1383,11 +1386,15 @@ class="module-card"
 onclick="showPage('schedule')"
 >
 
-<div class="module-icon">📅</div>
+<div class="module-icon">🗓️</div>
 
-<h3>CLASS SCHEDULE</h3>
+<div class="module-title">
+CLASS SCHEDULE
+</div>
 
-<p>Manage class schedules</p>
+<div class="module-sub">
+Manage class schedules
+</div>
 
 </button>
 
@@ -1397,11 +1404,15 @@ class="module-card"
 onclick="showPage('bookings')"
 >
 
-<div class="module-icon">🗓️</div>
+<div class="module-icon">📅</div>
 
-<h3>CALENDAR BOOKINGS</h3>
+<div class="module-title">
+CALENDAR BOOKINGS
+</div>
 
-<p>Manage class bookings</p>
+<div class="module-sub">
+Bookings & calendar
+</div>
 
 </button>
 
@@ -1413,9 +1424,13 @@ onclick="showPage('payment')"
 
 <div class="module-icon">💳</div>
 
-<h3>PAYMENT</h3>
+<div class="module-title">
+PAYMENT
+</div>
 
-<p>Manage student payments</p>
+<div class="module-sub">
+Payment records & status
+</div>
 
 </button>
 
@@ -1423,17 +1438,27 @@ onclick="showPage('payment')"
 
 </div>
 
-</div>
-
-<!-- =========================================================
-     STUDENT PAGE
-========================================================= -->
+<!-- =====================================================
+STUDENT
+===================================================== -->
 
 <div id="studentPage" class="page">
 
-<h2 style="margin-top:0">
-👨‍🎓 Student
+<div class="page-head">
+
+<h2 style="margin:0">
+Student
 </h2>
+
+<button
+type="button"
+class="back-home-btn"
+onclick="showPage('home')"
+>
+← Dashboard
+</button>
+
+</div>
 
 <div class="dashboard-grid">
 
@@ -1525,43 +1550,86 @@ style="margin-top:15px"
 
 </div>
 
-<!-- =========================================================
-     STUDENT CONTRACT
-========================================================= -->
+<!-- =====================================================
+STUDENT CONTRACT
+===================================================== -->
 
 <div id="contractPage" class="page">
 
-<div class="module-page">
+<div class="page-head">
 
-<div class="module-page-icon">📄</div>
-
-<h2>Student Contract</h2>
-
-<p>
-Student Contract management will be available here. This section is prepared for student agreements, package details, contract dates, and contract records.
-</p>
+<h2 style="margin:0">
+Student Contract
+</h2>
 
 <button
 type="button"
-class="secondary"
-onclick="showPage('dashboard')"
+class="back-home-btn"
+onclick="showPage('home')"
 >
-← Back to Dashboard
+← Dashboard
+</button>
+
+</div>
+
+<div class="panel">
+
+<div class="panel-title">
+STUDENT CONTRACT
+</div>
+
+<div class="panel-body">
+
+<h3>Student Contract Module</h3>
+
+<p>
+This section is ready for the Student Contract system.
+</p>
+
+<p class="small">
+We can add student information, package, class duration,
+payment confirmation, contract generation, and printable contract here.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =====================================================
+EVALUATION
+===================================================== -->
+
+<div id="evaluationPage" class="page">
+
+<div class="page-head">
+
+<h2 style="margin:0">
+Evaluation
+</h2>
+
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+
+<button
+type="button"
+class="back-home-btn"
+onclick="showPage('records')"
+>
+Record of Evaluation
+</button>
+
+<button
+type="button"
+class="back-home-btn"
+onclick="showPage('home')"
+>
+← Dashboard
 </button>
 
 </div>
 
 </div>
-
-<!-- =========================================================
-     EVALUATION
-========================================================= -->
-
-<div id="evaluationPage" class="page">
-
-<h2 style="margin-top:0">
-Evaluation
-</h2>
 
 <div class="section" style="margin-top:0">
 
@@ -1591,10 +1659,7 @@ Student Name, Parent's Email, and Student ID will be filled automatically from t
 </div>
 </div>
 
-<div
-class="grid"
-style="margin-top:16px"
->
+<div class="grid" style="margin-top:16px">
 
 <div>
 
@@ -1709,19 +1774,13 @@ Automatically calculated from the 6 student performance ratings.
 
 </div>
 
-<div
-class="score-box"
-style="margin-top:12px"
->
+<div class="score-box" style="margin-top:12px">
 
 <div>
 
 <label>Rating</label>
 
-<div
-id="ratingText"
-class="rating"
->
+<div id="ratingText" class="rating">
 Excellent
 </div>
 
@@ -1731,10 +1790,7 @@ Excellent
 
 <label>Score Range</label>
 
-<div
-id="scoreRange"
-class="rating"
->
+<div id="scoreRange" class="rating">
 95–100
 </div>
 
@@ -1786,69 +1842,33 @@ STUDENT PERFORMANCE
 <div class="performance">
 
 <div class="perf-item">
-
 <b>Participation:</b>
-
-<span
-class="stars"
-data-field="participation"
-></span>
-
+<span class="stars" data-field="participation"></span>
 </div>
 
 <div class="perf-item">
-
 <b>Pronunciation:</b>
-
-<span
-class="stars"
-data-field="pronunciation"
-></span>
-
+<span class="stars" data-field="pronunciation"></span>
 </div>
 
 <div class="perf-item">
-
 <b>Behavior:</b>
-
-<span
-class="stars"
-data-field="behavior"
-></span>
-
+<span class="stars" data-field="behavior"></span>
 </div>
 
 <div class="perf-item">
-
 <b>Speaking:</b>
-
-<span
-class="stars"
-data-field="speaking"
-></span>
-
+<span class="stars" data-field="speaking"></span>
 </div>
 
 <div class="perf-item">
-
 <b>Understanding:</b>
-
-<span
-class="stars"
-data-field="understanding"
-></span>
-
+<span class="stars" data-field="understanding"></span>
 </div>
 
 <div class="perf-item">
-
 <b>Listening:</b>
-
-<span
-class="stars"
-data-field="listening"
-></span>
-
+<span class="stars" data-field="listening"></span>
 </div>
 
 </div>
@@ -1916,99 +1936,168 @@ EmailJS is connected. After you submit, the class memo will be emailed automatic
 
 </div>
 
-<!-- =========================================================
-     CLASS SCHEDULE
-========================================================= -->
+<!-- =====================================================
+CLASS SCHEDULE
+===================================================== -->
 
 <div id="schedulePage" class="page">
 
-<div class="module-page">
+<div class="page-head">
 
-<div class="module-page-icon">📅</div>
-
-<h2>Class Schedule</h2>
-
-<p>
-Your class schedule management section. This will be used for student schedules, class times, recurring classes, and upcoming lessons.
-</p>
+<h2 style="margin:0">
+Class Schedule
+</h2>
 
 <button
 type="button"
-class="secondary"
-onclick="showPage('dashboard')"
+class="back-home-btn"
+onclick="showPage('home')"
 >
-← Back to Dashboard
+← Dashboard
 </button>
 
 </div>
 
+<div class="panel">
+
+<div class="panel-title">
+CLASS SCHEDULE
 </div>
 
-<!-- =========================================================
-     CALENDAR BOOKINGS
-========================================================= -->
+<div class="panel-body">
+
+<h3>Class Schedule Module</h3>
+
+<p>
+This section is ready for your class scheduling system.
+</p>
+
+<p class="small">
+The schedule module can later include student, day, time,
+class duration, timezone, and recurring schedule.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =====================================================
+CALENDAR BOOKINGS
+===================================================== -->
 
 <div id="bookingsPage" class="page">
 
-<div class="module-page">
+<div class="page-head">
 
-<div class="module-page-icon">🗓️</div>
-
-<h2>Calendar Bookings</h2>
-
-<p>
-Manage available slots, student bookings, reserved schedules, and booking status from this section.
-</p>
+<h2 style="margin:0">
+Calendar Bookings
+</h2>
 
 <button
 type="button"
-class="secondary"
-onclick="showPage('dashboard')"
+class="back-home-btn"
+onclick="showPage('home')"
 >
-← Back to Dashboard
+← Dashboard
 </button>
 
 </div>
 
+<div class="panel">
+
+<div class="panel-title">
+CALENDAR BOOKINGS
 </div>
 
-<!-- =========================================================
-     PAYMENT
-========================================================= -->
+<div class="panel-body">
+
+<h3>Calendar Booking Module</h3>
+
+<p>
+This section is ready for your booking calendar.
+</p>
+
+<p class="small">
+We can later add booking dates, available slots,
+student bookings, status, and calendar view.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =====================================================
+PAYMENT
+===================================================== -->
 
 <div id="paymentPage" class="page">
 
-<div class="module-page">
+<div class="page-head">
 
-<div class="module-page-icon">💳</div>
-
-<h2>Payment</h2>
-
-<p>
-Manage student packages, payment records, paid and unpaid balances, payment dates, and payment status from this section.
-</p>
+<h2 style="margin:0">
+Payment
+</h2>
 
 <button
 type="button"
-class="secondary"
-onclick="showPage('dashboard')"
+class="back-home-btn"
+onclick="showPage('home')"
 >
-← Back to Dashboard
+← Dashboard
 </button>
 
 </div>
 
+<div class="panel">
+
+<div class="panel-title">
+PAYMENT
 </div>
 
-<!-- =========================================================
-     RECORDS
-========================================================= -->
+<div class="panel-body">
+
+<h3>Payment Module</h3>
+
+<p>
+This section is ready for your student payment system.
+</p>
+
+<p class="small">
+We can later add package, amount, payment date,
+payment method, reference number, balance, and payment status.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =====================================================
+RECORDS
+===================================================== -->
 
 <div id="recordsPage" class="page">
 
-<h2 style="margin-top:0">
+<div class="page-head">
+
+<h2 style="margin:0">
 Record of Evaluation
 </h2>
+
+<button
+type="button"
+class="back-home-btn"
+onclick="showPage('evaluation')"
+>
+← Evaluation
+</button>
+
+</div>
 
 <div class="panel">
 
@@ -2058,7 +2147,7 @@ No evaluations recorded yet.
 </div>
 
 <!-- =========================================================
-     EDIT STUDENT MODAL
+EDIT STUDENT MODAL
 ========================================================= -->
 
 <div
@@ -2071,7 +2160,9 @@ onclick="if(event.target===this) closeEditStudent()"
 
 <h3>Edit Student</h3>
 
-<p>Update the student's saved information.</p>
+<p>
+Update the student's saved information.
+</p>
 
 <input type="hidden" id="editOriginalId">
 
@@ -2101,10 +2192,7 @@ id="editStudentId"
 placeholder="Student ID"
 >
 
-<div
-id="editStudentError"
-class="modal-error"
-></div>
+<div id="editStudentError" class="modal-error"></div>
 
 <div class="modal-actions">
 
@@ -2130,7 +2218,7 @@ Save Changes
 </div>
 
 <!-- =========================================================
-     DELETE STUDENT MODAL
+DELETE STUDENT MODAL
 ========================================================= -->
 
 <div
@@ -2165,10 +2253,7 @@ placeholder="Type Student ID to confirm"
 autocomplete="off"
 >
 
-<div
-id="deleteStudentError"
-class="modal-error"
-></div>
+<div id="deleteStudentError" class="modal-error"></div>
 
 <div class="modal-actions">
 
@@ -2194,7 +2279,7 @@ Delete Student
 </div>
 
 <!-- =========================================================
-     CLEAR ALL RECORDS MODAL
+CLEAR ALL RECORDS
 ========================================================= -->
 
 <div
@@ -2205,7 +2290,9 @@ onclick="if(event.target===this) closeClearAllRecords()"
 
 <div class="modal">
 
-<h3>Clear All Records</h3>
+<h3>
+Clear All Records
+</h3>
 
 <p>
 This will permanently delete all
@@ -2282,7 +2369,7 @@ Clear All Records
 <script>
 
 /* =========================================================
-   CONFIGURATION
+CONFIGURATION — UNCHANGED
 ========================================================= */
 
 const EMAILJS_PUBLIC_KEY='c6EftsVJb2RHlRH_E';
@@ -2318,7 +2405,7 @@ let clearAllCaptcha='';
 
 
 /* =========================================================
-   USER STORAGE
+USER STORAGE
 ========================================================= */
 
 function userStorageKey(base){
@@ -2358,7 +2445,7 @@ JSON.stringify(data)
 
 
 /* =========================================================
-   AUTH UI
+AUTH UI
 ========================================================= */
 
 function showAuthPanel(panel){
@@ -2379,7 +2466,6 @@ document.getElementById('resetPanel')
 .classList.toggle('hidden',panel!=='reset');
 
 clearAuthMessage();
-
 }
 
 function showAuthMessage(msg,ok=false){
@@ -2389,9 +2475,7 @@ const el=document.getElementById('authMessage');
 el.textContent=msg;
 
 el.className=
-'auth-message show '+
-(ok?'ok':'error');
-
+'auth-message show '+(ok?'ok':'error');
 }
 
 function clearAuthMessage(){
@@ -2401,7 +2485,6 @@ const el=document.getElementById('authMessage');
 el.textContent='';
 
 el.className='auth-message';
-
 }
 
 function setAuthBusy(id,busy,label){
@@ -2412,16 +2495,12 @@ if(!b)return;
 
 b.disabled=busy;
 
-b.textContent=
-busy
-?'Please wait...'
-:label;
-
+b.textContent=busy?'Please wait...':label;
 }
 
 
 /* =========================================================
-   PASSWORD
+PASSWORD
 ========================================================= */
 
 function togglePassword(inputId,button){
@@ -2434,21 +2513,11 @@ input.type='text';
 
 button.textContent='🙈';
 
-button.setAttribute(
-'aria-label',
-'Hide password'
-);
-
 }else{
 
 input.type='password';
 
 button.textContent='👁';
-
-button.setAttribute(
-'aria-label',
-'Show password'
-);
 
 }
 
@@ -2456,7 +2525,7 @@ button.setAttribute(
 
 
 /* =========================================================
-   LOGIN
+LOGIN
 ========================================================= */
 
 async function loginTeacher(){
@@ -2466,8 +2535,7 @@ document.getElementById('loginEmail')
 .value.trim();
 
 const password=
-document.getElementById('loginPassword')
-.value;
+document.getElementById('loginPassword').value;
 
 if(!email)
 return showAuthMessage(
@@ -2479,11 +2547,7 @@ return showAuthMessage(
 'Please enter your password.'
 );
 
-setAuthBusy(
-'loginBtn',
-true,
-'Login'
-);
+setAuthBusy('loginBtn',true,'Login');
 
 const {error}=
 await supabaseClient.auth.signInWithPassword({
@@ -2495,17 +2559,12 @@ if(error){
 showAuthMessage(error.message);
 }
 
-setAuthBusy(
-'loginBtn',
-false,
-'Login'
-);
-
+setAuthBusy('loginBtn',false,'Login');
 }
 
 
 /* =========================================================
-   CREATE ACCOUNT
+CREATE ACCOUNT
 ========================================================= */
 
 async function createTeacherAccount(){
@@ -2519,12 +2578,10 @@ document.getElementById('signupEmail')
 .value.trim();
 
 const password=
-document.getElementById('signupPassword')
-.value;
+document.getElementById('signupPassword').value;
 
 const confirm=
-document.getElementById('signupConfirm')
-.value;
+document.getElementById('signupConfirm').value;
 
 if(!name)
 return showAuthMessage(
@@ -2562,8 +2619,7 @@ options:{
 data:{
 full_name:name
 },
-emailRedirectTo:
-SUPABASE_REDIRECT_URL
+emailRedirectTo:SUPABASE_REDIRECT_URL
 }
 
 });
@@ -2579,7 +2635,6 @@ false,
 );
 
 return;
-
 }
 
 if(data.session){
@@ -2611,28 +2666,23 @@ setAuthBusy(
 false,
 'Create Account'
 );
-
 }
 
 
 /* =========================================================
-   RESEND
+RESEND
 ========================================================= */
 
 async function resendVerificationEmail(){
 
 const email=
 pendingVerificationEmail ||
-document.getElementById('signupEmail')
-.value.trim();
+document.getElementById('signupEmail').value.trim();
 
-if(!email){
-
+if(!email)
 return showAuthMessage(
 'No verification email is available. Please create the account again.'
 );
-
-}
 
 setAuthBusy(
 'resendBtn',
@@ -2648,8 +2698,7 @@ type:'signup',
 email,
 
 options:{
-emailRedirectTo:
-SUPABASE_REDIRECT_URL
+emailRedirectTo:SUPABASE_REDIRECT_URL
 }
 
 });
@@ -2672,12 +2721,11 @@ setAuthBusy(
 false,
 'Resend Confirmation Email'
 );
-
 }
 
 
 /* =========================================================
-   FORGOT PASSWORD
+FORGOT PASSWORD
 ========================================================= */
 
 async function sendPasswordReset(){
@@ -2686,13 +2734,10 @@ const email=
 document.getElementById('forgotEmail')
 .value.trim();
 
-if(!email){
-
+if(!email)
 return showAuthMessage(
 'Please enter your email address.'
 );
-
-}
 
 setAuthBusy(
 'forgotBtn',
@@ -2704,8 +2749,7 @@ const {error}=
 await supabaseClient.auth.resetPasswordForEmail(
 email,
 {
-redirectTo:
-SUPABASE_REDIRECT_URL
+redirectTo:SUPABASE_REDIRECT_URL
 }
 );
 
@@ -2727,12 +2771,11 @@ setAuthBusy(
 false,
 'Send Reset Link'
 );
-
 }
 
 
 /* =========================================================
-   PASSWORD RECOVERY
+RECOVERY
 ========================================================= */
 
 function isPasswordRecoveryUrl(){
@@ -2744,59 +2787,46 @@ return(
 hash.includes('type=recovery')||
 search.includes('type=recovery')
 );
-
 }
 
 async function checkPasswordRecovery(){
 
-if(!isPasswordRecoveryUrl()){
+if(!isPasswordRecoveryUrl())
 return false;
-}
 
-document.getElementById(
-'appShell'
-).classList.add('hidden');
+document.getElementById('appShell')
+.classList.add('hidden');
 
-document.getElementById(
-'authScreen'
-).classList.remove('hidden');
+document.getElementById('authScreen')
+.classList.remove('hidden');
 
 showAuthPanel('reset');
 
 return true;
-
 }
 
 
 /* =========================================================
-   UPDATE PASSWORD
+UPDATE PASSWORD
 ========================================================= */
 
 async function updatePassword(){
 
 const password=
-document.getElementById('resetPassword')
-.value;
+document.getElementById('resetPassword').value;
 
 const confirm=
-document.getElementById('resetConfirm')
-.value;
+document.getElementById('resetConfirm').value;
 
-if(password.length<6){
-
+if(password.length<6)
 return showAuthMessage(
 'Password must be at least 6 characters.'
 );
 
-}
-
-if(password!==confirm){
-
+if(password!==confirm)
 return showAuthMessage(
 'Passwords do not match.'
 );
-
-}
 
 setAuthBusy(
 'resetBtn',
@@ -2820,7 +2850,6 @@ false,
 );
 
 return;
-
 }
 
 showAuthMessage(
@@ -2828,8 +2857,7 @@ showAuthMessage(
 true
 );
 
-setTimeout(
-async()=>{
+setTimeout(async()=>{
 
 await supabaseClient.auth.signOut();
 
@@ -2841,17 +2869,9 @@ SUPABASE_REDIRECT_URL
 
 showAuthPanel('login');
 
-document.getElementById(
-'loginPassword'
-).value='';
-
-document.getElementById(
-'resetPassword'
-).value='';
-
-document.getElementById(
-'resetConfirm'
-).value='';
+document.getElementById('loginPassword').value='';
+document.getElementById('resetPassword').value='';
+document.getElementById('resetConfirm').value='';
 
 setAuthBusy(
 'resetBtn',
@@ -2859,15 +2879,13 @@ false,
 'Update Password'
 );
 
-},
-1500
-);
+},1500);
 
 }
 
 
 /* =========================================================
-   LOGOUT
+LOGOUT
 ========================================================= */
 
 async function logoutTeacher(){
@@ -2876,12 +2894,11 @@ closeAccountMenu();
 closeClearAllRecords();
 
 await supabaseClient.auth.signOut();
-
 }
 
 
 /* =========================================================
-   SIGNED IN
+SIGNED IN
 ========================================================= */
 
 async function handleSignedIn(user){
@@ -2898,10 +2915,6 @@ document.getElementById(
 ).textContent=name;
 
 document.getElementById(
-'dashboardTeacherName'
-).textContent=name;
-
-document.getElementById(
 'authScreen'
 ).classList.add('hidden');
 
@@ -2909,16 +2922,16 @@ document.getElementById(
 'appShell'
 ).classList.remove('hidden');
 
-showPage('dashboard');
-
 renderDashboard();
+
 populateStudentSelect();
 
+showPage('home');
 }
 
 
 /* =========================================================
-   SIGNED OUT
+SIGNED OUT
 ========================================================= */
 
 function handleSignedOut(){
@@ -2937,12 +2950,11 @@ document.getElementById(
 ).classList.remove('hidden');
 
 showAuthPanel('login');
-
 }
 
 
 /* =========================================================
-   INIT AUTH
+INIT AUTH
 ========================================================= */
 
 async function initAuth(){
@@ -2950,9 +2962,8 @@ async function initAuth(){
 const recovery=
 await checkPasswordRecovery();
 
-if(recovery){
+if(recovery)
 return;
-}
 
 const {
 data:{session}
@@ -2985,7 +2996,6 @@ document.getElementById(
 showAuthPanel('reset');
 
 return;
-
 }
 
 if(session){
@@ -3005,145 +3015,91 @@ handleSignedOut();
 
 
 /* =========================================================
-   AUTH EVENTS
+AUTH EVENTS
 ========================================================= */
 
-document.getElementById(
-'loginBtn'
-).addEventListener(
-'click',
-loginTeacher
-);
+document.getElementById('loginBtn')
+.addEventListener('click',loginTeacher);
 
-document.getElementById(
-'signupBtn'
-).addEventListener(
-'click',
-createTeacherAccount
-);
+document.getElementById('signupBtn')
+.addEventListener('click',createTeacherAccount);
 
-document.getElementById(
-'resendBtn'
-).addEventListener(
-'click',
-resendVerificationEmail
-);
+document.getElementById('resendBtn')
+.addEventListener('click',resendVerificationEmail);
 
-document.getElementById(
-'forgotBtn'
-).addEventListener(
-'click',
-sendPasswordReset
-);
+document.getElementById('forgotBtn')
+.addEventListener('click',sendPasswordReset);
 
-document.getElementById(
-'resetBtn'
-).addEventListener(
-'click',
-updatePassword
-);
+document.getElementById('resetBtn')
+.addEventListener('click',updatePassword);
 
-document.getElementById(
-'loginPassword'
-).addEventListener(
-'keydown',
-e=>{
-if(e.key==='Enter')
-loginTeacher();
-}
-);
+document.getElementById('loginPassword')
+.addEventListener('keydown',e=>{
+if(e.key==='Enter')loginTeacher();
+});
 
-document.getElementById(
-'signupConfirm'
-).addEventListener(
-'keydown',
-e=>{
-if(e.key==='Enter')
-createTeacherAccount();
-}
-);
+document.getElementById('signupConfirm')
+.addEventListener('keydown',e=>{
+if(e.key==='Enter')createTeacherAccount();
+});
 
-document.getElementById(
-'forgotEmail'
-).addEventListener(
-'keydown',
-e=>{
-if(e.key==='Enter')
-sendPasswordReset();
-}
-);
+document.getElementById('forgotEmail')
+.addEventListener('keydown',e=>{
+if(e.key==='Enter')sendPasswordReset();
+});
 
-document.getElementById(
-'resetConfirm'
-).addEventListener(
-'keydown',
-e=>{
-if(e.key==='Enter')
-updatePassword();
-}
-);
+document.getElementById('resetConfirm')
+.addEventListener('keydown',e=>{
+if(e.key==='Enter')updatePassword();
+});
 
 
 /* =========================================================
-   ACCOUNT MENU
+ACCOUNT MENU
 ========================================================= */
 
 function toggleAccountMenu(event){
 
-if(event)
-event.stopPropagation();
+if(event)event.stopPropagation();
 
-const menu=
 document.getElementById(
 'accountMenu'
-);
-
-menu.classList.toggle('show');
-
+).classList.toggle('show');
 }
 
 function closeAccountMenu(){
 
-const menu=
-document.getElementById(
+const menu=document.getElementById(
 'accountMenu'
 );
 
 if(menu)
 menu.classList.remove('show');
-
 }
 
-document.addEventListener(
-'click',
-e=>{
+document.addEventListener('click',e=>{
 
 if(!e.target.closest('.userbar-actions')){
 closeAccountMenu();
 }
 
-}
-);
+});
 
 
 /* =========================================================
-   CLEAR ALL RECORDS
+CLEAR ALL
 ========================================================= */
 
 function generateClearAllCaptcha(){
 
 clearAllCaptcha=
 String(
-Math.floor(
-100000+
-Math.random()*900000
-)
+Math.floor(100000+Math.random()*900000)
 );
 
 document.getElementById(
 'clearAllCaptchaCode'
-).textContent=
-clearAllCaptcha;
+).textContent=clearAllCaptcha;
 
 document.getElementById(
 'clearAllCaptchaInput'
@@ -3156,7 +3112,6 @@ document.getElementById(
 
 error.textContent='';
 error.classList.remove('show');
-
 }
 
 function openClearAllRecords(){
@@ -3169,15 +3124,11 @@ document.getElementById(
 'clearAllRecordsModal'
 ).classList.add('show');
 
-setTimeout(
-()=>{
+setTimeout(()=>{
 document.getElementById(
 'clearAllCaptchaInput'
 ).focus();
-},
-50
-);
-
+},50);
 }
 
 function closeClearAllRecords(){
@@ -3199,7 +3150,6 @@ document.getElementById(
 document.getElementById(
 'clearAllRecordsError'
 ).classList.remove('show');
-
 }
 
 function confirmClearAllRecords(){
@@ -3222,7 +3172,6 @@ error.textContent=
 error.classList.add('show');
 
 return;
-
 }
 
 if(input!==clearAllCaptcha){
@@ -3235,7 +3184,6 @@ error.classList.add('show');
 generateClearAllCaptcha();
 
 return;
-
 }
 
 if(!currentUser){
@@ -3246,7 +3194,6 @@ error.textContent=
 error.classList.add('show');
 
 return;
-
 }
 
 localStorage.removeItem(
@@ -3260,100 +3207,80 @@ userStorageKey(EVALUATIONS_BASE_KEY)
 closeClearAllRecords();
 
 renderDashboard();
+
 populateStudentSelect();
+
 renderRecords();
+
+showPage('student');
 
 showStudentStatus(
 'All student and evaluation records have been cleared successfully.',
 true
 );
-
-showPage('dashboard');
-
 }
 
 
 /* =========================================================
-   PAGE NAVIGATION
+PAGE NAVIGATION — FIXED
 ========================================================= */
 
 function showPage(page){
 
 document.querySelectorAll('.page')
-.forEach(
-p=>p.classList.remove('active')
-);
+.forEach(p=>p.classList.remove('active'));
 
 const target=
-document.getElementById(
-page+'Page'
-);
+document.getElementById(page+'Page');
 
-if(!target)return;
+if(!target){
+
+console.error('Page not found:',page);
+
+return;
+}
 
 target.classList.add('active');
 
-document.querySelectorAll('.nav button')
-.forEach(
-b=>b.classList.remove('active')
-);
-
-const navMap={
-dashboard:'navDashboard',
-evaluation:'navEvaluation',
-records:'navRecords'
-};
-
-if(navMap[page]){
-
-document.getElementById(
-navMap[page]
-).classList.add('active');
-
-}
-
-if(page==='dashboard' || page==='student'){
+if(page==='home')
 renderDashboard();
-}
 
-if(page==='evaluation'){
+if(page==='student')
+renderDashboard();
+
+if(page==='evaluation')
 populateStudentSelect();
-}
 
-if(page==='records'){
+if(page==='records')
 renderRecords();
-}
 
 window.scrollTo({
 top:0,
 behavior:'smooth'
 });
-
 }
 
 
 /* =========================================================
-   STUDENT STATUS
+STUDENT STATUS
 ========================================================= */
 
 function showStudentStatus(msg,ok=true){
 
 const s=
-document.getElementById(
-'studentStatus'
-);
+document.getElementById('studentStatus');
+
+if(!s)return;
 
 s.textContent=msg;
 
 s.className=
-'status show '+
-(ok?'ok':'error');
-
+'status show '+(ok?'ok':'error');
 }
 
 
 /* =========================================================
-   ADD STUDENT
+ADD STUDENT
 ========================================================= */
 
 function addStudent(){
@@ -3415,17 +3342,9 @@ createdAt:new Date().toISOString()
 
 saveStudents(students);
 
-document.getElementById(
-'newStudentName'
-).value='';
-
-document.getElementById(
-'newStudentEmail'
-).value='';
-
-document.getElementById(
-'newStudentId'
-).value='';
+document.getElementById('newStudentName').value='';
+document.getElementById('newStudentEmail').value='';
+document.getElementById('newStudentId').value='';
 
 showStudentStatus(
 'Student added successfully.',
@@ -3434,57 +3353,44 @@ true
 
 renderDashboard();
 populateStudentSelect();
-
 }
 
 
 /* =========================================================
-   STUDENT MENU
+STUDENT MENU
 ========================================================= */
 
 function toggleStudentMenu(id){
 
-document.querySelectorAll(
-'.student-menu'
-).forEach(
-m=>m.classList.remove('show')
-);
+document.querySelectorAll('.student-menu')
+.forEach(m=>m.classList.remove('show'));
 
 const menu=
 document.getElementById(
-'studentMenu-'+
-encodeURIComponent(id)
+'studentMenu-'+encodeURIComponent(id)
 );
 
 if(menu)
 menu.classList.toggle('show');
-
 }
 
 function closeStudentMenus(){
 
-document.querySelectorAll(
-'.student-menu'
-).forEach(
-m=>m.classList.remove('show')
-);
-
+document.querySelectorAll('.student-menu')
+.forEach(m=>m.classList.remove('show'));
 }
 
-document.addEventListener(
-'click',
-e=>{
+document.addEventListener('click',e=>{
 
 if(!e.target.closest('.student-actions')){
 closeStudentMenus();
 }
 
-}
-);
+});
 
 
 /* =========================================================
-   EDIT STUDENT
+EDIT
 ========================================================= */
 
 function openEditStudent(id){
@@ -3492,40 +3398,21 @@ function openEditStudent(id){
 closeStudentMenus();
 
 const student=
-getStudents().find(
-s=>s.id===id
-);
+getStudents().find(s=>s.id===id);
 
 if(!student)return;
 
-document.getElementById(
-'editOriginalId'
-).value=student.id;
+document.getElementById('editOriginalId').value=student.id;
+document.getElementById('editStudentName').value=student.name;
+document.getElementById('editStudentEmail').value=student.email;
+document.getElementById('editStudentId').value=student.id;
 
-document.getElementById(
-'editStudentName'
-).value=student.name;
+document.getElementById('editStudentError').textContent='';
+document.getElementById('editStudentError')
+.classList.remove('show');
 
-document.getElementById(
-'editStudentEmail'
-).value=student.email;
-
-document.getElementById(
-'editStudentId'
-).value=student.id;
-
-document.getElementById(
-'editStudentError'
-).textContent='';
-
-document.getElementById(
-'editStudentError'
-).classList.remove('show');
-
-document.getElementById(
-'editStudentModal'
-).classList.add('show');
-
+document.getElementById('editStudentModal')
+.classList.add('show');
 }
 
 function closeEditStudent(){
@@ -3533,65 +3420,46 @@ function closeEditStudent(){
 document.getElementById(
 'editStudentModal'
 ).classList.remove('show');
-
 }
 
 function saveEditedStudent(){
 
 const originalId=
-document.getElementById(
-'editOriginalId'
-).value;
+document.getElementById('editOriginalId').value;
 
 const name=
-document.getElementById(
-'editStudentName'
-).value.trim();
+document.getElementById('editStudentName').value.trim();
 
 const email=
-document.getElementById(
-'editStudentEmail'
-).value.trim();
+document.getElementById('editStudentEmail').value.trim();
 
 const id=
-document.getElementById(
-'editStudentId'
-).value.trim();
+document.getElementById('editStudentId').value.trim();
 
 const err=
-document.getElementById(
-'editStudentError'
-);
+document.getElementById('editStudentError');
 
 const fail=msg=>{
 
 err.textContent=msg;
 err.classList.add('show');
-
 };
 
 if(!name)
-return fail(
-'Please enter the student name.'
-);
+return fail('Please enter the student name.');
 
 if(!email)
-return fail(
-"Please enter the parent's email."
-);
+return fail("Please enter the parent's email.");
 
 if(!id)
-return fail(
-'Please enter the student ID.'
-);
+return fail('Please enter the student ID.');
 
 const students=getStudents();
 
 if(
 students.some(
 s=>
-s.id.toLowerCase()===id.toLowerCase()
-&&
+s.id.toLowerCase()===id.toLowerCase() &&
 s.id!==originalId
 )
 ){
@@ -3599,7 +3467,6 @@ s.id!==originalId
 return fail(
 'That Student ID already exists.'
 );
-
 }
 
 const index=
@@ -3631,12 +3498,11 @@ showStudentStatus(
 'Student record updated successfully.',
 true
 );
-
 }
 
 
 /* =========================================================
-   DELETE STUDENT
+DELETE
 ========================================================= */
 
 function openDeleteStudent(id){
@@ -3644,9 +3510,7 @@ function openDeleteStudent(id){
 closeStudentMenus();
 
 const student=
-getStudents().find(
-s=>s.id===id
-);
+getStudents().find(s=>s.id===id);
 
 if(!student)return;
 
@@ -3674,15 +3538,11 @@ document.getElementById(
 'deleteStudentModal'
 ).classList.add('show');
 
-setTimeout(
-()=>{
+setTimeout(()=>{
 document.getElementById(
 'deleteConfirmId'
 ).focus();
-},
-50
-);
-
+},50);
 }
 
 function closeDeleteStudent(){
@@ -3690,25 +3550,19 @@ function closeDeleteStudent(){
 document.getElementById(
 'deleteStudentModal'
 ).classList.remove('show');
-
 }
 
 function confirmDeleteStudent(){
 
 const target=
-document.getElementById(
-'deleteTargetId'
-).value;
+document.getElementById('deleteTargetId').value;
 
 const typed=
-document.getElementById(
-'deleteConfirmId'
-).value.trim();
+document.getElementById('deleteConfirmId')
+.value.trim();
 
 const err=
-document.getElementById(
-'deleteStudentError'
-);
+document.getElementById('deleteStudentError');
 
 if(typed!==target){
 
@@ -3718,7 +3572,6 @@ err.textContent=
 err.classList.add('show');
 
 return;
-
 }
 
 saveStudents(
@@ -3737,12 +3590,11 @@ showStudentStatus(
 'Student deleted successfully. Existing evaluation history was kept.',
 true
 );
-
 }
 
 
 /* =========================================================
-   DASHBOARD
+DASHBOARD / HOME STATS
 ========================================================= */
 
 function renderDashboard(){
@@ -3750,27 +3602,49 @@ function renderDashboard(){
 const students=getStudents();
 const evals=getEvaluations();
 
-document.getElementById(
-'studentCount'
-).textContent=students.length;
+const studentCount=
+document.getElementById('studentCount');
 
-document.getElementById(
-'evaluationCount'
-).textContent=evals.length;
+const evaluationCount=
+document.getElementById('evaluationCount');
 
-document.getElementById(
-'lastEvaluation'
-).textContent=
+const lastEvaluation=
+document.getElementById('lastEvaluation');
+
+const homeStudentCount=
+document.getElementById('homeStudentCount');
+
+const homeEvaluationCount=
+document.getElementById('homeEvaluationCount');
+
+const homeLastEvaluation=
+document.getElementById('homeLastEvaluation');
+
+if(studentCount)
+studentCount.textContent=students.length;
+
+if(evaluationCount)
+evaluationCount.textContent=evals.length;
+
+const last=
 evals.length
-?formatDateTime(
-evals[evals.length-1].dateTime
-)
+?formatDateTime(evals[evals.length-1].dateTime)
 :'—';
 
+if(lastEvaluation)
+lastEvaluation.textContent=last;
+
+if(homeStudentCount)
+homeStudentCount.textContent=students.length;
+
+if(homeEvaluationCount)
+homeEvaluationCount.textContent=evals.length;
+
+if(homeLastEvaluation)
+homeLastEvaluation.textContent=last;
+
 const list=
-document.getElementById(
-'studentList'
-);
+document.getElementById('studentList');
 
 if(!list)return;
 
@@ -3780,20 +3654,16 @@ list.innerHTML=
 '<div class="empty">No students yet. Add your first student above.</div>';
 
 return;
-
 }
 
 list.innerHTML=
-students.map(
-s=>`
+students.map(s=>`
 
 <div class="student-row">
 
 <div class="student-info">
 
-<b>
-${escapeHtml(s.name)}
-</b>
+<b>${escapeHtml(s.name)}</b>
 
 <span>
 ID: ${escapeHtml(s.id)}
@@ -3840,94 +3710,74 @@ Delete
 
 </div>
 
-`
-).join('');
-
+`).join('');
 }
 
 
 /* =========================================================
-   STUDENT SELECT
+STUDENT SELECT
 ========================================================= */
 
 function populateStudentSelect(selectedId){
 
 const select=
-document.getElementById(
-'studentSelect'
-);
+document.getElementById('studentSelect');
 
 if(!select)return;
 
 const students=getStudents();
 
 const current=
-selectedId ||
-select.value;
+selectedId||select.value;
 
 select.innerHTML=
 '<option value="">-- Select a student --</option>'+
 students.map(
 s=>
 `<option value="${escapeAttr(s.id)}">${escapeHtml(s.name)} — ${escapeHtml(s.id)}</option>`
-)
-.join('');
+).join('');
 
 if(
 current &&
-students.some(
-s=>s.id===current
-)
+students.some(s=>s.id===current)
 ){
 
 select.value=current;
-
 }
-
 }
 
 
 /* =========================================================
-   SELECT STUDENT
+SELECT STUDENT
 ========================================================= */
 
 function selectStudent(){
 
 const id=
-document.getElementById(
-'studentSelect'
-).value;
+document.getElementById('studentSelect').value;
 
 const student=
-getStudents().find(
-s=>s.id===id
-);
+getStudents().find(s=>s.id===id);
 
-document.getElementById(
-'studentName'
-).value=
+document.getElementById('studentName').value=
 student?student.name:'';
 
-document.getElementById(
-'parentEmail'
-).value=
+document.getElementById('parentEmail').value=
 student?student.email:'';
 
-document.getElementById(
-'studentId'
-).value=
+document.getElementById('studentId').value=
 student?student.id:'';
 
 commentVersion=0;
 
 updateOverallScore();
-generateComment();
 
+generateComment();
 }
 
 
 /* =========================================================
-   SECURITY HELPERS
+HELPERS
 ========================================================= */
 
 function escapeHtml(str){
@@ -3942,14 +3792,12 @@ c=>({
 '"':'&quot;'
 }[c])
 );
-
 }
 
 function escapeAttr(str){
 
 return escapeHtml(str)
 .replace(/`/g,'&#96;');
-
 }
 
 function formatDateTime(value){
@@ -3970,17 +3818,15 @@ hour:'2-digit',
 minute:'2-digit'
 }
 );
-
 }
 
 
 /* =========================================================
-   STAR RATINGS
+STAR RATINGS
 ========================================================= */
 
-document.querySelectorAll(
-'.stars'
-).forEach(el=>{
+document.querySelectorAll('.stars')
+.forEach(el=>{
 
 const field=el.dataset.field;
 
@@ -3988,19 +3834,15 @@ stars[field]=5;
 
 for(let i=1;i<=5;i++){
 
-const b=document.createElement(
-'button'
-);
+const b=document.createElement('button');
 
 b.type='button';
 b.innerHTML='★';
 b.title=i+' star';
 
-b.onclick=()=>
-setStars(field,i);
+b.onclick=()=>setStars(field,i);
 
 el.appendChild(b);
-
 }
 
 setStars(field,5);
@@ -4009,7 +3851,7 @@ setStars(field,5);
 
 
 /* =========================================================
-   AUTOMATIC OVERALL SCORE
+OVERALL SCORE
 ========================================================= */
 
 function updateOverallScore(){
@@ -4029,30 +3871,23 @@ sum+(Number(stars[field])||0),
 0
 );
 
-const average=
-total/fields.length;
+const average=total/fields.length;
 
 const score=Math.round(
 (average/5)*100
 );
 
-document.getElementById(
-'score'
-).value=score;
+document.getElementById('score').value=score;
 
-const [rating,range]=
-getRating(score);
+const [rating,range]=getRating(score);
 
-document.getElementById(
-'ratingText'
-).textContent=rating;
+document.getElementById('ratingText')
+.textContent=rating;
 
-document.getElementById(
-'scoreRange'
-).textContent=range;
+document.getElementById('scoreRange')
+.textContent=range;
 
 return score;
-
 }
 
 function setStars(field,n){
@@ -4073,20 +3908,15 @@ i<n?'1':'0.28'
 updateOverallScore();
 
 if(
-document.getElementById(
-'studentName'
-).value
+document.getElementById('studentName').value
 ){
-
 generateComment();
-
 }
-
 }
 
 
 /* =========================================================
-   RATING
+RATING
 ========================================================= */
 
 function getRating(score){
@@ -4094,189 +3924,114 @@ function getRating(score){
 score=Number(score);
 
 if(!score && score!==0)
-return[
-'Excellent',
-'95–100'
-];
+return ['Excellent','95–100'];
 
 if(score>=95)
-return[
-'Excellent',
-'95–100'
-];
+return ['Excellent','95–100'];
 
 if(score>=90)
-return[
-'Very Good',
-'90–94'
-];
+return ['Very Good','90–94'];
 
 if(score>=80)
-return[
-'Good',
-'80–89'
-];
+return ['Good','80–89'];
 
 if(score>=70)
-return[
-'Needs Practice',
-'70–79'
-];
+return ['Needs Practice','70–79'];
 
-return[
-'Needs Improvement',
-'0–69'
-];
-
+return ['Needs Improvement','0–69'];
 }
 
 
 /* =========================================================
-   AUTOMATIC TEACHER COMMENT
+AUTOMATIC TEACHER COMMENT
 ========================================================= */
 
 function buildComment(variant){
 
 const name=
-document.getElementById(
-'studentName'
-).value.trim() ||
-'The student';
+document.getElementById('studentName')
+.value.trim()||'The student';
 
 const vocab=
-document.getElementById(
-'vocabulary'
-).value.trim();
+document.getElementById('vocabulary')
+.value.trim();
 
 const improvement=
-document.getElementById(
-'improvement'
-).value.trim();
+document.getElementById('improvement')
+.value.trim();
 
 const score=
-document.getElementById(
-'score'
-).value;
+document.getElementById('score').value;
 
-const speaking=
-stars.speaking||5;
-
-const pronunciation=
-stars.pronunciation||5;
-
-const understanding=
-stars.understanding||5;
+const speaking=stars.speaking||5;
+const pronunciation=stars.pronunciation||5;
+const understanding=stars.understanding||5;
 
 const [rating]=getRating(score);
 
 let parts=[];
 
 const vocabStart=[
-
 `${name} learned and practiced ${vocab} during today's lesson.`,
-
 `${name} actively worked on ${vocab} in today's English lesson.`,
-
 `During today's class, ${name} practiced and reviewed ${vocab}.`,
-
 `${name} made progress today while learning and practicing ${vocab}.`
-
 ];
 
 const vocabEmpty=[
-
 `${name} participated in today's lesson and practiced the target language.`,
-
 `${name} took part in today's lesson and practiced the target language.`,
-
 `During today's class, ${name} practiced the lesson target and participated in the activities.`,
-
 `${name} participated in the lesson and practiced the target English skills.`
-
 ];
 
 const imp=[
-
 `For continued progress, ${name} should continue practicing ${improvement}.`,
-
 `To continue improving, ${name} can focus on ${improvement}.`,
-
 `For the next lessons, ${name} is encouraged to work on ${improvement}.`,
-
 `A helpful next step for ${name} is to continue working on ${improvement}.`
-
 ];
 
 const impEmpty=[
-
 `${name} is encouraged to continue reviewing today's lesson and practicing the target language at home.`,
-
 `Regular review of today's lesson at home will help ${name} continue making progress.`,
-
 `${name} is encouraged to review the lesson and practice the target language regularly.`,
-
 `Continuing to review and practice today's lesson will support further progress.`
-
 ];
 
 const scoreText=[
-
 `Overall performance: ${rating} (${score}/100).`,
-
 `${name}'s overall result was ${rating}, with a score of ${score}/100.`,
-
 `The overall performance rating was ${rating} (${score}/100).`,
-
 `Today's overall result was ${rating}, with ${score}/100.`
-
 ];
 
 const comm=[
-
 `${name} showed good communication and pronunciation during class.`,
-
 `${name} communicated well and demonstrated good pronunciation.`,
-
 `${name} showed positive speaking skills and clear pronunciation.`,
-
 `${name} demonstrated good speaking and pronunciation during the class.`
-
 ];
 
 const commLow=[
-
 `${name} would benefit from additional speaking and pronunciation practice.`,
-
 `Additional practice in speaking and pronunciation will help ${name} build confidence.`,
-
 `More speaking and pronunciation practice would support ${name}'s continued progress.`,
-
 `Focused speaking and pronunciation practice can help ${name} improve further.`
-
 ];
 
 const understand=[
-
 `The lesson was understood well.`,
-
 `${name} demonstrated a good understanding of the lesson.`,
-
 `${name} showed a good level of understanding throughout the lesson.`,
-
 `${name} followed and understood the lesson well.`
-
 ];
 
 const understandLow=[
-
 `More review and guided practice will help strengthen understanding.`,
-
 `Continued guided practice and review will help improve understanding.`,
-
 `Additional explanation, review, and practice may help strengthen ${name}'s understanding.`,
-
 `More guided review will help ${name} develop stronger understanding of the lesson.`
-
 ];
 
 parts.push(
@@ -4288,9 +4043,7 @@ parts.push(
 );
 
 if(score)
-parts.push(
-scoreText[variant]
-);
+parts.push(scoreText[variant]);
 
 parts.push(
 (
@@ -4310,7 +4063,6 @@ understanding>=4
 );
 
 return parts.join(' ');
-
 }
 
 function generateComment(){
@@ -4318,15 +4070,11 @@ function generateComment(){
 commentVersion=0;
 
 const box=
-document.getElementById(
-'commentPreview'
-);
+document.getElementById('commentPreview');
 
-box.textContent=
-buildComment(0);
+box.textContent=buildComment(0);
 
 return box.textContent;
-
 }
 
 function updateComment(){
@@ -4335,103 +4083,75 @@ commentVersion=
 (commentVersion+1)%4;
 
 const box=
-document.getElementById(
-'commentPreview'
-);
+document.getElementById('commentPreview');
 
 box.textContent=
 buildComment(commentVersion);
 
 return box.textContent;
-
 }
 
 
 /* =========================================================
-   LIVE SCORE / COMMENT
+LIVE COMMENT
 ========================================================= */
 
-document.getElementById(
-'score'
-).addEventListener(
-'input',
-()=>{
+document.getElementById('score')
+.addEventListener('input',()=>{
 
 updateOverallScore();
 
 if(
-document.getElementById(
-'studentName'
-).value
+document.getElementById('studentName').value
 ){
-
 generateComment();
-
 }
 
-}
-);
+});
 
-[
-'vocabulary',
-'improvement'
-].forEach(
-id=>
+['vocabulary','improvement']
+.forEach(id=>
 document.getElementById(id)
-.addEventListener(
-'input',
-()=>{
+.addEventListener('input',()=>{
 
 if(
-document.getElementById(
-'studentName'
-).value
+document.getElementById('studentName').value
 ){
-
 generateComment();
-
 }
 
-}
-)
+})
 );
 
 
 /* =========================================================
-   STATUS
+STATUS
 ========================================================= */
 
 function showStatus(msg,ok=true){
 
-const s=
-document.getElementById(
-'status'
-);
+const s=document.getElementById('status');
 
 s.textContent=msg;
 
 s.className=
-'status show '+
-(ok?'ok':'error');
-
+'status show '+(ok?'ok':'error');
 }
 
 
 /* =========================================================
-   SEND EVALUATION
+SEND EVALUATION
 ========================================================= */
 
 function sendEvaluation(){
 
 const name=
-document.getElementById(
-'studentName'
-).value.trim();
+document.getElementById('studentName')
+.value.trim();
 
 const email=
-document.getElementById(
-'parentEmail'
-).value.trim();
+document.getElementById('parentEmail')
+.value.trim();
 
 const calculatedScore=
 updateOverallScore();
@@ -4440,9 +4160,7 @@ const scoreValue=
 String(calculatedScore);
 
 const submitBtn=
-document.getElementById(
-'submitBtn'
-);
+document.getElementById('submitBtn');
 
 if(!name)
 return showStatus(
@@ -4456,21 +4174,13 @@ return showStatus(
 false
 );
 
-if(
-!document.getElementById(
-'date'
-).value
-)
+if(!document.getElementById('date').value)
 return showStatus(
 'Please select the class date.',
 false
 );
 
-if(
-!document.getElementById(
-'time'
-).value
-)
+if(!document.getElementById('time').value)
 return showStatus(
 'Please select the class time.',
 false
@@ -4490,13 +4200,10 @@ false
 
 }
 
-const [rating]=
-getRating(scoreValue);
+const [rating]=getRating(scoreValue);
 
 const starText=n=>
-'★'.repeat(
-Number(n)||0
-)+
+'★'.repeat(Number(n)||0)+
 '☆'.repeat(
 Math.max(
 0,
@@ -4505,14 +4212,10 @@ Math.max(
 );
 
 const dateValue=
-document.getElementById(
-'date'
-).value;
+document.getElementById('date').value;
 
 const timeValue=
-document.getElementById(
-'time'
-).value;
+document.getElementById('time').value;
 
 const templateParams={
 
@@ -4521,77 +4224,51 @@ parent_email:email,
 student_name:name,
 
 student_id:
-document.getElementById(
-'studentId'
-).value,
+document.getElementById('studentId').value,
 
-score:
-`${scoreValue}/100`,
+score:`${scoreValue}/100`,
 
 rating,
 
-date:
-`${dateValue} ${timeValue}`,
+date:`${dateValue} ${timeValue}`,
 
 duration:
-document.getElementById(
-'duration'
-).value.trim()||
+document.getElementById('duration').value.trim()||
 'N/A',
 
 lesson_topic:
-document.getElementById(
-'lessonTopic'
-).value.trim()||
+document.getElementById('lessonTopic').value.trim()||
 'N/A',
 
 teacher:
-document.getElementById(
-'teacher'
-).value.trim()||
+document.getElementById('teacher').value.trim()||
 'Teacher Danyeal',
 
 vocabulary:
-document.getElementById(
-'vocabulary'
-).value.trim()||
+document.getElementById('vocabulary').value.trim()||
 'No vocabulary/lesson notes provided.',
 
 improvement:
-document.getElementById(
-'improvement'
-).value.trim()||
+document.getElementById('improvement').value.trim()||
 'No specific improvement areas noted.',
 
 participation:
-starText(
-stars.participation
-),
+starText(stars.participation),
 
 pronunciation:
-starText(
-stars.pronunciation
-),
+starText(stars.pronunciation),
 
 behavior:
-starText(
-stars.behavior
-),
+starText(stars.behavior),
 
 speaking:
-starText(
-stars.speaking
-),
+starText(stars.speaking),
 
 understanding:
-starText(
-stars.understanding
-),
+starText(stars.understanding),
 
 listening:
-starText(
-stars.listening
-),
+starText(stars.listening),
 
 teacher_comment:
 currentComment
@@ -4625,8 +4302,7 @@ publicKey:EMAILJS_PUBLIC_KEY
 
 submitBtn.disabled=true;
 
-submitBtn.textContent=
-'Sending Memo...';
+submitBtn.textContent='Sending Memo...';
 
 showStatus(
 'Sending the class memo to the parent...',
@@ -4642,8 +4318,7 @@ templateParams
 
 .then(()=>{
 
-const evals=
-getEvaluations();
+const evals=getEvaluations();
 
 evals.push(record);
 
@@ -4680,12 +4355,11 @@ submitBtn.textContent=
 'Submit & Email Parent';
 
 });
-
 }
 
 
 /* =========================================================
-   RESET EVALUATION
+RESET EVALUATION
 ========================================================= */
 
 function resetForm(){
@@ -4704,8 +4378,7 @@ document.getElementById(
 'vocabulary',
 'improvement'
 ].forEach(
-id=>
-document.getElementById(id).value=''
+id=>document.getElementById(id).value=''
 );
 
 document.getElementById(
@@ -4716,9 +4389,8 @@ document.getElementById(
 'teacher'
 ).value='Teacher Danyeal';
 
-Object.keys(stars).forEach(
-k=>setStars(k,5)
-);
+Object.keys(stars)
+.forEach(k=>setStars(k,5));
 
 updateOverallScore();
 
@@ -4733,12 +4405,11 @@ showStatus(
 'Form cleared.',
 true
 );
-
 }
 
 
 /* =========================================================
-   RECORDS
+RECORDS
 ========================================================= */
 
 function renderRecords(){
@@ -4765,77 +4436,59 @@ body.innerHTML='';
 empty.style.display='block';
 
 return;
-
 }
 
 empty.style.display='none';
 
 body.innerHTML=
-evals.map(
-e=>`
+evals.map(e=>`
 
 <tr>
 
 <td>
 ${escapeHtml(
-formatDateTime(
-e.dateTime
-)
+formatDateTime(e.dateTime)
 )}
 </td>
 
 <td>
 
 <b>
-${escapeHtml(
-e.student_name
-)}
+${escapeHtml(e.student_name)}
 </b>
 
 <br>
 
 <span class="small">
-${escapeHtml(
-e.student_id
-)}
+${escapeHtml(e.student_id)}
 </span>
 
 </td>
 
 <td>
-${escapeHtml(
-e.lesson_topic
-)}
+${escapeHtml(e.lesson_topic)}
 </td>
 
 <td>
-${escapeHtml(
-e.score
-)}
+${escapeHtml(e.score)}
 </td>
 
 <td>
-${escapeHtml(
-e.rating
-)}
+${escapeHtml(e.rating)}
 </td>
 
 <td>
-${escapeHtml(
-e.parent_email
-)}
+${escapeHtml(e.parent_email)}
 </td>
 
 </tr>
 
-`
-).join('');
-
+`).join('');
 }
 
 
 /* =========================================================
-   ENTER / ESCAPE
+KEYBOARD / MODALS
 ========================================================= */
 
 document.getElementById(
@@ -4847,8 +4500,7 @@ function(e){
 if(e.key==='Enter')
 confirmDeleteStudent();
 
-}
-);
+});
 
 document.getElementById(
 'clearAllCaptchaInput'
@@ -4859,8 +4511,7 @@ function(e){
 if(e.key==='Enter')
 confirmClearAllRecords();
 
-}
-);
+});
 
 document.addEventListener(
 'keydown',
@@ -4876,12 +4527,11 @@ closeClearAllRecords();
 
 }
 
-}
-);
+});
 
 
 /* =========================================================
-   ADD STUDENT BUTTON
+ADD STUDENT
 ========================================================= */
 
 document.getElementById(
@@ -4908,12 +4558,11 @@ false
 
 }
 
-}
-);
+});
 
 
 /* =========================================================
-   START
+START
 ========================================================= */
 
 initAuth();
