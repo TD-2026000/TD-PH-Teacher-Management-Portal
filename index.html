@@ -1775,12 +1775,14 @@ const EVALUATIONS_BASE_KEY='teacherDanyealEvaluations_v2';
 
 /* NEW SUPABASE */
 
-const SUPABASE_URL='https://ibhmimpmeftzkrtzhkmp.supabase.co';
+const SUPABASE_URL=
+'https://ibhmimpmeftzkrtzhkmp.supabase.co';
 
-const SUPABASE_PUBLISHABLE_KEY='sb_publishable_HqQA24yJsm_PE_1TKi2W4g_Mpdr9GI3';
+const SUPABASE_PUBLISHABLE_KEY=
+'sb_publishable_HqQA24yJsm_PE_1TKi2W4g_Mpdr9GI3';
 
 
-/* NEW GITHUB PAGES */
+/* GITHUB PAGES */
 
 const SUPABASE_REDIRECT_URL=
 'https://td-2026000.github.io/TD-PH-Teacher-Management-Portal/';
@@ -2251,6 +2253,49 @@ false,
 
 
 /* =========================================================
+   PASSWORD RECOVERY DETECTION
+========================================================= */
+
+function isPasswordRecoveryUrl(){
+
+const hash=
+window.location.hash || '';
+
+const search=
+window.location.search || '';
+
+return (
+hash.includes('type=recovery') ||
+search.includes('type=recovery')
+);
+
+}
+
+
+async function checkPasswordRecovery(){
+
+if(!isPasswordRecoveryUrl()){
+
+return false;
+
+}
+
+document.getElementById(
+'appShell'
+).classList.add('hidden');
+
+document.getElementById(
+'authScreen'
+).classList.remove('hidden');
+
+showAuthPanel('reset');
+
+return true;
+
+}
+
+
+/* =========================================================
    UPDATE PASSWORD
 ========================================================= */
 
@@ -2297,15 +2342,37 @@ if(error){
 
 showAuthMessage(error.message);
 
-}else{
+setAuthBusy(
+'resetBtn',
+false,
+'Update Password'
+);
+
+return;
+
+}
 
 showAuthMessage(
-'Password updated successfully. You can now log in with your new password.',
+'Password updated successfully. Redirecting to login...',
 true
 );
 
+
+/*
+   Sign out after password recovery so the user
+   returns cleanly to the Login screen.
+*/
+
 setTimeout(
-()=>{
+async()=>{
+
+await supabaseClient.auth.signOut();
+
+window.history.replaceState(
+{},
+document.title,
+SUPABASE_REDIRECT_URL
+);
 
 showAuthPanel('login');
 
@@ -2313,16 +2380,22 @@ document.getElementById(
 'loginPassword'
 ).value='';
 
-},
-1500
-);
+document.getElementById(
+'resetPassword'
+).value='';
 
-}
+document.getElementById(
+'resetConfirm'
+).value='';
 
 setAuthBusy(
 'resetBtn',
 false,
 'Update Password'
+);
+
+},
+1500
 );
 
 }
@@ -2397,6 +2470,21 @@ showAuthPanel('login');
 ========================================================= */
 
 async function initAuth(){
+
+/*
+   Check recovery URL first.
+   This ensures that the GitHub Pages
+   reset link opens the Reset Password panel.
+*/
+
+const recovery=
+await checkPasswordRecovery();
+
+if(recovery){
+
+return;
+
+}
 
 const {
 data:{session}
