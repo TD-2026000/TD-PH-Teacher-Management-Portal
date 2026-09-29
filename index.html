@@ -470,6 +470,7 @@ button.secondary,
   display:flex;
   justify-content:flex-end;
   align-items:center;
+  gap:10px;
   padding:8px 15px;
   background:#f7ffff;
   border-bottom:1px solid #ddd;
@@ -483,29 +484,27 @@ button.secondary,
   gap:8px;
   border:0;
   background:transparent;
-  border-radius:9px;
-  padding:5px 8px;
   cursor:pointer;
+  padding:5px 8px;
+  border-radius:8px;
   font-weight:700;
 }
 
 .profile-trigger:hover{
-  background:#e9fafa;
+  background:#eee;
 }
 
 .profile-avatar-small{
-  width:34px;
-  height:34px;
+  width:32px;
+  height:32px;
   border-radius:50%;
-  background:#111;
-  color:#00e5e5;
+  background:#00d9d9;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:16px;
-  font-weight:800;
   overflow:hidden;
-  border:2px solid #00d9d9;
+  border:1px solid #aaa;
+  flex-shrink:0;
 }
 
 .profile-avatar-small img{
@@ -514,31 +513,36 @@ button.secondary,
   object-fit:cover;
 }
 
+.profile-avatar-small .default-profile-icon{
+  font-size:19px;
+  line-height:1;
+}
+
 .profile-name{
   font-size:14px;
 }
 
 .profile-arrow{
-  font-size:11px;
+  font-size:12px;
   color:#666;
 }
 
-.profile-dropdown{
+.profile-panel{
   position:absolute;
   right:15px;
-  top:52px;
-  width:320px;
+  top:53px;
+  width:330px;
   max-width:calc(100vw - 30px);
   background:#fff;
   border:1px solid #ccc;
-  border-radius:12px;
-  box-shadow:0 8px 25px rgba(0,0,0,.2);
+  border-radius:10px;
+  box-shadow:0 8px 25px rgba(0,0,0,.18);
   padding:15px;
   z-index:90;
   display:none;
 }
 
-.profile-dropdown.show{
+.profile-panel.show{
   display:block;
 }
 
@@ -551,43 +555,28 @@ button.secondary,
   margin-bottom:12px;
 }
 
-.profile-picture-wrap{
-  position:relative;
-  flex-shrink:0;
-}
-
-.profile-picture{
-  width:70px;
-  height:70px;
+.profile-avatar-large{
+  width:62px;
+  height:62px;
   border-radius:50%;
-  background:#111;
-  color:#00e5e5;
+  background:#00d9d9;
+  border:1px solid #aaa;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:28px;
-  font-weight:800;
   overflow:hidden;
-  border:3px solid #00d9d9;
+  flex-shrink:0;
 }
 
-.profile-picture img{
+.profile-avatar-large img{
   width:100%;
   height:100%;
   object-fit:cover;
 }
 
-.profile-picture-upload{
-  margin-top:6px;
-  font-size:11px;
-  color:#007b83;
-  font-weight:700;
-  cursor:pointer;
-  text-align:center;
-}
-
-.profile-picture-upload input{
-  display:none;
+.profile-avatar-large .default-profile-icon{
+  font-size:34px;
+  line-height:1;
 }
 
 .profile-header-info{
@@ -596,9 +585,8 @@ button.secondary,
 
 .profile-header-info b{
   display:block;
-  font-size:17px;
-  margin-bottom:4px;
-  word-break:break-word;
+  font-size:16px;
+  margin-bottom:3px;
 }
 
 .profile-header-info span{
@@ -608,8 +596,28 @@ button.secondary,
   word-break:break-word;
 }
 
+.profile-picture-actions{
+  display:flex;
+  gap:6px;
+  margin-top:7px;
+}
+
+.profile-picture-actions button{
+  border:0;
+  border-radius:6px;
+  padding:5px 8px;
+  font-size:11px;
+  font-weight:700;
+  cursor:pointer;
+  background:#eee;
+}
+
+.profile-picture-actions button:hover{
+  background:#ddd;
+}
+
 .profile-field{
-  margin-top:9px;
+  margin-top:10px;
 }
 
 .profile-field label{
@@ -623,29 +631,60 @@ button.secondary,
   font-size:13px;
 }
 
-.profile-actions{
+.profile-email-note{
+  font-size:11px;
+  color:#777;
+  margin-top:3px;
+}
+
+.profile-save-btn{
+  width:100%;
+  border:0;
+  border-radius:7px;
+  padding:9px;
+  margin-top:12px;
+  background:#00d9d9;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.profile-save-btn:hover{
+  background:#00caca;
+}
+
+.profile-password-btn{
+  width:100%;
+  border:1px solid #ccc;
+  border-radius:7px;
+  padding:9px;
+  margin-top:8px;
+  background:#f7f7f7;
+  font-weight:700;
+  cursor:pointer;
+  text-align:left;
+}
+
+.profile-password-btn:hover{
+  background:#eee;
+}
+
+.profile-bottom{
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
   gap:8px;
-  margin-top:13px;
-  padding-top:12px;
+  margin-top:12px;
+  padding-top:10px;
   border-top:1px solid #ddd;
 }
 
-.profile-left-actions{
-  display:flex;
-  align-items:center;
-  gap:5px;
-}
-
-.profile-menu-wrap{
+.profile-more-wrap{
   position:relative;
 }
 
-.profile-dots-btn{
-  width:36px;
-  height:36px;
+.profile-more-btn{
+  width:38px;
+  height:34px;
   border:0;
   border-radius:7px;
   background:transparent;
@@ -655,93 +694,69 @@ button.secondary,
   font-weight:700;
 }
 
-.profile-dots-btn:hover{
+.profile-more-btn:hover{
   background:#eee;
 }
 
-.profile-menu{
+.profile-more-menu{
   position:absolute;
   left:0;
-  bottom:42px;
-  min-width:170px;
+  bottom:40px;
+  min-width:175px;
   background:#fff;
   border:1px solid #ccc;
   border-radius:8px;
   box-shadow:0 6px 20px rgba(0,0,0,.18);
   padding:5px;
-  display:none;
   z-index:100;
+  display:none;
 }
 
-.profile-menu.show{
+.profile-more-menu.show{
   display:block;
 }
 
-.profile-menu button{
+.profile-more-menu button{
   width:100%;
   border:0;
   background:#fff;
   text-align:left;
-  padding:10px 12px;
+  padding:9px 11px;
   border-radius:6px;
   cursor:pointer;
   font-size:13px;
   font-weight:700;
 }
 
-.profile-menu button:hover{
+.profile-more-menu button:hover{
   background:#f1f1f1;
 }
 
-.profile-menu .clear-option{
+.profile-more-menu .profile-clear-option{
   color:#b00020;
 }
 
-.profile-logout{
-  border:0;
-  border-radius:7px;
-  padding:9px 13px;
-  background:#ddd;
-  font-weight:700;
-  cursor:pointer;
+.profile-more-menu .profile-logout-option{
+  color:#111;
 }
 
-.profile-logout:hover{
-  background:#ccc;
-}
-
-.profile-save{
-  width:100%;
-  border:0;
-  border-radius:7px;
-  padding:9px 12px;
-  background:#00d9d9;
-  font-weight:700;
-  cursor:pointer;
-  margin-top:12px;
-}
-
-.profile-save:hover{
-  background:#00c5c5;
-}
-
-.profile-message{
+.profile-status{
   display:none;
-  margin-top:9px;
-  padding:8px;
+  margin-top:8px;
+  padding:7px;
   border-radius:6px;
   font-size:12px;
 }
 
-.profile-message.show{
+.profile-status.show{
   display:block;
 }
 
-.profile-message.ok{
+.profile-status.ok{
   background:#dff6df;
 }
 
-.profile-message.error{
+.profile-status.error{
   background:#ffe1e1;
   color:#8a0000;
 }
@@ -983,9 +998,12 @@ button.secondary,
     flex-direction:column;
   }
 
-  .profile-dropdown{
-    right:8px;
-    width:calc(100vw - 16px);
+  .userbar{
+    align-items:center;
+  }
+
+  .profile-panel{
+    right:10px;
   }
 
 }
@@ -1048,6 +1066,8 @@ Teacher Management Portal
 </div>
 
 <div class="auth-body">
+
+<!-- LOGIN -->
 
 <div id="loginPanel">
 
@@ -1116,6 +1136,8 @@ Create Account
 </div>
 
 </div>
+
+<!-- SIGNUP -->
 
 <div id="signupPanel" class="hidden">
 
@@ -1201,6 +1223,8 @@ Login
 
 </div>
 
+<!-- VERIFY -->
+
 <div id="verifyPanel" class="hidden">
 
 <h2>Verify Your Email</h2>
@@ -1248,6 +1272,8 @@ Back to Login
 
 </div>
 
+<!-- FORGOT PASSWORD -->
+
 <div id="forgotPanel" class="hidden">
 
 <h2>Forgot Password?</h2>
@@ -1287,6 +1313,8 @@ Back to Login
 </div>
 
 </div>
+
+<!-- RESET PASSWORD -->
 
 <div id="resetPanel" class="hidden">
 
@@ -1374,15 +1402,14 @@ TD
 
 </div>
 
-<!-- USER BAR / PROFILE -->
+<!-- USER BAR -->
 
 <div class="userbar">
 
 <button
 type="button"
-id="profileTrigger"
 class="profile-trigger"
-onclick="toggleProfileMenu(event)"
+onclick="toggleProfilePanel(event)"
 aria-label="Open teacher profile"
 >
 
@@ -1390,11 +1417,11 @@ aria-label="Open teacher profile"
 id="profileAvatarSmall"
 class="profile-avatar-small"
 >
-TD
+<div class="default-profile-icon">👤</div>
 </div>
 
 <span
-id="profileDisplayName"
+id="profileTriggerName"
 class="profile-name"
 >
 Teacher
@@ -1406,34 +1433,20 @@ Teacher
 
 </button>
 
+<!-- PROFILE PANEL -->
+
 <div
-id="profileDropdown"
-class="profile-dropdown"
+id="profilePanel"
+class="profile-panel"
 >
 
 <div class="profile-header">
 
-<div class="profile-picture-wrap">
-
 <div
-id="profilePicture"
-class="profile-picture"
+id="profileAvatarLarge"
+class="profile-avatar-large"
 >
-TD
-</div>
-
-<label class="profile-picture-upload">
-
-Change Photo
-
-<input
-id="profilePictureInput"
-type="file"
-accept="image/*"
->
-
-</label>
-
+<div class="default-profile-icon">👤</div>
 </div>
 
 <div class="profile-header-info">
@@ -1442,9 +1455,41 @@ accept="image/*"
 Teacher
 </b>
 
-<span id="profileHeaderEmail">
-—
+<span id="profileHeaderUsername">
+Username
 </span>
+
+<div class="profile-picture-actions">
+
+<label
+for="profilePictureInput"
+style="display:inline-block;margin:0"
+>
+
+<button
+type="button"
+onclick="document.getElementById('profilePictureInput').click()"
+>
+Change Photo
+</button>
+
+</label>
+
+<button
+type="button"
+onclick="removeProfilePicture()"
+>
+Remove
+</button>
+
+<input
+id="profilePictureInput"
+type="file"
+accept="image/*"
+style="display:none"
+>
+
+</div>
 
 </div>
 
@@ -1452,7 +1497,9 @@ Teacher
 
 <div class="profile-field">
 
-<label>Username</label>
+<label>
+Username
+</label>
 
 <input
 id="profileUsername"
@@ -1463,7 +1510,9 @@ placeholder="Username"
 
 <div class="profile-field">
 
-<label>Teacher Full Name</label>
+<label>
+Teacher Full Name
+</label>
 
 <input
 id="profileFullName"
@@ -1474,7 +1523,9 @@ placeholder="Teacher Full Name"
 
 <div class="profile-field">
 
-<label>Email</label>
+<label>
+Email
+</label>
 
 <input
 id="profileEmail"
@@ -1482,11 +1533,17 @@ type="email"
 readonly
 >
 
+<div class="profile-email-note">
+Email is managed by your login account.
+</div>
+
 </div>
 
 <div class="profile-field">
 
-<label>Phone Number</label>
+<label>
+Phone Number
+</label>
 
 <input
 id="profilePhone"
@@ -1498,7 +1555,9 @@ placeholder="Phone Number"
 
 <div class="profile-field">
 
-<label>Gender</label>
+<label>
+Gender
+</label>
 
 <select id="profileGender">
 
@@ -1524,68 +1583,69 @@ Prefer not to say
 
 <button
 type="button"
-class="profile-save"
+class="profile-save-btn"
 onclick="saveTeacherProfile()"
 >
 Save Profile
 </button>
 
+<button
+type="button"
+class="profile-password-btn"
+onclick="openChangePasswordModal()"
+>
+🔒 Change Password
+</button>
+
 <div
-id="profileMessage"
-class="profile-message"
+id="profileStatus"
+class="profile-status"
 ></div>
 
-<div class="profile-actions">
+<div class="profile-bottom">
 
-<div class="profile-left-actions">
-
-<div class="profile-menu-wrap">
+<div class="profile-more-wrap">
 
 <button
 type="button"
-class="profile-dots-btn"
-onclick="toggleProfileDots(event)"
-aria-label="More profile options"
-title="More options"
+class="profile-more-btn"
+onclick="toggleProfileMoreMenu(event)"
+aria-label="More account options"
+title="More account options"
 >
 ⋮
 </button>
 
 <div
-id="profileMenu"
-class="profile-menu"
+id="profileMoreMenu"
+class="profile-more-menu"
 >
 
 <button
 type="button"
-onclick="openClearAllRecordsFromProfile()"
-class="clear-option"
+class="profile-clear-option"
+onclick="openClearAllRecords()"
 >
 Clear All Records
 </button>
 
-</div>
-
-</div>
-
 <button
 type="button"
-class="secondary"
-onclick="openChangePassword()"
-style="padding:9px 12px;font-size:13px"
->
-Change Password
-</button>
-
-</div>
-
-<button
-type="button"
-class="profile-logout"
+class="profile-logout-option"
 onclick="logoutTeacher()"
 >
 Log Out
 </button>
+
+</div>
+
+</div>
+
+<div style="font-size:11px;color:#777;text-align:right">
+Teacher Profile
+</div>
+
+</div>
 
 </div>
 
@@ -2369,7 +2429,7 @@ Clear All Records
 <div
 id="changePasswordModal"
 class="modal-backdrop"
-onclick="if(event.target===this) closeChangePassword()"
+onclick="if(event.target===this) closeChangePasswordModal()"
 >
 
 <div class="modal">
@@ -2382,7 +2442,9 @@ Change Password
 Enter your new password below.
 </p>
 
-<label>New Password</label>
+<label>
+New Password
+</label>
 
 <div class="password-wrap">
 
@@ -2397,6 +2459,7 @@ autocomplete="new-password"
 type="button"
 class="password-toggle"
 onclick="togglePassword('profileNewPassword',this)"
+aria-label="Show password"
 >
 👁
 </button>
@@ -2420,6 +2483,7 @@ autocomplete="new-password"
 type="button"
 class="password-toggle"
 onclick="togglePassword('profileConfirmPassword',this)"
+aria-label="Show password"
 >
 👁
 </button>
@@ -2431,17 +2495,12 @@ id="changePasswordError"
 class="modal-error"
 ></div>
 
-<div
-id="changePasswordSuccess"
-class="profile-message ok"
-></div>
-
 <div class="modal-actions">
 
 <button
 type="button"
 class="modal-cancel"
-onclick="closeChangePassword()"
+onclick="closeChangePasswordModal()"
 >
 Cancel
 </button>
@@ -2451,7 +2510,7 @@ type="button"
 class="modal-save"
 onclick="changeTeacherPassword()"
 >
-Update Password
+Change Password
 </button>
 
 </div>
@@ -2475,7 +2534,7 @@ const STUDENTS_BASE_KEY='teacherDanyealStudents_v2';
 
 const EVALUATIONS_BASE_KEY='teacherDanyealEvaluations_v2';
 
-const PROFILE_BASE_KEY='teacherDanyealProfile_v1';
+const PROFILE_PICTURE_BASE_KEY='teacherDanyealProfilePicture_v1';
 
 const SUPABASE_URL=
 'https://ibhmimpmeftzkrtzhkmp.supabase.co';
@@ -2553,35 +2612,49 @@ JSON.stringify(data)
 
 }
 
-function getTeacherProfile(){
 
-if(!currentUser)
-return {};
+/* =========================================================
+   PROFILE PICTURE STORAGE
+========================================================= */
 
-try{
+function profilePictureStorageKey(){
 
-return JSON.parse(
-localStorage.getItem(
-userStorageKey(PROFILE_BASE_KEY)
-)||'{}'
+return userStorageKey(
+PROFILE_PICTURE_BASE_KEY
 );
 
-}catch{
+}
 
-return {};
+function getProfilePicture(){
+
+if(!currentUser)
+return '';
+
+return localStorage.getItem(
+profilePictureStorageKey()
+)||'';
 
 }
 
-}
-
-function saveTeacherProfileData(data){
+function saveProfilePicture(dataUrl){
 
 if(!currentUser)
 return;
 
 localStorage.setItem(
-userStorageKey(PROFILE_BASE_KEY),
-JSON.stringify(data)
+profilePictureStorageKey(),
+dataUrl
+);
+
+}
+
+function deleteProfilePicture(){
+
+if(!currentUser)
+return;
+
+localStorage.removeItem(
+profilePictureStorageKey()
 );
 
 }
@@ -3125,9 +3198,9 @@ false,
 
 async function logoutTeacher(){
 
-closeProfileMenu();
+closeProfilePanel();
 
-closeProfileDots();
+closeProfileMoreMenu();
 
 closeClearAllRecords();
 
@@ -3137,81 +3210,202 @@ await supabaseClient.auth.signOut();
 
 
 /* =========================================================
-   PROFILE SYSTEM
+   PROFILE
 ========================================================= */
 
-function getInitials(name){
+function getUsernameFromUser(user){
 
-const clean=String(name||'Teacher').trim();
+if(!user)
+return 'Teacher';
 
-if(!clean)
-return 'TD';
+const metadata=user.user_metadata || {};
 
-const parts=clean.split(/\s+/);
+if(metadata.username)
+return metadata.username;
 
-if(parts.length===1)
-return parts[0].substring(0,2).toUpperCase();
+if(user.email){
+
+return user.email
+.split('@')[0]
+.replace(/[._-]+/g,' ');
+
+}
+
+return 'Teacher';
+
+}
+
+function getTeacherFullName(user){
+
+if(!user)
+return 'Teacher';
 
 return (
-parts[0].charAt(0)+
-parts[parts.length-1].charAt(0)
-).toUpperCase();
+user.user_metadata?.full_name ||
+'Teacher'
+);
 
 }
 
-function toggleProfileMenu(event){
+function renderProfile(){
+
+if(!currentUser)
+return;
+
+const metadata=
+currentUser.user_metadata || {};
+
+const username=
+getUsernameFromUser(currentUser);
+
+const fullName=
+getTeacherFullName(currentUser);
+
+const email=
+currentUser.email || '';
+
+const phone=
+metadata.phone || '';
+
+const gender=
+metadata.gender || '';
+
+const picture=
+getProfilePicture();
+
+document.getElementById(
+'profileTriggerName'
+).textContent=
+fullName;
+
+document.getElementById(
+'profileHeaderName'
+).textContent=
+fullName;
+
+document.getElementById(
+'profileHeaderUsername'
+).textContent=
+'@'+username;
+
+document.getElementById(
+'profileUsername'
+).value=
+username;
+
+document.getElementById(
+'profileFullName'
+).value=
+fullName;
+
+document.getElementById(
+'profileEmail'
+).value=
+email;
+
+document.getElementById(
+'profilePhone'
+).value=
+phone;
+
+document.getElementById(
+'profileGender'
+).value=
+gender;
+
+setProfileImages(picture);
+
+}
+
+function setProfileImages(src){
+
+const small=
+document.getElementById(
+'profileAvatarSmall'
+);
+
+const large=
+document.getElementById(
+'profileAvatarLarge'
+);
+
+if(src){
+
+small.innerHTML=
+`<img src="${src}" alt="Profile Picture">`;
+
+large.innerHTML=
+`<img src="${src}" alt="Profile Picture">`;
+
+}else{
+
+small.innerHTML=
+'<div class="default-profile-icon">👤</div>';
+
+large.innerHTML=
+'<div class="default-profile-icon">👤</div>';
+
+}
+
+}
+
+function toggleProfilePanel(event){
+
+if(event)
+event.stopPropagation();
+
+closeProfileMoreMenu();
+
+const panel=
+document.getElementById(
+'profilePanel'
+);
+
+if(
+!panel.classList.contains('show')
+){
+
+renderProfile();
+
+}
+
+panel.classList.toggle('show');
+
+}
+
+function closeProfilePanel(){
+
+const panel=
+document.getElementById(
+'profilePanel'
+);
+
+if(panel)
+panel.classList.remove('show');
+
+closeProfileMoreMenu();
+
+}
+
+function toggleProfileMoreMenu(event){
 
 if(event)
 event.stopPropagation();
 
 const menu=
 document.getElementById(
-'profileDropdown'
-);
-
-menu.classList.toggle('show');
-
-if(menu.classList.contains('show')){
-
-loadTeacherProfile();
-
-}
-
-}
-
-function closeProfileMenu(){
-
-const menu=
-document.getElementById(
-'profileDropdown'
-);
-
-if(menu)
-menu.classList.remove('show');
-
-closeProfileDots();
-
-}
-
-function toggleProfileDots(event){
-
-if(event)
-event.stopPropagation();
-
-const menu=
-document.getElementById(
-'profileMenu'
+'profileMoreMenu'
 );
 
 menu.classList.toggle('show');
 
 }
 
-function closeProfileDots(){
+function closeProfileMoreMenu(){
 
 const menu=
 document.getElementById(
-'profileMenu'
+'profileMoreMenu'
 );
 
 if(menu)
@@ -3219,17 +3413,17 @@ menu.classList.remove('show');
 
 }
 
-function showProfileMessage(msg,ok=true){
+function showProfileStatus(msg,ok=true){
 
 const el=
 document.getElementById(
-'profileMessage'
+'profileStatus'
 );
 
 el.textContent=msg;
 
 el.className=
-'profile-message show '+
+'profile-status show '+
 (ok?'ok':'error');
 
 setTimeout(
@@ -3240,120 +3434,6 @@ el.classList.remove('show');
 },
 3000
 );
-
-}
-
-function loadTeacherProfile(){
-
-if(!currentUser)
-return;
-
-const stored=
-getTeacherProfile();
-
-const metadata=
-currentUser.user_metadata || {};
-
-const fullName=
-stored.fullName ||
-metadata.full_name ||
-currentUser.email ||
-'Teacher';
-
-const username=
-stored.username ||
-metadata.username ||
-fullName
-.toLowerCase()
-.replace(/\s+/g,'')
-.substring(0,30);
-
-const phone=
-stored.phone || '';
-
-const gender=
-stored.gender || '';
-
-const photo=
-stored.photo || '';
-
-document.getElementById(
-'profileUsername'
-).value=username;
-
-document.getElementById(
-'profileFullName'
-).value=fullName;
-
-document.getElementById(
-'profileEmail'
-).value=currentUser.email || '';
-
-document.getElementById(
-'profilePhone'
-).value=phone;
-
-document.getElementById(
-'profileGender'
-).value=gender;
-
-updateProfileVisual(
-fullName,
-photo
-);
-
-}
-
-function updateProfileVisual(name,photo){
-
-const displayName=
-name ||
-currentUser?.email ||
-'Teacher';
-
-document.getElementById(
-'profileDisplayName'
-).textContent=
-displayName;
-
-document.getElementById(
-'profileHeaderName'
-).textContent=
-displayName;
-
-document.getElementById(
-'profileHeaderEmail'
-).textContent=
-currentUser?.email || '';
-
-const small=
-document.getElementById(
-'profileAvatarSmall'
-);
-
-const big=
-document.getElementById(
-'profilePicture'
-);
-
-if(photo){
-
-small.innerHTML=
-`<img src="${photo}" alt="Profile">`;
-
-big.innerHTML=
-`<img src="${photo}" alt="Profile">`;
-
-}else{
-
-const initials=
-getInitials(displayName);
-
-small.textContent=initials;
-
-big.textContent=initials;
-
-}
 
 }
 
@@ -3384,7 +3464,7 @@ document.getElementById(
 
 if(!username){
 
-return showProfileMessage(
+return showProfileStatus(
 'Please enter a username.',
 false
 );
@@ -3393,91 +3473,91 @@ false
 
 if(!fullName){
 
-return showProfileMessage(
+return showProfileStatus(
 'Please enter your full name.',
 false
 );
 
 }
 
-const old=
-getTeacherProfile();
+const {data,error}=
+await supabaseClient.auth.updateUser({
 
-const data={
+data:{
 
-...old,
+...(
+currentUser.user_metadata || {}
+),
 
 username,
 
-fullName,
+full_name:fullName,
 
 phone,
 
 gender
 
-};
-
-saveTeacherProfileData(data);
-
-try{
-
-await supabaseClient.auth.updateUser({
-
-data:{
-
-...currentUser.user_metadata,
-
-full_name:fullName,
-
-username
-
 }
 
 });
 
-}catch(error){
+if(error){
 
 console.error(
-'Profile metadata update:',
+'Profile update error:',
 error
 );
 
-}
-
-currentUser={
-...currentUser,
-
-user_metadata:{
-...(currentUser.user_metadata||{}),
-full_name:fullName,
-username
-}
-
-};
-
-updateProfileVisual(
-fullName,
-data.photo || ''
+return showProfileStatus(
+error.message,
+false
 );
 
-showProfileMessage(
+}
+
+currentUser=data.user;
+
+renderProfile();
+
+document.getElementById(
+'currentTeacher'
+).textContent=
+fullName;
+
+showProfileStatus(
 'Profile saved successfully.',
 true
 );
 
 }
 
-function handleProfilePicture(event){
+function removeProfilePicture(){
 
-const file=
-event.target.files?.[0];
+deleteProfilePicture();
+
+setProfileImages('');
+
+showProfileStatus(
+'Profile picture removed.',
+true
+);
+
+}
+
+document.getElementById(
+'profilePictureInput'
+).addEventListener(
+'change',
+function(){
+
+const file=this.files[0];
 
 if(!file)
 return;
 
 if(!file.type.startsWith('image/')){
 
-return showProfileMessage(
+return showProfileStatus(
 'Please select an image file.',
 false
 );
@@ -3486,8 +3566,8 @@ false
 
 if(file.size>2*1024*1024){
 
-return showProfileMessage(
-'Please use an image smaller than 2MB.',
+return showProfileStatus(
+'Profile picture must be 2MB or smaller.',
 false
 );
 
@@ -3496,33 +3576,18 @@ false
 const reader=
 new FileReader();
 
-reader.onload=function(){
+reader.onload=
+function(e){
 
-const old=
-getTeacherProfile();
-
-const data={
-
-...old,
-
-photo:reader.result
-
-};
-
-saveTeacherProfileData(data);
-
-const name=
-document.getElementById(
-'profileFullName'
-).value ||
-'Teacher';
-
-updateProfileVisual(
-name,
-reader.result
+saveProfilePicture(
+e.target.result
 );
 
-showProfileMessage(
+setProfileImages(
+e.target.result
+);
+
+showProfileStatus(
 'Profile picture updated.',
 true
 );
@@ -3531,16 +3596,19 @@ true
 
 reader.readAsDataURL(file);
 
+this.value='';
+
 }
+);
 
 
 /* =========================================================
-   CHANGE PASSWORD FROM PROFILE
+   CHANGE PASSWORD
 ========================================================= */
 
-function openChangePassword(){
+function openChangePasswordModal(){
 
-closeProfileDots();
+closeProfileMoreMenu();
 
 document.getElementById(
 'profileNewPassword'
@@ -3556,14 +3624,6 @@ document.getElementById(
 
 document.getElementById(
 'changePasswordError'
-).classList.remove('show');
-
-document.getElementById(
-'changePasswordSuccess'
-).textContent='';
-
-document.getElementById(
-'changePasswordSuccess'
 ).classList.remove('show');
 
 document.getElementById(
@@ -3583,7 +3643,7 @@ document.getElementById(
 
 }
 
-function closeChangePassword(){
+function closeChangePasswordModal(){
 
 document.getElementById(
 'changePasswordModal'
@@ -3608,15 +3668,6 @@ document.getElementById(
 'changePasswordError'
 );
 
-const success=
-document.getElementById(
-'changePasswordSuccess'
-);
-
-error.classList.remove('show');
-
-success.classList.remove('show');
-
 if(password.length<6){
 
 error.textContent=
@@ -3639,17 +3690,17 @@ return;
 
 }
 
-const {error:authError}=
+const {error:updateError}=
 await supabaseClient.auth.updateUser({
 
 password
 
 });
 
-if(authError){
+if(updateError){
 
 error.textContent=
-authError.message;
+updateError.message;
 
 error.classList.add('show');
 
@@ -3657,22 +3708,11 @@ return;
 
 }
 
-success.textContent=
-'Password updated successfully.';
+closeChangePasswordModal();
 
-success.classList.add('show');
-
-document.getElementById(
-'profileNewPassword'
-).value='';
-
-document.getElementById(
-'profileConfirmPassword'
-).value='';
-
-setTimeout(
-closeChangePassword,
-1200
+showProfileStatus(
+'Password changed successfully.',
+true
 );
 
 }
@@ -3686,20 +3726,22 @@ async function handleSignedIn(user){
 
 currentUser=user;
 
-const stored=
-getTeacherProfile();
-
 const name=
-stored.fullName ||
 user.user_metadata?.full_name ||
 user.email ||
 'Teacher';
 
 document.getElementById(
-'profileDisplayName'
+'profileTriggerName'
 ).textContent=name;
 
-loadTeacherProfile();
+document.getElementById(
+'profileHeaderName'
+).textContent=name;
+
+document.getElementById(
+'currentTeacher'
+).textContent=name;
 
 document.getElementById(
 'authScreen'
@@ -3708,6 +3750,10 @@ document.getElementById(
 document.getElementById(
 'appShell'
 ).classList.remove('hidden');
+
+closeProfilePanel();
+
+renderProfile();
 
 renderDashboard();
 
@@ -3724,7 +3770,9 @@ function handleSignedOut(){
 
 currentUser=null;
 
-closeProfileMenu();
+closeProfilePanel();
+
+closeProfileMoreMenu();
 
 closeClearAllRecords();
 
@@ -3846,13 +3894,6 @@ updatePassword
 );
 
 document.getElementById(
-'profilePictureInput'
-).addEventListener(
-'change',
-handleProfilePicture
-);
-
-document.getElementById(
 'loginPassword'
 ).addEventListener(
 'keydown',
@@ -3902,7 +3943,7 @@ updatePassword();
 
 
 /* =========================================================
-   PROFILE OUTSIDE CLICK
+   OUTSIDE CLICK
 ========================================================= */
 
 document.addEventListener(
@@ -3911,29 +3952,28 @@ e=>{
 
 if(
 !e.target.closest('.profile-trigger') &&
-!e.target.closest('.profile-dropdown')
+!e.target.closest('.profile-panel')
 ){
 
-closeProfileMenu();
+closeProfilePanel();
 
 }
 
-});
+if(
+!e.target.closest('.student-actions')
+){
+
+closeStudentMenus();
+
+}
+
+}
+);
 
 
 /* =========================================================
    CLEAR ALL RECORDS
 ========================================================= */
-
-function openClearAllRecordsFromProfile(){
-
-closeProfileDots();
-
-closeProfileMenu();
-
-openClearAllRecords();
-
-}
 
 function generateClearAllCaptcha(){
 
@@ -3967,8 +4007,9 @@ error.classList.remove('show');
 
 function openClearAllRecords(){
 
-if(!currentUser)
-return;
+closeProfileMoreMenu();
+
+closeProfilePanel();
 
 generateClearAllCaptcha();
 
@@ -4058,6 +4099,11 @@ return;
 
 }
 
+/*
+   Delete only the current user's records.
+   The Supabase account itself is NOT deleted.
+*/
+
 localStorage.removeItem(
 userStorageKey(STUDENTS_BASE_KEY)
 );
@@ -4074,12 +4120,12 @@ populateStudentSelect();
 
 renderRecords();
 
+showPage('dashboard');
+
 showStudentStatus(
 'All student and evaluation records have been cleared successfully.',
 true
 );
-
-showPage('dashboard');
 
 }
 
@@ -4089,6 +4135,8 @@ showPage('dashboard');
 ========================================================= */
 
 function showPage(page){
+
+closeProfilePanel();
 
 document.querySelectorAll('.page')
 .forEach(
@@ -4269,21 +4317,6 @@ m=>m.classList.remove('show')
 );
 
 }
-
-document.addEventListener(
-'click',
-e=>{
-
-if(
-!e.target.closest('.student-actions')
-){
-
-closeStudentMenus();
-
-}
-
-}
-);
 
 
 /* =========================================================
@@ -5136,9 +5169,15 @@ understanding>=4
 )[variant]
 );
 
+/*
+   No closing message is added here.
+   The closing message is handled by EmailJS.
+*/
+
 return parts.join(' ');
 
 }
+
 
 function generateComment(){
 
@@ -5155,6 +5194,7 @@ buildComment(0);
 return box.textContent;
 
 }
+
 
 function updateComment(){
 
@@ -5304,6 +5344,13 @@ return showStatus(
 'Please select the class time.',
 false
 );
+
+
+/*
+   IMPORTANT:
+   Send exactly the comment currently
+   displayed on the screen.
+*/
 
 const currentComment=
 document.getElementById(
@@ -5667,7 +5714,7 @@ e.parent_email
 
 
 /* =========================================================
-   DELETE ENTER / ESCAPE
+   DELETE / ENTER / ESCAPE
 ========================================================= */
 
 document.getElementById(
@@ -5694,6 +5741,18 @@ confirmClearAllRecords();
 }
 );
 
+document.getElementById(
+'profileConfirmPassword'
+).addEventListener(
+'keydown',
+function(e){
+
+if(e.key==='Enter')
+changeTeacherPassword();
+
+}
+);
+
 document.addEventListener(
 'keydown',
 e=>{
@@ -5706,11 +5765,13 @@ closeDeleteStudent();
 
 closeStudentMenus();
 
-closeProfileMenu();
+closeProfilePanel();
+
+closeProfileMoreMenu();
 
 closeClearAllRecords();
 
-closeChangePassword();
+closeChangePasswordModal();
 
 }
 
