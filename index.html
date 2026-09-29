@@ -1013,7 +1013,7 @@ aria-label="Show password"
 <input
 id="resetConfirm"
 type="password"
-placeholder="Re-enter new password"
+placeholder="Re-enter password"
 autocomplete="new-password"
 >
 
@@ -3816,7 +3816,31 @@ return showStatus(
 false
 );
 
-generateComment();
+
+/*
+   IMPORTANT:
+   DO NOT call generateComment() here.
+
+   The teacher may have clicked
+   "Generate / Update Comment" several times.
+   We must send EXACTLY the comment currently
+   displayed inside #commentPreview.
+*/
+
+const currentComment=
+document.getElementById(
+'commentPreview'
+).textContent.trim();
+
+if(!currentComment){
+
+return showStatus(
+'Please generate a teacher comment before sending.',
+false
+);
+
+}
+
 
 const [rating]=
 getRating(scoreValue);
@@ -3923,10 +3947,12 @@ starText(
 stars.listening
 ),
 
+/*
+   THIS IS NOW THE EXACT COMMENT
+   CURRENTLY DISPLAYED TO THE TEACHER.
+*/
 teacher_comment:
-document.getElementById(
-'commentPreview'
-).textContent.trim()
+currentComment
 
 };
 
