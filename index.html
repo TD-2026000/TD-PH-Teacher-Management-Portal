@@ -1329,7 +1329,7 @@ value="25 minutes"
 
 <input
 id="teacher"
-value=""
+value="Teacher Danyeal"
 >
 
 </div>
@@ -1762,23 +1762,15 @@ Delete Student
    CONFIGURATION
 ========================================================= */
 
-/* EMAILJS — UNCHANGED */
-
 const EMAILJS_PUBLIC_KEY='c6EftsVJb2RHlRH_E';
 
 const EMAILJS_SERVICE_ID='service_wx3z91j';
 
 const EMAILJS_TEMPLATE_ID='template_3kqt32w';
 
-
-/* LOCAL STORAGE */
-
 const STUDENTS_BASE_KEY='teacherDanyealStudents_v2';
 
 const EVALUATIONS_BASE_KEY='teacherDanyealEvaluations_v2';
-
-
-/* NEW SUPABASE */
 
 const SUPABASE_URL=
 'https://ibhmimpmeftzkrtzhkmp.supabase.co';
@@ -1786,19 +1778,14 @@ const SUPABASE_URL=
 const SUPABASE_PUBLISHABLE_KEY=
 'sb_publishable_HqQA24yJsm_PE_1TKi2W4g_Mpdr9GI3';
 
-
-/* GITHUB PAGES */
-
 const SUPABASE_REDIRECT_URL=
 'https://td-2026000.github.io/TD-PH-Teacher-Management-Portal/';
-
 
 const supabaseClient=
 window.supabase.createClient(
 SUPABASE_URL,
 SUPABASE_PUBLISHABLE_KEY
 );
-
 
 let currentUser=null;
 
@@ -1821,7 +1808,6 @@ return currentUser
 
 }
 
-
 function getStudents(){
 
 return JSON.parse(
@@ -1832,7 +1818,6 @@ userStorageKey(STUDENTS_BASE_KEY)
 
 }
 
-
 function saveStudents(data){
 
 localStorage.setItem(
@@ -1841,7 +1826,6 @@ JSON.stringify(data)
 );
 
 }
-
 
 function getEvaluations(){
 
@@ -1852,7 +1836,6 @@ userStorageKey(EVALUATIONS_BASE_KEY)
 );
 
 }
-
 
 function saveEvaluations(data){
 
@@ -1889,7 +1872,6 @@ clearAuthMessage();
 
 }
 
-
 function showAuthMessage(msg,ok=false){
 
 const el=document.getElementById('authMessage');
@@ -1902,7 +1884,6 @@ el.className=
 
 }
 
-
 function clearAuthMessage(){
 
 const el=document.getElementById('authMessage');
@@ -1912,7 +1893,6 @@ el.textContent='';
 el.className='auth-message';
 
 }
-
 
 function setAuthBusy(id,busy,label){
 
@@ -2276,7 +2256,6 @@ search.includes('type=recovery')
 
 }
 
-
 async function checkPasswordRecovery(){
 
 if(!isPasswordRecoveryUrl()){
@@ -2361,12 +2340,6 @@ showAuthMessage(
 'Password updated successfully. Redirecting to login...',
 true
 );
-
-
-/*
-   Sign out after password recovery so the user
-   returns cleanly to the Login screen.
-*/
 
 setTimeout(
 async()=>{
@@ -2799,7 +2772,6 @@ menu.classList.toggle('show');
 
 }
 
-
 function closeStudentMenus(){
 
 document.querySelectorAll(
@@ -2809,7 +2781,6 @@ m=>m.classList.remove('show')
 );
 
 }
-
 
 document.addEventListener(
 'click',
@@ -2872,7 +2843,6 @@ document.getElementById(
 
 }
 
-
 function closeEditStudent(){
 
 document.getElementById(
@@ -2880,7 +2850,6 @@ document.getElementById(
 ).classList.remove('show');
 
 }
-
 
 function saveEditedStudent(){
 
@@ -3039,7 +3008,6 @@ document.getElementById(
 
 }
 
-
 function closeDeleteStudent(){
 
 document.getElementById(
@@ -3047,7 +3015,6 @@ document.getElementById(
 ).classList.remove('show');
 
 }
-
 
 function confirmDeleteStudent(){
 
@@ -3308,14 +3275,12 @@ c=>({
 
 }
 
-
 function escapeAttr(str){
 
 return escapeHtml(str)
 .replace(/`/g,'&#96;');
 
 }
-
 
 function formatDateTime(value){
 
@@ -3403,16 +3368,6 @@ sum+(Number(stars[field])||0),
 const average=
 total/fields.length;
 
-/*
-   5 stars = 100 points
-   4 stars = 80 points
-   3 stars = 60 points
-   etc.
-
-   Average star rating is converted
-   directly into a 100-point score.
-*/
-
 const score=Math.round(
 (average/5)*100
 );
@@ -3436,7 +3391,6 @@ return score;
 
 }
 
-
 function setStars(field,n){
 
 stars[field]=n;
@@ -3454,11 +3408,6 @@ i<n
 ?'1'
 :'0.28'
 );
-
-/*
-   Every time a star rating changes,
-   recalculate the Overall Score.
-*/
 
 updateOverallScore();
 
@@ -3699,6 +3648,15 @@ understanding>=4
 )[variant]
 );
 
+/*
+   IMPORTANT:
+   No closing message is added here.
+   The following lines were intentionally removed:
+
+   "Thank you for supporting your child's English learning journey."
+   "Teacher Danyeal"
+*/
+
 return parts.join(' ');
 
 }
@@ -3745,12 +3703,6 @@ return box.textContent;
    LIVE SCORE / COMMENT
 ========================================================= */
 
-/*
-   Overall Score is now controlled by stars.
-   This listener only keeps the display synchronized
-   if the value is changed by code.
-*/
-
 document.getElementById(
 'score'
 ).addEventListener(
@@ -3771,7 +3723,6 @@ generateComment();
 
 }
 );
-
 
 [
 'vocabulary',
@@ -3834,13 +3785,6 @@ document.getElementById(
 'parentEmail'
 ).value.trim();
 
-/*
-   IMPORTANT:
-   Always calculate the score again before sending
-   so the email and saved record use the current
-   star ratings.
-*/
-
 const calculatedScore=
 updateOverallScore();
 
@@ -3887,12 +3831,8 @@ false
 
 /*
    IMPORTANT:
-   DO NOT call generateComment() here.
-
-   The teacher may have clicked
-   "Generate / Update Comment" several times.
-   We must send EXACTLY the comment currently
-   displayed inside #commentPreview.
+   Send exactly the comment currently
+   displayed on the screen.
 */
 
 const currentComment=
@@ -3908,7 +3848,6 @@ false
 );
 
 }
-
 
 const [rating]=
 getRating(scoreValue);
@@ -4012,11 +3951,6 @@ listening:
 starText(
 stars.listening
 ),
-
-/*
-   THIS IS THE EXACT COMMENT
-   CURRENTLY DISPLAYED TO THE TEACHER.
-*/
 
 teacher_comment:
 currentComment
