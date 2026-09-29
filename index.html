@@ -1343,8 +1343,13 @@ id="score"
 type="number"
 min="0"
 max="100"
-placeholder="0-100"
+placeholder="Automatic"
+readonly
 >
+
+<div class="small">
+Automatically calculated from the 6 student performance ratings.
+</div>
 
 </div>
 
@@ -2471,12 +2476,6 @@ showAuthPanel('login');
 
 async function initAuth(){
 
-/*
-   Check recovery URL first.
-   This ensures that the GitHub Pages
-   reset link opens the Reset Password panel.
-*/
-
 const recovery=
 await checkPasswordRecovery();
 
@@ -3281,6 +3280,8 @@ student
 
 commentVersion=0;
 
+updateOverallScore();
+
 generateComment();
 
 }
@@ -3378,6 +3379,64 @@ setStars(field,5);
 });
 
 
+/* =========================================================
+   AUTOMATIC OVERALL SCORE
+========================================================= */
+
+function updateOverallScore(){
+
+const fields=[
+'participation',
+'pronunciation',
+'behavior',
+'speaking',
+'understanding',
+'listening'
+];
+
+const total=fields.reduce(
+(sum,field)=>
+sum+(Number(stars[field])||0),
+0
+);
+
+const average=
+total/fields.length;
+
+/*
+   5 stars = 100 points
+   4 stars = 80 points
+   3 stars = 60 points
+   etc.
+
+   Average star rating is converted
+   directly into a 100-point score.
+*/
+
+const score=Math.round(
+(average/5)*100
+);
+
+document.getElementById(
+'score'
+).value=score;
+
+const [rating,range]=
+getRating(score);
+
+document.getElementById(
+'ratingText'
+).textContent=rating;
+
+document.getElementById(
+'scoreRange'
+).textContent=range;
+
+return score;
+
+}
+
+
 function setStars(field,n){
 
 stars[field]=n;
@@ -3395,6 +3454,13 @@ i<n
 ?'1'
 :'0.28'
 );
+
+/*
+   Every time a star rating changes,
+   recalculate the Overall Score.
+*/
+
+updateOverallScore();
 
 if(
 document.getElementById(
@@ -3679,26 +3745,19 @@ return box.textContent;
    LIVE SCORE / COMMENT
 ========================================================= */
 
+/*
+   Overall Score is now controlled by stars.
+   This listener only keeps the display synchronized
+   if the value is changed by code.
+*/
+
 document.getElementById(
 'score'
 ).addEventListener(
 'input',
 ()=>{
 
-const [rating,range]=
-getRating(
-document.getElementById(
-'score'
-).value
-);
-
-document.getElementById(
-'ratingText'
-).textContent=rating;
-
-document.getElementById(
-'scoreRange'
-).textContent=range;
+updateOverallScore();
 
 if(
 document.getElementById(
@@ -3712,6 +3771,7 @@ generateComment();
 
 }
 );
+
 
 [
 'vocabulary',
@@ -3774,10 +3834,18 @@ document.getElementById(
 'parentEmail'
 ).value.trim();
 
+/*
+   IMPORTANT:
+   Always calculate the score again before sending
+   so the email and saved record use the current
+   star ratings.
+*/
+
+const calculatedScore=
+updateOverallScore();
+
 const scoreValue=
-document.getElementById(
-'score'
-).value;
+String(calculatedScore);
 
 const submitBtn=
 document.getElementById(
@@ -3878,9 +3946,7 @@ document.getElementById(
 ).value,
 
 score:
-scoreValue
-?`${scoreValue}/100`
-:'Not provided',
+`${scoreValue}/100`,
 
 rating,
 
@@ -3948,9 +4014,10 @@ stars.listening
 ),
 
 /*
-   THIS IS NOW THE EXACT COMMENT
+   THIS IS THE EXACT COMMENT
    CURRENTLY DISPLAYED TO THE TEACHER.
 */
+
 teacher_comment:
 currentComment
 
@@ -4062,7 +4129,6 @@ document.getElementById(
 'date',
 'time',
 'lessonTopic',
-'score',
 'vocabulary',
 'improvement'
 ].forEach(
@@ -4078,17 +4144,11 @@ document.getElementById(
 'teacher'
 ).value='Teacher Danyeal';
 
-document.getElementById(
-'ratingText'
-).textContent='Excellent';
-
-document.getElementById(
-'scoreRange'
-).textContent='95–100';
-
 Object.keys(stars).forEach(
 k=>setStars(k,5)
 );
+
+updateOverallScore();
 
 commentVersion=0;
 
