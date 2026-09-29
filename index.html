@@ -462,6 +462,147 @@ button.secondary,
   display:block;
 }
 
+/* =========================================================
+   USER BAR / TOP RIGHT MENU
+========================================================= */
+
+.userbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:8px 15px;
+  background:#f7ffff;
+  border-bottom:1px solid #ddd;
+  font-size:13px;
+}
+
+.userbar-actions{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-left:auto;
+  position:relative;
+}
+
+.logout-btn{
+  border:0;
+  border-radius:7px;
+  padding:7px 12px;
+  background:#ddd;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.logout-btn:hover{
+  background:#ccc;
+}
+
+.account-dots-btn{
+  width:36px;
+  height:34px;
+  border:0;
+  border-radius:7px;
+  background:transparent;
+  cursor:pointer;
+  font-size:23px;
+  line-height:1;
+  font-weight:700;
+  padding:0;
+}
+
+.account-dots-btn:hover{
+  background:#eee;
+}
+
+.account-menu{
+  position:absolute;
+  right:0;
+  top:42px;
+  min-width:170px;
+  background:#fff;
+  border:1px solid #ccc;
+  border-radius:8px;
+  box-shadow:0 6px 20px rgba(0,0,0,.18);
+  padding:5px;
+  z-index:80;
+  display:none;
+}
+
+.account-menu.show{
+  display:block;
+}
+
+.account-menu button{
+  width:100%;
+  border:0;
+  background:#fff;
+  text-align:left;
+  padding:10px 12px;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:14px;
+  font-weight:700;
+  color:#b00020;
+}
+
+.account-menu button:hover{
+  background:#ffecec;
+}
+
+/* =========================================================
+   CLEAR ALL RECORDS CAPTCHA
+========================================================= */
+
+.captcha-box{
+  margin-top:15px;
+  padding:14px;
+  border:1px solid #ccc;
+  border-radius:9px;
+  background:#f7f7f7;
+  text-align:center;
+}
+
+.captcha-code{
+  display:inline-block;
+  min-width:150px;
+  padding:12px 18px;
+  margin:5px 0 12px;
+  border:1px dashed #888;
+  border-radius:8px;
+  background:#fff;
+  font-size:27px;
+  font-weight:800;
+  letter-spacing:7px;
+  user-select:none;
+}
+
+.captcha-refresh{
+  display:block;
+  margin:0 auto 12px;
+  border:0;
+  background:none;
+  color:#007b83;
+  font-size:13px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.captcha-refresh:hover{
+  text-decoration:underline;
+}
+
+.captcha-input{
+  text-align:center;
+  font-size:18px;
+  font-weight:700;
+  letter-spacing:4px;
+}
+
+.hidden{
+  display:none!important;
+}
+
 /* AUTH */
 
 .auth-screen{
@@ -619,30 +760,6 @@ button.secondary,
   text-decoration:underline;
 }
 
-.userbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  padding:8px 15px;
-  background:#f7ffff;
-  border-bottom:1px solid #ddd;
-  font-size:13px;
-}
-
-.logout-btn{
-  border:0;
-  border-radius:7px;
-  padding:7px 12px;
-  background:#ddd;
-  font-weight:700;
-  cursor:pointer;
-}
-
-.hidden{
-  display:none!important;
-}
-
 @media(max-width:800px){
 
   .grid,
@@ -669,6 +786,19 @@ button.secondary,
     align-items:flex-start;
     flex-direction:column;
   }
+
+  .userbar{
+    align-items:flex-start;
+  }
+
+  .userbar-actions{
+    margin-left:auto;
+  }
+
+  .account-menu{
+    right:0;
+  }
+
 }
 
 @media print{
@@ -678,7 +808,8 @@ button.secondary,
   .small,
   .status,
   #dashboardPage,
-  #recordsPage{
+  #recordsPage,
+  .userbar{
     display:none!important;
   }
 
@@ -703,7 +834,9 @@ button.secondary,
 
 <body>
 
-<!-- AUTH SCREEN -->
+<!-- =========================================================
+     AUTH SCREEN
+========================================================= -->
 
 <div id="authScreen" class="auth-screen">
 
@@ -1042,7 +1175,9 @@ Update Password
 </div>
 </div>
 
-<!-- MAIN APPLICATION -->
+<!-- =========================================================
+     MAIN APPLICATION
+========================================================= -->
 
 <div id="appShell" class="hidden">
 
@@ -1060,12 +1195,26 @@ TD
 
 </div>
 
+<!-- USER BAR -->
+
 <div class="userbar">
 
 <span>
 Logged in as
 <b id="currentTeacher">—</b>
 </span>
+
+<div class="userbar-actions">
+
+<button
+type="button"
+class="account-dots-btn"
+onclick="toggleAccountMenu(event)"
+aria-label="More options"
+title="More options"
+>
+⋮
+</button>
 
 <button
 type="button"
@@ -1074,6 +1223,22 @@ onclick="logoutTeacher()"
 >
 Logout
 </button>
+
+<div
+id="accountMenu"
+class="account-menu"
+>
+
+<button
+type="button"
+onclick="openClearAllRecords()"
+>
+Clear All Records
+</button>
+
+</div>
+
+</div>
 
 </div>
 
@@ -1619,7 +1784,9 @@ No evaluations recorded yet.
 </div>
 </div>
 
-<!-- EDIT STUDENT MODAL -->
+<!-- =========================================================
+     EDIT STUDENT MODAL
+========================================================= -->
 
 <div
 id="editStudentModal"
@@ -1694,7 +1861,9 @@ Save Changes
 </div>
 </div>
 
-<!-- DELETE STUDENT MODAL -->
+<!-- =========================================================
+     DELETE STUDENT MODAL
+========================================================= -->
 
 <div
 id="deleteStudentModal"
@@ -1756,6 +1925,94 @@ Delete Student
 </div>
 </div>
 
+<!-- =========================================================
+     CLEAR ALL RECORDS CAPTCHA MODAL
+========================================================= -->
+
+<div
+id="clearAllRecordsModal"
+class="modal-backdrop"
+onclick="if(event.target===this) closeClearAllRecords()"
+>
+
+<div class="modal">
+
+<h3>
+Clear All Records
+</h3>
+
+<p>
+This will permanently delete all
+<strong>student records</strong> and
+<strong>evaluation records</strong>
+for this account.
+</p>
+
+<p style="color:#b00020;font-weight:700;">
+This action cannot be undone.
+</p>
+
+<div class="captcha-box">
+
+<div style="font-weight:700;margin-bottom:4px;">
+Enter the 6-digit CAPTCHA
+</div>
+
+<div
+id="clearAllCaptchaCode"
+class="captcha-code"
+>
+000000
+</div>
+
+<button
+type="button"
+class="captcha-refresh"
+onclick="generateClearAllCaptcha()"
+>
+↻ Generate New CAPTCHA
+</button>
+
+<input
+id="clearAllCaptchaInput"
+class="captcha-input"
+type="text"
+inputmode="numeric"
+maxlength="6"
+placeholder="Enter 6 digits"
+autocomplete="off"
+>
+
+</div>
+
+<div
+id="clearAllRecordsError"
+class="modal-error"
+></div>
+
+<div class="modal-actions">
+
+<button
+type="button"
+class="modal-cancel"
+onclick="closeClearAllRecords()"
+>
+Cancel
+</button>
+
+<button
+type="button"
+class="modal-delete"
+onclick="confirmClearAllRecords()"
+>
+Clear All Records
+</button>
+
+</div>
+
+</div>
+</div>
+
 <script>
 
 /* =========================================================
@@ -1794,6 +2051,8 @@ let pendingVerificationEmail='';
 const stars={};
 
 let commentVersion=0;
+
+let clearAllCaptcha='';
 
 
 /* =========================================================
@@ -2385,6 +2644,10 @@ false,
 
 async function logoutTeacher(){
 
+closeAccountMenu();
+
+closeClearAllRecords();
+
 await supabaseClient.auth.signOut();
 
 }
@@ -2429,6 +2692,10 @@ populateStudentSelect();
 function handleSignedOut(){
 
 currentUser=null;
+
+closeAccountMenu();
+
+closeClearAllRecords();
 
 document.getElementById(
 'appShell'
@@ -2594,6 +2861,213 @@ updatePassword();
 
 }
 );
+
+
+/* =========================================================
+   ACCOUNT 3-DOTS MENU
+========================================================= */
+
+function toggleAccountMenu(event){
+
+if(event){
+event.stopPropagation();
+}
+
+const menu=
+document.getElementById(
+'accountMenu'
+);
+
+menu.classList.toggle('show');
+
+}
+
+function closeAccountMenu(){
+
+const menu=
+document.getElementById(
+'accountMenu'
+);
+
+if(menu){
+
+menu.classList.remove('show');
+
+}
+
+}
+
+document.addEventListener(
+'click',
+e=>{
+
+if(
+!e.target.closest('.userbar-actions')
+){
+
+closeAccountMenu();
+
+}
+
+}
+);
+
+
+/* =========================================================
+   CLEAR ALL RECORDS
+========================================================= */
+
+function generateClearAllCaptcha(){
+
+clearAllCaptcha=
+String(
+Math.floor(
+100000+
+Math.random()*900000
+)
+);
+
+document.getElementById(
+'clearAllCaptchaCode'
+).textContent=
+clearAllCaptcha;
+
+document.getElementById(
+'clearAllCaptchaInput'
+).value='';
+
+const error=
+document.getElementById(
+'clearAllRecordsError'
+);
+
+error.textContent='';
+
+error.classList.remove('show');
+
+}
+
+function openClearAllRecords(){
+
+closeAccountMenu();
+
+generateClearAllCaptcha();
+
+document.getElementById(
+'clearAllRecordsModal'
+).classList.add('show');
+
+setTimeout(
+()=>{
+
+document.getElementById(
+'clearAllCaptchaInput'
+).focus();
+
+},
+50
+);
+
+}
+
+function closeClearAllRecords(){
+
+document.getElementById(
+'clearAllRecordsModal'
+).classList.remove('show');
+
+clearAllCaptcha='';
+
+document.getElementById(
+'clearAllCaptchaInput'
+).value='';
+
+document.getElementById(
+'clearAllRecordsError'
+).textContent='';
+
+document.getElementById(
+'clearAllRecordsError'
+).classList.remove('show');
+
+}
+
+function confirmClearAllRecords(){
+
+const input=
+document.getElementById(
+'clearAllCaptchaInput'
+).value.trim();
+
+const error=
+document.getElementById(
+'clearAllRecordsError'
+);
+
+if(!/^\d{6}$/.test(input)){
+
+error.textContent=
+'Please enter the complete 6-digit CAPTCHA.';
+
+error.classList.add('show');
+
+return;
+
+}
+
+if(input!==clearAllCaptcha){
+
+error.textContent=
+'Incorrect CAPTCHA. No records were deleted.';
+
+error.classList.add('show');
+
+generateClearAllCaptcha();
+
+return;
+
+}
+
+if(!currentUser){
+
+error.textContent=
+'No active teacher account was found.';
+
+error.classList.add('show');
+
+return;
+
+}
+
+/*
+   Delete only the current user's records.
+   The Supabase account itself is NOT deleted.
+*/
+
+localStorage.removeItem(
+userStorageKey(STUDENTS_BASE_KEY)
+);
+
+localStorage.removeItem(
+userStorageKey(EVALUATIONS_BASE_KEY)
+);
+
+closeClearAllRecords();
+
+renderDashboard();
+
+populateStudentSelect();
+
+renderRecords();
+
+showStudentStatus(
+'All student and evaluation records have been cleared successfully.',
+true
+);
+
+showPage('dashboard');
+
+}
 
 
 /* =========================================================
@@ -3649,12 +4123,8 @@ understanding>=4
 );
 
 /*
-   IMPORTANT:
    No closing message is added here.
-   The following lines were intentionally removed:
-
-   "Thank you for supporting your child's English learning journey."
-   "Teacher Danyeal"
+   The closing message is handled by EmailJS.
 */
 
 return parts.join(' ');
@@ -4212,6 +4682,18 @@ confirmDeleteStudent();
 }
 );
 
+document.getElementById(
+'clearAllCaptchaInput'
+).addEventListener(
+'keydown',
+function(e){
+
+if(e.key==='Enter')
+confirmClearAllRecords();
+
+}
+);
+
 document.addEventListener(
 'keydown',
 e=>{
@@ -4223,6 +4705,10 @@ closeEditStudent();
 closeDeleteStudent();
 
 closeStudentMenus();
+
+closeAccountMenu();
+
+closeClearAllRecords();
 
 }
 
