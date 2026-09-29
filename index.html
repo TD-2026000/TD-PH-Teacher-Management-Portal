@@ -1762,8 +1762,6 @@ Delete Student
    CONFIGURATION
 ========================================================= */
 
-/* EMAILJS — UNCHANGED */
-
 const EMAILJS_PUBLIC_KEY='c6EftsVJb2RHlRH_E';
 
 const EMAILJS_SERVICE_ID='service_wx3z91j';
@@ -1771,14 +1769,10 @@ const EMAILJS_SERVICE_ID='service_wx3z91j';
 const EMAILJS_TEMPLATE_ID='template_3kqt32w';
 
 
-/* LOCAL STORAGE */
-
 const STUDENTS_BASE_KEY='teacherDanyealStudents_v2';
 
 const EVALUATIONS_BASE_KEY='teacherDanyealEvaluations_v2';
 
-
-/* NEW SUPABASE */
 
 const SUPABASE_URL=
 'https://ibhmimpmeftzkrtzhkmp.supabase.co';
@@ -1786,8 +1780,6 @@ const SUPABASE_URL=
 const SUPABASE_PUBLISHABLE_KEY=
 'sb_publishable_HqQA24yJsm_PE_1TKi2W4g_Mpdr9GI3';
 
-
-/* GITHUB PAGES */
 
 const SUPABASE_REDIRECT_URL=
 'https://td-2026000.github.io/TD-PH-Teacher-Management-Portal/';
@@ -2361,12 +2353,6 @@ showAuthMessage(
 'Password updated successfully. Redirecting to login...',
 true
 );
-
-
-/*
-   Sign out after password recovery so the user
-   returns cleanly to the Login screen.
-*/
 
 setTimeout(
 async()=>{
@@ -3404,13 +3390,11 @@ const average=
 total/fields.length;
 
 /*
-   5 stars = 100 points
-   4 stars = 80 points
-   3 stars = 60 points
-   etc.
-
-   Average star rating is converted
-   directly into a 100-point score.
+   5 stars = 100
+   4 stars = 80
+   3 stars = 60
+   2 stars = 40
+   1 star  = 20
 */
 
 const score=Math.round(
@@ -3454,11 +3438,6 @@ i<n
 ?'1'
 :'0.28'
 );
-
-/*
-   Every time a star rating changes,
-   recalculate the Overall Score.
-*/
 
 updateOverallScore();
 
@@ -3533,6 +3512,25 @@ document.getElementById(
 ).value.trim() ||
 'The student';
 
+
+/*
+   IMPORTANT:
+   The teacher name now comes directly
+   from the Teacher field.
+
+   Example:
+   Teacher Jade
+   Teacher Leo
+   Teacher Danyeal
+*/
+
+const teacher=
+document.getElementById(
+'teacher'
+).value.trim() ||
+'Teacher Danyeal';
+
+
 const vocab=
 document.getElementById(
 'vocabulary'
@@ -3561,6 +3559,7 @@ const [rating]=getRating(score);
 
 let parts=[];
 
+
 const vocabStart=[
 
 `${name} learned and practiced ${vocab} during today's lesson.`,
@@ -3572,6 +3571,7 @@ const vocabStart=[
 `${name} made progress today while learning and practicing ${vocab}.`
 
 ];
+
 
 const vocabEmpty=[
 
@@ -3585,6 +3585,7 @@ const vocabEmpty=[
 
 ];
 
+
 const imp=[
 
 `For continued progress, ${name} should continue practicing ${improvement}.`,
@@ -3596,6 +3597,7 @@ const imp=[
 `A helpful next step for ${name} is to continue working on ${improvement}.`
 
 ];
+
 
 const impEmpty=[
 
@@ -3609,6 +3611,7 @@ const impEmpty=[
 
 ];
 
+
 const scoreText=[
 
 `Overall performance: ${rating} (${score}/100).`,
@@ -3620,6 +3623,7 @@ const scoreText=[
 `Today's overall result was ${rating}, with ${score}/100.`
 
 ];
+
 
 const comm=[
 
@@ -3633,6 +3637,7 @@ const comm=[
 
 ];
 
+
 const commLow=[
 
 `${name} would benefit from additional speaking and pronunciation practice.`,
@@ -3644,6 +3649,7 @@ const commLow=[
 `Focused speaking and pronunciation practice can help ${name} improve further.`
 
 ];
+
 
 const understand=[
 
@@ -3657,6 +3663,7 @@ const understand=[
 
 ];
 
+
 const understandLow=[
 
 `More review and guided practice will help strengthen understanding.`,
@@ -3668,6 +3675,7 @@ const understandLow=[
 `More guided review will help ${name} develop stronger understanding of the lesson.`
 
 ];
+
 
 parts.push(
 (vocab?vocabStart:vocabEmpty)[variant]
@@ -3697,6 +3705,24 @@ understanding>=4
 ?understand
 :understandLow
 )[variant]
+);
+
+
+/*
+   FINAL TEACHER SIGNATURE
+
+   This now uses whatever is entered
+   in the Teacher field.
+
+   Example:
+
+   Thank you for supporting your child's
+   English learning journey.
+   Teacher Jade
+*/
+
+parts.push(
+`Thank you for supporting your child's English learning journey.\n${teacher}`
 );
 
 return parts.join(' ');
@@ -3745,37 +3771,10 @@ return box.textContent;
    LIVE SCORE / COMMENT
 ========================================================= */
 
-/*
-   Overall Score is now controlled by stars.
-   This listener only keeps the display synchronized
-   if the value is changed by code.
-*/
-
-document.getElementById(
-'score'
-).addEventListener(
-'input',
-()=>{
-
-updateOverallScore();
-
-if(
-document.getElementById(
-'studentName'
-).value
-){
-
-generateComment();
-
-}
-
-}
-);
-
-
 [
 'vocabulary',
-'improvement'
+'improvement',
+'teacher'
 ].forEach(
 id=>
 document.getElementById(id)
@@ -3834,11 +3833,10 @@ document.getElementById(
 'parentEmail'
 ).value.trim();
 
+
 /*
-   IMPORTANT:
-   Always calculate the score again before sending
-   so the email and saved record use the current
-   star ratings.
+   Always calculate the current score
+   from the 6 star ratings before sending.
 */
 
 const calculatedScore=
@@ -3886,13 +3884,11 @@ false
 
 
 /*
-   IMPORTANT:
-   DO NOT call generateComment() here.
+   DO NOT regenerate the comment here.
 
-   The teacher may have clicked
-   "Generate / Update Comment" several times.
-   We must send EXACTLY the comment currently
-   displayed inside #commentPreview.
+   This makes sure the exact comment
+   visible on screen is the one sent
+   to the parent.
 */
 
 const currentComment=
@@ -3924,6 +3920,7 @@ Math.max(
 )
 );
 
+
 const dateValue=
 document.getElementById(
 'date'
@@ -3933,6 +3930,19 @@ const timeValue=
 document.getElementById(
 'time'
 ).value;
+
+
+/*
+   IMPORTANT:
+   Teacher field is also sent to EmailJS.
+*/
+
+const teacherName=
+document.getElementById(
+'teacher'
+).value.trim() ||
+'Teacher Danyeal';
+
 
 const templateParams={
 
@@ -3966,10 +3976,7 @@ document.getElementById(
 'N/A',
 
 teacher:
-document.getElementById(
-'teacher'
-).value.trim() ||
-'Teacher Danyeal',
+teacherName,
 
 vocabulary:
 document.getElementById(
@@ -4013,15 +4020,11 @@ starText(
 stars.listening
 ),
 
-/*
-   THIS IS THE EXACT COMMENT
-   CURRENTLY DISPLAYED TO THE TEACHER.
-*/
-
 teacher_comment:
 currentComment
 
 };
+
 
 const record={
 
@@ -4035,6 +4038,7 @@ new Date().toISOString()
 
 };
 
+
 if(!window.emailjs){
 
 return showStatus(
@@ -4044,12 +4048,14 @@ false
 
 }
 
+
 emailjs.init({
 
 publicKey:
 EMAILJS_PUBLIC_KEY
 
 });
+
 
 submitBtn.disabled=true;
 
@@ -4060,6 +4066,7 @@ showStatus(
 'Sending the class memo to the parent...',
 true
 );
+
 
 emailjs
 .send(
@@ -4143,6 +4150,7 @@ document.getElementById(
 document.getElementById(
 'teacher'
 ).value='Teacher Danyeal';
+
 
 Object.keys(stars).forEach(
 k=>setStars(k,5)
@@ -4277,6 +4285,7 @@ confirmDeleteStudent();
 
 }
 );
+
 
 document.addEventListener(
 'keydown',
