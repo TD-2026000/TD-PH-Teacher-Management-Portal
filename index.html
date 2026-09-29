@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Teacher Danyeal - Teacher Evaluation Portal</title>
+
+<title>TD-PH Teacher Management Portal</title>
 
 <style>
 *{box-sizing:border-box}
@@ -702,9 +703,7 @@ button.secondary,
 
 <body>
 
-<!-- =====================================================
-     AUTH SCREEN
-===================================================== -->
+<!-- AUTH SCREEN -->
 
 <div id="authScreen" class="auth-screen">
 
@@ -717,30 +716,24 @@ TD
 </div>
 
 <h1>
-TD-TeacherDanyeal
+TD-PH Teacher Management Portal
 </h1>
 
 <p>
-Teacher Evaluation Portal
+Teacher Management Portal
 </p>
 
 </div>
 
-
 <div class="auth-body">
 
-
-<!-- ================= LOGIN ================= -->
+<!-- LOGIN -->
 
 <div id="loginPanel">
 
-<h2>
-Login
-</h2>
+<h2>Login</h2>
 
-<label>
-Email
-</label>
+<label>Email</label>
 
 <input
 id="loginEmail"
@@ -749,10 +742,7 @@ placeholder="teacher@email.com"
 autocomplete="email"
 >
 
-
-<label>
-Password
-</label>
+<label>Password</label>
 
 <div class="password-wrap">
 
@@ -768,12 +758,9 @@ type="button"
 class="password-toggle"
 onclick="togglePassword('loginPassword',this)"
 aria-label="Show password"
->
-👁
-</button>
+>👁</button>
 
 </div>
-
 
 <div class="forgot-password-wrap">
 
@@ -787,7 +774,6 @@ Forgot Password?
 
 </div>
 
-
 <button
 id="loginBtn"
 type="button"
@@ -795,7 +781,6 @@ class="primary auth-btn"
 >
 Login
 </button>
-
 
 <div class="auth-switch">
 
@@ -812,19 +797,13 @@ Create Account
 
 </div>
 
-
-<!-- ================= CREATE ACCOUNT ================= -->
+<!-- SIGNUP -->
 
 <div id="signupPanel" class="hidden">
 
-<h2>
-Create Account
-</h2>
+<h2>Create Account</h2>
 
-
-<label>
-Teacher Name
-</label>
+<label>Teacher Name</label>
 
 <input
 id="signupName"
@@ -832,10 +811,7 @@ placeholder="Your name"
 autocomplete="name"
 >
 
-
-<label>
-Email
-</label>
+<label>Email</label>
 
 <input
 id="signupEmail"
@@ -844,10 +820,7 @@ placeholder="teacher@email.com"
 autocomplete="email"
 >
 
-
-<label>
-Password
-</label>
+<label>Password</label>
 
 <div class="password-wrap">
 
@@ -863,16 +836,11 @@ type="button"
 class="password-toggle"
 onclick="togglePassword('signupPassword',this)"
 aria-label="Show password"
->
-👁
-</button>
+>👁</button>
 
 </div>
 
-
-<label>
-Confirm Password
-</label>
+<label>Confirm Password</label>
 
 <div class="password-wrap">
 
@@ -888,12 +856,9 @@ type="button"
 class="password-toggle"
 onclick="togglePassword('signupConfirm',this)"
 aria-label="Show password"
->
-👁
-</button>
+>👁</button>
 
 </div>
-
 
 <button
 id="signupBtn"
@@ -902,7 +867,6 @@ class="primary auth-btn"
 >
 Create Account
 </button>
-
 
 <div class="auth-switch">
 
@@ -919,46 +883,33 @@ Login
 
 </div>
 
-
-<!-- ================= EMAIL VERIFICATION ================= -->
+<!-- VERIFY -->
 
 <div id="verifyPanel" class="hidden">
 
-<h2>
-Verify Your Email
-</h2>
-
+<h2>Verify Your Email</h2>
 
 <p style="font-size:14px;line-height:1.5;margin-top:0">
 
 We sent a confirmation link to
 
-<b id="verifyEmailText">
-your email
-</b>.
+<b id="verifyEmailText">your email</b>.
 
 </p>
-
 
 <p style="font-size:14px;line-height:1.5;margin-top:12px">
 
 Please open the email and click
-
-<b>
-Confirm email address
-</b>
-
+<b>Confirm email address</b>
 to verify your account.
 
 </p>
-
 
 <p style="font-size:13px;line-height:1.5;margin-top:12px">
 
 After confirming your email, return to this website and log in using your email and password.
 
 </p>
-
 
 <button
 id="resendBtn"
@@ -968,7 +919,6 @@ class="secondary auth-btn"
 Resend Confirmation Email
 </button>
 
-
 <div class="auth-switch">
 
 <button
@@ -982,15 +932,11 @@ Back to Login
 
 </div>
 
-
-<!-- ================= FORGOT PASSWORD ================= -->
+<!-- FORGOT PASSWORD -->
 
 <div id="forgotPanel" class="hidden">
 
-<h2>
-Forgot Password?
-</h2>
-
+<h2>Forgot Password?</h2>
 
 <p style="font-size:14px;line-height:1.5;margin-top:0">
 
@@ -998,10 +944,7 @@ Enter your account email and we will send you a password reset link.
 
 </p>
 
-
-<label>
-Email
-</label>
+<label>Email</label>
 
 <input
 id="forgotEmail"
@@ -1009,7 +952,6 @@ type="email"
 placeholder="teacher@email.com"
 autocomplete="email"
 >
-
 
 <button
 id="forgotBtn"
@@ -1019,7 +961,6 @@ class="primary auth-btn"
 Send Reset Link
 </button>
 
-
 <div class="auth-switch">
 
 <button
@@ -1033,15 +974,11 @@ Back to Login
 
 </div>
 
-
-<!-- ================= RESET PASSWORD ================= -->
+<!-- RESET PASSWORD -->
 
 <div id="resetPanel" class="hidden">
 
-<h2>
-Set New Password
-</h2>
-
+<h2>Set New Password</h2>
 
 <p style="font-size:14px;line-height:1.5;margin-top:0">
 
@@ -1049,10 +986,7 @@ Enter your new password below.
 
 </p>
 
-
-<label>
-New Password
-</label>
+<label>New Password</label>
 
 <div class="password-wrap">
 
@@ -1068,16 +1002,11 @@ type="button"
 class="password-toggle"
 onclick="togglePassword('resetPassword',this)"
 aria-label="Show password"
->
-👁
-</button>
+>👁</button>
 
 </div>
 
-
-<label>
-Confirm New Password
-</label>
+<label>Confirm New Password</label>
 
 <div class="password-wrap">
 
@@ -1093,12 +1022,9 @@ type="button"
 class="password-toggle"
 onclick="togglePassword('resetConfirm',this)"
 aria-label="Show password"
->
-👁
-</button>
+>👁</button>
 
 </div>
-
 
 <button
 id="resetBtn"
@@ -1110,17 +1036,13 @@ Update Password
 
 </div>
 
-
 <div id="authMessage" class="auth-message"></div>
 
 </div>
 </div>
 </div>
 
-
-<!-- =====================================================
-     MAIN APPLICATION
-===================================================== -->
+<!-- MAIN APPLICATION -->
 
 <div id="appShell" class="hidden">
 
@@ -1128,27 +1050,21 @@ Update Password
 
 <div class="card">
 
-
 <div class="topbar">
 
 <span style="font-weight:800;letter-spacing:.5px">
 TD
 </span>
 
-&nbsp; Teacher Danyeal &nbsp;—&nbsp;
-
-Teacher Evaluation Portal
+&nbsp; TD-PH Teacher Management Portal
 
 </div>
-
 
 <div class="userbar">
 
 <span>
 Logged in as
-<b id="currentTeacher">
-—
-</b>
+<b id="currentTeacher">—</b>
 </span>
 
 <button
@@ -1160,9 +1076,6 @@ Logout
 </button>
 
 </div>
-
-
-<!-- NAVIGATION -->
 
 <div class="nav">
 
@@ -1190,10 +1103,7 @@ Record of Evaluation
 
 </div>
 
-
-<!-- =====================================================
-     DASHBOARD
-===================================================== -->
+<!-- DASHBOARD -->
 
 <div id="dashboardPage" class="page active">
 
@@ -1201,32 +1111,24 @@ Record of Evaluation
 Dashboard
 </h2>
 
-
 <div class="dashboard-grid">
 
 <div class="stat">
 Students
-<b id="studentCount">
-0
-</b>
+<b id="studentCount">0</b>
 </div>
 
 <div class="stat">
 Evaluations
-<b id="evaluationCount">
-0
-</b>
+<b id="evaluationCount">0</b>
 </div>
 
 <div class="stat">
 Last Evaluation
-<b id="lastEvaluation">
-—
-</b>
+<b id="lastEvaluation">—</b>
 </div>
 
 </div>
-
 
 <div class="panel">
 
@@ -1240,14 +1142,11 @@ STUDENT RECORDS
 Add each student once. During evaluation, you will only select the student.
 </p>
 
-
 <div class="add-student-grid">
 
 <div>
 
-<label>
-Student Name
-</label>
+<label>Student Name</label>
 
 <input
 id="newStudentName"
@@ -1256,12 +1155,9 @@ placeholder="Student name"
 
 </div>
 
-
 <div>
 
-<label>
-Parent's Email
-</label>
+<label>Parent's Email</label>
 
 <input
 id="newStudentEmail"
@@ -1271,12 +1167,9 @@ placeholder="parent@email.com"
 
 </div>
 
-
 <div>
 
-<label>
-Student ID
-</label>
+<label>Student ID</label>
 
 <input
 id="newStudentId"
@@ -1284,7 +1177,6 @@ placeholder="Student ID"
 >
 
 </div>
-
 
 <button
 id="addStudentBtn"
@@ -1296,9 +1188,7 @@ Add Student
 
 </div>
 
-
 <div id="studentStatus" class="status"></div>
-
 
 <div
 id="studentList"
@@ -1311,19 +1201,13 @@ style="margin-top:15px"
 
 </div>
 
-
-<!-- =====================================================
-     EVALUATION
-===================================================== -->
+<!-- EVALUATION -->
 
 <div id="evaluationPage" class="page">
-
-<div class="form-wrap">
 
 <h2 style="margin-top:0">
 Evaluation
 </h2>
-
 
 <div class="section" style="margin-top:0">
 
@@ -1333,9 +1217,7 @@ SELECT STUDENT TO EVALUATE
 
 <div class="section-body">
 
-<label>
-Student
-</label>
+<label>Student</label>
 
 <select
 id="studentSelect"
@@ -1355,7 +1237,6 @@ Student Name, Parent's Email, and Student ID will be filled automatically from t
 </div>
 </div>
 
-
 <div
 class="grid"
 style="margin-top:16px"
@@ -1363,9 +1244,7 @@ style="margin-top:16px"
 
 <div>
 
-<label>
-Student Name
-</label>
+<label>Student Name</label>
 
 <input
 id="studentName"
@@ -1375,12 +1254,9 @@ readonly
 
 </div>
 
-
 <div>
 
-<label>
-Parent's Email
-</label>
+<label>Parent's Email</label>
 
 <input
 id="parentEmail"
@@ -1391,12 +1267,9 @@ readonly
 
 </div>
 
-
 <div>
 
-<label>
-Student ID
-</label>
+<label>Student ID</label>
 
 <input
 id="studentId"
@@ -1406,12 +1279,9 @@ readonly
 
 </div>
 
-
 <div>
 
-<label>
-Date
-</label>
+<label>Date</label>
 
 <input
 id="date"
@@ -1420,12 +1290,9 @@ type="date"
 
 </div>
 
-
 <div>
 
-<label>
-Time
-</label>
+<label>Time</label>
 
 <input
 id="time"
@@ -1434,12 +1301,9 @@ type="time"
 
 </div>
 
-
 <div>
 
-<label>
-Lesson / Topic
-</label>
+<label>Lesson / Topic</label>
 
 <input
 id="lessonTopic"
@@ -1448,12 +1312,9 @@ placeholder="Lesson / Topic"
 
 </div>
 
-
 <div>
 
-<label>
-Class Duration
-</label>
+<label>Class Duration</label>
 
 <input
 id="duration"
@@ -1462,12 +1323,9 @@ value="25 minutes"
 
 </div>
 
-
 <div>
 
-<label>
-Teacher
-</label>
+<label>Teacher</label>
 
 <input
 id="teacher"
@@ -1476,12 +1334,9 @@ value="Teacher Danyeal"
 
 </div>
 
-
 <div>
 
-<label>
-Overall Score
-</label>
+<label>Overall Score</label>
 
 <input
 id="score"
@@ -1495,7 +1350,6 @@ placeholder="0-100"
 
 </div>
 
-
 <div
 class="score-box"
 style="margin-top:12px"
@@ -1503,9 +1357,7 @@ style="margin-top:12px"
 
 <div>
 
-<label>
-Rating
-</label>
+<label>Rating</label>
 
 <div
 id="ratingText"
@@ -1516,12 +1368,9 @@ Excellent
 
 </div>
 
-
 <div>
 
-<label>
-Score Range
-</label>
+<label>Score Range</label>
 
 <div
 id="scoreRange"
@@ -1533,7 +1382,6 @@ class="rating"
 </div>
 
 </div>
-
 
 <div class="section">
 
@@ -1549,9 +1397,7 @@ placeholder="Example: apple, banana, hungry, I like..., I don't like..."
 ></textarea>
 
 </div>
-
 </div>
-
 
 <div class="section">
 
@@ -1567,9 +1413,7 @@ placeholder="Example: pronunciation of /r/, answering in complete sentences, rea
 ></textarea>
 
 </div>
-
 </div>
-
 
 <div class="section">
 
@@ -1584,9 +1428,7 @@ STUDENT PERFORMANCE
 
 <div class="perf-item">
 
-<b>
-Participation:
-</b>
+<b>Participation:</b>
 
 <span
 class="stars"
@@ -1595,12 +1437,9 @@ data-field="participation"
 
 </div>
 
-
 <div class="perf-item">
 
-<b>
-Pronunciation:
-</b>
+<b>Pronunciation:</b>
 
 <span
 class="stars"
@@ -1609,12 +1448,9 @@ data-field="pronunciation"
 
 </div>
 
-
 <div class="perf-item">
 
-<b>
-Behavior:
-</b>
+<b>Behavior:</b>
 
 <span
 class="stars"
@@ -1623,12 +1459,9 @@ data-field="behavior"
 
 </div>
 
-
 <div class="perf-item">
 
-<b>
-Speaking:
-</b>
+<b>Speaking:</b>
 
 <span
 class="stars"
@@ -1637,12 +1470,9 @@ data-field="speaking"
 
 </div>
 
-
 <div class="perf-item">
 
-<b>
-Understanding:
-</b>
+<b>Understanding:</b>
 
 <span
 class="stars"
@@ -1651,12 +1481,9 @@ data-field="understanding"
 
 </div>
 
-
 <div class="perf-item">
 
-<b>
-Listening:
-</b>
+<b>Listening:</b>
 
 <span
 class="stars"
@@ -1666,9 +1493,7 @@ data-field="listening"
 </div>
 
 </div>
-
 </div>
-
 
 <div class="section">
 
@@ -1689,9 +1514,7 @@ Select a student and fill in the lesson details. The teacher's comment will be g
 </div>
 
 </div>
-
 </div>
-
 
 <div class="buttons">
 
@@ -1726,28 +1549,21 @@ Clear
 
 </div>
 
-
 <div id="status" class="status"></div>
-
 
 <div class="small">
 EmailJS is connected. After you submit, the class memo will be emailed automatically to the parent and saved in Record of Evaluation.
 </div>
 
 </div>
-</div>
 
-
-<!-- =====================================================
-     RECORDS
-===================================================== -->
+<!-- RECORDS -->
 
 <div id="recordsPage" class="page">
 
 <h2 style="margin-top:0">
 Record of Evaluation
 </h2>
-
 
 <div class="panel">
 
@@ -1765,29 +1581,12 @@ CLASS EVALUATION HISTORY
 
 <tr>
 
-<th>
-Date & Time
-</th>
-
-<th>
-Student
-</th>
-
-<th>
-Lesson / Topic
-</th>
-
-<th>
-Score
-</th>
-
-<th>
-Rating
-</th>
-
-<th>
-Email
-</th>
+<th>Date & Time</th>
+<th>Student</th>
+<th>Lesson / Topic</th>
+<th>Score</th>
+<th>Rating</th>
+<th>Email</th>
 
 </tr>
 
@@ -1798,7 +1597,6 @@ Email
 </table>
 
 </div>
-
 
 <div
 id="recordEmpty"
@@ -1816,10 +1614,7 @@ No evaluations recorded yet.
 </div>
 </div>
 
-
-<!-- =====================================================
-     EDIT STUDENT MODAL
-===================================================== -->
+<!-- EDIT STUDENT MODAL -->
 
 <div
 id="editStudentModal"
@@ -1829,9 +1624,7 @@ onclick="if(event.target===this) closeEditStudent()"
 
 <div class="modal">
 
-<h3>
-Edit Student
-</h3>
+<h3>Edit Student</h3>
 
 <p>
 Update the student's saved information.
@@ -1842,16 +1635,12 @@ type="hidden"
 id="editOriginalId"
 >
 
-
-<label>
-Student Name
-</label>
+<label>Student Name</label>
 
 <input
 id="editStudentName"
 placeholder="Student name"
 >
-
 
 <label style="margin-top:10px">
 Parent's Email
@@ -1863,7 +1652,6 @@ type="email"
 placeholder="parent@email.com"
 >
 
-
 <label style="margin-top:10px">
 Student ID
 </label>
@@ -1873,12 +1661,10 @@ id="editStudentId"
 placeholder="Student ID"
 >
 
-
 <div
 id="editStudentError"
 class="modal-error"
 ></div>
-
 
 <div class="modal-actions">
 
@@ -1903,10 +1689,7 @@ Save Changes
 </div>
 </div>
 
-
-<!-- =====================================================
-     DELETE STUDENT MODAL
-===================================================== -->
+<!-- DELETE STUDENT MODAL -->
 
 <div
 id="deleteStudentModal"
@@ -1916,9 +1699,7 @@ onclick="if(event.target===this) closeDeleteStudent()"
 
 <div class="modal">
 
-<h3>
-Confirm Student Deletion
-</h3>
+<h3>Confirm Student Deletion</h3>
 
 <p>
 To prevent accidental deletion, type the student's
@@ -1926,18 +1707,15 @@ To prevent accidental deletion, type the student's
 exactly as shown below:
 </p>
 
-
 <div
 id="deleteStudentIdLabel"
 style="font-weight:700;background:#f4f4f4;border:1px solid #ddd;border-radius:7px;padding:10px;margin-bottom:12px"
 ></div>
 
-
 <input
 type="hidden"
 id="deleteTargetId"
 >
-
 
 <input
 id="deleteConfirmId"
@@ -1945,12 +1723,10 @@ placeholder="Type Student ID to confirm"
 autocomplete="off"
 >
 
-
 <div
 id="deleteStudentError"
 class="modal-error"
 ></div>
-
 
 <div class="modal-actions">
 
@@ -1975,12 +1751,13 @@ Delete Student
 </div>
 </div>
 
-
 <script>
 
 /* =========================================================
    CONFIGURATION
 ========================================================= */
+
+/* EMAILJS — UNCHANGED */
 
 const EMAILJS_PUBLIC_KEY='c6EftsVJb2RHlRH_E';
 
@@ -1988,16 +1765,25 @@ const EMAILJS_SERVICE_ID='service_wx3z91j';
 
 const EMAILJS_TEMPLATE_ID='template_3kqt32w';
 
+
+/* LOCAL STORAGE */
+
 const STUDENTS_BASE_KEY='teacherDanyealStudents_v2';
 
 const EVALUATIONS_BASE_KEY='teacherDanyealEvaluations_v2';
 
-const SUPABASE_URL='https://dgylrfzekivbrxykihas.supabase.co';
 
-const SUPABASE_PUBLISHABLE_KEY='sb_publishable_ebay1AQFGVfnemBoxIb87Q_aDXHTAOE';
+/* NEW SUPABASE */
+
+const SUPABASE_URL='https://ibhmimpmeftzkrtzhkmp.supabase.co';
+
+const SUPABASE_PUBLISHABLE_KEY='sb_publishable_HqQA24yJsm_PE_1TKi2W4g_Mpdr9GI3';
+
+
+/* NEW GITHUB PAGES */
 
 const SUPABASE_REDIRECT_URL=
-'https://danielcalipsan20.github.io/Teacher-Danyeal-Class-Evaluation-td-portal/';
+'https://danielcalipsan20.github.io/TD-PH-Teacher-Management-Portal/';
 
 
 const supabaseClient=
@@ -2077,45 +1863,20 @@ JSON.stringify(data)
 
 function showAuthPanel(panel){
 
-document
-.getElementById('loginPanel')
-.classList.toggle(
-'hidden',
-panel!=='login'
-);
+document.getElementById('loginPanel')
+.classList.toggle('hidden',panel!=='login');
 
+document.getElementById('signupPanel')
+.classList.toggle('hidden',panel!=='signup');
 
-document
-.getElementById('signupPanel')
-.classList.toggle(
-'hidden',
-panel!=='signup'
-);
+document.getElementById('verifyPanel')
+.classList.toggle('hidden',panel!=='verify');
 
+document.getElementById('forgotPanel')
+.classList.toggle('hidden',panel!=='forgot');
 
-document
-.getElementById('verifyPanel')
-.classList.toggle(
-'hidden',
-panel!=='verify'
-);
-
-
-document
-.getElementById('forgotPanel')
-.classList.toggle(
-'hidden',
-panel!=='forgot'
-);
-
-
-document
-.getElementById('resetPanel')
-.classList.toggle(
-'hidden',
-panel!=='reset'
-);
-
+document.getElementById('resetPanel')
+.classList.toggle('hidden',panel!=='reset');
 
 clearAuthMessage();
 
@@ -2124,8 +1885,7 @@ clearAuthMessage();
 
 function showAuthMessage(msg,ok=false){
 
-const el=
-document.getElementById('authMessage');
+const el=document.getElementById('authMessage');
 
 el.textContent=msg;
 
@@ -2138,8 +1898,7 @@ el.className=
 
 function clearAuthMessage(){
 
-const el=
-document.getElementById('authMessage');
+const el=document.getElementById('authMessage');
 
 el.textContent='';
 
@@ -2170,9 +1929,7 @@ busy
 
 function togglePassword(inputId,button){
 
-const input=
-document.getElementById(inputId);
-
+const input=document.getElementById(inputId);
 
 if(input.type==='password'){
 
@@ -2208,36 +1965,28 @@ button.setAttribute(
 async function loginTeacher(){
 
 const email=
-document
-.getElementById('loginEmail')
-.value
-.trim();
-
+document.getElementById('loginEmail')
+.value.trim();
 
 const password=
-document
-.getElementById('loginPassword')
+document.getElementById('loginPassword')
 .value;
-
 
 if(!email)
 return showAuthMessage(
 'Please enter your email.'
 );
 
-
 if(!password)
 return showAuthMessage(
 'Please enter your password.'
 );
-
 
 setAuthBusy(
 'loginBtn',
 true,
 'Login'
 );
-
 
 const {error}=
 await supabaseClient.auth.signInWithPassword({
@@ -2248,15 +1997,11 @@ password
 
 });
 
-
 if(error){
 
-showAuthMessage(
-error.message
-);
+showAuthMessage(error.message);
 
 }
-
 
 setAuthBusy(
 'loginBtn',
@@ -2274,61 +2019,46 @@ false,
 async function createTeacherAccount(){
 
 const name=
-document
-.getElementById('signupName')
-.value
-.trim();
-
+document.getElementById('signupName')
+.value.trim();
 
 const email=
-document
-.getElementById('signupEmail')
-.value
-.trim();
-
+document.getElementById('signupEmail')
+.value.trim();
 
 const password=
-document
-.getElementById('signupPassword')
+document.getElementById('signupPassword')
 .value;
-
 
 const confirm=
-document
-.getElementById('signupConfirm')
+document.getElementById('signupConfirm')
 .value;
-
 
 if(!name)
 return showAuthMessage(
 'Please enter your teacher name.'
 );
 
-
 if(!email)
 return showAuthMessage(
 'Please enter your email.'
 );
-
 
 if(password.length<6)
 return showAuthMessage(
 'Password must be at least 6 characters.'
 );
 
-
 if(password!==confirm)
 return showAuthMessage(
 'Passwords do not match.'
 );
-
 
 setAuthBusy(
 'signupBtn',
 true,
 'Create Account'
 );
-
 
 const {data,error}=
 await supabaseClient.auth.signUp({
@@ -2350,12 +2080,9 @@ SUPABASE_REDIRECT_URL
 
 });
 
-
 if(error){
 
-showAuthMessage(
-error.message
-);
+showAuthMessage(error.message);
 
 setAuthBusy(
 'signupBtn',
@@ -2366,7 +2093,6 @@ false,
 return;
 
 }
-
 
 if(data.session){
 
@@ -2379,9 +2105,9 @@ true
 
 pendingVerificationEmail=email;
 
-document
-.getElementById('verifyEmailText')
-.textContent=email;
+document.getElementById(
+'verifyEmailText'
+).textContent=email;
 
 showAuthPanel('verify');
 
@@ -2391,7 +2117,6 @@ true
 );
 
 }
-
 
 setAuthBusy(
 'signupBtn',
@@ -2410,11 +2135,8 @@ async function resendVerificationEmail(){
 
 const email=
 pendingVerificationEmail ||
-document
-.getElementById('signupEmail')
-.value
-.trim();
-
+document.getElementById('signupEmail')
+.value.trim();
 
 if(!email){
 
@@ -2424,13 +2146,11 @@ return showAuthMessage(
 
 }
 
-
 setAuthBusy(
 'resendBtn',
 true,
 'Resend Confirmation Email'
 );
-
 
 const {error}=
 await supabaseClient.auth.resend({
@@ -2448,12 +2168,9 @@ SUPABASE_REDIRECT_URL
 
 });
 
-
 if(error){
 
-showAuthMessage(
-error.message
-);
+showAuthMessage(error.message);
 
 }else{
 
@@ -2463,7 +2180,6 @@ true
 );
 
 }
-
 
 setAuthBusy(
 'resendBtn',
@@ -2481,11 +2197,8 @@ false,
 async function sendPasswordReset(){
 
 const email=
-document
-.getElementById('forgotEmail')
-.value
-.trim();
-
+document.getElementById('forgotEmail')
+.value.trim();
 
 if(!email){
 
@@ -2495,13 +2208,11 @@ return showAuthMessage(
 
 }
 
-
 setAuthBusy(
 'forgotBtn',
 true,
 'Send Reset Link'
 );
-
 
 const {error}=
 await supabaseClient.auth.resetPasswordForEmail(
@@ -2517,12 +2228,9 @@ SUPABASE_REDIRECT_URL
 
 );
 
-
 if(error){
 
-showAuthMessage(
-error.message
-);
+showAuthMessage(error.message);
 
 }else{
 
@@ -2532,7 +2240,6 @@ true
 );
 
 }
-
 
 setAuthBusy(
 'forgotBtn',
@@ -2550,16 +2257,12 @@ false,
 async function updatePassword(){
 
 const password=
-document
-.getElementById('resetPassword')
+document.getElementById('resetPassword')
 .value;
-
 
 const confirm=
-document
-.getElementById('resetConfirm')
+document.getElementById('resetConfirm')
 .value;
-
 
 if(password.length<6){
 
@@ -2569,7 +2272,6 @@ return showAuthMessage(
 
 }
 
-
 if(password!==confirm){
 
 return showAuthMessage(
@@ -2578,13 +2280,11 @@ return showAuthMessage(
 
 }
 
-
 setAuthBusy(
 'resetBtn',
 true,
 'Update Password'
 );
-
 
 const {error}=
 await supabaseClient.auth.updateUser({
@@ -2593,12 +2293,9 @@ password
 
 });
 
-
 if(error){
 
-showAuthMessage(
-error.message
-);
+showAuthMessage(error.message);
 
 }else{
 
@@ -2607,22 +2304,20 @@ showAuthMessage(
 true
 );
 
-
 setTimeout(
 ()=>{
 
 showAuthPanel('login');
 
-document
-.getElementById('loginPassword')
-.value='';
+document.getElementById(
+'loginPassword'
+).value='';
 
 },
 1500
 );
 
 }
-
 
 setAuthBusy(
 'resetBtn',
@@ -2652,27 +2347,22 @@ async function handleSignedIn(user){
 
 currentUser=user;
 
-
 const name=
 user.user_metadata?.full_name ||
 user.email ||
 'Teacher';
 
+document.getElementById(
+'currentTeacher'
+).textContent=name;
 
-document
-.getElementById('currentTeacher')
-.textContent=name;
+document.getElementById(
+'authScreen'
+).classList.add('hidden');
 
-
-document
-.getElementById('authScreen')
-.classList.add('hidden');
-
-
-document
-.getElementById('appShell')
-.classList.remove('hidden');
-
+document.getElementById(
+'appShell'
+).classList.remove('hidden');
 
 renderDashboard();
 
@@ -2689,16 +2379,13 @@ function handleSignedOut(){
 
 currentUser=null;
 
+document.getElementById(
+'appShell'
+).classList.add('hidden');
 
-document
-.getElementById('appShell')
-.classList.add('hidden');
-
-
-document
-.getElementById('authScreen')
-.classList.remove('hidden');
-
+document.getElementById(
+'authScreen'
+).classList.remove('hidden');
 
 showAuthPanel('login');
 
@@ -2716,12 +2403,9 @@ data:{session}
 }=
 await supabaseClient.auth.getSession();
 
-
 if(session){
 
-await handleSignedIn(
-session.user
-);
+await handleSignedIn(session.user);
 
 }else{
 
@@ -2729,21 +2413,18 @@ handleSignedOut();
 
 }
 
-
 supabaseClient.auth.onAuthStateChange(
 (event,session)=>{
 
 if(event==='PASSWORD_RECOVERY'){
 
-document
-.getElementById('appShell')
-.classList.add('hidden');
+document.getElementById(
+'appShell'
+).classList.add('hidden');
 
-
-document
-.getElementById('authScreen')
-.classList.remove('hidden');
-
+document.getElementById(
+'authScreen'
+).classList.remove('hidden');
 
 showAuthPanel('reset');
 
@@ -2751,12 +2432,9 @@ return;
 
 }
 
-
 if(session){
 
-handleSignedIn(
-session.user
-);
+handleSignedIn(session.user);
 
 }else{
 
@@ -2774,49 +2452,44 @@ handleSignedOut();
    AUTH EVENT LISTENERS
 ========================================================= */
 
-document
-.getElementById('loginBtn')
-.addEventListener(
+document.getElementById(
+'loginBtn'
+).addEventListener(
 'click',
 loginTeacher
 );
 
-
-document
-.getElementById('signupBtn')
-.addEventListener(
+document.getElementById(
+'signupBtn'
+).addEventListener(
 'click',
 createTeacherAccount
 );
 
-
-document
-.getElementById('resendBtn')
-.addEventListener(
+document.getElementById(
+'resendBtn'
+).addEventListener(
 'click',
 resendVerificationEmail
 );
 
-
-document
-.getElementById('forgotBtn')
-.addEventListener(
+document.getElementById(
+'forgotBtn'
+).addEventListener(
 'click',
 sendPasswordReset
 );
 
-
-document
-.getElementById('resetBtn')
-.addEventListener(
+document.getElementById(
+'resetBtn'
+).addEventListener(
 'click',
 updatePassword
 );
 
-
-document
-.getElementById('loginPassword')
-.addEventListener(
+document.getElementById(
+'loginPassword'
+).addEventListener(
 'keydown',
 e=>{
 
@@ -2826,10 +2499,9 @@ loginTeacher();
 }
 );
 
-
-document
-.getElementById('signupConfirm')
-.addEventListener(
+document.getElementById(
+'signupConfirm'
+).addEventListener(
 'keydown',
 e=>{
 
@@ -2839,10 +2511,9 @@ createTeacherAccount();
 }
 );
 
-
-document
-.getElementById('forgotEmail')
-.addEventListener(
+document.getElementById(
+'forgotEmail'
+).addEventListener(
 'keydown',
 e=>{
 
@@ -2852,10 +2523,9 @@ sendPasswordReset();
 }
 );
 
-
-document
-.getElementById('resetConfirm')
-.addEventListener(
+document.getElementById(
+'resetConfirm'
+).addEventListener(
 'keydown',
 e=>{
 
@@ -2872,45 +2542,34 @@ updatePassword();
 
 function showPage(page){
 
-document
-.querySelectorAll('.page')
+document.querySelectorAll('.page')
 .forEach(
 p=>p.classList.remove('active')
 );
 
+document.getElementById(
+page+'Page'
+).classList.add('active');
 
-document
-.getElementById(page+'Page')
-.classList.add('active');
-
-
-document
-.querySelectorAll('.nav button')
+document.querySelectorAll('.nav button')
 .forEach(
 b=>b.classList.remove('active')
 );
 
-
-document
-.getElementById(
+document.getElementById(
 'nav'+
 page.charAt(0).toUpperCase()+
 page.slice(1)
-)
-.classList.add('active');
-
+).classList.add('active');
 
 if(page==='dashboard')
 renderDashboard();
 
-
 if(page==='evaluation')
 populateStudentSelect();
 
-
 if(page==='records')
 renderRecords();
-
 
 window.scrollTo({
 top:0,
@@ -2926,14 +2585,11 @@ behavior:'smooth'
 
 function showStudentStatus(msg,ok=true){
 
-const s=
-document.getElementById(
+const s=document.getElementById(
 'studentStatus'
 );
 
-
 s.textContent=msg;
-
 
 s.className=
 'status show '+
@@ -2949,25 +2605,19 @@ s.className=
 function addStudent(){
 
 const name=
-document
-.getElementById('newStudentName')
-.value
-.trim();
-
+document.getElementById(
+'newStudentName'
+).value.trim();
 
 const email=
-document
-.getElementById('newStudentEmail')
-.value
-.trim();
-
+document.getElementById(
+'newStudentEmail'
+).value.trim();
 
 const id=
-document
-.getElementById('newStudentId')
-.value
-.trim();
-
+document.getElementById(
+'newStudentId'
+).value.trim();
 
 if(!name)
 return showStudentStatus(
@@ -2975,13 +2625,11 @@ return showStudentStatus(
 false
 );
 
-
 if(!email)
 return showStudentStatus(
 "Please enter the parent's email.",
 false
 );
-
 
 if(!id)
 return showStudentStatus(
@@ -2989,9 +2637,7 @@ return showStudentStatus(
 false
 );
 
-
 const students=getStudents();
-
 
 if(
 students.some(
@@ -3006,7 +2652,6 @@ false
 
 }
 
-
 students.push({
 
 id,
@@ -3019,30 +2664,24 @@ createdAt:new Date().toISOString()
 
 });
 
-
 saveStudents(students);
 
+document.getElementById(
+'newStudentName'
+).value='';
 
-document
-.getElementById('newStudentName')
-.value='';
+document.getElementById(
+'newStudentEmail'
+).value='';
 
-
-document
-.getElementById('newStudentEmail')
-.value='';
-
-
-document
-.getElementById('newStudentId')
-.value='';
-
+document.getElementById(
+'newStudentId'
+).value='';
 
 showStudentStatus(
 'Student added successfully.',
 true
 );
-
 
 renderDashboard();
 
@@ -3057,19 +2696,16 @@ populateStudentSelect();
 
 function toggleStudentMenu(id){
 
-document
-.querySelectorAll('.student-menu')
-.forEach(
+document.querySelectorAll(
+'.student-menu'
+).forEach(
 m=>m.classList.remove('show')
 );
 
-
-const menu=
-document.getElementById(
+const menu=document.getElementById(
 'studentMenu-'+
 encodeURIComponent(id)
 );
-
 
 if(menu)
 menu.classList.toggle('show');
@@ -3079,9 +2715,9 @@ menu.classList.toggle('show');
 
 function closeStudentMenus(){
 
-document
-.querySelectorAll('.student-menu')
-.forEach(
+document.querySelectorAll(
+'.student-menu'
+).forEach(
 m=>m.classList.remove('show')
 );
 
@@ -3093,9 +2729,7 @@ document.addEventListener(
 e=>{
 
 if(
-!e.target.closest(
-'.student-actions'
-)
+!e.target.closest('.student-actions')
 ){
 
 closeStudentMenus();
@@ -3114,58 +2748,49 @@ function openEditStudent(id){
 
 closeStudentMenus();
 
-
 const student=
 getStudents().find(
 s=>s.id===id
 );
 
-
 if(!student)return;
 
+document.getElementById(
+'editOriginalId'
+).value=student.id;
 
-document
-.getElementById('editOriginalId')
-.value=student.id;
+document.getElementById(
+'editStudentName'
+).value=student.name;
 
+document.getElementById(
+'editStudentEmail'
+).value=student.email;
 
-document
-.getElementById('editStudentName')
-.value=student.name;
+document.getElementById(
+'editStudentId'
+).value=student.id;
 
+document.getElementById(
+'editStudentError'
+).textContent='';
 
-document
-.getElementById('editStudentEmail')
-.value=student.email;
+document.getElementById(
+'editStudentError'
+).classList.remove('show');
 
-
-document
-.getElementById('editStudentId')
-.value=student.id;
-
-
-document
-.getElementById('editStudentError')
-.textContent='';
-
-
-document
-.getElementById('editStudentError')
-.classList.remove('show');
-
-
-document
-.getElementById('editStudentModal')
-.classList.add('show');
+document.getElementById(
+'editStudentModal'
+).classList.add('show');
 
 }
 
 
 function closeEditStudent(){
 
-document
-.getElementById('editStudentModal')
-.classList.remove('show');
+document.getElementById(
+'editStudentModal'
+).classList.remove('show');
 
 }
 
@@ -3173,36 +2798,29 @@ document
 function saveEditedStudent(){
 
 const originalId=
-document
-.getElementById('editOriginalId')
-.value;
-
+document.getElementById(
+'editOriginalId'
+).value;
 
 const name=
-document
-.getElementById('editStudentName')
-.value
-.trim();
-
+document.getElementById(
+'editStudentName'
+).value.trim();
 
 const email=
-document
-.getElementById('editStudentEmail')
-.value
-.trim();
-
+document.getElementById(
+'editStudentEmail'
+).value.trim();
 
 const id=
-document
-.getElementById('editStudentId')
-.value
-.trim();
-
+document.getElementById(
+'editStudentId'
+).value.trim();
 
 const err=
-document
-.getElementById('editStudentError');
-
+document.getElementById(
+'editStudentError'
+);
 
 const fail=msg=>{
 
@@ -3212,27 +2830,22 @@ err.classList.add('show');
 
 };
 
-
 if(!name)
 return fail(
 'Please enter the student name.'
 );
-
 
 if(!email)
 return fail(
 "Please enter the parent's email."
 );
 
-
 if(!id)
 return fail(
 'Please enter the student ID.'
 );
 
-
 const students=getStudents();
-
 
 if(
 students.some(
@@ -3249,18 +2862,15 @@ return fail(
 
 }
 
-
 const index=
 students.findIndex(
 s=>s.id===originalId
 );
 
-
 if(index<0)
 return fail(
 'Student record could not be found.'
 );
-
 
 students[index]={
 
@@ -3273,7 +2883,6 @@ email,
 id
 
 };
-
 
 saveStudents(students);
 
@@ -3299,52 +2908,43 @@ function openDeleteStudent(id){
 
 closeStudentMenus();
 
-
 const student=
 getStudents().find(
 s=>s.id===id
 );
 
-
 if(!student)return;
 
+document.getElementById(
+'deleteTargetId'
+).value=student.id;
 
-document
-.getElementById('deleteTargetId')
-.value=student.id;
+document.getElementById(
+'deleteStudentIdLabel'
+).textContent=student.id;
 
+document.getElementById(
+'deleteConfirmId'
+).value='';
 
-document
-.getElementById('deleteStudentIdLabel')
-.textContent=student.id;
+document.getElementById(
+'deleteStudentError'
+).textContent='';
 
+document.getElementById(
+'deleteStudentError'
+).classList.remove('show');
 
-document
-.getElementById('deleteConfirmId')
-.value='';
-
-
-document
-.getElementById('deleteStudentError')
-.textContent='';
-
-
-document
-.getElementById('deleteStudentError')
-.classList.remove('show');
-
-
-document
-.getElementById('deleteStudentModal')
-.classList.add('show');
-
+document.getElementById(
+'deleteStudentModal'
+).classList.add('show');
 
 setTimeout(
 ()=>{
 
-document
-.getElementById('deleteConfirmId')
-.focus();
+document.getElementById(
+'deleteConfirmId'
+).focus();
 
 },
 50
@@ -3355,9 +2955,9 @@ document
 
 function closeDeleteStudent(){
 
-document
-.getElementById('deleteStudentModal')
-.classList.remove('show');
+document.getElementById(
+'deleteStudentModal'
+).classList.remove('show');
 
 }
 
@@ -3365,22 +2965,19 @@ document
 function confirmDeleteStudent(){
 
 const target=
-document
-.getElementById('deleteTargetId')
-.value;
-
+document.getElementById(
+'deleteTargetId'
+).value;
 
 const typed=
-document
-.getElementById('deleteConfirmId')
-.value
-.trim();
-
+document.getElementById(
+'deleteConfirmId'
+).value.trim();
 
 const err=
-document
-.getElementById('deleteStudentError');
-
+document.getElementById(
+'deleteStudentError'
+);
 
 if(typed!==target){
 
@@ -3393,20 +2990,17 @@ return;
 
 }
 
-
 saveStudents(
 getStudents().filter(
 s=>s.id!==target
 )
 );
 
-
 closeDeleteStudent();
 
 renderDashboard();
 
 populateStudentSelect();
-
 
 showStudentStatus(
 'Student deleted successfully. Existing evaluation history was kept.',
@@ -3426,32 +3020,27 @@ const students=getStudents();
 
 const evals=getEvaluations();
 
+document.getElementById(
+'studentCount'
+).textContent=students.length;
 
-document
-.getElementById('studentCount')
-.textContent=students.length;
+document.getElementById(
+'evaluationCount'
+).textContent=evals.length;
 
-
-document
-.getElementById('evaluationCount')
-.textContent=evals.length;
-
-
-document
-.getElementById('lastEvaluation')
-.textContent=
+document.getElementById(
+'lastEvaluation'
+).textContent=
 evals.length
 ?formatDateTime(
 evals[evals.length-1].dateTime
 )
 :'—';
 
-
 const list=
 document.getElementById(
 'studentList'
 );
-
 
 if(!students.length){
 
@@ -3461,7 +3050,6 @@ list.innerHTML=
 return;
 
 }
-
 
 list.innerHTML=
 students.map(
@@ -3483,7 +3071,6 @@ ${escapeHtml(s.email)}
 
 </div>
 
-
 <div class="student-actions">
 
 <button
@@ -3494,7 +3081,6 @@ onclick="event.stopPropagation();toggleStudentMenu('${escapeAttr(s.id)}')"
 >
 ⋮
 </button>
-
 
 <div
 id="studentMenu-${encodeURIComponent(s.id)}"
@@ -3507,7 +3093,6 @@ onclick="openEditStudent('${escapeAttr(s.id)}')"
 >
 Edit
 </button>
-
 
 <button
 type="button"
@@ -3541,14 +3126,11 @@ document.getElementById(
 'studentSelect'
 );
 
-
 const students=getStudents();
-
 
 const current=
 selectedId ||
 select.value;
-
 
 select.innerHTML=
 '<option value="">-- Select a student --</option>'+
@@ -3557,7 +3139,6 @@ s=>
 `<option value="${escapeAttr(s.id)}">${escapeHtml(s.name)} — ${escapeHtml(s.id)}</option>`
 )
 .join('');
-
 
 if(
 current &&
@@ -3580,40 +3161,35 @@ select.value=current;
 function selectStudent(){
 
 const id=
-document
-.getElementById('studentSelect')
-.value;
-
+document.getElementById(
+'studentSelect'
+).value;
 
 const student=
 getStudents().find(
 s=>s.id===id
 );
 
-
-document
-.getElementById('studentName')
-.value=
+document.getElementById(
+'studentName'
+).value=
 student
 ?student.name
 :'';
 
-
-document
-.getElementById('parentEmail')
-.value=
+document.getElementById(
+'parentEmail'
+).value=
 student
 ?student.email
 :'';
 
-
-document
-.getElementById('studentId')
-.value=
+document.getElementById(
+'studentId'
+).value=
 student
 ?student.id
 :'';
-
 
 commentVersion=0;
 
@@ -3678,15 +3254,13 @@ minute:'2-digit'
    STAR RATINGS
 ========================================================= */
 
-document
-.querySelectorAll('.stars')
-.forEach(el=>{
+document.querySelectorAll(
+'.stars'
+).forEach(el=>{
 
-const field=
-el.dataset.field;
+const field=el.dataset.field;
 
 stars[field]=5;
-
 
 for(
 let i=1;
@@ -3694,8 +3268,7 @@ i<=5;
 i++
 ){
 
-const b=
-document.createElement(
+const b=document.createElement(
 'button'
 );
 
@@ -3712,7 +3285,6 @@ el.appendChild(b);
 
 }
 
-
 setStars(field,5);
 
 });
@@ -3722,12 +3294,9 @@ function setStars(field,n){
 
 stars[field]=n;
 
-
-const el=
-document.querySelector(
+const el=document.querySelector(
 `[data-field="${field}"]`
 );
-
 
 [
 ...el.querySelectorAll('button')
@@ -3739,11 +3308,10 @@ i<n
 :'0.28'
 );
 
-
 if(
-document
-.getElementById('studentName')
-.value
+document.getElementById(
+'studentName'
+).value
 ){
 
 generateComment();
@@ -3761,13 +3329,11 @@ function getRating(score){
 
 score=Number(score);
 
-
 if(!score && score!==0)
 return [
 'Excellent',
 '95–100'
 ];
-
 
 if(score>=95)
 return [
@@ -3775,13 +3341,11 @@ return [
 '95–100'
 ];
 
-
 if(score>=90)
 return [
 'Very Good',
 '90–94'
 ];
-
 
 if(score>=80)
 return [
@@ -3789,13 +3353,11 @@ return [
 '80–89'
 ];
 
-
 if(score>=70)
 return [
 'Needs Practice',
 '70–79'
 ];
-
 
 return [
 'Needs Improvement',
@@ -3812,51 +3374,38 @@ return [
 function buildComment(variant){
 
 const name=
-document
-.getElementById('studentName')
-.value
-.trim() ||
+document.getElementById(
+'studentName'
+).value.trim() ||
 'The student';
 
-
 const vocab=
-document
-.getElementById('vocabulary')
-.value
-.trim();
-
+document.getElementById(
+'vocabulary'
+).value.trim();
 
 const improvement=
-document
-.getElementById('improvement')
-.value
-.trim();
-
+document.getElementById(
+'improvement'
+).value.trim();
 
 const score=
-document
-.getElementById('score')
-.value;
-
+document.getElementById(
+'score'
+).value;
 
 const speaking=
 stars.speaking||5;
 
-
 const pronunciation=
 stars.pronunciation||5;
-
 
 const understanding=
 stars.understanding||5;
 
-
-const [rating]=
-getRating(score);
-
+const [rating]=getRating(score);
 
 let parts=[];
-
 
 const vocabStart=[
 
@@ -3870,7 +3419,6 @@ const vocabStart=[
 
 ];
 
-
 const vocabEmpty=[
 
 `${name} participated in today's lesson and practiced the target language.`,
@@ -3882,7 +3430,6 @@ const vocabEmpty=[
 `${name} participated in the lesson and practiced the target English skills.`
 
 ];
-
 
 const imp=[
 
@@ -3896,7 +3443,6 @@ const imp=[
 
 ];
 
-
 const impEmpty=[
 
 `${name} is encouraged to continue reviewing today's lesson and practicing the target language at home.`,
@@ -3908,7 +3454,6 @@ const impEmpty=[
 `Continuing to review and practice today's lesson will support further progress.`
 
 ];
-
 
 const scoreText=[
 
@@ -3922,7 +3467,6 @@ const scoreText=[
 
 ];
 
-
 const comm=[
 
 `${name} showed good communication and pronunciation during class.`,
@@ -3934,7 +3478,6 @@ const comm=[
 `${name} demonstrated good speaking and pronunciation during the class.`
 
 ];
-
 
 const commLow=[
 
@@ -3948,7 +3491,6 @@ const commLow=[
 
 ];
 
-
 const understand=[
 
 `The lesson was understood well.`,
@@ -3960,7 +3502,6 @@ const understand=[
 `${name} followed and understood the lesson well.`
 
 ];
-
 
 const understandLow=[
 
@@ -3974,22 +3515,18 @@ const understandLow=[
 
 ];
 
-
 parts.push(
 (vocab?vocabStart:vocabEmpty)[variant]
 );
-
 
 parts.push(
 (improvement?imp:impEmpty)[variant]
 );
 
-
 if(score)
 parts.push(
 scoreText[variant]
 );
-
 
 parts.push(
 (
@@ -4000,7 +3537,6 @@ pronunciation>=4
 )[variant]
 );
 
-
 parts.push(
 (
 understanding>=4
@@ -4008,7 +3544,6 @@ understanding>=4
 :understandLow
 )[variant]
 );
-
 
 return parts.join(' ');
 
@@ -4019,16 +3554,13 @@ function generateComment(){
 
 commentVersion=0;
 
-
 const box=
 document.getElementById(
 'commentPreview'
 );
 
-
 box.textContent=
 buildComment(0);
-
 
 return box.textContent;
 
@@ -4040,18 +3572,15 @@ function updateComment(){
 commentVersion=
 (commentVersion+1)%4;
 
-
 const box=
 document.getElementById(
 'commentPreview'
 );
 
-
 box.textContent=
 buildComment(
 commentVersion
 );
-
 
 return box.textContent;
 
@@ -4062,34 +3591,31 @@ return box.textContent;
    LIVE SCORE / COMMENT
 ========================================================= */
 
-document
-.getElementById('score')
-.addEventListener(
+document.getElementById(
+'score'
+).addEventListener(
 'input',
 ()=>{
 
 const [rating,range]=
 getRating(
-document
-.getElementById('score')
-.value
+document.getElementById(
+'score'
+).value
 );
 
+document.getElementById(
+'ratingText'
+).textContent=rating;
 
-document
-.getElementById('ratingText')
-.textContent=rating;
-
-
-document
-.getElementById('scoreRange')
-.textContent=range;
-
+document.getElementById(
+'scoreRange'
+).textContent=range;
 
 if(
-document
-.getElementById('studentName')
-.value
+document.getElementById(
+'studentName'
+).value
 ){
 
 generateComment();
@@ -4099,22 +3625,20 @@ generateComment();
 }
 );
 
-
 [
 'vocabulary',
 'improvement'
 ].forEach(
 id=>
-document
-.getElementById(id)
+document.getElementById(id)
 .addEventListener(
 'input',
 ()=>{
 
 if(
-document
-.getElementById('studentName')
-.value
+document.getElementById(
+'studentName'
+).value
 ){
 
 generateComment();
@@ -4137,9 +3661,7 @@ document.getElementById(
 'status'
 );
 
-
 s.textContent=msg;
-
 
 s.className=
 'status show '+
@@ -4155,30 +3677,24 @@ s.className=
 function sendEvaluation(){
 
 const name=
-document
-.getElementById('studentName')
-.value
-.trim();
-
+document.getElementById(
+'studentName'
+).value.trim();
 
 const email=
-document
-.getElementById('parentEmail')
-.value
-.trim();
-
+document.getElementById(
+'parentEmail'
+).value.trim();
 
 const scoreValue=
-document
-.getElementById('score')
-.value;
-
+document.getElementById(
+'score'
+).value;
 
 const submitBtn=
 document.getElementById(
 'submitBtn'
 );
-
 
 if(!name)
 return showStatus(
@@ -4186,45 +3702,38 @@ return showStatus(
 false
 );
 
-
 if(!email)
 return showStatus(
 "Please select a student with a parent's email.",
 false
 );
 
-
 if(
-!document
-.getElementById('date')
-.value
+!document.getElementById(
+'date'
+).value
 )
 return showStatus(
 'Please select the class date.',
 false
 );
 
-
 if(
-!document
-.getElementById('time')
-.value
+!document.getElementById(
+'time'
+).value
 )
 return showStatus(
 'Please select the class time.',
 false
 );
 
-
 generateComment();
-
 
 const [rating]=
 getRating(scoreValue);
 
-
-const starText=
-n=>
+const starText=n=>
 '★'.repeat(
 Number(n)||0
 )+
@@ -4235,18 +3744,15 @@ Math.max(
 )
 );
 
-
 const dateValue=
-document
-.getElementById('date')
-.value;
-
+document.getElementById(
+'date'
+).value;
 
 const timeValue=
-document
-.getElementById('time')
-.value;
-
+document.getElementById(
+'time'
+).value;
 
 const templateParams={
 
@@ -4255,9 +3761,9 @@ parent_email:email,
 student_name:name,
 
 student_id:
-document
-.getElementById('studentId')
-.value,
+document.getElementById(
+'studentId'
+).value,
 
 score:
 scoreValue
@@ -4270,38 +3776,33 @@ date:
 `${dateValue} ${timeValue}`,
 
 duration:
-document
-.getElementById('duration')
-.value
-.trim() ||
+document.getElementById(
+'duration'
+).value.trim() ||
 'N/A',
 
 lesson_topic:
-document
-.getElementById('lessonTopic')
-.value
-.trim() ||
+document.getElementById(
+'lessonTopic'
+).value.trim() ||
 'N/A',
 
 teacher:
-document
-.getElementById('teacher')
-.value
-.trim() ||
+document.getElementById(
+'teacher'
+).value.trim() ||
 'Teacher Danyeal',
 
 vocabulary:
-document
-.getElementById('vocabulary')
-.value
-.trim() ||
+document.getElementById(
+'vocabulary'
+).value.trim() ||
 'No vocabulary/lesson notes provided.',
 
 improvement:
-document
-.getElementById('improvement')
-.value
-.trim() ||
+document.getElementById(
+'improvement'
+).value.trim() ||
 'No specific improvement areas noted.',
 
 participation:
@@ -4335,13 +3836,11 @@ stars.listening
 ),
 
 teacher_comment:
-document
-.getElementById('commentPreview')
-.textContent
-.trim()
+document.getElementById(
+'commentPreview'
+).textContent.trim()
 
 };
-
 
 const record={
 
@@ -4355,7 +3854,6 @@ new Date().toISOString()
 
 };
 
-
 if(!window.emailjs){
 
 return showStatus(
@@ -4365,7 +3863,6 @@ false
 
 }
 
-
 emailjs.init({
 
 publicKey:
@@ -4373,19 +3870,15 @@ EMAILJS_PUBLIC_KEY
 
 });
 
-
 submitBtn.disabled=true;
-
 
 submitBtn.textContent=
 'Sending Memo...';
-
 
 showStatus(
 'Sending the class memo to the parent...',
 true
 );
-
 
 emailjs
 .send(
@@ -4399,18 +3892,14 @@ templateParams
 const evals=
 getEvaluations();
 
-
 evals.push(record);
 
-
 saveEvaluations(evals);
-
 
 showStatus(
 `Class Memo sent successfully to ${email}. Evaluation saved to Record of Evaluation.`,
 true
 );
-
 
 renderDashboard();
 
@@ -4422,7 +3911,6 @@ console.error(
 'EmailJS error:',
 error
 );
-
 
 showStatus(
 'The memo could not be sent. The evaluation was not saved yet.',
@@ -4449,10 +3937,9 @@ submitBtn.textContent=
 
 function resetForm(){
 
-document
-.getElementById('studentSelect')
-.value='';
-
+document.getElementById(
+'studentSelect'
+).value='';
 
 [
 'studentName',
@@ -4466,47 +3953,35 @@ document
 'improvement'
 ].forEach(
 id=>
-document
-.getElementById(id)
-.value=''
+document.getElementById(id).value=''
 );
 
+document.getElementById(
+'duration'
+).value='25 minutes';
 
-document
-.getElementById('duration')
-.value='25 minutes';
+document.getElementById(
+'teacher'
+).value='Teacher Danyeal';
 
+document.getElementById(
+'ratingText'
+).textContent='Excellent';
 
-document
-.getElementById('teacher')
-.value='Teacher Danyeal';
+document.getElementById(
+'scoreRange'
+).textContent='95–100';
 
-
-document
-.getElementById('ratingText')
-.textContent='Excellent';
-
-
-document
-.getElementById('scoreRange')
-.textContent='95–100';
-
-
-Object
-.keys(stars)
-.forEach(
+Object.keys(stars).forEach(
 k=>setStars(k,5)
 );
 
-
 commentVersion=0;
 
-
-document
-.getElementById('commentPreview')
-.textContent=
+document.getElementById(
+'commentPreview'
+).textContent=
 "Select a student and fill in the lesson details. The teacher's comment will be generated automatically.";
-
 
 showStatus(
 'Form cleared.',
@@ -4527,18 +4002,15 @@ getEvaluations()
 .slice()
 .reverse();
 
-
 const body=
 document.getElementById(
 'recordTableBody'
 );
 
-
 const empty=
 document.getElementById(
 'recordEmpty'
 );
-
 
 if(!evals.length){
 
@@ -4550,9 +4022,7 @@ return;
 
 }
 
-
 empty.style.display='none';
-
 
 body.innerHTML=
 evals.map(
@@ -4619,12 +4089,12 @@ e.parent_email
 
 
 /* =========================================================
-   DELETE ENTER KEY / ESCAPE
+   DELETE ENTER / ESCAPE
 ========================================================= */
 
-document
-.getElementById('deleteConfirmId')
-.addEventListener(
+document.getElementById(
+'deleteConfirmId'
+).addEventListener(
 'keydown',
 function(e){
 
@@ -4633,7 +4103,6 @@ confirmDeleteStudent();
 
 }
 );
-
 
 document.addEventListener(
 'keydown',
@@ -4657,9 +4126,9 @@ closeStudentMenus();
    ADD STUDENT BUTTON
 ========================================================= */
 
-document
-.getElementById('addStudentBtn')
-.addEventListener(
+document.getElementById(
+'addStudentBtn'
+).addEventListener(
 'click',
 function(){
 
@@ -4673,7 +4142,6 @@ console.error(
 'Add Student error:',
 error
 );
-
 
 showStudentStatus(
 'Unable to add the student. Please try again.',
