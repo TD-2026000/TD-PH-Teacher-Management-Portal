@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>TD-PH Teacher Management Portal</title>
 
 <style>
@@ -37,10 +36,90 @@ body{
   font-weight:700;
 }
 
+.userbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:8px 15px;
+  background:#f7ffff;
+  border-bottom:1px solid #ddd;
+  font-size:13px;
+}
+
+.userbar-actions{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-left:auto;
+  position:relative;
+}
+
+.logout-btn{
+  border:0;
+  border-radius:7px;
+  padding:7px 12px;
+  background:#ddd;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.logout-btn:hover{background:#ccc}
+
+.account-dots-btn{
+  width:36px;
+  height:34px;
+  border:0;
+  border-radius:7px;
+  background:transparent;
+  cursor:pointer;
+  font-size:23px;
+  line-height:1;
+  font-weight:700;
+  padding:0;
+}
+
+.account-dots-btn:hover{background:#eee}
+
+.account-menu{
+  position:absolute;
+  right:0;
+  top:42px;
+  min-width:170px;
+  background:#fff;
+  border:1px solid #ccc;
+  border-radius:8px;
+  box-shadow:0 6px 20px rgba(0,0,0,.18);
+  padding:5px;
+  z-index:80;
+  display:none;
+}
+
+.account-menu.show{display:block}
+
+.account-menu button{
+  width:100%;
+  border:0;
+  background:#fff;
+  text-align:left;
+  padding:10px 12px;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:14px;
+  font-weight:700;
+  color:#b00020;
+}
+
+.account-menu button:hover{background:#ffecec}
+
+/* =========================================================
+   MAIN NAVIGATION
+========================================================= */
+
 .nav{
   display:flex;
   gap:8px;
-  padding:12px 15px;
+  padding:10px 15px;
   background:#fff;
   border-bottom:1px solid #ddd;
   flex-wrap:wrap;
@@ -49,25 +128,124 @@ body{
 .nav button{
   border:0;
   border-radius:8px;
-  padding:10px 18px;
+  padding:8px 14px;
   font-weight:700;
   cursor:pointer;
   background:#eee;
-  font-size:14px;
+  font-size:13px;
 }
 
 .nav button.active{
   background:#00d9d9;
 }
 
+/* =========================================================
+   PAGES
+========================================================= */
+
 .page{
   display:none;
   padding:18px;
 }
 
-.page.active{
-  display:block;
+.page.active{display:block}
+
+/* =========================================================
+   3D DASHBOARD
+========================================================= */
+
+.dashboard-home{
+  padding:12px 0 5px;
 }
+
+.dashboard-welcome{
+  text-align:center;
+  margin:5px 0 25px;
+}
+
+.dashboard-welcome h2{
+  margin:0 0 8px;
+  font-size:28px;
+}
+
+.dashboard-welcome p{
+  margin:0;
+  color:#666;
+  font-size:14px;
+}
+
+.module-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+  max-width:900px;
+  margin:0 auto;
+}
+
+.module-card{
+  position:relative;
+  min-height:170px;
+  border:0;
+  border-radius:18px;
+  background:linear-gradient(145deg,#ffffff,#e8eeee);
+  box-shadow:
+    0 10px 0 #bfcaca,
+    0 16px 25px rgba(0,0,0,.15);
+  cursor:pointer;
+  padding:25px 15px;
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.module-card:hover{
+  transform:translateY(-7px);
+  box-shadow:
+    0 16px 0 #bfcaca,
+    0 23px 32px rgba(0,0,0,.18);
+}
+
+.module-card:active{
+  transform:translateY(4px);
+  box-shadow:
+    0 5px 0 #bfcaca,
+    0 9px 15px rgba(0,0,0,.15);
+}
+
+.module-icon{
+  width:68px;
+  height:68px;
+  border-radius:18px;
+  background:#00e5e5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:34px;
+  margin-bottom:14px;
+  box-shadow:
+    inset 0 -5px 0 rgba(0,0,0,.12),
+    0 5px 12px rgba(0,0,0,.12);
+}
+
+.module-card h3{
+  margin:0;
+  font-size:18px;
+}
+
+.module-card p{
+  margin:6px 0 0;
+  color:#666;
+  font-size:12px;
+}
+
+/* =========================================================
+   GENERAL
+========================================================= */
 
 .grid{
   display:grid;
@@ -90,9 +268,7 @@ input,textarea,select{
   background:#fff;
 }
 
-input[readonly]{
-  background:#f4f4f4;
-}
+input[readonly]{background:#f4f4f4}
 
 textarea{
   min-height:105px;
@@ -113,9 +289,7 @@ textarea{
   font-weight:700;
 }
 
-.section-body{
-  padding:12px;
-}
+.section-body{padding:12px}
 
 .score-box{
   display:grid;
@@ -195,13 +369,8 @@ button.secondary,
   cursor:pointer;
 }
 
-.primary{
-  background:#00d9d9;
-}
-
-.secondary{
-  background:#ddd;
-}
+.primary{background:#00d9d9}
+.secondary{background:#ddd}
 
 .status{
   margin-top:12px;
@@ -210,17 +379,9 @@ button.secondary,
   display:none;
 }
 
-.status.show{
-  display:block;
-}
-
-.status.ok{
-  background:#dff6df;
-}
-
-.status.error{
-  background:#ffe1e1;
-}
+.status.show{display:block}
+.status.ok{background:#dff6df}
+.status.error{background:#ffe1e1}
 
 .small{
   font-size:12px;
@@ -261,9 +422,7 @@ button.secondary,
   font-weight:700;
 }
 
-.panel-body{
-  padding:14px;
-}
+.panel-body{padding:14px}
 
 .add-student-grid{
   display:grid;
@@ -272,9 +431,7 @@ button.secondary,
   align-items:end;
 }
 
-.table-wrap{
-  overflow-x:auto;
-}
+.table-wrap{overflow-x:auto}
 
 .record-table{
   width:100%;
@@ -289,9 +446,7 @@ button.secondary,
   text-align:left;
 }
 
-.record-table th{
-  background:#f1f1f1;
-}
+.record-table th{background:#f1f1f1}
 
 .empty{
   padding:18px;
@@ -315,9 +470,7 @@ button.secondary,
   gap:10px;
 }
 
-.student-info b{
-  display:block;
-}
+.student-info b{display:block}
 
 .student-info span{
   font-size:12px;
@@ -342,9 +495,7 @@ button.secondary,
   padding:0;
 }
 
-.dots-btn:hover{
-  background:#eee;
-}
+.dots-btn:hover{background:#eee}
 
 .student-menu{
   position:absolute;
@@ -361,9 +512,7 @@ button.secondary,
   display:none;
 }
 
-.student-menu.show{
-  display:block;
-}
+.student-menu.show{display:block}
 
 .student-menu button{
   display:block;
@@ -378,13 +527,46 @@ button.secondary,
   font-weight:600;
 }
 
-.student-menu button:hover{
-  background:#f1f1f1;
+.student-menu button:hover{background:#f1f1f1}
+
+.student-menu .delete-option{color:#b00020}
+
+/* =========================================================
+   MODULE PLACEHOLDER PAGES
+========================================================= */
+
+.module-page{
+  text-align:center;
+  padding:35px 15px;
 }
 
-.student-menu .delete-option{
-  color:#b00020;
+.module-page-icon{
+  width:85px;
+  height:85px;
+  margin:0 auto 15px;
+  border-radius:22px;
+  background:#00e5e5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:42px;
+  box-shadow:
+    inset 0 -6px 0 rgba(0,0,0,.12),
+    0 8px 18px rgba(0,0,0,.15);
 }
+
+.module-page h2{margin:5px 0 8px}
+
+.module-page p{
+  color:#666;
+  max-width:600px;
+  margin:0 auto 20px;
+  line-height:1.5;
+}
+
+/* =========================================================
+   MODALS
+========================================================= */
 
 .modal-backdrop{
   position:fixed;
@@ -397,9 +579,7 @@ button.secondary,
   z-index:100;
 }
 
-.modal-backdrop.show{
-  display:flex;
-}
+.modal-backdrop.show{display:flex}
 
 .modal{
   width:100%;
@@ -410,9 +590,7 @@ button.secondary,
   padding:20px;
 }
 
-.modal h3{
-  margin:0 0 8px;
-}
+.modal h3{margin:0 0 8px}
 
 .modal p{
   margin:8px 0 14px;
@@ -435,18 +613,9 @@ button.secondary,
   cursor:pointer;
 }
 
-.modal-cancel{
-  background:#ddd;
-}
-
-.modal-save{
-  background:#00d9d9;
-}
-
-.modal-delete{
-  background:#d9534f;
-  color:#fff;
-}
+.modal-cancel{background:#ddd}
+.modal-save{background:#00d9d9}
+.modal-delete{background:#d9534f;color:#fff}
 
 .modal-error{
   display:none;
@@ -458,101 +627,7 @@ button.secondary,
   font-size:13px;
 }
 
-.modal-error.show{
-  display:block;
-}
-
-/* =========================================================
-   USER BAR / TOP RIGHT MENU
-========================================================= */
-
-.userbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  padding:8px 15px;
-  background:#f7ffff;
-  border-bottom:1px solid #ddd;
-  font-size:13px;
-}
-
-.userbar-actions{
-  display:flex;
-  align-items:center;
-  gap:6px;
-  margin-left:auto;
-  position:relative;
-}
-
-.logout-btn{
-  border:0;
-  border-radius:7px;
-  padding:7px 12px;
-  background:#ddd;
-  font-weight:700;
-  cursor:pointer;
-}
-
-.logout-btn:hover{
-  background:#ccc;
-}
-
-.account-dots-btn{
-  width:36px;
-  height:34px;
-  border:0;
-  border-radius:7px;
-  background:transparent;
-  cursor:pointer;
-  font-size:23px;
-  line-height:1;
-  font-weight:700;
-  padding:0;
-}
-
-.account-dots-btn:hover{
-  background:#eee;
-}
-
-.account-menu{
-  position:absolute;
-  right:0;
-  top:42px;
-  min-width:170px;
-  background:#fff;
-  border:1px solid #ccc;
-  border-radius:8px;
-  box-shadow:0 6px 20px rgba(0,0,0,.18);
-  padding:5px;
-  z-index:80;
-  display:none;
-}
-
-.account-menu.show{
-  display:block;
-}
-
-.account-menu button{
-  width:100%;
-  border:0;
-  background:#fff;
-  text-align:left;
-  padding:10px 12px;
-  border-radius:6px;
-  cursor:pointer;
-  font-size:14px;
-  font-weight:700;
-  color:#b00020;
-}
-
-.account-menu button:hover{
-  background:#ffecec;
-}
-
-/* =========================================================
-   CLEAR ALL RECORDS CAPTCHA
-========================================================= */
+.modal-error.show{display:block}
 
 .captcha-box{
   margin-top:15px;
@@ -588,9 +663,7 @@ button.secondary,
   cursor:pointer;
 }
 
-.captcha-refresh:hover{
-  text-decoration:underline;
-}
+.captcha-refresh:hover{text-decoration:underline}
 
 .captcha-input{
   text-align:center;
@@ -599,11 +672,9 @@ button.secondary,
   letter-spacing:4px;
 }
 
-.hidden{
-  display:none!important;
-}
-
-/* AUTH */
+/* =========================================================
+   AUTH
+========================================================= */
 
 .auth-screen{
   min-height:100vh;
@@ -645,32 +716,12 @@ button.secondary,
   box-shadow:0 3px 10px rgba(0,0,0,.14);
 }
 
-.auth-header h1{
-  margin:0;
-  font-size:21px;
-}
-
-.auth-header p{
-  margin:5px 0 0;
-  font-size:14px;
-  font-weight:600;
-}
-
-.auth-body{
-  padding:22px;
-}
-
-.auth-body h2{
-  margin:0 0 15px;
-}
-
-.auth-body label{
-  margin-top:10px;
-}
-
-.auth-body input{
-  margin-bottom:2px;
-}
+.auth-header h1{margin:0;font-size:21px}
+.auth-header p{margin:5px 0 0;font-size:14px;font-weight:600}
+.auth-body{padding:22px}
+.auth-body h2{margin:0 0 15px}
+.auth-body label{margin-top:10px}
+.auth-body input{margin-bottom:2px}
 
 .auth-btn{
   width:100%;
@@ -700,29 +751,19 @@ button.secondary,
   line-height:1.4;
 }
 
-.auth-message.show{
-  display:block;
-}
-
-.auth-message.ok{
-  background:#dff6df;
-}
-
+.auth-message.show{display:block}
+.auth-message.ok{background:#dff6df}
 .auth-message.error{
   background:#ffe1e1;
   color:#8a0000;
 }
-
-/* PASSWORD */
 
 .password-wrap{
   position:relative;
   width:100%;
 }
 
-.password-wrap input{
-  padding-right:50px;
-}
+.password-wrap input{padding-right:50px}
 
 .password-toggle{
   position:absolute;
@@ -737,9 +778,7 @@ button.secondary,
   border-radius:6px;
 }
 
-.password-toggle:hover{
-  background:#eee;
-}
+.password-toggle:hover{background:#eee}
 
 .forgot-password-wrap{
   text-align:right;
@@ -756,9 +795,13 @@ button.secondary,
   padding:0;
 }
 
-.forgot-password-btn:hover{
-  text-decoration:underline;
-}
+.forgot-password-btn:hover{text-decoration:underline}
+
+.hidden{display:none!important}
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media(max-width:800px){
 
@@ -767,6 +810,15 @@ button.secondary,
   .performance,
   .dashboard-grid{
     grid-template-columns:1fr;
+  }
+
+  .module-grid{
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+
+  .module-card{
+    min-height:150px;
   }
 
   .perf-item:nth-child(odd){
@@ -779,7 +831,7 @@ button.secondary,
 
   .nav button{
     flex:1;
-    min-width:120px;
+    min-width:110px;
   }
 
   .student-row{
@@ -794,11 +846,31 @@ button.secondary,
   .userbar-actions{
     margin-left:auto;
   }
+}
 
-  .account-menu{
-    right:0;
+@media(max-width:500px){
+
+  .app{
+    margin:0;
+    padding:0;
   }
 
+  .card{
+    border-radius:0;
+  }
+
+  .module-grid{
+    grid-template-columns:1fr;
+    gap:18px;
+  }
+
+  .module-card{
+    min-height:145px;
+  }
+
+  .dashboard-welcome h2{
+    font-size:23px;
+  }
 }
 
 @media print{
@@ -844,23 +916,15 @@ button.secondary,
 
 <div class="auth-header">
 
-<div class="brand-logo">
-TD
-</div>
+<div class="brand-logo">TD</div>
 
-<h1>
-TD-PH
-</h1>
+<h1>TD-PH</h1>
 
-<p>
-Teacher Management Portal
-</p>
+<p>Teacher Management Portal</p>
 
 </div>
 
 <div class="auth-body">
-
-<!-- LOGIN -->
 
 <div id="loginPanel">
 
@@ -929,8 +993,6 @@ Create Account
 </div>
 
 </div>
-
-<!-- SIGNUP -->
 
 <div id="signupPanel" class="hidden">
 
@@ -1016,32 +1078,23 @@ Login
 
 </div>
 
-<!-- VERIFY -->
-
 <div id="verifyPanel" class="hidden">
 
 <h2>Verify Your Email</h2>
 
 <p style="font-size:14px;line-height:1.5;margin-top:0">
-
 We sent a confirmation link to
-
 <b id="verifyEmailText">your email</b>.
-
 </p>
 
 <p style="font-size:14px;line-height:1.5;margin-top:12px">
-
 Please open the email and click
 <b>Confirm email address</b>
 to verify your account.
-
 </p>
 
 <p style="font-size:13px;line-height:1.5;margin-top:12px">
-
 After confirming your email, return to this website and log in using your email and password.
-
 </p>
 
 <button
@@ -1065,16 +1118,12 @@ Back to Login
 
 </div>
 
-<!-- FORGOT PASSWORD -->
-
 <div id="forgotPanel" class="hidden">
 
 <h2>Forgot Password?</h2>
 
 <p style="font-size:14px;line-height:1.5;margin-top:0">
-
 Enter your account email and we will send you a password reset link.
-
 </p>
 
 <label>Email</label>
@@ -1107,16 +1156,12 @@ Back to Login
 
 </div>
 
-<!-- RESET PASSWORD -->
-
 <div id="resetPanel" class="hidden">
 
 <h2>Set New Password</h2>
 
 <p style="font-size:14px;line-height:1.5;margin-top:0">
-
 Enter your new password below.
-
 </p>
 
 <label>New Password</label>
@@ -1187,9 +1232,7 @@ Update Password
 
 <div class="topbar">
 
-<span style="font-weight:800;letter-spacing:.5px">
-TD
-</span>
+<span style="font-weight:800;letter-spacing:.5px">TD</span>
 
 &nbsp; TD-PH Teacher Management Portal
 
@@ -1242,6 +1285,8 @@ Clear All Records
 
 </div>
 
+<!-- SIMPLE NAVIGATION -->
+
 <div class="nav">
 
 <button
@@ -1268,12 +1313,126 @@ Record of Evaluation
 
 </div>
 
-<!-- DASHBOARD -->
+<!-- =========================================================
+     MAIN DASHBOARD
+========================================================= -->
 
 <div id="dashboardPage" class="page active">
 
+<div class="dashboard-home">
+
+<div class="dashboard-welcome">
+
+<h2>
+Welcome, <span id="dashboardTeacherName">Teacher</span> 👋
+</h2>
+
+<p>
+Manage your students, classes, evaluations, bookings and payments in one place.
+</p>
+
+</div>
+
+<div class="module-grid">
+
+<button
+type="button"
+class="module-card"
+onclick="showPage('student')"
+>
+
+<div class="module-icon">👨‍🎓</div>
+
+<h3>STUDENT</h3>
+
+<p>Student information and records</p>
+
+</button>
+
+<button
+type="button"
+class="module-card"
+onclick="showPage('contract')"
+>
+
+<div class="module-icon">📄</div>
+
+<h3>STUDENT CONTRACT</h3>
+
+<p>Manage student contracts</p>
+
+</button>
+
+<button
+type="button"
+class="module-card"
+onclick="showPage('evaluation')"
+>
+
+<div class="module-icon">⭐</div>
+
+<h3>EVALUATION</h3>
+
+<p>Evaluate and email parents</p>
+
+</button>
+
+<button
+type="button"
+class="module-card"
+onclick="showPage('schedule')"
+>
+
+<div class="module-icon">📅</div>
+
+<h3>CLASS SCHEDULE</h3>
+
+<p>Manage class schedules</p>
+
+</button>
+
+<button
+type="button"
+class="module-card"
+onclick="showPage('bookings')"
+>
+
+<div class="module-icon">🗓️</div>
+
+<h3>CALENDAR BOOKINGS</h3>
+
+<p>Manage class bookings</p>
+
+</button>
+
+<button
+type="button"
+class="module-card"
+onclick="showPage('payment')"
+>
+
+<div class="module-icon">💳</div>
+
+<h3>PAYMENT</h3>
+
+<p>Manage student payments</p>
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =========================================================
+     STUDENT PAGE
+========================================================= -->
+
+<div id="studentPage" class="page">
+
 <h2 style="margin-top:0">
-Dashboard
+👨‍🎓 Student
 </h2>
 
 <div class="dashboard-grid">
@@ -1366,7 +1525,37 @@ style="margin-top:15px"
 
 </div>
 
-<!-- EVALUATION -->
+<!-- =========================================================
+     STUDENT CONTRACT
+========================================================= -->
+
+<div id="contractPage" class="page">
+
+<div class="module-page">
+
+<div class="module-page-icon">📄</div>
+
+<h2>Student Contract</h2>
+
+<p>
+Student Contract management will be available here. This section is prepared for student agreements, package details, contract dates, and contract records.
+</p>
+
+<button
+type="button"
+class="secondary"
+onclick="showPage('dashboard')"
+>
+← Back to Dashboard
+</button>
+
+</div>
+
+</div>
+
+<!-- =========================================================
+     EVALUATION
+========================================================= -->
 
 <div id="evaluationPage" class="page">
 
@@ -1727,7 +1916,93 @@ EmailJS is connected. After you submit, the class memo will be emailed automatic
 
 </div>
 
-<!-- RECORDS -->
+<!-- =========================================================
+     CLASS SCHEDULE
+========================================================= -->
+
+<div id="schedulePage" class="page">
+
+<div class="module-page">
+
+<div class="module-page-icon">📅</div>
+
+<h2>Class Schedule</h2>
+
+<p>
+Your class schedule management section. This will be used for student schedules, class times, recurring classes, and upcoming lessons.
+</p>
+
+<button
+type="button"
+class="secondary"
+onclick="showPage('dashboard')"
+>
+← Back to Dashboard
+</button>
+
+</div>
+
+</div>
+
+<!-- =========================================================
+     CALENDAR BOOKINGS
+========================================================= -->
+
+<div id="bookingsPage" class="page">
+
+<div class="module-page">
+
+<div class="module-page-icon">🗓️</div>
+
+<h2>Calendar Bookings</h2>
+
+<p>
+Manage available slots, student bookings, reserved schedules, and booking status from this section.
+</p>
+
+<button
+type="button"
+class="secondary"
+onclick="showPage('dashboard')"
+>
+← Back to Dashboard
+</button>
+
+</div>
+
+</div>
+
+<!-- =========================================================
+     PAYMENT
+========================================================= -->
+
+<div id="paymentPage" class="page">
+
+<div class="module-page">
+
+<div class="module-page-icon">💳</div>
+
+<h2>Payment</h2>
+
+<p>
+Manage student packages, payment records, paid and unpaid balances, payment dates, and payment status from this section.
+</p>
+
+<button
+type="button"
+class="secondary"
+onclick="showPage('dashboard')"
+>
+← Back to Dashboard
+</button>
+
+</div>
+
+</div>
+
+<!-- =========================================================
+     RECORDS
+========================================================= -->
 
 <div id="recordsPage" class="page">
 
@@ -1750,14 +2025,12 @@ CLASS EVALUATION HISTORY
 <thead>
 
 <tr>
-
 <th>Date & Time</th>
 <th>Student</th>
 <th>Lesson / Topic</th>
 <th>Score</th>
 <th>Rating</th>
 <th>Email</th>
-
 </tr>
 
 </thead>
@@ -1798,14 +2071,9 @@ onclick="if(event.target===this) closeEditStudent()"
 
 <h3>Edit Student</h3>
 
-<p>
-Update the student's saved information.
-</p>
+<p>Update the student's saved information.</p>
 
-<input
-type="hidden"
-id="editOriginalId"
->
+<input type="hidden" id="editOriginalId">
 
 <label>Student Name</label>
 
@@ -1926,7 +2194,7 @@ Delete Student
 </div>
 
 <!-- =========================================================
-     CLEAR ALL RECORDS CAPTCHA MODAL
+     CLEAR ALL RECORDS MODAL
 ========================================================= -->
 
 <div
@@ -1937,9 +2205,7 @@ onclick="if(event.target===this) closeClearAllRecords()"
 
 <div class="modal">
 
-<h3>
-Clear All Records
-</h3>
+<h3>Clear All Records</h3>
 
 <p>
 This will permanently delete all
@@ -2045,13 +2311,9 @@ SUPABASE_PUBLISHABLE_KEY
 );
 
 let currentUser=null;
-
 let pendingVerificationEmail='';
-
 const stars={};
-
 let commentVersion=0;
-
 let clearAllCaptcha='';
 
 
@@ -2060,50 +2322,39 @@ let clearAllCaptcha='';
 ========================================================= */
 
 function userStorageKey(base){
-
 return currentUser
 ?`${base}_${currentUser.id}`
 :base;
-
 }
 
 function getStudents(){
-
 return JSON.parse(
 localStorage.getItem(
 userStorageKey(STUDENTS_BASE_KEY)
 )||'[]'
 );
-
 }
 
 function saveStudents(data){
-
 localStorage.setItem(
 userStorageKey(STUDENTS_BASE_KEY),
 JSON.stringify(data)
 );
-
 }
 
 function getEvaluations(){
-
 return JSON.parse(
 localStorage.getItem(
 userStorageKey(EVALUATIONS_BASE_KEY)
 )||'[]'
 );
-
 }
 
 function saveEvaluations(data){
-
 localStorage.setItem(
 userStorageKey(EVALUATIONS_BASE_KEY),
 JSON.stringify(data)
 );
-
-}
 
 
 /* =========================================================
@@ -2170,7 +2421,7 @@ busy
 
 
 /* =========================================================
-   SHOW / HIDE PASSWORD
+   PASSWORD
 ========================================================= */
 
 function togglePassword(inputId,button){
@@ -2236,17 +2487,12 @@ true,
 
 const {error}=
 await supabaseClient.auth.signInWithPassword({
-
 email,
-
 password
-
 });
 
 if(error){
-
 showAuthMessage(error.message);
-
 }
 
 setAuthBusy(
@@ -2310,18 +2556,14 @@ const {data,error}=
 await supabaseClient.auth.signUp({
 
 email,
-
 password,
 
 options:{
-
 data:{
 full_name:name
 },
-
 emailRedirectTo:
 SUPABASE_REDIRECT_URL
-
 }
 
 });
@@ -2374,7 +2616,7 @@ false,
 
 
 /* =========================================================
-   RESEND CONFIRMATION EMAIL
+   RESEND
 ========================================================= */
 
 async function resendVerificationEmail(){
@@ -2406,10 +2648,8 @@ type:'signup',
 email,
 
 options:{
-
 emailRedirectTo:
 SUPABASE_REDIRECT_URL
-
 }
 
 });
@@ -2462,16 +2702,11 @@ true,
 
 const {error}=
 await supabaseClient.auth.resetPasswordForEmail(
-
 email,
-
 {
-
 redirectTo:
 SUPABASE_REDIRECT_URL
-
 }
-
 );
 
 if(error){
@@ -2497,19 +2732,16 @@ false,
 
 
 /* =========================================================
-   PASSWORD RECOVERY DETECTION
+   PASSWORD RECOVERY
 ========================================================= */
 
 function isPasswordRecoveryUrl(){
 
-const hash=
-window.location.hash || '';
+const hash=window.location.hash||'';
+const search=window.location.search||'';
 
-const search=
-window.location.search || '';
-
-return (
-hash.includes('type=recovery') ||
+return(
+hash.includes('type=recovery')||
 search.includes('type=recovery')
 );
 
@@ -2518,9 +2750,7 @@ search.includes('type=recovery')
 async function checkPasswordRecovery(){
 
 if(!isPasswordRecoveryUrl()){
-
 return false;
-
 }
 
 document.getElementById(
@@ -2576,9 +2806,7 @@ true,
 
 const {error}=
 await supabaseClient.auth.updateUser({
-
 password
-
 });
 
 if(error){
@@ -2645,7 +2873,6 @@ false,
 async function logoutTeacher(){
 
 closeAccountMenu();
-
 closeClearAllRecords();
 
 await supabaseClient.auth.signOut();
@@ -2671,6 +2898,10 @@ document.getElementById(
 ).textContent=name;
 
 document.getElementById(
+'dashboardTeacherName'
+).textContent=name;
+
+document.getElementById(
 'authScreen'
 ).classList.add('hidden');
 
@@ -2678,8 +2909,9 @@ document.getElementById(
 'appShell'
 ).classList.remove('hidden');
 
-renderDashboard();
+showPage('dashboard');
 
+renderDashboard();
 populateStudentSelect();
 
 }
@@ -2694,7 +2926,6 @@ function handleSignedOut(){
 currentUser=null;
 
 closeAccountMenu();
-
 closeClearAllRecords();
 
 document.getElementById(
@@ -2720,9 +2951,7 @@ const recovery=
 await checkPasswordRecovery();
 
 if(recovery){
-
 return;
-
 }
 
 const {
@@ -2776,7 +3005,7 @@ handleSignedOut();
 
 
 /* =========================================================
-   AUTH EVENT LISTENERS
+   AUTH EVENTS
 ========================================================= */
 
 document.getElementById(
@@ -2819,10 +3048,8 @@ document.getElementById(
 ).addEventListener(
 'keydown',
 e=>{
-
 if(e.key==='Enter')
 loginTeacher();
-
 }
 );
 
@@ -2831,10 +3058,8 @@ document.getElementById(
 ).addEventListener(
 'keydown',
 e=>{
-
 if(e.key==='Enter')
 createTeacherAccount();
-
 }
 );
 
@@ -2843,10 +3068,8 @@ document.getElementById(
 ).addEventListener(
 'keydown',
 e=>{
-
 if(e.key==='Enter')
 sendPasswordReset();
-
 }
 );
 
@@ -2855,23 +3078,20 @@ document.getElementById(
 ).addEventListener(
 'keydown',
 e=>{
-
 if(e.key==='Enter')
 updatePassword();
-
 }
 );
 
 
 /* =========================================================
-   ACCOUNT 3-DOTS MENU
+   ACCOUNT MENU
 ========================================================= */
 
 function toggleAccountMenu(event){
 
-if(event){
+if(event)
 event.stopPropagation();
-}
 
 const menu=
 document.getElementById(
@@ -2889,11 +3109,8 @@ document.getElementById(
 'accountMenu'
 );
 
-if(menu){
-
+if(menu)
 menu.classList.remove('show');
-
-}
 
 }
 
@@ -2901,12 +3118,8 @@ document.addEventListener(
 'click',
 e=>{
 
-if(
-!e.target.closest('.userbar-actions')
-){
-
+if(!e.target.closest('.userbar-actions')){
 closeAccountMenu();
-
 }
 
 }
@@ -2942,7 +3155,6 @@ document.getElementById(
 );
 
 error.textContent='';
-
 error.classList.remove('show');
 
 }
@@ -2959,11 +3171,9 @@ document.getElementById(
 
 setTimeout(
 ()=>{
-
 document.getElementById(
 'clearAllCaptchaInput'
 ).focus();
-
 },
 50
 );
@@ -3039,11 +3249,6 @@ return;
 
 }
 
-/*
-   Delete only the current user's records.
-   The Supabase account itself is NOT deleted.
-*/
-
 localStorage.removeItem(
 userStorageKey(STUDENTS_BASE_KEY)
 );
@@ -3055,9 +3260,7 @@ userStorageKey(EVALUATIONS_BASE_KEY)
 closeClearAllRecords();
 
 renderDashboard();
-
 populateStudentSelect();
-
 renderRecords();
 
 showStudentStatus(
@@ -3081,29 +3284,45 @@ document.querySelectorAll('.page')
 p=>p.classList.remove('active')
 );
 
+const target=
 document.getElementById(
 page+'Page'
-).classList.add('active');
+);
+
+if(!target)return;
+
+target.classList.add('active');
 
 document.querySelectorAll('.nav button')
 .forEach(
 b=>b.classList.remove('active')
 );
 
+const navMap={
+dashboard:'navDashboard',
+evaluation:'navEvaluation',
+records:'navRecords'
+};
+
+if(navMap[page]){
+
 document.getElementById(
-'nav'+
-page.charAt(0).toUpperCase()+
-page.slice(1)
+navMap[page]
 ).classList.add('active');
 
-if(page==='dashboard')
+}
+
+if(page==='dashboard' || page==='student'){
 renderDashboard();
+}
 
-if(page==='evaluation')
+if(page==='evaluation'){
 populateStudentSelect();
+}
 
-if(page==='records')
+if(page==='records'){
 renderRecords();
+}
 
 window.scrollTo({
 top:0,
@@ -3119,7 +3338,8 @@ behavior:'smooth'
 
 function showStudentStatus(msg,ok=true){
 
-const s=document.getElementById(
+const s=
+document.getElementById(
 'studentStatus'
 );
 
@@ -3187,15 +3407,10 @@ false
 }
 
 students.push({
-
 id,
-
 name,
-
 email,
-
 createdAt:new Date().toISOString()
-
 });
 
 saveStudents(students);
@@ -3218,7 +3433,6 @@ true
 );
 
 renderDashboard();
-
 populateStudentSelect();
 
 }
@@ -3236,7 +3450,8 @@ document.querySelectorAll(
 m=>m.classList.remove('show')
 );
 
-const menu=document.getElementById(
+const menu=
+document.getElementById(
 'studentMenu-'+
 encodeURIComponent(id)
 );
@@ -3260,12 +3475,8 @@ document.addEventListener(
 'click',
 e=>{
 
-if(
-!e.target.closest('.student-actions')
-){
-
+if(!e.target.closest('.student-actions')){
 closeStudentMenus();
-
 }
 
 }
@@ -3355,7 +3566,6 @@ document.getElementById(
 const fail=msg=>{
 
 err.textContent=msg;
-
 err.classList.add('show');
 
 };
@@ -3403,15 +3613,10 @@ return fail(
 );
 
 students[index]={
-
 ...students[index],
-
 name,
-
 email,
-
 id
-
 };
 
 saveStudents(students);
@@ -3471,11 +3676,9 @@ document.getElementById(
 
 setTimeout(
 ()=>{
-
 document.getElementById(
 'deleteConfirmId'
 ).focus();
-
 },
 50
 );
@@ -3545,7 +3748,6 @@ true
 function renderDashboard(){
 
 const students=getStudents();
-
 const evals=getEvaluations();
 
 document.getElementById(
@@ -3569,6 +3771,8 @@ const list=
 document.getElementById(
 'studentList'
 );
+
+if(!list)return;
 
 if(!students.length){
 
@@ -3637,8 +3841,7 @@ Delete
 </div>
 
 `
-)
-.join('');
+).join('');
 
 }
 
@@ -3653,6 +3856,8 @@ const select=
 document.getElementById(
 'studentSelect'
 );
+
+if(!select)return;
 
 const students=getStudents();
 
@@ -3701,35 +3906,28 @@ s=>s.id===id
 document.getElementById(
 'studentName'
 ).value=
-student
-?student.name
-:'';
+student?student.name:'';
 
 document.getElementById(
 'parentEmail'
 ).value=
-student
-?student.email
-:'';
+student?student.email:'';
 
 document.getElementById(
 'studentId'
 ).value=
-student
-?student.id
-:'';
+student?student.id:'';
 
 commentVersion=0;
 
 updateOverallScore();
-
 generateComment();
 
 }
 
 
 /* =========================================================
-   SECURITY / HTML HELPERS
+   SECURITY HELPERS
 ========================================================= */
 
 function escapeHtml(str){
@@ -3737,13 +3935,11 @@ function escapeHtml(str){
 return String(str).replace(
 /[&<>'"]/g,
 c=>({
-
 '&':'&amp;',
 '<':'&lt;',
 '>':'&gt;',
 "'":'&#39;',
 '"':'&quot;'
-
 }[c])
 );
 
@@ -3790,20 +3986,14 @@ const field=el.dataset.field;
 
 stars[field]=5;
 
-for(
-let i=1;
-i<=5;
-i++
-){
+for(let i=1;i<=5;i++){
 
 const b=document.createElement(
 'button'
 );
 
 b.type='button';
-
 b.innerHTML='★';
-
 b.title=i+' star';
 
 b.onclick=()=>
@@ -3873,14 +4063,11 @@ const el=document.querySelector(
 `[data-field="${field}"]`
 );
 
-[
-...el.querySelectorAll('button')
-].forEach(
+[...el.querySelectorAll('button')]
+.forEach(
 (b,i)=>
 b.style.opacity=
-i<n
-?'1'
-:'0.28'
+i<n?'1':'0.28'
 );
 
 updateOverallScore();
@@ -3907,36 +4094,36 @@ function getRating(score){
 score=Number(score);
 
 if(!score && score!==0)
-return [
+return[
 'Excellent',
 '95–100'
 ];
 
 if(score>=95)
-return [
+return[
 'Excellent',
 '95–100'
 ];
 
 if(score>=90)
-return [
+return[
 'Very Good',
 '90–94'
 ];
 
 if(score>=80)
-return [
+return[
 'Good',
 '80–89'
 ];
 
 if(score>=70)
-return [
+return[
 'Needs Practice',
 '70–79'
 ];
 
-return [
+return[
 'Needs Improvement',
 '0–69'
 ];
@@ -4122,15 +4309,9 @@ understanding>=4
 )[variant]
 );
 
-/*
-   No closing message is added here.
-   The closing message is handled by EmailJS.
-*/
-
 return parts.join(' ');
 
 }
-
 
 function generateComment(){
 
@@ -4148,7 +4329,6 @@ return box.textContent;
 
 }
 
-
 function updateComment(){
 
 commentVersion=
@@ -4160,9 +4340,7 @@ document.getElementById(
 );
 
 box.textContent=
-buildComment(
-commentVersion
-);
+buildComment(commentVersion);
 
 return box.textContent;
 
@@ -4298,13 +4476,6 @@ return showStatus(
 false
 );
 
-
-/*
-   IMPORTANT:
-   Send exactly the comment currently
-   displayed on the screen.
-*/
-
 const currentComment=
 document.getElementById(
 'commentPreview'
@@ -4365,31 +4536,31 @@ date:
 duration:
 document.getElementById(
 'duration'
-).value.trim() ||
+).value.trim()||
 'N/A',
 
 lesson_topic:
 document.getElementById(
 'lessonTopic'
-).value.trim() ||
+).value.trim()||
 'N/A',
 
 teacher:
 document.getElementById(
 'teacher'
-).value.trim() ||
+).value.trim()||
 'Teacher Danyeal',
 
 vocabulary:
 document.getElementById(
 'vocabulary'
-).value.trim() ||
+).value.trim()||
 'No vocabulary/lesson notes provided.',
 
 improvement:
 document.getElementById(
 'improvement'
-).value.trim() ||
+).value.trim()||
 'No specific improvement areas noted.',
 
 participation:
@@ -4449,10 +4620,7 @@ false
 }
 
 emailjs.init({
-
-publicKey:
-EMAILJS_PUBLIC_KEY
-
+publicKey:EMAILJS_PUBLIC_KEY
 });
 
 submitBtn.disabled=true;
@@ -4517,7 +4685,7 @@ submitBtn.textContent=
 
 
 /* =========================================================
-   RESET EVALUATION FORM
+   RESET EVALUATION
 ========================================================= */
 
 function resetForm(){
@@ -4667,7 +4835,7 @@ e.parent_email
 
 
 /* =========================================================
-   DELETE ENTER / ESCAPE
+   ENTER / ESCAPE
 ========================================================= */
 
 document.getElementById(
@@ -4701,13 +4869,9 @@ e=>{
 if(e.key==='Escape'){
 
 closeEditStudent();
-
 closeDeleteStudent();
-
 closeStudentMenus();
-
 closeAccountMenu();
-
 closeClearAllRecords();
 
 }
@@ -4749,7 +4913,7 @@ false
 
 
 /* =========================================================
-   START APPLICATION
+   START
 ========================================================= */
 
 initAuth();
