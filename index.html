@@ -177,6 +177,23 @@ textarea{
   white-space:pre-wrap;
 }
 
+/* TEACHER SIGNATURE BELOW COMMENT */
+
+.teacher-signature{
+  margin-top:14px;
+  line-height:1.6;
+}
+
+.teacher-thank-you{
+  font-size:15px;
+}
+
+.teacher-name{
+  margin-top:4px;
+  font-weight:700;
+  font-size:16px;
+}
+
 .buttons{
   display:flex;
   gap:10px;
@@ -1329,7 +1346,7 @@ value="25 minutes"
 
 <input
 id="teacher"
-value="Teacher Danyeal"
+value=""
 >
 
 </div>
@@ -1500,6 +1517,8 @@ data-field="listening"
 </div>
 </div>
 
+<!-- TEACHER COMMENT -->
+
 <div class="section">
 
 <div
@@ -1516,6 +1535,26 @@ id="commentPreview"
 class="comment-box"
 >
 Select a student and fill in the lesson details. The teacher's comment will be generated automatically.
+</div>
+
+<!-- SEPARATE TEACHER CLOSING -->
+
+<div
+id="teacherSignature"
+class="teacher-signature"
+>
+
+<div class="teacher-thank-you">
+Thank you for supporting your child's English learning journey.
+</div>
+
+<div
+id="teacherSignatureName"
+class="teacher-name"
+>
+Teacher Danyeal
+</div>
+
 </div>
 
 </div>
@@ -2432,6 +2471,8 @@ renderDashboard();
 
 populateStudentSelect();
 
+updateTeacherSignature();
+
 }
 
 
@@ -2638,8 +2679,10 @@ page.slice(1)
 if(page==='dashboard')
 renderDashboard();
 
-if(page==='evaluation')
+if(page==='evaluation'){
 populateStudentSelect();
+updateTeacherSignature();
+}
 
 if(page==='records')
 renderRecords();
@@ -3270,6 +3313,8 @@ updateOverallScore();
 
 generateComment();
 
+updateTeacherSignature();
+
 }
 
 
@@ -3389,14 +3434,6 @@ sum+(Number(stars[field])||0),
 const average=
 total/fields.length;
 
-/*
-   5 stars = 100
-   4 stars = 80
-   3 stars = 60
-   2 stars = 40
-   1 star  = 20
-*/
-
 const score=Math.round(
 (average/5)*100
 );
@@ -3512,25 +3549,6 @@ document.getElementById(
 ).value.trim() ||
 'The student';
 
-
-/*
-   IMPORTANT:
-   The teacher name now comes directly
-   from the Teacher field.
-
-   Example:
-   Teacher Jade
-   Teacher Leo
-   Teacher Danyeal
-*/
-
-const teacher=
-document.getElementById(
-'teacher'
-).value.trim() ||
-'Teacher Danyeal';
-
-
 const vocab=
 document.getElementById(
 'vocabulary'
@@ -3559,7 +3577,6 @@ const [rating]=getRating(score);
 
 let parts=[];
 
-
 const vocabStart=[
 
 `${name} learned and practiced ${vocab} during today's lesson.`,
@@ -3571,7 +3588,6 @@ const vocabStart=[
 `${name} made progress today while learning and practicing ${vocab}.`
 
 ];
-
 
 const vocabEmpty=[
 
@@ -3585,7 +3601,6 @@ const vocabEmpty=[
 
 ];
 
-
 const imp=[
 
 `For continued progress, ${name} should continue practicing ${improvement}.`,
@@ -3597,7 +3612,6 @@ const imp=[
 `A helpful next step for ${name} is to continue working on ${improvement}.`
 
 ];
-
 
 const impEmpty=[
 
@@ -3611,7 +3625,6 @@ const impEmpty=[
 
 ];
 
-
 const scoreText=[
 
 `Overall performance: ${rating} (${score}/100).`,
@@ -3623,7 +3636,6 @@ const scoreText=[
 `Today's overall result was ${rating}, with ${score}/100.`
 
 ];
-
 
 const comm=[
 
@@ -3637,7 +3649,6 @@ const comm=[
 
 ];
 
-
 const commLow=[
 
 `${name} would benefit from additional speaking and pronunciation practice.`,
@@ -3649,7 +3660,6 @@ const commLow=[
 `Focused speaking and pronunciation practice can help ${name} improve further.`
 
 ];
-
 
 const understand=[
 
@@ -3663,7 +3673,6 @@ const understand=[
 
 ];
 
-
 const understandLow=[
 
 `More review and guided practice will help strengthen understanding.`,
@@ -3675,7 +3684,6 @@ const understandLow=[
 `More guided review will help ${name} develop stronger understanding of the lesson.`
 
 ];
-
 
 parts.push(
 (vocab?vocabStart:vocabEmpty)[variant]
@@ -3708,11 +3716,13 @@ understanding>=4
 );
 
 
-*/
+/*
+   IMPORTANT:
+   The teacher closing/signature is NOT added here.
 
-parts.push(
-`Thank you for supporting your child's English learning journey.\n$
-);
+   It is displayed separately below the
+   Teacher Comment box.
+*/
 
 return parts.join(' ');
 
@@ -3757,13 +3767,54 @@ return box.textContent;
 
 
 /* =========================================================
+   SEPARATE TEACHER SIGNATURE
+========================================================= */
+
+function updateTeacherSignature(){
+
+const teacher=
+document.getElementById(
+'teacher'
+).value.trim() ||
+'Teacher Danyeal';
+
+document.getElementById(
+'teacherSignatureName'
+).textContent=
+teacher;
+
+}
+
+
+/* =========================================================
    LIVE SCORE / COMMENT
 ========================================================= */
 
+document.getElementById(
+'score'
+).addEventListener(
+'input',
+()=>{
+
+updateOverallScore();
+
+if(
+document.getElementById(
+'studentName'
+).value
+){
+
+generateComment();
+
+}
+
+}
+);
+
+
 [
 'vocabulary',
-'improvement',
-'teacher'
+'improvement'
 ].forEach(
 id=>
 document.getElementById(id)
@@ -3783,6 +3834,19 @@ generateComment();
 
 }
 )
+);
+
+
+/*
+   Teacher field updates the separate signature only.
+   It does NOT modify the Teacher Comment box.
+*/
+
+document.getElementById(
+'teacher'
+).addEventListener(
+'input',
+updateTeacherSignature
 );
 
 
@@ -3822,11 +3886,6 @@ document.getElementById(
 'parentEmail'
 ).value.trim();
 
-
-/*
-   Always calculate the current score
-   from the 6 star ratings before sending.
-*/
 
 const calculatedScore=
 updateOverallScore();
@@ -3873,11 +3932,11 @@ false
 
 
 /*
+   IMPORTANT:
    DO NOT regenerate the comment here.
 
-   This makes sure the exact comment
-   visible on screen is the one sent
-   to the parent.
+   The exact comment currently displayed
+   inside the Teacher Comment box will be sent.
 */
 
 const currentComment=
@@ -3909,7 +3968,6 @@ Math.max(
 )
 );
 
-
 const dateValue=
 document.getElementById(
 'date'
@@ -3919,12 +3977,6 @@ const timeValue=
 document.getElementById(
 'time'
 ).value;
-
-
-/*
-   IMPORTANT:
-   Teacher field is also sent to EmailJS.
-*/
 
 const teacherName=
 document.getElementById(
@@ -4009,6 +4061,12 @@ starText(
 stars.listening
 ),
 
+/*
+   ONLY the Teacher Comment box content.
+   The separate closing/signature is represented
+   by the teacher field.
+*/
+
 teacher_comment:
 currentComment
 
@@ -4037,14 +4095,12 @@ false
 
 }
 
-
 emailjs.init({
 
 publicKey:
 EMAILJS_PUBLIC_KEY
 
 });
-
 
 submitBtn.disabled=true;
 
@@ -4055,7 +4111,6 @@ showStatus(
 'Sending the class memo to the parent...',
 true
 );
-
 
 emailjs
 .send(
@@ -4140,6 +4195,7 @@ document.getElementById(
 'teacher'
 ).value='Teacher Danyeal';
 
+updateTeacherSignature();
 
 Object.keys(stars).forEach(
 k=>setStars(k,5)
@@ -4274,7 +4330,6 @@ confirmDeleteStudent();
 
 }
 );
-
 
 document.addEventListener(
 'keydown',
