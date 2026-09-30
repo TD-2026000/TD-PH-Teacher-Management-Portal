@@ -470,34 +470,38 @@ button.secondary,
   display:flex;
   justify-content:flex-start;
   align-items:center;
-  gap:10px;
-  padding:8px 15px;
-  background:#f7ffff;
-  border-bottom:1px solid #ddd;
-  font-size:13px;
+  padding:9px 15px;
+  background:#ffffff;
+  border-bottom:1px solid #e1e1e1;
+  position:relative;
 }
 
 .profile-trigger{
   display:flex;
   align-items:center;
-  gap:8px;
-  border:0;
-  background:transparent;
-  border-radius:8px;
-  padding:4px 8px;
+  gap:10px;
+  border:1px solid #e0e0e0;
+  background:#f9fbfb;
+  border-radius:10px;
+  padding:6px 12px 6px 7px;
   cursor:pointer;
   font-weight:700;
+  min-width:175px;
+  transition:.15s ease;
 }
 
 .profile-trigger:hover{
-  background:#eee;
+  background:#f1fafa;
+  border-color:#bfcfcf;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
 .profile-icon{
-  width:34px;
-  height:34px;
+  width:36px;
+  height:36px;
   border-radius:50%;
-  background:#ddd;
+  background:#e9eeee;
+  border:1px solid #d2dada;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -512,15 +516,36 @@ button.secondary,
   object-fit:cover;
 }
 
+.profile-name-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  min-width:0;
+  line-height:1.2;
+}
+
+.profile-label{
+  font-size:10px;
+  color:#777;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.5px;
+}
+
 .profile-name{
   font-weight:700;
   font-size:13px;
+  color:#222;
+  max-width:180px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 
 .profile-panel{
   position:absolute;
   left:15px;
-  top:52px;
+  top:60px;
   width:310px;
   max-width:calc(100vw - 30px);
   background:#fff;
@@ -1045,6 +1070,7 @@ button.secondary,
 
   .profile-panel{
     left:10px;
+    top:58px;
   }
 
 }
@@ -1447,9 +1473,7 @@ TD
 
 <div class="userbar">
 
-<div
-style="position:relative"
->
+<div style="position:relative">
 
 <button
 type="button"
@@ -1465,12 +1489,20 @@ class="profile-icon"
 👤
 </div>
 
+<div class="profile-name-wrap">
+
+<span class="profile-label">
+Teacher Account
+</span>
+
 <span
 id="currentTeacher"
 class="profile-name"
 >
 Teacher
 </span>
+
+</div>
 
 </button>
 
@@ -3279,6 +3311,7 @@ currentUser.user_metadata?.full_name ||
 
 const username=
 saved.username ||
+currentUser.user_metadata?.username ||
 fullName;
 
 const phone=
@@ -3317,9 +3350,15 @@ document.getElementById(
 'profileHeaderEmail'
 ).textContent=currentUser.email || '';
 
+/*
+   IMPORTANT:
+   Top-left profile always displays USERNAME.
+   Teacher Full Name is independent.
+*/
+
 document.getElementById(
 'currentTeacher'
-).textContent=fullName;
+).textContent=username;
 
 setProfilePicture(
 saved.picture || ''
@@ -3390,9 +3429,15 @@ old.picture || ''
 
 saveTeacherProfileData(data);
 
+/*
+   IMPORTANT:
+   Only USERNAME changes the top-left display.
+   Full Name does not overwrite it.
+*/
+
 document.getElementById(
 'currentTeacher'
-).textContent=fullName;
+).textContent=username;
 
 document.getElementById(
 'profileHeaderName'
@@ -3665,14 +3710,26 @@ async function handleSignedIn(user){
 
 currentUser=user;
 
-const name=
+/*
+   IMPORTANT:
+   Get the saved profile first.
+   The top-left display is USERNAME,
+   not Teacher Full Name.
+*/
+
+const savedProfile=
+getTeacherProfile();
+
+const username=
+savedProfile.username ||
+user.user_metadata?.username ||
 user.user_metadata?.full_name ||
 user.email ||
 'Teacher';
 
 document.getElementById(
 'currentTeacher'
-).textContent=name;
+).textContent=username;
 
 document.getElementById(
 'authScreen'
