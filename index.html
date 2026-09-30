@@ -5991,6 +5991,17 @@ currentComment
 
 };
 
+
+/*
+   IMPORTANT:
+   evaluationSavedAt is the exact moment the evaluation
+   was successfully saved after EmailJS sends successfully.
+   This is now the PRIMARY sorting timestamp.
+*/
+
+const evaluationSavedAt=
+new Date().toISOString();
+
 const record={
 
 ...templateParams,
@@ -5999,7 +6010,11 @@ dateTime:
 `${dateValue}T${timeValue}`,
 
 createdAt:
-new Date().toISOString()
+evaluationSavedAt,
+
+evaluationSavedAt:
+
+evaluationSavedAt
 
 };
 
@@ -6052,6 +6067,11 @@ true
 
 renderDashboard();
 
+/*
+   Immediately re-render the student evaluation list.
+   Because the newly saved evaluation has the newest
+   evaluationSavedAt timestamp, this student moves to top.
+*/
 renderRecords();
 
 })
@@ -6149,6 +6169,11 @@ evaluation.student_id ||
 }
 
 
+/*
+   Returns all evaluations for one student.
+   The newest evaluation is always first.
+*/
+
 function getStudentEvaluations(studentId){
 
 const target=
@@ -6168,11 +6193,23 @@ getEvaluationTimestamp(a)
 }
 
 
+/*
+   IMPORTANT SORTING FUNCTION
+   ==========================
+   evaluationSavedAt = actual save/submission time
+   createdAt          = backward compatibility
+   dateTime           = final fallback for old records
+
+   This means changing/viewing the record will NOT
+   affect its position.
+*/
+
 function getEvaluationTimestamp(evaluation){
 
 const value=
-evaluation.dateTime ||
+evaluation.evaluationSavedAt ||
 evaluation.createdAt ||
+evaluation.dateTime ||
 '';
 
 const time=
@@ -6286,8 +6323,7 @@ return;
 
 
 /*
-   Find the newest evaluation for every student.
-   The student with the newest evaluation appears first.
+   Build one record-list item for every student.
 */
 
 const studentData=
@@ -6329,31 +6365,58 @@ studentEvals[0]
 
 
 /*
-   SORTING:
-   1. Students with evaluations first.
-   2. Newest evaluation date/time first.
-   3. Students without evaluations stay underneath.
+   ========================================================
+   FINAL STUDENT SORTING RULE
+   ========================================================
+
+   1. Students with evaluations come first.
+   2. Among evaluated students:
+      newest evaluationSavedAt comes first.
+   3. Students without evaluations remain below.
+   4. If two timestamps are exactly equal,
+      preserve original student order.
 */
 
 studentData.sort(
 (a,b)=>{
 
-const aHas=
+const aHasEvaluation=
 a.latestTimestamp>0;
 
-const bHas=
+const bHasEvaluation=
 b.latestTimestamp>0;
 
-if(aHas && !bHas)
-return -1;
 
-if(!aHas && bHas)
-return 1;
-
-if(aHas && bHas){
+/* Evaluated students before unevaluated students */
 
 if(
-b.latestTimestamp!==
+aHasEvaluation &&
+!bHasEvaluation
+){
+
+return -1;
+
+}
+
+if(
+!aHasEvaluation &&
+bHasEvaluation
+){
+
+return 1;
+
+}
+
+
+/* Both have evaluations */
+
+if(
+aHasEvaluation &&
+bHasEvaluation
+){
+
+if(
+b.latestTimestamp !==
 a.latestTimestamp
 ){
 
@@ -6365,6 +6428,9 @@ a.latestTimestamp
 }
 
 }
+
+
+/* Both unevaluated OR exact timestamp tie */
 
 return a.index-b.index;
 
@@ -6391,8 +6457,9 @@ const latestText=
 latest
 ?`Last evaluation: ${escapeHtml(
 formatDateTime(
-latest.dateTime ||
-latest.createdAt
+latest.evaluationSavedAt ||
+latest.createdAt ||
+latest.dateTime
 )
 )}`
 :'No evaluation yet';
