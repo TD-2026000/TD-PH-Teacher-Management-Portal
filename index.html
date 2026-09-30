@@ -272,36 +272,95 @@ button.secondary,
   align-items:end;
 }
 
-.table-wrap{
-  overflow-x:auto;
+/* =========================================================
+   STUDENT PROFILE / ADD STUDENT
+========================================================= */
+
+.student-profile-upload{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:10px;
+  padding:10px;
+  border:1px dashed #bbb;
+  border-radius:9px;
+  background:#fafafa;
 }
 
-.record-table{
-  width:100%;
-  border-collapse:collapse;
-  font-size:14px;
-}
-
-.record-table th,
-.record-table td{
-  border:1px solid #aaa;
-  padding:9px;
-  text-align:left;
-}
-
-.record-table th{
+.student-profile-preview{
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  border:2px solid #ddd;
   background:#f1f1f1;
+  font-size:30px;
 }
 
-.empty{
-  padding:18px;
-  text-align:center;
-  color:#666;
+.student-profile-preview img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
 }
 
-.student-list{
-  display:grid;
-  gap:8px;
+.student-profile-upload-info{
+  flex:1;
+  min-width:0;
+}
+
+.student-profile-upload-info button{
+  border:0;
+  background:#eee;
+  border-radius:7px;
+  padding:7px 10px;
+  font-size:12px;
+  font-weight:700;
+  cursor:pointer;
+  margin-top:5px;
+}
+
+.student-profile-upload-info button:hover{
+  background:#ddd;
+}
+
+.student-avatar{
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  background:#eefafa;
+  border:2px solid #d4eeee;
+  font-size:29px;
+}
+
+.student-avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* Cute animated animal avatar */
+.animal-avatar{
+  animation:animalFloat 1.8s ease-in-out infinite;
+}
+
+@keyframes animalFloat{
+  0%,100%{
+    transform:translateY(0) rotate(0deg);
+  }
+  50%{
+    transform:translateY(-3px) rotate(2deg);
+  }
 }
 
 .student-row{
@@ -310,9 +369,17 @@ button.secondary,
   justify-content:space-between;
   align-items:center;
   border:1px solid #ccc;
-  border-radius:8px;
+  border-radius:10px;
   padding:10px 12px;
-  gap:10px;
+  gap:12px;
+}
+
+.student-row-main{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+  flex:1;
 }
 
 .student-info{
@@ -321,6 +388,9 @@ button.secondary,
 
 .student-info b{
   display:block;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 
 .student-info span{
@@ -331,6 +401,7 @@ button.secondary,
 .student-actions{
   position:relative;
   margin-left:auto;
+  flex-shrink:0;
 }
 
 .dots-btn{
@@ -392,88 +463,6 @@ button.secondary,
 
 
 /* =========================================================
-   STUDENT PROFILE
-========================================================= */
-
-.student-avatar{
-  width:52px;
-  height:52px;
-  min-width:52px;
-  border-radius:50%;
-  border:1px solid #ccc;
-  background:#f1f1f1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  font-size:27px;
-  flex-shrink:0;
-}
-
-.student-avatar img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-
-.student-row-main{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  min-width:0;
-}
-
-.student-text{
-  min-width:0;
-}
-
-.student-text b{
-  display:block;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.student-photo-label{
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  padding:8px 10px;
-  border:1px dashed #aaa;
-  border-radius:7px;
-  background:#fafafa;
-  cursor:pointer;
-  font-size:13px;
-  font-weight:700;
-}
-
-.student-photo-label:hover{
-  background:#f1f1f1;
-}
-
-.student-photo-preview{
-  width:64px;
-  height:64px;
-  border-radius:50%;
-  border:1px solid #ccc;
-  background:#f1f1f1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  font-size:32px;
-  margin-top:7px;
-}
-
-.student-photo-preview img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-
-/* =========================================================
    RECORD OF EVALUATION
 ========================================================= */
 
@@ -486,21 +475,16 @@ button.secondary,
   display:flex;
   align-items:center;
   gap:12px;
-  border:1px solid #ccc;
-  border-radius:10px;
+  border:1px solid #d0d0d0;
+  border-radius:11px;
   padding:11px 12px;
   background:#fff;
   transition:.15s ease;
 }
 
 .evaluation-student-card:hover{
+  border-color:#9bcece;
   box-shadow:0 3px 12px rgba(0,0,0,.08);
-  border-color:#aaa;
-}
-
-.evaluation-student-card.latest{
-  border-color:#00caca;
-  box-shadow:0 2px 10px rgba(0,217,217,.12);
 }
 
 .evaluation-student-info{
@@ -508,42 +492,55 @@ button.secondary,
   min-width:0;
 }
 
-.evaluation-student-info b{
-  display:block;
+.evaluation-student-name{
   font-size:16px;
-  white-space:nowrap;
+  font-weight:800;
   overflow:hidden;
   text-overflow:ellipsis;
+  white-space:nowrap;
 }
 
 .evaluation-student-id{
+  margin-top:4px;
   font-size:12px;
   color:#666;
-  margin-top:3px;
 }
 
-.evaluation-latest{
+.evaluation-student-latest{
+  margin-top:3px;
   font-size:11px;
-  color:#008080;
-  margin-top:4px;
+  color:#007b83;
   font-weight:700;
 }
 
 .class-record-btn{
+  flex-shrink:0;
   border:0;
   border-radius:8px;
   padding:10px 13px;
   background:#00d9d9;
-  font-weight:700;
+  font-weight:800;
   cursor:pointer;
-  white-space:nowrap;
 }
 
 .class-record-btn:hover{
-  background:#00caca;
+  background:#00c4c4;
 }
 
-.record-modal{
+.no-evaluation-badge{
+  display:inline-block;
+  margin-top:4px;
+  padding:3px 7px;
+  border-radius:5px;
+  background:#f1f1f1;
+  color:#777;
+  font-size:10px;
+  font-weight:700;
+}
+
+/* Student Class Record Modal */
+
+.class-record-modal{
   width:100%;
   max-width:850px;
   max-height:calc(100vh - 36px);
@@ -554,106 +551,122 @@ button.secondary,
   padding:20px;
 }
 
-.record-student-header{
+.class-record-header{
   display:flex;
   align-items:center;
-  gap:14px;
-  padding-bottom:14px;
+  gap:12px;
+  margin-bottom:15px;
+  padding-bottom:13px;
   border-bottom:1px solid #ddd;
-  margin-bottom:14px;
 }
 
-.record-student-avatar{
-  width:70px;
-  height:70px;
+.class-record-header-avatar{
+  width:62px;
+  height:62px;
   border-radius:50%;
-  border:1px solid #ccc;
-  background:#f1f1f1;
+  overflow:hidden;
   display:flex;
   align-items:center;
   justify-content:center;
-  overflow:hidden;
-  font-size:36px;
+  background:#eefafa;
+  border:2px solid #d4eeee;
+  font-size:32px;
   flex-shrink:0;
 }
 
-.record-student-avatar img{
+.class-record-header-avatar img{
   width:100%;
   height:100%;
   object-fit:cover;
 }
 
-.record-student-header h3{
-  margin:0;
+.class-record-header-info{
+  min-width:0;
+  flex:1;
 }
 
-.record-student-header p{
+.class-record-header-info h3{
+  margin:0;
+  font-size:20px;
+}
+
+.class-record-header-info p{
   margin:4px 0 0;
   color:#666;
   font-size:13px;
 }
 
-.class-record-list{
-  display:grid;
-  gap:12px;
-}
-
-.class-record-card{
+.class-record-item{
   border:1px solid #ccc;
-  border-radius:10px;
+  border-radius:9px;
+  margin-bottom:10px;
   overflow:hidden;
-  background:#fff;
 }
 
-.class-record-card-header{
+.class-record-item-head{
+  background:#f4f4f4;
+  padding:10px 12px;
   display:flex;
   justify-content:space-between;
-  gap:10px;
   align-items:center;
-  background:#f1f1f1;
-  padding:10px 12px;
-  font-weight:700;
+  gap:10px;
+  flex-wrap:wrap;
 }
 
-.class-record-card-body{
+.class-record-item-body{
   padding:12px;
 }
 
-.class-record-grid{
+.class-record-meta{
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:repeat(3,1fr);
   gap:8px;
   margin-bottom:10px;
 }
 
-.class-record-field{
+.class-record-meta-box{
+  background:#fafafa;
   border:1px solid #ddd;
   border-radius:7px;
   padding:8px;
-  background:#fafafa;
 }
 
-.class-record-field strong{
+.class-record-meta-box small{
   display:block;
-  font-size:11px;
-  color:#666;
+  color:#777;
+  font-size:10px;
   margin-bottom:3px;
-  text-transform:uppercase;
+}
+
+.class-record-meta-box b{
+  font-size:13px;
+}
+
+.class-record-section{
+  margin-top:10px;
+}
+
+.class-record-section-title{
+  font-size:12px;
+  font-weight:800;
+  color:#007b83;
+  margin-bottom:4px;
 }
 
 .class-record-comment{
-  margin-top:10px;
-  padding:10px;
+  background:#f7f7f7;
   border:1px dashed #aaa;
-  border-radius:8px;
-  background:#f8f8f8;
+  border-radius:7px;
+  padding:10px;
   line-height:1.5;
+  font-size:13px;
+  white-space:pre-wrap;
 }
 
-.class-record-close{
+.close-record-btn{
   border:0;
   border-radius:8px;
-  padding:9px 14px;
+  padding:10px 15px;
   background:#ddd;
   font-weight:700;
   cursor:pointer;
@@ -836,28 +849,18 @@ button.secondary,
   left:50%;
   top:50%;
   transform:translate(-50%,-50%);
-
   width:min(520px,calc(100vw - 30px));
-
   max-width:520px;
   max-height:calc(100vh - 30px);
-
   background:#fff;
   border:1px solid #ccc;
   border-radius:14px;
-
-  box-shadow:
-    0 20px 60px rgba(0,0,0,.30);
-
+  box-shadow:0 20px 60px rgba(0,0,0,.30);
   padding:20px;
-
   z-index:10000;
-
   display:none;
-
   overflow-y:auto;
   overflow-x:hidden;
-
   overscroll-behavior:contain;
 }
 
@@ -1386,50 +1389,26 @@ button.secondary,
 
   .student-row{
     align-items:flex-start;
-    flex-direction:column;
-  }
-
-  .student-row-main{
-    width:100%;
-  }
-
-  .student-actions{
-    align-self:flex-end;
   }
 
   .userbar{
     align-items:center;
   }
 
-  .evaluation-student-card{
-    align-items:flex-start;
-  }
-
-  .class-record-btn{
-    align-self:center;
-  }
-
-  .class-record-grid{
+  .class-record-meta{
     grid-template-columns:1fr;
   }
 
 }
 
-
-/*
-   Teacher Profile uses the whole screen on small devices.
-*/
 @media(max-width:600px){
 
   .profile-panel{
     left:50%;
     top:50%;
-
     width:calc(100vw - 20px);
     max-width:none;
-
     max-height:calc(100vh - 20px);
-
     padding:16px;
     border-radius:12px;
   }
@@ -1459,37 +1438,12 @@ button.secondary,
   }
 
   .evaluation-student-card{
-    flex-wrap:wrap;
-  }
-
-  .evaluation-student-info{
-    min-width:calc(100% - 68px);
+    align-items:flex-start;
   }
 
   .class-record-btn{
-    width:100%;
-  }
-
-}
-
-
-/* =========================================================
-   CUTE ANIMAL ANIMATION
-========================================================= */
-
-.animal-avatar{
-  animation:animalFloat 2.2s ease-in-out infinite;
-  transform-origin:center;
-}
-
-@keyframes animalFloat{
-
-  0%,100%{
-    transform:translateY(0) rotate(0deg);
-  }
-
-  50%{
-    transform:translateY(-3px) rotate(2deg);
+    padding:9px 10px;
+    font-size:12px;
   }
 
 }
@@ -1529,6 +1483,7 @@ button.secondary,
   }
 
 }
+
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -1562,8 +1517,6 @@ Teacher Management Portal
 </div>
 
 <div class="auth-body">
-
-<!-- LOGIN -->
 
 <div id="loginPanel">
 
@@ -1632,8 +1585,6 @@ Create Account
 </div>
 
 </div>
-
-<!-- SIGNUP -->
 
 <div id="signupPanel" class="hidden">
 
@@ -1719,8 +1670,6 @@ Login
 
 </div>
 
-<!-- VERIFY -->
-
 <div id="verifyPanel" class="hidden">
 
 <h2>Verify Your Email</h2>
@@ -1768,8 +1717,6 @@ Back to Login
 
 </div>
 
-<!-- FORGOT PASSWORD -->
-
 <div id="forgotPanel" class="hidden">
 
 <h2>Forgot Password?</h2>
@@ -1809,8 +1756,6 @@ Back to Login
 </div>
 
 </div>
-
-<!-- RESET PASSWORD -->
 
 <div id="resetPanel" class="hidden">
 
@@ -2052,47 +1997,51 @@ Add Student
 
 </div>
 
+<!-- NEW STUDENT PROFILE PICTURE -->
 
-<!-- =========================================================
-     NEW STUDENT PROFILE PICTURE
-========================================================= -->
-
-<div style="margin-top:12px">
-
-<label>
-Student Profile Picture
-<span style="font-weight:400;color:#777">
-(Optional)
-</span>
-</label>
-
-<label
-for="newStudentPhoto"
-class="student-photo-label"
->
-📷 Choose Student Picture
-</label>
-
-<input
-id="newStudentPhoto"
-type="file"
-accept="image/*"
-style="display:none"
->
+<div class="student-profile-upload">
 
 <div
-id="newStudentPhotoPreview"
-class="student-photo-preview"
+id="newStudentProfilePreview"
+class="student-profile-preview"
 >
 🐼
 </div>
 
-<div class="small">
-If you don't upload a picture, a cute animal profile will be automatically assigned.
+<div class="student-profile-upload-info">
+
+<b style="font-size:13px">
+Student Profile Picture
+</b>
+
+<div class="small" style="margin-top:2px">
+Optional. If no picture is uploaded, a cute animal avatar will be used automatically.
 </div>
+
+<input
+id="newStudentProfileInput"
+type="file"
+accept="image/*"
+class="hidden"
+>
+
+<button
+type="button"
+onclick="document.getElementById('newStudentProfileInput').click()"
+>
+📷 Upload Student Picture
+</button>
+
+<button
+type="button"
+onclick="removeNewStudentProfilePicture()"
+>
+Remove
+</button>
 
 </div>
 
+</div>
 
 <div id="studentStatus" class="status"></div>
 
@@ -2471,7 +2420,7 @@ EmailJS is connected. After you submit, the class memo will be emailed automatic
 
 
 <!-- =========================================================
-     RECORDS
+     RECORD OF EVALUATION
 ========================================================= -->
 
 <div id="recordsPage" class="page">
@@ -2497,7 +2446,7 @@ class="evaluation-student-list"
 id="recordEmpty"
 class="empty"
 >
-No students or evaluations recorded yet.
+No students recorded yet.
 </div>
 
 </div>
@@ -2701,6 +2650,66 @@ Log Out
 
 
 <!-- =========================================================
+     STUDENT CLASS RECORD MODAL
+========================================================= -->
+
+<div
+id="studentClassRecordModal"
+class="modal-backdrop"
+onclick="if(event.target===this)closeStudentClassRecord()"
+>
+
+<div class="class-record-modal">
+
+<div class="class-record-header">
+
+<div
+id="classRecordAvatar"
+class="class-record-header-avatar"
+>
+🐼
+</div>
+
+<div class="class-record-header-info">
+
+<h3 id="classRecordStudentName">
+Student
+</h3>
+
+<p id="classRecordStudentId">
+Student ID: —
+</p>
+
+<p id="classRecordParentEmail">
+Parent Email: —
+</p>
+
+</div>
+
+</div>
+
+<div
+id="classRecordContent"
+>
+</div>
+
+<div class="modal-actions">
+
+<button
+type="button"
+class="close-record-btn"
+onclick="closeStudentClassRecord()"
+>
+Close
+</button>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- =========================================================
      EDIT STUDENT MODAL
 ========================================================= -->
 
@@ -2748,44 +2757,6 @@ Student ID
 id="editStudentId"
 placeholder="Student ID"
 >
-
-
-<!-- EDIT STUDENT PROFILE PICTURE -->
-
-<label style="margin-top:10px">
-Student Profile Picture
-</label>
-
-<label
-for="editStudentPhotoInput"
-class="student-photo-label"
->
-📷 Change Picture
-</label>
-
-<input
-id="editStudentPhotoInput"
-type="file"
-accept="image/*"
-style="display:none"
->
-
-<div
-id="editStudentPhotoPreview"
-class="student-photo-preview"
->
-🐼
-</div>
-
-<button
-type="button"
-class="secondary"
-style="margin-top:7px;padding:8px 12px"
-onclick="removeEditStudentPhoto()"
->
-Remove Picture / Use Animal
-</button>
-
 
 <div
 id="editStudentError"
@@ -3065,41 +3036,6 @@ Clear All Records
 </div>
 
 
-<!-- =========================================================
-     STUDENT CLASS RECORD MODAL
-========================================================= -->
-
-<div
-id="studentClassRecordModal"
-class="modal-backdrop"
-onclick="if(event.target===this) closeStudentClassRecord()"
->
-
-<div class="record-modal">
-
-<div
-id="studentClassRecordContent"
->
-</div>
-
-<div
-style="display:flex;justify-content:flex-end;margin-top:15px"
->
-
-<button
-type="button"
-class="class-record-close"
-onclick="closeStudentClassRecord()"
->
-Close
-</button>
-
-</div>
-
-</div>
-</div>
-
-
 <script>
 
 /* =========================================================
@@ -3141,83 +3077,11 @@ let commentVersion=0;
 
 let clearAllCaptcha='';
 
-let newStudentPhotoDraft='';
-
-let editStudentPhotoDraft='';
-
-
 /* =========================================================
-   CUTE ANIMAL PROFILES
+   NEW STUDENT PROFILE DRAFT
 ========================================================= */
 
-const animalProfiles=[
-'🐼',
-'🐰',
-'🐱',
-'🐶',
-'🦊',
-'🐻',
-'🐨',
-'🐯',
-'🦁',
-'🐸',
-'🐵',
-'🐹',
-'🐥',
-'🦄',
-'🐷'
-];
-
-function getAnimalProfile(studentId){
-
-const text=
-String(studentId||'student');
-
-let total=0;
-
-for(
-let i=0;
-i<text.length;
-i++
-){
-
-total+=text.charCodeAt(i);
-
-}
-
-return animalProfiles[
-total%animalProfiles.length
-];
-
-}
-
-function studentAvatarHTML(student,sizeClass='student-avatar'){
-
-if(student && student.photo){
-
-return `
-<div class="${sizeClass}">
-<img
-src="${escapeAttr(student.photo)}"
-alt="Student Profile"
->
-</div>
-`;
-
-}
-
-const animal=
-getAnimalProfile(
-student ? student.id : ''
-);
-
-return `
-<div class="${sizeClass} animal-avatar">
-${animal}
-</div>
-`;
-
-}
+let newStudentProfileDraft='';
 
 
 /* =========================================================
@@ -4101,10 +3965,10 @@ document.getElementById(
 if(src){
 
 small.innerHTML=
-`<img src="${escapeAttr(src)}" alt="Profile Picture">`;
+`<img src="${src}" alt="Profile Picture">`;
 
 large.innerHTML=
-`<img src="${escapeAttr(src)}" alt="Profile Picture">`;
+`<img src="${src}" alt="Profile Picture">`;
 
 }else{
 
@@ -4352,8 +4216,6 @@ renderDashboard();
 
 populateStudentSelect();
 
-renderRecords();
-
 }
 
 
@@ -4550,18 +4412,186 @@ handleProfilePicture
 
 
 /* =========================================================
-   NEW STUDENT PHOTO
+   NEW STUDENT PROFILE PICTURE
 ========================================================= */
 
+function getAnimalAvatar(studentId){
+
+const animals=[
+'🐼',
+'🐨',
+'🐯',
+'🦊',
+'🐰',
+'🐻',
+'🐸',
+'🐵',
+'🐱',
+'🐶',
+'🦁',
+'🐷',
+'🐙',
+'🦄',
+'🐳'
+];
+
+let total=0;
+
+String(studentId||'student')
+.split('')
+.forEach(
+char=>{
+total+=char.charCodeAt(0);
+}
+);
+
+return animals[
+total%animals.length
+];
+
+}
+
+function getStudentAvatarHtml(student){
+
+if(student && student.picture){
+
+return `
+<div class="student-avatar">
+<img
+src="${escapeAttr(student.picture)}"
+alt="Student Profile Picture"
+>
+</div>
+`;
+
+}
+
+const animal=
+getAnimalAvatar(
+student ? student.id : ''
+);
+
+return `
+<div class="student-avatar animal-avatar"
+title="Automatic animal avatar">
+${animal}
+</div>
+`;
+
+}
+
+function getClassRecordAvatarHtml(student){
+
+if(student && student.picture){
+
+return `
+<img
+src="${escapeAttr(student.picture)}"
+alt="Student Profile Picture"
+>
+`;
+
+}
+
+return getAnimalAvatar(
+student ? student.id : ''
+);
+
+}
+
+function resizeStudentImage(file,callback){
+
+if(!file)
+return;
+
+const reader=
+new FileReader();
+
+reader.onload=function(){
+
+const img=new Image();
+
+img.onload=function(){
+
+const maxSize=300;
+
+let width=img.width;
+
+let height=img.height;
+
+if(width>height){
+
+if(width>maxSize){
+
+height=
+Math.round(
+height*(maxSize/width)
+);
+
+width=maxSize;
+
+}
+
+}else{
+
+if(height>maxSize){
+
+width=
+Math.round(
+width*(maxSize/height)
+);
+
+height=maxSize;
+
+}
+
+}
+
+const canvas=
+document.createElement('canvas');
+
+canvas.width=width;
+
+canvas.height=height;
+
+const ctx=
+canvas.getContext('2d');
+
+ctx.drawImage(
+img,
+0,
+0,
+width,
+height
+);
+
+callback(
+canvas.toDataURL(
+'image/jpeg',
+0.82
+)
+);
+
+};
+
+img.src=reader.result;
+
+};
+
+reader.readAsDataURL(file);
+
+}
+
+function previewNewStudentProfile(){
+
+const input=
 document.getElementById(
-'newStudentPhoto'
-).addEventListener(
-'change',
-function(event){
+'newStudentProfileInput'
+);
 
 const file=
-event.target.files &&
-event.target.files[0];
+input.files &&
+input.files[0];
 
 if(!file)
 return;
@@ -4569,89 +4599,45 @@ return;
 if(!file.type.startsWith('image/')){
 
 showStudentStatus(
-'Please select an image file.',
+'Please select a valid image file.',
 false
 );
 
-event.target.value='';
+input.value='';
 
 return;
 
 }
 
-const reader=
-new FileReader();
+resizeStudentImage(
+file,
+dataUrl=>{
 
-reader.onload=function(){
-
-newStudentPhotoDraft=
-reader.result;
+newStudentProfileDraft=dataUrl;
 
 document.getElementById(
-'newStudentPhotoPreview'
+'newStudentProfilePreview'
 ).innerHTML=
-`<img src="${escapeAttr(newStudentPhotoDraft)}" alt="Student Profile">`;
+`<img src="${escapeAttr(dataUrl)}" alt="Student Profile">`;
 
-};
-
-reader.readAsDataURL(file);
-
-});
-
-
-/* =========================================================
-   EDIT STUDENT PHOTO
-========================================================= */
-
-document.getElementById(
-'editStudentPhotoInput'
-).addEventListener(
-'change',
-function(event){
-
-const file=
-event.target.files &&
-event.target.files[0];
-
-if(!file)
-return;
-
-if(!file.type.startsWith('image/')){
-
-const error=
-document.getElementById(
-'editStudentError'
+}
 );
 
-error.textContent=
-'Please select an image file.';
-
-error.classList.add('show');
-
-event.target.value='';
-
-return;
-
 }
 
-const reader=
-new FileReader();
+function removeNewStudentProfilePicture(){
 
-reader.onload=function(){
-
-editStudentPhotoDraft=
-reader.result;
+newStudentProfileDraft='';
 
 document.getElementById(
-'editStudentPhotoPreview'
-).innerHTML=
-`<img src="${escapeAttr(editStudentPhotoDraft)}" alt="Student Profile">`;
+'newStudentProfileInput'
+).value='';
 
-};
+document.getElementById(
+'newStudentProfilePreview'
+).textContent='🐼';
 
-reader.readAsDataURL(file);
-
-});
+}
 
 
 /* =========================================================
@@ -4969,8 +4955,8 @@ name,
 
 email,
 
-photo:
-newStudentPhotoDraft || '',
+picture:
+newStudentProfileDraft || '',
 
 createdAt:new Date().toISOString()
 
@@ -4990,16 +4976,7 @@ document.getElementById(
 'newStudentId'
 ).value='';
 
-document.getElementById(
-'newStudentPhoto'
-).value='';
-
-newStudentPhotoDraft='';
-
-document.getElementById(
-'newStudentPhotoPreview'
-).innerHTML=
-'🐼';
+removeNewStudentProfilePicture();
 
 showStudentStatus(
 'Student added successfully.',
@@ -5009,8 +4986,6 @@ true
 renderDashboard();
 
 populateStudentSelect();
-
-renderRecords();
 
 }
 
@@ -5087,60 +5062,9 @@ document.getElementById(
 'editStudentError'
 ).classList.remove('show');
 
-editStudentPhotoDraft=
-student.photo || '';
-
-if(student.photo){
-
-document.getElementById(
-'editStudentPhotoPreview'
-).innerHTML=
-`<img src="${escapeAttr(student.photo)}" alt="Student Profile">`;
-
-}else{
-
-document.getElementById(
-'editStudentPhotoPreview'
-).innerHTML=
-`
-<span class="animal-avatar">
-${getAnimalProfile(student.id)}
-</span>
-`;
-
-}
-
-document.getElementById(
-'editStudentPhotoInput'
-).value='';
-
 document.getElementById(
 'editStudentModal'
 ).classList.add('show');
-
-}
-
-function removeEditStudentPhoto(){
-
-editStudentPhotoDraft='';
-
-document.getElementById(
-'editStudentPhotoInput'
-).value='';
-
-const id=
-document.getElementById(
-'editOriginalId'
-).value;
-
-document.getElementById(
-'editStudentPhotoPreview'
-).innerHTML=
-`
-<span class="animal-avatar">
-${getAnimalProfile(id)}
-</span>
-`;
 
 }
 
@@ -5237,10 +5161,7 @@ name,
 
 email,
 
-id,
-
-photo:
-editStudentPhotoDraft || ''
+id
 
 };
 
@@ -5251,8 +5172,6 @@ closeEditStudent();
 renderDashboard();
 
 populateStudentSelect(id);
-
-renderRecords();
 
 showStudentStatus(
 'Student record updated successfully.',
@@ -5421,9 +5340,9 @@ s=>`
 
 <div class="student-row-main">
 
-${studentAvatarHTML(s)}
+${getStudentAvatarHtml(s)}
 
-<div class="student-text">
+<div class="student-info">
 
 <b>
 ${escapeHtml(s.name)}
@@ -6316,6 +6235,12 @@ true
 
 renderDashboard();
 
+/*
+   IMPORTANT:
+   Re-render Record of Evaluation immediately.
+   The newly evaluated student will automatically
+   move to the top.
+*/
 renderRecords();
 
 })
@@ -6400,44 +6325,27 @@ true
 
 
 /* =========================================================
-   RECORDS — NEW STUDENT-CENTERED SYSTEM
+   RECORD OF EVALUATION
 ========================================================= */
 
-function getEvaluationTimestamp(e){
-
-const created=
-e && e.createdAt
-?new Date(e.createdAt).getTime()
-:NaN;
-
-if(!isNaN(created))
-return created;
-
-const date=
-e && e.dateTime
-?new Date(e.dateTime).getTime()
-:NaN;
-
-if(!isNaN(date))
-return date;
-
-return 0;
-
-}
-
+/*
+   Gets the latest evaluation for one student.
+   Student ID is used as the stable identifier.
+*/
 function getLatestEvaluationForStudent(studentId){
 
 const evals=
-getEvaluations().filter(
-e=>
-String(e.student_id||'')===
-String(studentId||'')
+getEvaluations()
+.filter(
+e=>String(e.student_id||'')===String(studentId)
 );
 
 if(!evals.length)
 return null;
 
-return evals.slice().sort(
+return evals
+.slice()
+.sort(
 (a,b)=>
 getEvaluationTimestamp(b)-
 getEvaluationTimestamp(a)
@@ -6445,15 +6353,47 @@ getEvaluationTimestamp(a)
 
 }
 
+function getEvaluationTimestamp(e){
+
+if(!e)
+return 0;
+
+const values=[
+e.createdAt,
+e.dateTime,
+e.date
+];
+
+for(const value of values){
+
+if(!value)
+continue;
+
+const time=
+new Date(value).getTime();
+
+if(!isNaN(time))
+return time;
+
+}
+
+return 0;
+
+}
+
+
+/*
+   Student list:
+   1. Students with evaluations first
+   2. Latest evaluated student at top
+   3. Unevaluated students after evaluated students
+*/
 function renderRecords(){
 
 const students=
 getStudents();
 
-const evals=
-getEvaluations();
-
-const container=
+const list=
 document.getElementById(
 'evaluationStudentList'
 );
@@ -6463,9 +6403,12 @@ document.getElementById(
 'recordEmpty'
 );
 
-if(!students.length && !evals.length){
+if(!students.length){
 
-container.innerHTML='';
+list.innerHTML='';
+
+empty.textContent=
+'No students recorded yet.';
 
 empty.style.display='block';
 
@@ -6475,131 +6418,62 @@ return;
 
 empty.style.display='none';
 
+const studentRecords=
+students.map(
+(student,index)=>{
 
-/*
-   Build one student entry for every saved student.
-*/
-const studentMap=
-new Map();
+const latest=
+getLatestEvaluationForStudent(
+student.id
+);
 
-students.forEach(
-student=>{
+return{
 
-studentMap.set(
-String(student.id),
-{
 student,
-latest:null,
-evaluationCount:0
-}
-);
+
+latest,
+
+index,
+
+timestamp:
+latest
+?getEvaluationTimestamp(latest)
+:0
+
+};
 
 }
 );
-
 
 /*
-   Also keep evaluation-only students.
-   This preserves history if a student was deleted
-   from Dashboard.
+   Evaluated students first.
+   Most recently evaluated first.
+   Students without evaluation remain below.
 */
-evals.forEach(
-evaluation=>{
-
-const id=
-String(
-evaluation.student_id ||
-''
-);
-
-if(!id)
-return;
-
-if(!studentMap.has(id)){
-
-studentMap.set(
-id,
-{
-student:{
-id,
-name:evaluation.student_name || 'Unknown Student',
-email:evaluation.parent_email || '',
-photo:''
-},
-latest:null,
-evaluationCount:0,
-archived:true
-}
-);
-
-}
-
-const item=
-studentMap.get(id);
-
-item.evaluationCount++;
-
-if(
-!item.latest ||
-getEvaluationTimestamp(evaluation)>
-getEvaluationTimestamp(item.latest)
-){
-
-item.latest=evaluation;
-
-}
-
-}
-);
-
-const entries=
-[
-...studentMap.values()
-];
-
-
-/*
-   Evaluated students first,
-   newest evaluation first.
-
-   Students without evaluations stay below
-   in their existing student order.
-*/
-entries.sort(
+studentRecords.sort(
 (a,b)=>{
 
-const aTime=
-a.latest
-?getEvaluationTimestamp(a.latest)
-:0;
-
-const bTime=
-b.latest
-?getEvaluationTimestamp(b.latest)
-:0;
-
-if(aTime && bTime)
-return bTime-aTime;
-
-if(aTime)
+if(a.latest && !b.latest)
 return -1;
 
-if(bTime)
+if(!a.latest && b.latest)
 return 1;
 
-return students.findIndex(
-s=>String(s.id)===String(a.student.id)
-)-
-students.findIndex(
-s=>String(s.id)===String(b.student.id)
-);
+if(a.latest && b.latest){
+
+if(b.timestamp!==a.timestamp)
+return b.timestamp-a.timestamp;
+
+}
+
+return a.index-b.index;
 
 }
 );
 
-container.innerHTML=
-entries.map(
-(item,index)=>{
+list.innerHTML=
+studentRecords.map(
+item=>{
 
 const student=
 item.student;
@@ -6607,38 +6481,38 @@ item.student;
 const latest=
 item.latest;
 
-const latestText=
-latest
-?`Latest Evaluation: ${escapeHtml(formatDateTime(latest.dateTime))}`
-:'No evaluation yet';
-
-const evaluatedClass=
-latest
-?'latest'
-:'';
-
 return `
 
-<div class="evaluation-student-card ${evaluatedClass}">
+<div class="evaluation-student-card">
 
-${studentAvatarHTML(
-student,
-'evaluation-student-avatar student-avatar'
-)}
+${getStudentAvatarHtml(student)}
 
 <div class="evaluation-student-info">
 
-<b>
+<div class="evaluation-student-name">
 ${escapeHtml(student.name)}
-</b>
+</div>
 
 <div class="evaluation-student-id">
 Student ID: ${escapeHtml(student.id)}
 </div>
 
-<div class="evaluation-latest">
-${latestText}
+${
+latest
+?
+`
+<div class="evaluation-student-latest">
+Latest Evaluation:
+${escapeHtml(formatDateTime(latest.dateTime))}
 </div>
+`
+:
+`
+<span class="no-evaluation-badge">
+No evaluation yet
+</span>
+`
+}
 
 </div>
 
@@ -6661,264 +6535,240 @@ Class Record
 
 
 /* =========================================================
-   STUDENT CLASS RECORD
+   OPEN STUDENT CLASS RECORD
 ========================================================= */
 
 function openStudentClassRecord(studentId){
 
-const students=
-getStudents();
-
-let student=
-students.find(
-s=>String(s.id)===String(studentId)
+const student=
+getStudents().find(
+s=>s.id===studentId
 );
+
+if(!student)
+return;
 
 const evaluations=
 getEvaluations()
 .filter(
 e=>
 String(e.student_id||'')===
-String(studentId)
+String(student.id)
 )
-.slice()
 .sort(
 (a,b)=>
 getEvaluationTimestamp(b)-
 getEvaluationTimestamp(a)
 );
 
-if(!student && evaluations.length){
-
-student={
-
-id:studentId,
-
-name:
-evaluations[0].student_name ||
-'Unknown Student',
-
-email:
-evaluations[0].parent_email ||
-'',
-
-photo:'',
-
-createdAt:'',
-
-archived:true
-
-};
-
-}
-
-if(!student)
-return;
-
-const container=
 document.getElementById(
-'studentClassRecordContent'
+'classRecordStudentName'
+).textContent=
+student.name;
+
+document.getElementById(
+'classRecordStudentId'
+).textContent=
+'Student ID: '+student.id;
+
+document.getElementById(
+'classRecordParentEmail'
+).textContent=
+'Parent Email: '+student.email;
+
+document.getElementById(
+'classRecordAvatar'
+).innerHTML=
+getClassRecordAvatarHtml(student);
+
+const content=
+document.getElementById(
+'classRecordContent'
 );
 
-const evaluationCount=
-evaluations.length;
+if(!evaluations.length){
 
-container.innerHTML=`
+content.innerHTML=`
 
-<div class="record-student-header">
+<div class="empty">
 
-${studentAvatarHTML(
-student,
-'record-student-avatar'
-)}
-
-<div>
-
-<h3>
+No evaluation records yet for
+<strong>
 ${escapeHtml(student.name)}
-</h3>
-
-<p>
-Student ID: ${escapeHtml(student.id)}
-</p>
-
-<p>
-${escapeHtml(student.email || 'No parent email')}
-</p>
-
-<p>
-${evaluationCount}
-evaluation${evaluationCount===1?'':'s'}
-recorded
-</p>
+</strong>.
 
 </div>
 
-</div>
+`;
 
-${
-evaluationCount
-?
+}else{
 
-<div class="class-record-list">
-
-${evaluations.map(
+content.innerHTML=
+evaluations.map(
 (e,index)=>`
 
-<div class="class-record-card">
+<div class="class-record-item">
 
-<div class="class-record-card-header">
+<div class="class-record-item-head">
 
-<span>
-Class ${evaluationCount-index}
-</span>
+<div>
+<strong>
+Evaluation #${evaluations.length-index}
+</strong>
 
-<span>
+<div class="small">
 ${escapeHtml(
 formatDateTime(e.dateTime)
 )}
-</span>
+</div>
+</div>
+
+<div>
+<strong>
+${escapeHtml(e.score)}
+</strong>
+</div>
+
+<div>
+<strong>
+${escapeHtml(e.rating)}
+</strong>
+</div>
 
 </div>
 
-<div class="class-record-card-body">
+<div class="class-record-item-body">
 
-<div class="class-record-grid">
+<div class="class-record-meta">
 
-<div class="class-record-field">
+<div class="class-record-meta-box">
 
-<strong>Lesson / Topic</strong>
+<small>
+DATE & TIME
+</small>
 
+<b>
+${escapeHtml(
+formatDateTime(e.dateTime)
+)}
+</b>
+
+</div>
+
+<div class="class-record-meta-box">
+
+<small>
+LESSON / TOPIC
+</small>
+
+<b>
 ${escapeHtml(
 e.lesson_topic || 'N/A'
 )}
+</b>
 
 </div>
 
-<div class="class-record-field">
+<div class="class-record-meta-box">
 
-<strong>Score</strong>
+<small>
+CLASS DURATION
+</small>
 
-${escapeHtml(
-e.score || 'N/A'
-)}
-
-</div>
-
-<div class="class-record-field">
-
-<strong>Rating</strong>
-
-${escapeHtml(
-e.rating || 'N/A'
-)}
-
-</div>
-
-<div class="class-record-field">
-
-<strong>Duration</strong>
-
+<b>
 ${escapeHtml(
 e.duration || 'N/A'
 )}
-
-</div>
-
-<div class="class-record-field">
-
-<strong>Participation</strong>
-
-${escapeHtml(
-e.participation || 'N/A'
-)}
-
-</div>
-
-<div class="class-record-field">
-
-<strong>Pronunciation</strong>
-
-${escapeHtml(
-e.pronunciation || 'N/A'
-)}
-
-</div>
-
-<div class="class-record-field">
-
-<strong>Behavior</strong>
-
-${escapeHtml(
-e.behavior || 'N/A'
-)}
-
-</div>
-
-<div class="class-record-field">
-
-<strong>Speaking</strong>
-
-${escapeHtml(
-e.speaking || 'N/A'
-)}
-
-</div>
-
-<div class="class-record-field">
-
-<strong>Understanding</strong>
-
-${escapeHtml(
-e.understanding || 'N/A'
-)}
-
-</div>
-
-<div class="class-record-field">
-
-<strong>Listening</strong>
-
-${escapeHtml(
-e.listening || 'N/A'
-)}
+</b>
 
 </div>
 
 </div>
 
-<div class="class-record-field">
+<div class="class-record-section">
 
-<strong>Vocabulary / What We Learned</strong>
+<div class="class-record-section-title">
+PERFORMANCE
+</div>
 
+<div class="class-record-meta">
+
+<div class="class-record-meta-box">
+<small>PARTICIPATION</small>
+<b>${escapeHtml(e.participation||'—')}</b>
+</div>
+
+<div class="class-record-meta-box">
+<small>PRONUNCIATION</small>
+<b>${escapeHtml(e.pronunciation||'—')}</b>
+</div>
+
+<div class="class-record-meta-box">
+<small>BEHAVIOR</small>
+<b>${escapeHtml(e.behavior||'—')}</b>
+</div>
+
+<div class="class-record-meta-box">
+<small>SPEAKING</small>
+<b>${escapeHtml(e.speaking||'—')}</b>
+</div>
+
+<div class="class-record-meta-box">
+<small>UNDERSTANDING</small>
+<b>${escapeHtml(e.understanding||'—')}</b>
+</div>
+
+<div class="class-record-meta-box">
+<small>LISTENING</small>
+<b>${escapeHtml(e.listening||'—')}</b>
+</div>
+
+</div>
+
+</div>
+
+<div class="class-record-section">
+
+<div class="class-record-section-title">
+WHAT WE LEARNED / VOCABULARY
+</div>
+
+<div>
 ${escapeHtml(
 e.vocabulary ||
 'No vocabulary/lesson notes provided.'
 )}
+</div>
 
 </div>
 
-<div class="class-record-field" style="margin-top:8px">
+<div class="class-record-section">
 
-<strong>Needs Improvement</strong>
+<div class="class-record-section-title">
+NEEDS IMPROVEMENT
+</div>
 
+<div>
 ${escapeHtml(
 e.improvement ||
 'No specific improvement areas noted.'
 )}
+</div>
 
 </div>
 
+<div class="class-record-section">
+
+<div class="class-record-section-title">
+TEACHER'S COMMENT
+</div>
+
 <div class="class-record-comment">
-
-<strong>Teacher's Comment</strong>
-
-<br><br>
-
 ${escapeHtml(
 e.teacher_comment ||
 'No teacher comment recorded.'
 )}
+</div>
 
 </div>
 
@@ -6927,19 +6777,9 @@ e.teacher_comment ||
 </div>
 
 `
-).join('')}
-
-</div>
-
-:
-
-<div class="empty">
-No evaluations have been recorded for this student yet.
-</div>
+).join('');
 
 }
-
-`;
 
 document.getElementById(
 'studentClassRecordModal'
@@ -7043,6 +6883,18 @@ false
 }
 
 }
+);
+
+
+/* =========================================================
+   NEW STUDENT PICTURE EVENT
+========================================================= */
+
+document.getElementById(
+'newStudentProfileInput'
+).addEventListener(
+'change',
+previewNewStudentProfile
 );
 
 
