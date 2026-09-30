@@ -386,15 +386,23 @@ button.secondary,
   color:#b00020;
 }
 
+
+/* =========================================================
+   STANDARD MODALS
+========================================================= */
+
 .modal-backdrop{
   position:fixed;
   inset:0;
+  width:100vw;
+  height:100vh;
   background:rgba(0,0,0,.45);
   display:none;
   align-items:center;
   justify-content:center;
   padding:18px;
-  z-index:100;
+  overflow-y:auto;
+  z-index:9990;
 }
 
 .modal-backdrop.show{
@@ -404,6 +412,8 @@ button.secondary,
 .modal{
   width:100%;
   max-width:460px;
+  max-height:calc(100vh - 36px);
+  overflow-y:auto;
   background:#fff;
   border-radius:12px;
   box-shadow:0 10px 35px rgba(0,0,0,.25);
@@ -461,6 +471,7 @@ button.secondary,
 .modal-error.show{
   display:block;
 }
+
 
 /* =========================================================
    USER BAR / PROFILE
@@ -542,23 +553,60 @@ button.secondary,
   white-space:nowrap;
 }
 
+
+/* =========================================================
+   TEACHER PROFILE FULL-SCREEN FIX
+   PROFILE IS NO LONGER INSIDE THE DASHBOARD CONTAINER
+========================================================= */
+
 .profile-panel{
-  position:absolute;
-  left:15px;
-  top:60px;
-  width:310px;
-  max-width:calc(100vw - 30px);
+  position:fixed;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+
+  width:min(520px,calc(100vw - 30px));
+
+  max-width:520px;
+  max-height:calc(100vh - 30px);
+
   background:#fff;
   border:1px solid #ccc;
-  border-radius:12px;
-  box-shadow:0 8px 25px rgba(0,0,0,.2);
-  padding:15px;
-  z-index:90;
+  border-radius:14px;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.30);
+
+  padding:20px;
+
+  z-index:10000;
+
   display:none;
+
+  overflow-y:auto;
+  overflow-x:hidden;
+
+  overscroll-behavior:contain;
 }
 
 .profile-panel.show{
   display:block;
+}
+
+/*
+   Full-screen dark background behind Teacher Profile.
+*/
+.profile-panel.show::before{
+  content:"";
+  position:fixed;
+  left:50%;
+  top:50%;
+  width:100vw;
+  height:100vh;
+  transform:translate(-50%,-50%);
+  background:rgba(0,0,0,.45);
+  z-index:-1;
+  pointer-events:none;
 }
 
 .profile-panel-header{
@@ -714,7 +762,7 @@ button.secondary,
   box-shadow:0 6px 18px rgba(0,0,0,.16);
   padding:5px;
   display:none;
-  z-index:95;
+  z-index:10001;
 }
 
 .profile-more-menu.show{
@@ -827,6 +875,7 @@ button.secondary,
   background:#ffecec;
 }
 
+
 /* =========================================================
    CLEAR ALL RECORDS CAPTCHA
 ========================================================= */
@@ -879,6 +928,7 @@ button.secondary,
 .hidden{
   display:none!important;
 }
+
 
 /* AUTH */
 
@@ -990,6 +1040,7 @@ button.secondary,
   color:#8a0000;
 }
 
+
 /* PASSWORD */
 
 .password-wrap{
@@ -1037,6 +1088,11 @@ button.secondary,
   text-decoration:underline;
 }
 
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
 @media(max-width:800px){
 
   .grid,
@@ -1068,12 +1124,58 @@ button.secondary,
     align-items:center;
   }
 
+}
+
+
+/*
+   IMPORTANT:
+   Teacher Profile uses the whole screen on small devices.
+*/
+@media(max-width:600px){
+
   .profile-panel{
-    left:10px;
-    top:58px;
+    left:50%;
+    top:50%;
+
+    width:calc(100vw - 20px);
+    max-width:none;
+
+    max-height:calc(100vh - 20px);
+
+    padding:16px;
+    border-radius:12px;
+  }
+
+  .profile-panel-header{
+    align-items:flex-start;
+  }
+
+  .profile-header-name b{
+    font-size:15px;
+  }
+
+  .profile-field{
+    margin-bottom:11px;
+  }
+
+  .profile-actions{
+    flex-direction:column;
+  }
+
+  .profile-save-btn{
+    width:100%;
+  }
+
+  .profile-more-menu{
+    bottom:45px;
   }
 
 }
+
+
+/* =========================================================
+   PRINT
+========================================================= */
 
 @media print{
 
@@ -1099,6 +1201,11 @@ button.secondary,
   .card{
     box-shadow:none;
   }
+
+  .profile-panel{
+    display:none!important;
+  }
+
 }
 </style>
 
@@ -1449,6 +1556,7 @@ Update Password
 </div>
 </div>
 
+
 <!-- =========================================================
      MAIN APPLICATION
 ========================================================= -->
@@ -1506,190 +1614,6 @@ Teacher
 
 </button>
 
-<div
-id="profilePanel"
-class="profile-panel"
->
-
-<div class="profile-panel-header">
-
-<div class="profile-picture-wrap">
-
-<div
-id="profilePictureLarge"
-class="profile-picture-large"
->
-👤
-</div>
-
-<button
-type="button"
-class="profile-picture-btn"
-onclick="document.getElementById('profilePictureInput').click()"
->
-Change Picture
-</button>
-
-<input
-id="profilePictureInput"
-type="file"
-accept="image/*"
-style="display:none"
->
-
-</div>
-
-<div class="profile-header-name">
-
-<b id="profileHeaderName">
-Teacher
-</b>
-
-<span id="profileHeaderEmail">
-—
-</span>
-
-</div>
-
-</div>
-
-<div class="profile-fields">
-
-<div class="profile-field">
-
-<label>Username</label>
-
-<input
-id="profileUsername"
-placeholder="Username"
->
-
-</div>
-
-<div class="profile-field">
-
-<label>Teacher Full Name</label>
-
-<input
-id="profileFullName"
-placeholder="Teacher Full Name"
->
-
-</div>
-
-<div class="profile-field">
-
-<label>Email</label>
-
-<input
-id="profileEmail"
-type="email"
-readonly
->
-
-</div>
-
-<div class="profile-field">
-
-<label>Phone Number</label>
-
-<input
-id="profilePhone"
-type="tel"
-placeholder="Phone Number"
->
-
-</div>
-
-<div class="profile-field">
-
-<label>Gender</label>
-
-<select id="profileGender">
-
-<option value="">
-Select Gender
-</option>
-
-<option value="Male">
-Male
-</option>
-
-<option value="Female">
-Female
-</option>
-
-<option value="Prefer not to say">
-Prefer not to say
-</option>
-
-</select>
-
-</div>
-
-</div>
-
-<div
-id="profileStatus"
-class="profile-status"
-></div>
-
-<div class="profile-actions">
-
-<button
-type="button"
-class="profile-save-btn"
-onclick="saveTeacherProfile()"
->
-Save Profile
-</button>
-
-</div>
-
-<button
-type="button"
-class="profile-password-btn"
-onclick="openChangePasswordModal()"
->
-Change Password
-</button>
-
-<div class="profile-menu-wrap">
-
-<button
-type="button"
-class="profile-menu-trigger"
-onclick="toggleProfileMoreMenu(event)"
->
-⋮ &nbsp; More Options
-</button>
-
-<div
-id="profileMoreMenu"
-class="profile-more-menu"
->
-
-<button
-type="button"
-onclick="openClearAllRecordsFromProfile()"
->
-Clear All Records
-</button>
-
-<button
-type="button"
-class="profile-logout-option"
-onclick="logoutTeacher()"
->
-Log Out
-</button>
-
-</div>
-
-</div>
-
-</div>
-
 </div>
 
 </div>
@@ -1719,6 +1643,7 @@ Record of Evaluation
 </button>
 
 </div>
+
 
 <!-- DASHBOARD -->
 
@@ -1817,6 +1742,7 @@ style="margin-top:15px"
 </div>
 
 </div>
+
 
 <!-- EVALUATION -->
 
@@ -2179,6 +2105,7 @@ EmailJS is connected. After you submit, the class memo will be emailed automatic
 
 </div>
 
+
 <!-- RECORDS -->
 
 <div id="recordsPage" class="page">
@@ -2235,6 +2162,201 @@ No evaluations recorded yet.
 </div>
 </div>
 </div>
+
+
+<!-- =========================================================
+     TEACHER PROFILE
+     
+     IMPORTANT:
+     This is intentionally OUTSIDE the .card / Dashboard.
+     Therefore Dashboard size can no longer clip it.
+========================================================= -->
+
+<div
+id="profilePanel"
+class="profile-panel"
+onclick="event.stopPropagation()"
+>
+
+<div class="profile-panel-header">
+
+<div class="profile-picture-wrap">
+
+<div
+id="profilePictureLarge"
+class="profile-picture-large"
+>
+👤
+</div>
+
+<button
+type="button"
+class="profile-picture-btn"
+onclick="document.getElementById('profilePictureInput').click()"
+>
+Change Picture
+</button>
+
+<input
+id="profilePictureInput"
+type="file"
+accept="image/*"
+style="display:none"
+>
+
+</div>
+
+<div class="profile-header-name">
+
+<b id="profileHeaderName">
+Teacher
+</b>
+
+<span id="profileHeaderEmail">
+—
+</span>
+
+</div>
+
+</div>
+
+<div class="profile-fields">
+
+<div class="profile-field">
+
+<label>Username</label>
+
+<input
+id="profileUsername"
+placeholder="Username"
+>
+
+</div>
+
+<div class="profile-field">
+
+<label>Teacher Full Name</label>
+
+<input
+id="profileFullName"
+placeholder="Teacher Full Name"
+>
+
+</div>
+
+<div class="profile-field">
+
+<label>Email</label>
+
+<input
+id="profileEmail"
+type="email"
+readonly
+>
+
+</div>
+
+<div class="profile-field">
+
+<label>Phone Number</label>
+
+<input
+id="profilePhone"
+type="tel"
+placeholder="Phone Number"
+>
+
+</div>
+
+<div class="profile-field">
+
+<label>Gender</label>
+
+<select id="profileGender">
+
+<option value="">
+Select Gender
+</option>
+
+<option value="Male">
+Male
+</option>
+
+<option value="Female">
+Female
+</option>
+
+<option value="Prefer not to say">
+Prefer not to say
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+<div
+id="profileStatus"
+class="profile-status"
+></div>
+
+<div class="profile-actions">
+
+<button
+type="button"
+class="profile-save-btn"
+onclick="saveTeacherProfile()"
+>
+Save Profile
+</button>
+
+</div>
+
+<button
+type="button"
+class="profile-password-btn"
+onclick="openChangePasswordModal()"
+>
+Change Password
+</button>
+
+<div class="profile-menu-wrap">
+
+<button
+type="button"
+class="profile-menu-trigger"
+onclick="toggleProfileMoreMenu(event)"
+>
+⋮ &nbsp; More Options
+</button>
+
+<div
+id="profileMoreMenu"
+class="profile-more-menu"
+>
+
+<button
+type="button"
+onclick="openClearAllRecordsFromProfile()"
+>
+Clear All Records
+</button>
+
+<button
+type="button"
+class="profile-logout-option"
+onclick="logoutTeacher()"
+>
+Log Out
+</button>
+
+</div>
+
+</div>
+
+</div>
+
 
 <!-- =========================================================
      EDIT STUDENT MODAL
@@ -2313,6 +2435,7 @@ Save Changes
 </div>
 </div>
 
+
 <!-- =========================================================
      DELETE STUDENT MODAL
 ========================================================= -->
@@ -2376,6 +2499,7 @@ Delete Student
 
 </div>
 </div>
+
 
 <!-- =========================================================
      CHANGE PASSWORD MODAL
@@ -2471,6 +2595,7 @@ Change Password
 </div>
 </div>
 
+
 <!-- =========================================================
      CLEAR ALL RECORDS CAPTCHA MODAL
 ========================================================= -->
@@ -2558,6 +2683,7 @@ Clear All Records
 
 </div>
 </div>
+
 
 <script>
 
@@ -3241,13 +3367,18 @@ document.getElementById(
 if(!panel)
 return;
 
-panel.classList.toggle('show');
+const isOpen=
+panel.classList.contains('show');
 
-if(panel.classList.contains('show')){
+if(isOpen){
 
-closeProfileMoreMenu();
+closeProfilePanel();
+
+}else{
 
 loadTeacherProfile();
+
+panel.classList.add('show');
 
 }
 
@@ -3558,6 +3689,8 @@ reader.readAsDataURL(file);
 function openChangePasswordModal(){
 
 closeProfileMoreMenu();
+
+closeProfilePanel();
 
 document.getElementById(
 'profileNewPassword'
@@ -3948,7 +4081,7 @@ e=>{
 
 if(
 !e.target.closest('.profile-trigger') &&
-!e.target.closest('.profile-panel')
+!e.target.closest('#profilePanel')
 ){
 
 closeProfilePanel();
