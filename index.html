@@ -633,38 +633,45 @@ button.secondary,
   word-break:break-word;
 }
 
-.class-record-stars{
-  letter-spacing:1px;
-  white-space:nowrap;
-}
-
 /* =========================================================
-   SAVED STAR DISPLAY
-   Only affects stars shown inside Class Record / View
+   UPDATED SAVED STAR DISPLAY
 ========================================================= */
 
 .saved-stars{
   display:inline-flex;
   align-items:center;
-  gap:2px;
+  gap:1px;
   white-space:nowrap;
-  font-size:21px;
+  font-size:24px;
+  line-height:1;
+  letter-spacing:0;
+}
+
+.saved-stars .saved-star{
+  display:inline-block;
+  font-size:24px;
   line-height:1;
 }
 
-.saved-star{
-  display:inline-block;
-  font-family:Arial,Helvetica,sans-serif;
-}
-
-.saved-star.filled{
+.saved-stars .saved-star.filled{
   color:#ffd400;
+  text-shadow:0 0 1px #b89600;
 }
 
-.saved-star.empty{
-  color:#fff;
+.saved-stars .saved-star.empty{
+  color:#ffffff;
   -webkit-text-stroke:1px #999;
   text-shadow:none;
+}
+
+
+/* =========================================================
+   RECORD VIEW
+========================================================= */
+
+.class-record-stars{
+  letter-spacing:1px;
+  white-space:nowrap;
 }
 
 .class-record-comment{
@@ -2709,7 +2716,9 @@ Log Out
 </div>
 
 
-<!-- EDIT STUDENT MODAL -->
+<!-- =========================================================
+     EDIT STUDENT MODAL
+========================================================= -->
 
 <div
 id="editStudentModal"
@@ -2785,7 +2794,9 @@ Save Changes
 </div>
 
 
-<!-- DELETE STUDENT MODAL -->
+<!-- =========================================================
+     DELETE STUDENT MODAL
+========================================================= -->
 
 <div
 id="deleteStudentModal"
@@ -2848,7 +2859,9 @@ Delete Student
 </div>
 
 
-<!-- CLASS RECORD MODAL -->
+<!-- =========================================================
+     CLASS RECORD MODAL
+========================================================= -->
 
 <div
 id="studentClassRecordModal"
@@ -2878,7 +2891,9 @@ Close
 </div>
 
 
-<!-- INDIVIDUAL EVALUATION VIEW MODAL -->
+<!-- =========================================================
+     INDIVIDUAL EVALUATION VIEW MODAL
+========================================================= -->
 
 <div
 id="evaluationViewModal"
@@ -2908,7 +2923,9 @@ Close
 </div>
 
 
-<!-- CHANGE PASSWORD MODAL -->
+<!-- =========================================================
+     CHANGE PASSWORD MODAL
+========================================================= -->
 
 <div
 id="changePasswordModal"
@@ -3001,7 +3018,9 @@ Change Password
 </div>
 
 
-<!-- CLEAR ALL RECORDS CAPTCHA MODAL -->
+<!-- =========================================================
+     CLEAR ALL RECORDS CAPTCHA MODAL
+========================================================= -->
 
 <div
 id="clearAllRecordsModal"
@@ -6008,6 +6027,14 @@ currentComment
 
 };
 
+
+/*
+   IMPORTANT:
+   evaluationSavedAt is the exact moment the evaluation
+   was successfully saved after EmailJS sends successfully.
+   This is now the PRIMARY sorting timestamp.
+*/
+
 const evaluationSavedAt=
 new Date().toISOString();
 
@@ -6206,6 +6233,7 @@ return Number.isNaN(time)
 :time;
 
 }
+
 
 function getStudentInitials(name){
 
@@ -6653,41 +6681,52 @@ modal.classList.remove('show');
 
 /* =========================================================
    SAVED STAR DISPLAY
-   Reads the EXACT saved rating from the evaluation.
-========================================================= */
+   ========================================================
 
-function renderSavedStars(value){
+   IMPORTANT:
+   This function reads the EXACT saved numeric value
+   from the evaluation record.
 
-const rating=Math.max(
+   Example:
+   1 -> 1 yellow + 4 white
+   2 -> 2 yellow + 3 white
+   3 -> 3 yellow + 2 white
+   4 -> 4 yellow + 1 white
+   5 -> 5 yellow
+*/
+
+function savedStarsHtml(value){
+
+let count=Number(value);
+
+if(!Number.isFinite(count)){
+count=0;
+}
+
+count=Math.max(
 0,
 Math.min(
 5,
-Number(value)||0
+Math.round(count)
 )
 );
 
-let html='';
+let html='<span class="saved-stars" aria-label="'+count+' out of 5 stars">';
 
 for(let i=1;i<=5;i++){
 
 html+=
-`<span class="saved-star ${
-i<=rating
-?'filled'
-:'empty'
-}">★</span>`;
+'<span class="saved-star '+
+(i<=count?'filled':'empty')+
+'">'+
+'★'+
+'</span>';
 
 }
 
-return `
-<span
-class="saved-stars"
-aria-label="${rating} out of 5 stars"
-title="${rating} out of 5 stars"
->
-${html}
-</span>
-`;
+html+='</span>';
+
+return html;
 
 }
 
@@ -6891,7 +6930,7 @@ STUDENT PERFORMANCE
 <label>Participation</label>
 
 <div>
-${renderSavedStars(
+${savedStarsHtml(
 evaluation.participation
 )}
 </div>
@@ -6903,7 +6942,7 @@ evaluation.participation
 <label>Pronunciation</label>
 
 <div>
-${renderSavedStars(
+${savedStarsHtml(
 evaluation.pronunciation
 )}
 </div>
@@ -6915,7 +6954,7 @@ evaluation.pronunciation
 <label>Behavior</label>
 
 <div>
-${renderSavedStars(
+${savedStarsHtml(
 evaluation.behavior
 )}
 </div>
@@ -6927,7 +6966,7 @@ evaluation.behavior
 <label>Speaking</label>
 
 <div>
-${renderSavedStars(
+${savedStarsHtml(
 evaluation.speaking
 )}
 </div>
@@ -6939,7 +6978,7 @@ evaluation.speaking
 <label>Understanding</label>
 
 <div>
-${renderSavedStars(
+${savedStarsHtml(
 evaluation.understanding
 )}
 </div>
@@ -6951,7 +6990,7 @@ evaluation.understanding
 <label>Listening</label>
 
 <div>
-${renderSavedStars(
+${savedStarsHtml(
 evaluation.listening
 )}
 </div>
