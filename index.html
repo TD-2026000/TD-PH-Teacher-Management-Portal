@@ -633,9 +633,33 @@ button.secondary,
   word-break:break-word;
 }
 
+/* =========================================================
+   SAVED EVALUATION STARS
+   ========================================================= */
+
 .class-record-stars{
-  letter-spacing:1px;
+  display:inline-flex;
+  align-items:center;
+  gap:2px;
   white-space:nowrap;
+  line-height:1;
+}
+
+.class-record-stars .saved-star{
+  font-size:20px;
+  line-height:1;
+  display:inline-block;
+}
+
+.class-record-stars .saved-star.filled{
+  color:#ffd400;
+  -webkit-text-stroke:1px #b38f00;
+  text-shadow:0 1px 1px rgba(0,0,0,.12);
+}
+
+.class-record-stars .saved-star.empty{
+  color:#fff;
+  -webkit-text-stroke:1px #999;
 }
 
 .class-record-comment{
@@ -6067,11 +6091,6 @@ true
 
 renderDashboard();
 
-/*
-   Immediately re-render the student evaluation list.
-   Because the newly saved evaluation has the newest
-   evaluationSavedAt timestamp, this student moves to top.
-*/
 renderRecords();
 
 })
@@ -6695,6 +6714,51 @@ modal.classList.remove('show');
 
 
 /* =========================================================
+   SAVED STAR DISPLAY
+   =========================================================
+
+   This is used ONLY for saved evaluations inside
+   Record of Evaluation -> Class Record -> View.
+
+   It reads the exact saved 1-5 rating and renders:
+   filled = yellow
+   empty  = white
+*/
+
+function renderSavedStars(value){
+
+const rating=
+Math.max(
+0,
+Math.min(
+5,
+Math.round(
+Number(value)||0
+)
+)
+);
+
+let html=
+'<span class="class-record-stars" aria-label="'+
+rating+
+' out of 5 stars">';
+
+for(let i=1;i<=5;i++){
+
+html+=
+`<span class="saved-star ${i<=rating?'filled':'empty'}">★</span>`;
+
+}
+
+html+=
+'</span>';
+
+return html;
+
+}
+
+
+/* =========================================================
    VIEW INDIVIDUAL EVALUATION
 ========================================================= */
 
@@ -6720,17 +6784,6 @@ return;
 const container=
 document.getElementById(
 'evaluationViewContent'
-);
-
-const starsText=n=>
-'★'.repeat(
-Number(n)||0
-)+
-'☆'.repeat(
-Math.max(
-0,
-5-(Number(n)||0)
-)
 );
 
 const topic=
@@ -6904,7 +6957,7 @@ STUDENT PERFORMANCE
 <label>Participation</label>
 
 <div>
-${starsText(evaluation.participation)}
+${renderSavedStars(evaluation.participation)}
 </div>
 
 </div>
@@ -6914,7 +6967,7 @@ ${starsText(evaluation.participation)}
 <label>Pronunciation</label>
 
 <div>
-${starsText(evaluation.pronunciation)}
+${renderSavedStars(evaluation.pronunciation)}
 </div>
 
 </div>
@@ -6924,7 +6977,7 @@ ${starsText(evaluation.pronunciation)}
 <label>Behavior</label>
 
 <div>
-${starsText(evaluation.behavior)}
+${renderSavedStars(evaluation.behavior)}
 </div>
 
 </div>
@@ -6934,7 +6987,7 @@ ${starsText(evaluation.behavior)}
 <label>Speaking</label>
 
 <div>
-${starsText(evaluation.speaking)}
+${renderSavedStars(evaluation.speaking)}
 </div>
 
 </div>
@@ -6944,7 +6997,7 @@ ${starsText(evaluation.speaking)}
 <label>Understanding</label>
 
 <div>
-${starsText(evaluation.understanding)}
+${renderSavedStars(evaluation.understanding)}
 </div>
 
 </div>
@@ -6954,7 +7007,7 @@ ${starsText(evaluation.understanding)}
 <label>Listening</label>
 
 <div>
-${starsText(evaluation.listening)}
+${renderSavedStars(evaluation.listening)}
 </div>
 
 </div>
