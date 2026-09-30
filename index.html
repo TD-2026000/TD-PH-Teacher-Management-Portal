@@ -633,33 +633,48 @@ button.secondary,
   word-break:break-word;
 }
 
-/* =========================================================
-   SAVED EVALUATION STARS
-   ========================================================= */
-
 .class-record-stars{
+  letter-spacing:1px;
+  white-space:nowrap;
+}
+
+/* UPDATED STAR DISPLAY FOR SAVED CLASS RECORDS */
+.record-stars{
   display:inline-flex;
   align-items:center;
   gap:2px;
   white-space:nowrap;
+  font-size:21px;
   line-height:1;
 }
 
-.class-record-stars .saved-star{
-  font-size:20px;
-  line-height:1;
-  display:inline-block;
-}
-
-.class-record-stars .saved-star.filled{
+.record-stars .filled{
   color:#ffd400;
-  -webkit-text-stroke:1px #b38f00;
-  text-shadow:0 1px 1px rgba(0,0,0,.12);
+  -webkit-text-stroke:0.4px #c9a900;
 }
 
-.class-record-stars .saved-star.empty{
-  color:#fff;
-  -webkit-text-stroke:1px #999;
+.record-stars .empty{
+  color:#ffffff;
+  -webkit-text-stroke:1px #777;
+}
+
+.record-detail-stars{
+  display:inline-flex;
+  align-items:center;
+  gap:2px;
+  white-space:nowrap;
+  font-size:23px;
+  line-height:1;
+}
+
+.record-detail-stars .filled{
+  color:#ffd400;
+  -webkit-text-stroke:0.4px #c9a900;
+}
+
+.record-detail-stars .empty{
+  color:#ffffff;
+  -webkit-text-stroke:1px #777;
 }
 
 .class-record-comment{
@@ -6306,6 +6321,46 @@ getStudentInitials(student.name)
 
 
 /* =========================================================
+   SAVED STAR DISPLAY
+   IMPORTANT:
+   This uses the exact saved number of stars.
+========================================================= */
+
+function renderSavedStars(value,detail=false){
+
+const count=Math.max(
+0,
+Math.min(
+5,
+Number(value)||0
+)
+);
+
+const className=
+detail
+?'record-detail-stars'
+:'record-stars';
+
+let html=
+`<span class="${className}" aria-label="${count} out of 5 stars">`;
+
+for(let i=1;i<=5;i++){
+
+html+=
+i<=count
+?'<span class="filled">★</span>'
+:'<span class="empty">★</span>';
+
+}
+
+html+='</span>';
+
+return html;
+
+}
+
+
+/* =========================================================
    RENDER RECORD OF EVALUATION
 ========================================================= */
 
@@ -6339,11 +6394,6 @@ empty.style.display='block';
 return;
 
 }
-
-
-/*
-   Build one record-list item for every student.
-*/
 
 const studentData=
 students.map(
@@ -6382,20 +6432,6 @@ studentEvals[0]
 }
 );
 
-
-/*
-   ========================================================
-   FINAL STUDENT SORTING RULE
-   ========================================================
-
-   1. Students with evaluations come first.
-   2. Among evaluated students:
-      newest evaluationSavedAt comes first.
-   3. Students without evaluations remain below.
-   4. If two timestamps are exactly equal,
-      preserve original student order.
-*/
-
 studentData.sort(
 (a,b)=>{
 
@@ -6404,9 +6440,6 @@ a.latestTimestamp>0;
 
 const bHasEvaluation=
 b.latestTimestamp>0;
-
-
-/* Evaluated students before unevaluated students */
 
 if(
 aHasEvaluation &&
@@ -6426,9 +6459,6 @@ return 1;
 
 }
 
-
-/* Both have evaluations */
-
 if(
 aHasEvaluation &&
 bHasEvaluation
@@ -6447,9 +6477,6 @@ a.latestTimestamp
 }
 
 }
-
-
-/* Both unevaluated OR exact timestamp tie */
 
 return a.index-b.index;
 
@@ -6714,51 +6741,6 @@ modal.classList.remove('show');
 
 
 /* =========================================================
-   SAVED STAR DISPLAY
-   =========================================================
-
-   This is used ONLY for saved evaluations inside
-   Record of Evaluation -> Class Record -> View.
-
-   It reads the exact saved 1-5 rating and renders:
-   filled = yellow
-   empty  = white
-*/
-
-function renderSavedStars(value){
-
-const rating=
-Math.max(
-0,
-Math.min(
-5,
-Math.round(
-Number(value)||0
-)
-)
-);
-
-let html=
-'<span class="class-record-stars" aria-label="'+
-rating+
-' out of 5 stars">';
-
-for(let i=1;i<=5;i++){
-
-html+=
-`<span class="saved-star ${i<=rating?'filled':'empty'}">★</span>`;
-
-}
-
-html+=
-'</span>';
-
-return html;
-
-}
-
-
-/* =========================================================
    VIEW INDIVIDUAL EVALUATION
 ========================================================= */
 
@@ -6957,7 +6939,10 @@ STUDENT PERFORMANCE
 <label>Participation</label>
 
 <div>
-${renderSavedStars(evaluation.participation)}
+${renderSavedStars(
+evaluation.participation,
+true
+)}
 </div>
 
 </div>
@@ -6967,7 +6952,10 @@ ${renderSavedStars(evaluation.participation)}
 <label>Pronunciation</label>
 
 <div>
-${renderSavedStars(evaluation.pronunciation)}
+${renderSavedStars(
+evaluation.pronunciation,
+true
+)}
 </div>
 
 </div>
@@ -6977,7 +6965,10 @@ ${renderSavedStars(evaluation.pronunciation)}
 <label>Behavior</label>
 
 <div>
-${renderSavedStars(evaluation.behavior)}
+${renderSavedStars(
+evaluation.behavior,
+true
+)}
 </div>
 
 </div>
@@ -6987,7 +6978,10 @@ ${renderSavedStars(evaluation.behavior)}
 <label>Speaking</label>
 
 <div>
-${renderSavedStars(evaluation.speaking)}
+${renderSavedStars(
+evaluation.speaking,
+true
+)}
 </div>
 
 </div>
@@ -6997,7 +6991,10 @@ ${renderSavedStars(evaluation.speaking)}
 <label>Understanding</label>
 
 <div>
-${renderSavedStars(evaluation.understanding)}
+${renderSavedStars(
+evaluation.understanding,
+true
+)}
 </div>
 
 </div>
@@ -7007,7 +7004,10 @@ ${renderSavedStars(evaluation.understanding)}
 <label>Listening</label>
 
 <div>
-${renderSavedStars(evaluation.listening)}
+${renderSavedStars(
+evaluation.listening,
+true
+)}
 </div>
 
 </div>
