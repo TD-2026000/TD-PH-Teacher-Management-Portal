@@ -9,23 +9,32 @@
 <style>
 *{box-sizing:border-box}
 
+html,body{
+  width:100%;
+  min-height:100%;
+}
+
 body{
   margin:0;
   font-family:Arial,Helvetica,sans-serif;
-  background:#f2f4f7;
+  background:#fff;
   color:#111;
 }
 
 .app{
-  max-width:1100px;
-  margin:20px auto;
-  padding:15px;
+  width:100%;
+  max-width:none;
+  min-height:100vh;
+  margin:0;
+  padding:0;
 }
 
 .card{
+  width:100%;
+  min-height:100vh;
   background:#fff;
-  border-radius:12px;
-  box-shadow:0 4px 18px rgba(0,0,0,.12);
+  border-radius:0;
+  box-shadow:none;
   overflow:hidden;
 }
 
@@ -38,9 +47,9 @@ body{
 }
 
 .nav{
-  display:flex;
+  display:none;
   gap:8px;
-  padding:12px 15px;
+  padding:12px clamp(18px,3vw,40px);
   background:#fff;
   border-bottom:1px solid #ddd;
   flex-wrap:wrap;
@@ -62,11 +71,259 @@ body{
 
 .page{
   display:none;
-  padding:18px;
+  padding:24px clamp(18px,3vw,40px) 32px;
 }
 
 .page.active{
   display:block;
+}
+
+/* Large dashboard navigation cards */
+.dashboard-menu{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+  margin:0;
+}
+
+.dashboard-menu-btn{
+  min-height:105px;
+  border:1px solid #b8b8b8;
+  border-radius:12px;
+  background:#87CEEB;
+  padding:20px;
+  cursor:pointer;
+  text-align:left;
+  font-size:20px;
+  font-weight:800;
+  box-shadow:0 2px 7px rgba(0,0,0,.06);
+  transition:transform .15s ease,box-shadow .15s ease,background .15s ease;
+}
+
+.dashboard-menu-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 5px 14px rgba(0,0,0,.12);
+  background:#70c5e8;
+}
+
+.dashboard-menu-btn:active{
+  transform:translateY(0);
+}
+
+.dashboard-menu-label{
+  display:block;
+  margin-bottom:7px;
+  font-size:20px;
+}
+
+.dashboard-menu-sub{
+  display:none;
+}
+
+/* Dashboard overview */
+#dashboardPage > h2,
+#dashboardPage .dashboard-grid{
+  display:none;
+}
+
+#dashboardPage{
+  padding-top:24px;
+}
+
+.dashboard-overview{
+  display:grid;
+  gap:18px;
+  margin-bottom:22px;
+}
+
+.teacher-dashboard-card{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:22px 24px;
+  border:1px solid #d0d0d0;
+  border-radius:14px;
+  background:#fff;
+  box-shadow:0 3px 12px rgba(0,0,0,.07);
+}
+
+.teacher-dashboard-photo{
+  width:92px;
+  height:92px;
+  border-radius:50%;
+  background:#eee;
+  border:2px solid #ddd;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  flex-shrink:0;
+  font-size:42px;
+}
+
+.teacher-dashboard-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.teacher-dashboard-title{
+  margin:0;
+  font-size:clamp(28px,4vw,44px);
+  font-weight:900;
+  line-height:1.05;
+  text-transform:uppercase;
+}
+
+.teacher-dashboard-label{
+  margin-top:7px;
+  color:#666;
+  font-size:14px;
+  font-weight:700;
+}
+
+.dashboard-summary-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+}
+
+.dashboard-summary-card{
+  min-height:125px;
+  padding:20px;
+  border:1px solid #ccc;
+  border-radius:12px;
+  background:#fff;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+
+.dashboard-summary-label{
+  font-size:15px;
+  font-weight:700;
+  color:#555;
+}
+
+.dashboard-summary-number{
+  margin-top:10px;
+  font-size:38px;
+  line-height:1;
+  font-weight:900;
+}
+
+.dashboard-todo{
+  border:1px solid #ccc;
+  border-radius:12px;
+  background:#fff;
+  overflow:hidden;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+
+.dashboard-todo-title{
+  padding:13px 16px;
+  background:#87CEEB;
+  font-size:17px;
+  font-weight:900;
+}
+
+.dashboard-todo-body{
+  padding:18px;
+  min-height:72px;
+}
+
+.dashboard-todo-main{
+  font-size:18px;
+  font-weight:800;
+}
+
+.dashboard-todo-sub{
+  margin-top:6px;
+  color:#666;
+  font-size:14px;
+}
+
+#dashboardPage .dashboard-menu-btn{
+  min-height:120px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+#dashboardPage .dashboard-menu-label{
+  margin:0;
+  font-size:22px;
+}
+
+
+#dashboardPage .dashboard-menu-label{
+  line-height:1.25;
+}
+
+#dashboardPage .dashboard-menu-btn{
+  color:#111;
+}
+
+.page-back-wrap{
+  margin-bottom:14px;
+}
+
+@media(max-width:700px){
+  .teacher-dashboard-card{
+    padding:18px;
+  }
+  .teacher-dashboard-photo{
+    width:76px;
+    height:76px;
+    font-size:34px;
+  }
+  .dashboard-summary-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+.portal-page-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:16px;
+}
+
+.portal-page-actions button{
+  border:0;
+  border-radius:8px;
+  padding:10px 16px;
+  background:#00d9d9;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.page-back-btn{
+  border:0;
+  border-radius:8px;
+  padding:10px 16px;
+  background:#87CEEB;
+  font-weight:800;
+  cursor:pointer;
+  font-size:14px;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin-bottom:14px;
+}
+
+.page-back-btn:hover{
+  background:#70c5e8;
+}
+
+@media(max-width:700px){
+  .dashboard-menu{
+    grid-template-columns:1fr;
+  }
+
+  .dashboard-menu-btn{
+    min-height:90px;
+  }
 }
 
 .grid{
@@ -1436,6 +1693,10 @@ button.secondary,
 ========================================================= */
 
 @media(max-width:800px){
+  .app{
+    width:calc(100% - 12px);
+    margin:6px auto;
+  }
 
   .grid,
   .score-box,
@@ -1581,6 +1842,243 @@ button.secondary,
   }
 
 }
+/* =========================================================
+   ENHANCED STUDENT MANAGEMENT
+========================================================= */
+.student-add-trigger-wrap{
+  display:flex;
+  justify-content:flex-end;
+  margin:0 0 16px;
+}
+.student-add-trigger{
+  border:0;
+  border-radius:8px;
+  padding:11px 18px;
+  background:#00d9d9;
+  color:#000;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 2px 5px rgba(0,0,0,.08);
+}
+.student-add-trigger:hover{
+  filter:brightness(.96);
+}
+.student-add-modal{
+  max-width:820px;
+}
+.student-add-modal-header{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:16px;
+}
+.student-modal-close{
+  width:34px;
+  height:34px;
+  border:0;
+  border-radius:8px;
+  background:#eee;
+  font-size:24px;
+  line-height:1;
+  cursor:pointer;
+  flex:0 0 auto;
+}
+.student-modal-close:hover{
+  background:#ddd;
+}
+.student-toolbar{
+  display:flex;
+  gap:10px;
+  align-items:end;
+  flex-wrap:wrap;
+  margin-bottom:16px;
+}
+.student-search-wrap{flex:1;min-width:240px}
+.student-filter-wrap{width:190px;max-width:100%}
+.student-sort-wrap{position:relative;flex:0 0 auto}
+.student-sort-trigger{width:44px;height:44px;border:1px solid #d7d7d7;border-radius:10px;background:#fff;font-size:25px;font-weight:900;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.student-sort-trigger:hover{border-color:#00bfc0;background:#f5ffff}
+.student-sort-menu{position:absolute;right:0;top:50px;min-width:150px;background:#fff;border:1px solid #ddd;border-radius:12px;box-shadow:0 10px 28px rgba(0,0,0,.15);padding:6px;display:none;z-index:1000}
+.student-sort-menu.show{display:block}
+.student-sort-menu button{display:block;width:100%;border:0;background:#fff;text-align:left;padding:10px 12px;border-radius:8px;font-weight:700;cursor:pointer}
+.student-sort-menu button:hover{background:#eefafa}
+.student-section-heading{margin-top:18px;font-weight:900;font-size:15px;letter-spacing:.4px}
+.completed-heading{margin-top:30px}
+.student-card-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:18px}
+.student-card{border:1px solid #ddd;border-radius:16px;background:#fff;padding:18px 14px;box-shadow:0 3px 12px rgba(0,0,0,.07);cursor:pointer;text-align:center;transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease;min-height:245px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
+.student-card:hover{transform:translateY(-2px);box-shadow:0 7px 20px rgba(0,0,0,.11);border-color:#00bfc0}
+.student-card-top{display:flex;flex-direction:column;align-items:center;gap:9px;width:100%}
+.student-avatar-circle{width:108px;height:108px;border-radius:50%;background:#e9fafa;border:3px solid #00d9d9;display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:32px;font-weight:900;color:#087b7b;flex:0 0 auto}
+.student-avatar-circle img{width:100%;height:100%;object-fit:cover;display:block}
+.student-card-name{font-size:17px;font-weight:900;color:#111;line-height:1.25;word-break:break-word}
+.student-card-id{font-size:12px;color:#666;margin-top:2px;font-weight:400}
+.student-card .student-status-badge{margin-top:4px}
+.student-card-meta{display:none}
+.student-card .student-progress{display:none}
+.student-card-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px;justify-content:center;width:100%}
+.student-card-actions button{border:0;border-radius:8px;padding:8px 11px;font-size:12px;font-weight:800;cursor:pointer;background:#eee}
+.student-card-actions .primary-action{background:#00d9d9}
+.student-card-actions .danger-action{background:#ffe1e1;color:#a00000}
+.student-profile-modal{width:95vw;max-width:1450px;max-height:92vh;overflow:auto}
+.edit-student-landscape-modal{width:95vw;max-width:1450px;max-height:92vh;overflow-y:auto}
+.edit-student-landscape{display:grid;grid-template-columns:280px minmax(0,1fr);gap:20px;align-items:start}
+.edit-student-picture-panel{border:1px solid #ddd;border-radius:14px;background:#fafafa;padding:20px;text-align:center;position:sticky;top:0}
+.edit-student-picture{width:155px;height:155px;margin:0 auto 14px;border-radius:50%;overflow:hidden;border:4px solid #00d9d9;background:#e9fafa;display:flex;align-items:center;justify-content:center;font-size:44px;font-weight:900;color:#087b7b}
+.edit-student-picture img{width:100%;height:100%;object-fit:cover}
+.edit-picture-buttons{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.edit-student-fields{min-width:0}
+.edit-student-fields-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.edit-student-field{min-width:0}
+.edit-student-field.full{grid-column:1/-1}
+.edit-student-field label{display:block;margin-bottom:5px;font-weight:700;font-size:13px}
+@media(max-width:900px){.edit-student-landscape{grid-template-columns:1fr}.edit-student-picture-panel{position:static}.edit-student-fields-grid{grid-template-columns:1fr}}
+.student-profile-landscape{display:grid;grid-template-columns:310px minmax(0,1fr);gap:18px;align-items:start}
+.student-profile-side{border:1px solid #ddd;border-radius:14px;background:#fafafa;padding:18px;text-align:center}
+.student-profile-avatar{width:145px;height:145px;margin:0 auto 12px;border-radius:50%;overflow:hidden;border:4px solid #00d9d9;background:#e9fafa;display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:900;color:#087b7b}
+.student-profile-avatar img{width:100%;height:100%;object-fit:cover}
+.student-profile-name{font-size:23px;font-weight:900;line-height:1.2}
+.student-profile-id{font-size:13px;color:#666;margin-top:5px}
+.student-profile-main{min-width:0}
+.student-profile-section{border:1px solid #ddd;border-radius:12px;background:#fff;padding:13px;margin-bottom:12px}
+.student-profile-section h4{margin:0 0 10px;font-size:15px}
+.student-profile-info-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.student-profile-info-box{border:1px solid #e2e2e2;border-radius:8px;padding:9px;background:#fafafa;min-width:0}
+.student-profile-info-box label{display:block;font-size:10px;color:#666;margin-bottom:3px}
+.student-profile-info-box div{font-size:13px;font-weight:700;word-break:break-word;line-height:1.4}
+.student-class-table{width:100%;border-collapse:collapse;font-size:12px}
+.student-class-table th,.student-class-table td{border:1px solid #ddd;padding:8px;text-align:left;vertical-align:top}
+.student-class-table th{background:#f3f3f3;font-weight:900}
+@media(max-width:900px){.student-profile-landscape{grid-template-columns:1fr}.student-profile-side{display:flex;align-items:center;text-align:left;gap:15px}.student-profile-avatar{margin:0;width:100px;height:100px}.student-profile-info-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.student-card-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.student-card{padding:14px 8px;min-height:220px}.student-avatar-circle{width:85px;height:85px}.student-profile-info-grid{grid-template-columns:1fr}}
+.student-add-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.student-add-grid .full{grid-column:1/-1}
+.schedule-checks{display:flex;gap:8px;flex-wrap:wrap}
+.schedule-check{display:flex;align-items:center;gap:5px;border:1px solid #ccc;border-radius:7px;padding:7px 9px;background:#fafafa;font-size:12px;font-weight:700}
+.schedule-check input{width:auto}
+.schedule-picker{display:grid;gap:8px;margin-top:7px}
+.schedule-row{display:grid;grid-template-columns:120px minmax(150px,1fr) minmax(130px,1fr);gap:8px;align-items:center;border:1px solid #ddd;border-radius:8px;padding:8px;background:#fafafa}
+.schedule-day-toggle{display:flex;align-items:center;gap:7px;font-weight:700;font-size:12px}
+.schedule-day-toggle input{width:auto}
+.schedule-time-select{width:100%}
+.schedule-end-time{font-size:12px;color:#666}
+.schedule-end-time strong{color:#111}
+@media(max-width:650px){.schedule-row{grid-template-columns:1fr}.schedule-end-time{padding-left:24px}}
+.student-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.student-detail-box{border:1px solid #ddd;border-radius:8px;padding:10px;background:#fafafa}
+.student-detail-box.full{grid-column:1/-1}
+.student-detail-box label{font-size:11px;color:#666;margin-bottom:4px}
+.student-detail-box div{font-size:14px;line-height:1.45;word-break:break-word}
+
+.package-history{margin-top:16px;border:1px solid #ddd;border-radius:10px;background:#fafafa;padding:12px}
+.package-history-title{font-weight:900;margin-bottom:9px}
+.package-history-item{display:grid;grid-template-columns:1fr auto;gap:8px;padding:10px;border:1px solid #e2e2e2;border-radius:8px;background:#fff;margin-top:7px}
+.package-history-item b{display:block}
+.package-history-meta{font-size:12px;color:#666;margin-top:3px;line-height:1.45}
+.package-history-badge{align-self:start;padding:5px 8px;border-radius:999px;font-size:10px;font-weight:900;background:#e7f7e7;color:#187a18}
+.package-history-badge.old{background:#eee;color:#666}
+.renew-modal{max-width:620px}
+.renew-summary{border:1px solid #ddd;border-radius:9px;background:#fafafa;padding:10px;margin:10px 0 14px;line-height:1.5}
+.renew-preview{border:1px solid #d8eeee;border-radius:9px;background:#f4ffff;padding:10px;margin-top:10px;font-size:13px}
+.student-detail-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0}
+.student-detail-stat{border:1px solid #ddd;border-radius:8px;padding:10px;text-align:center;background:#fff}
+.student-detail-stat b{display:block;font-size:24px}
+.student-detail-stat span{font-size:11px;color:#666}
+@media(max-width:850px){.student-card-meta{grid-template-columns:repeat(2,minmax(0,1fr))}.student-add-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.student-card-meta,.student-add-grid,.student-detail-grid,.student-detail-summary{grid-template-columns:1fr}.student-detail-box.full{grid-column:auto}}
+
+
+
+/* =========================================================
+   APPOINTMENT / CLASS SCHEDULE
+========================================================= */
+
+.appointment-toolbar{display:flex;gap:10px;align-items:end;justify-content:space-between;flex-wrap:wrap;margin-bottom:12px}
+.appointment-toolbar-left,.appointment-toolbar-right{display:flex;gap:8px;align-items:end;flex-wrap:wrap}
+.appointment-toolbar label{font-size:12px;margin-bottom:4px}
+.appointment-search{min-width:240px}
+.appointment-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
+.appointment-nav-left,.appointment-nav-right{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.appointment-nav button{border:0;border-radius:7px;background:#eee;padding:9px 12px;font-weight:800;cursor:pointer}
+.appointment-nav button:hover{background:#ddd}
+.appointment-range{font-weight:900;font-size:20px;min-width:220px;text-align:center}
+.appointment-month-wrap{border:0;border-radius:12px;background:transparent;overflow-x:auto}
+.appointment-month{display:grid;grid-template-columns:repeat(7,minmax(125px,1fr));gap:6px;min-width:875px}
+.appointment-month-weekday{padding:10px 7px;text-align:center;font-size:12px;font-weight:900;background:#00d9d9;border:1px solid #b9b9b9;border-radius:8px}
+.appointment-month-day{min-height:135px;border:1px solid #ccc;border-radius:10px;background:#fff;padding:7px;cursor:pointer;transition:.15s;position:relative}
+.appointment-month-day:hover{background:#f7ffff}
+.appointment-month-day.other-month{background:#f5f5f5;color:#999}
+.appointment-month-day.today{box-shadow:inset 0 0 0 2px #00caca}
+.appointment-month-day.selected{background:#e9ffff;box-shadow:inset 0 0 0 3px #00bcbc}
+.appointment-month-number{display:flex;align-items:center;justify-content:space-between;gap:4px;margin-bottom:6px;font-weight:900;font-size:15px}
+.appointment-today-badge{font-size:8px;background:#00bcbc;color:#fff;border-radius:10px;padding:3px 5px}
+.appointment-mini-list{display:grid;gap:5px}
+.appointment-booking-count{display:inline-flex;align-items:center;justify-content:center;margin-top:8px;padding:7px 10px;border:1px solid #00bcbc;border-radius:8px;background:#e9ffff;color:#006f6f;font-size:12px;font-weight:900;width:max-content;max-width:100%;}
+.appointment-mini-card{border:1px solid #bbb;border-left:4px solid #00bcbc;border-radius:7px;background:#fff;padding:6px;font-size:10px;cursor:pointer;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.appointment-mini-card:hover{background:#f0ffff}
+.appointment-mini-card.completed{border-left-color:#35a853}
+.appointment-mini-card.cancelled{border-left-color:#999;opacity:.65}
+.appointment-mini-card.no-show{border-left-color:#d93025}
+.appointment-more{font-size:10px;font-weight:900;color:#007777;padding:3px}
+.appointment-day-detail{margin-top:12px;border:1px solid #ccc;border-radius:10px;background:#fff;overflow:hidden}
+.appointment-day-detail-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:12px;background:#f2f4f4;border-bottom:1px solid #ddd;font-weight:900}
+.appointment-day-detail-body{display:grid;gap:8px;padding:10px}
+.appointment-day-detail-footer{display:flex;justify-content:flex-end;padding:10px;border-top:1px solid #ddd;background:#fafafa}
+.appointment-detail-row{display:grid;grid-template-columns:150px 1fr auto;gap:10px;align-items:center;border:1px solid #ddd;border-radius:8px;padding:10px;background:#fff}
+.appointment-detail-time{font-weight:900}
+.appointment-detail-main b{display:block}
+.appointment-detail-main span{display:block;font-size:12px;color:#666;margin-top:2px}
+.appointment-actions{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+.appointment-actions button{border:0;border-radius:6px;padding:7px 9px;font-size:11px;font-weight:800;cursor:pointer;background:#eee}
+.appointment-actions .complete{background:#dff6df}
+.appointment-actions .cancel{background:#ffe1e1;color:#900}
+.appointment-actions .edit{background:#00d9d9}
+.appointment-actions .absent{background:#ffe1e1;color:#8b0000}
+.appointment-more-wrap{position:relative;display:inline-block}
+.appointment-more-btn{border:0;border-radius:6px;padding:7px 10px;font-size:16px;font-weight:900;cursor:pointer;background:#eee;line-height:1}
+.appointment-more-menu{display:none;position:absolute;right:0;top:calc(100% + 4px);min-width:125px;background:#fff;border:1px solid #ccc;border-radius:8px;box-shadow:0 8px 20px rgba(0,0,0,.15);padding:5px;z-index:30}
+.appointment-more-menu.show{display:block}
+.appointment-more-menu button{display:block;width:100%;text-align:left;border:0;background:#fff;padding:8px 9px;border-radius:6px;font-size:11px;font-weight:800;cursor:pointer}
+.appointment-more-menu button:hover{background:#f1f1f1}
+.appointment-more-menu button.absent{color:#8b0000}
+.appointment-reason-modal{max-width:520px}
+.appointment-reason-help{font-size:12px;color:#666;line-height:1.45;margin-top:5px}
+.appointment-modal{max-width:700px}
+.appointment-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.appointment-form-grid .full{grid-column:1/-1}
+.appointment-info-box{border:1px solid #ddd;border-radius:8px;padding:10px;background:#fafafa;font-size:12px;line-height:1.5}
+.appointment-conflict{display:none;margin-top:10px;padding:10px;border-radius:8px;background:#ffe1e1;color:#8b0000;font-size:12px;font-weight:800}
+.appointment-conflict.show{display:block}
+.appointment-mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.appointment-mode-option{display:block;border:1px solid #ccc;border-radius:9px;padding:10px;cursor:pointer;background:#fff}
+.appointment-mode-option.active{border:2px solid #00bcbc;background:#efffff}
+.appointment-mode-option input{margin-right:6px}
+.appointment-mode-title{font-weight:900;font-size:12px}
+.appointment-mode-help{font-size:11px;color:#666;margin-top:4px;line-height:1.35}
+.appointment-empty-page{padding:30px 10px;text-align:center;color:#666}.appointment-tools-btn{font-size:18px!important;min-width:42px;padding:9px 12px!important;line-height:1}.appointment-tools-modal{max-width:560px}.appointment-tools-note{font-size:12px;color:#666;line-height:1.45;margin:0 0 10px}.appointment-delete-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.appointment-delete-actions button{padding:10px;border:0;border-radius:7px;font-weight:900;cursor:pointer;background:#ffe1e1;color:#8b0000}.appointment-delete-actions button:hover{filter:brightness(.97)}
+.appointment-delete-actions-single{grid-template-columns:1fr}
+.appointment-delete-list{display:grid;gap:7px;max-height:330px;overflow:auto;padding-right:2px}
+.appointment-delete-item{display:grid;grid-template-columns:auto 1fr;gap:9px;align-items:start;border:1px solid #ddd;border-radius:8px;padding:9px;background:#fff}
+.appointment-delete-item:hover{background:#f8ffff}
+.appointment-delete-item input{margin-top:3px}
+.appointment-delete-item-main b{display:block}
+.appointment-delete-item-main span{display:block;font-size:11px;color:#666;margin-top:2px}
+.appointment-delete-empty{padding:16px;text-align:center;color:#777;border:1px dashed #ccc;border-radius:8px;background:#fafafa}
+.appointment-select-tools{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:8px;padding:9px 10px;border:1px solid #ddd;border-radius:8px;background:#f7f7f7;font-size:12px}
+.appointment-check-all{cursor:pointer}
+.appointment-delete-reason{margin-top:10px}
+.appointment-delete-reason textarea{width:100%;margin-top:6px;resize:vertical;min-height:76px}@media(max-width:650px){.appointment-delete-actions{grid-template-columns:1fr}}
+
+@media(max-width:1000px){.appointment-month-wrap{overflow-x:auto}.appointment-detail-row{grid-template-columns:1fr}.appointment-actions{justify-content:flex-start}}
+@media(max-width:650px){.appointment-form-grid{grid-template-columns:1fr}.appointment-form-grid .full{grid-column:auto}.appointment-search{min-width:180px}.appointment-mode-grid{grid-template-columns:1fr}.appointment-range{min-width:160px;font-size:17px}}
+
+
+.contract-toolbar{display:flex;gap:16px;align-items:flex-end;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap}.contract-toolbar>div:first-child{min-width:280px;flex:1}.contract-status-box{padding:10px 14px;border:1px solid #d8dee8;border-radius:10px;background:#f8fafc;min-width:180px}.contract-status-box span{display:block;font-size:11px;color:#667085;text-transform:uppercase;font-weight:700}.contract-status-box strong{display:block;margin-top:3px}.contract-workspace{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(280px,.65fr);gap:18px;align-items:start}.contract-document{background:#fff;border:1px solid #d9dee7;border-radius:14px;padding:34px;box-shadow:0 8px 24px rgba(16,24,40,.07);min-height:900px}.contract-header{text-align:center;border-bottom:2px solid #111;padding-bottom:18px;margin-bottom:22px}.contract-header h1{font-size:22px;margin:0 0 7px}.contract-header h2{font-size:17px;margin:0;letter-spacing:.08em}.contract-student-info{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}.contract-info-box{border:1px solid #e4e7ec;border-radius:8px;padding:10px}.contract-info-box label{display:block;font-size:11px;color:#667085;font-weight:700;text-transform:uppercase;margin-bottom:4px}.contract-section{margin-top:22px}.contract-section h3{font-size:15px;margin:0 0 9px;border-bottom:1px solid #eaecf0;padding-bottom:6px}.contract-section p{font-size:13px;line-height:1.6;margin:5px 0}.signature-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;margin-top:28px}.signature-grid>div{font-size:13px;line-height:2}.contract-upload-panel{position:sticky;top:18px;border:1px solid #d9dee7;border-radius:14px;background:#f8fafc;padding:20px}.contract-sign-upload{border:1px solid #d9dee7;border-radius:12px;background:#fff;padding:14px;margin-top:12px}.contract-sign-upload h4{margin:0 0 8px;font-size:14px}.contract-sign-upload input{width:100%;font-size:12px}.contract-sign-file{font-size:11px;color:#475467;margin-top:7px;word-break:break-word}.contract-sign-preview{margin-top:10px;min-height:120px;max-height:300px;border:1px dashed #98a2b3;border-radius:9px;background:#fafafa;display:flex;align-items:center;justify-content:center;overflow:hidden}.contract-sign-preview img{max-width:100%;max-height:280px;object-fit:contain}.contract-sign-preview iframe{width:100%;height:280px;border:0}.contract-upload-panel h3{margin:0 0 8px}.contract-preview{margin-top:15px;min-height:150px;border:1px dashed #98a2b3;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}.contract-preview img{max-width:100%;max-height:520px;object-fit:contain}.contract-preview iframe{width:100%;height:520px;border:0}.contract-actions{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}@media(max-width:900px){.contract-workspace{grid-template-columns:1fr}.contract-upload-panel{position:static}.contract-document{padding:20px}.contract-student-info{grid-template-columns:1fr 1fr}}@media(max-width:600px){.contract-student-info,.signature-grid{grid-template-columns:1fr}}
+
+.contract-list-section{margin-top:18px}.contract-list-title{font-size:15px;font-weight:800;margin:0 0 10px}.contract-student-card{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;border:1px solid #d9dee7;border-radius:12px;background:#fff;margin-bottom:10px;box-shadow:0 3px 12px rgba(16,24,40,.05)}.contract-student-card.pending{border-left:5px solid #f59e0b;background:#fffaf0}.contract-student-card.completed{border-left:5px solid #12b76a;background:#f6fffa}.contract-student-meta strong{display:block;font-size:15px}.contract-student-meta span{display:block;font-size:12px;color:#667085;margin-top:3px}.contract-badge{display:inline-block;font-size:10px;font-weight:800;text-transform:uppercase;padding:4px 8px;border-radius:999px;margin-top:7px}.contract-badge.pending{background:#fef0c7;color:#92400e}.contract-badge.completed{background:#dcfae6;color:#067647}.contract-list-empty{padding:18px;border:1px dashed #cbd5e1;border-radius:12px;color:#667085;text-align:center;background:#fafafa}.contract-list-actions{display:flex;gap:8px;flex-wrap:wrap}@media(max-width:700px){.contract-student-card{align-items:flex-start;flex-direction:column}.contract-list-actions{width:100%}}
+.contract-picker-list{display:grid;gap:10px;max-height:60vh;overflow:auto;margin-top:16px}.contract-picker-item{width:100%;text-align:left;border:1px solid #d9dee7;background:#fff;border-radius:12px;padding:14px 16px;cursor:pointer}.contract-picker-item:hover{border-color:#2563eb;background:#f8fbff}.contract-picker-item strong{display:block;font-size:15px}.contract-picker-item span{display:block;font-size:12px;color:#667085;margin-top:4px}
+
+.appointment-actions .rebook{border:1px solid #7b61ff;background:#fff;color:#5b43c7;border-radius:7px;padding:7px 10px;font-weight:800;cursor:pointer}.appointment-actions .rebook:hover{background:#f3f0ff}
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -2021,6 +2519,69 @@ Record of Evaluation
 Dashboard
 </h2>
 
+<div class="dashboard-overview">
+
+<div class="teacher-dashboard-card">
+<div id="dashboardTeacherPhoto" class="teacher-dashboard-photo">👤</div>
+<div style="min-width:0">
+<div id="dashboardTeacherName" class="teacher-dashboard-title">TEACHER</div>
+<div class="teacher-dashboard-label">Teacher Dashboard</div>
+</div>
+</div>
+
+<div class="dashboard-summary-grid">
+<div class="dashboard-summary-card">
+<div class="dashboard-summary-label">NUMBER OF STUDENTS</div>
+<div id="dashboardStudentCount" class="dashboard-summary-number">0</div>
+</div>
+
+<div class="dashboard-summary-card">
+<div class="dashboard-summary-label">NUMBER OF APPOINTMENTS</div>
+<div id="dashboardAppointmentCount" class="dashboard-summary-number">0</div>
+</div>
+
+<div class="dashboard-summary-card">
+<div class="dashboard-summary-label">CLASSES FOR TODAY</div>
+<div id="dashboardTodayClassCount" class="dashboard-summary-number">0</div>
+</div>
+</div>
+
+<div class="dashboard-todo">
+<div class="dashboard-todo-title">TO-DO LIST</div>
+<div class="dashboard-todo-body">
+<div id="dashboardNextClass" class="dashboard-todo-main">No upcoming class.</div>
+<div id="dashboardNextClassSub" class="dashboard-todo-sub">Your next class or appointment will appear here.</div>
+</div>
+</div>
+
+</div>
+
+<div class="dashboard-menu">
+<button type="button" class="dashboard-menu-btn" onclick="showPage('student')">
+<span class="dashboard-menu-label">👨‍🎓 STUDENT</span>
+</button>
+
+<button type="button" class="dashboard-menu-btn" onclick="showPage('evaluation')">
+<span class="dashboard-menu-label">📝 EVALUATION</span>
+</button>
+
+<button type="button" class="dashboard-menu-btn" onclick="showPage('records')">
+<span class="dashboard-menu-label">📋 RECORD OF EVALUATION</span>
+</button>
+
+<button type="button" class="dashboard-menu-btn" onclick="showPage('contract')">
+<span class="dashboard-menu-label">📄 STUDENT CONTRACT</span>
+</button>
+
+<button type="button" class="dashboard-menu-btn" onclick="showPage('appointment')">
+<span class="dashboard-menu-label">📅 APPOINTMENT</span>
+</button>
+
+<button type="button" class="dashboard-menu-btn" onclick="showPage('payment')">
+<span class="dashboard-menu-label">💳 PAYMENT</span>
+</button>
+</div>
+
 <div class="dashboard-grid">
 
 <div class="stat">
@@ -2040,81 +2601,439 @@ Last Evaluation
 
 </div>
 
-<div class="panel">
 
-<div class="panel-title">
-STUDENT RECORDS
+
+
 </div>
 
+<!-- STUDENT -->
+
+<div id="studentPage" class="page">
+
+<h2 style="margin-top:0">Student Management</h2>
+
+<div class="page-back-wrap">
+<button type="button" class="page-back-btn" onclick="backToDashboard()">← Back to Dashboard</button>
+</div>
+
+<div class="panel">
+<div class="panel-title">STUDENT RECORDS</div>
 <div class="panel-body">
 
-<p style="margin-top:0">
-Add each student once. During evaluation, you will only select the student.
-</p>
-
-<div class="add-student-grid">
-
-<div>
-
-<label>Student Name</label>
-
-<input
-id="newStudentName"
-placeholder="Student name"
->
-
+<div class="student-toolbar">
+  <div class="student-search-wrap">
+    <label for="studentSearch">Search Student</label>
+    <input id="studentSearch" type="search" placeholder="Search student name or Student ID..." oninput="renderStudents()">
+  </div>
+  <div class="student-sort-wrap">
+    <button type="button" class="student-sort-trigger" onclick="toggleStudentSortMenu(event)" aria-label="Student sorting options">⋮</button>
+    <div id="studentSortMenu" class="student-sort-menu">
+      <button type="button" onclick="setStudentSort('az')">A–Z</button>
+      <button type="button" onclick="setStudentSort('za')">Z–A</button>
+      <button type="button" onclick="setStudentSort('id')">Student ID</button>
+    </div>
+  </div>
 </div>
 
-<div>
-
-<label>Parent's Email</label>
-
-<input
-id="newStudentEmail"
-type="email"
-placeholder="parent@email.com"
->
-
+<!-- ADD STUDENT BUTTON -->
+<div class="student-add-trigger-wrap">
+  <button type="button" class="student-add-trigger" onclick="openAddStudent()">+ ADD STUDENT</button>
 </div>
 
-<div>
-
-<label>Student ID</label>
-
-<input
-id="newStudentId"
-placeholder="Student ID"
+<!-- ADD STUDENT MODAL -->
+<div
+id="addStudentModal"
+class="modal-backdrop"
+onclick="if(event.target===this) closeAddStudent()"
 >
+<div class="modal student-add-modal">
 
+<div class="student-add-modal-header">
+  <div>
+    <h3 style="margin:0">Add New Student</h3>
+    <div class="small" style="margin-top:4px">Enter the student's information below.</div>
+  </div>
+  <button type="button" class="student-modal-close" onclick="closeAddStudent()" aria-label="Close">×</button>
 </div>
 
-<button
-id="addStudentBtn"
-type="button"
-class="primary btn"
->
-Add Student
-</button>
+<div class="student-add-grid">
+
+<div><label>Student Name</label><input id="newStudentName" placeholder="Student name"></div>
+<div><label>Student ID</label><input id="newStudentId" placeholder="Student ID"></div>
+<div><label>Age</label><input id="newStudentAge" type="number" min="1" max="100" placeholder="Age"></div>
+
+<div><label>Parent/Guardian Name</label><input id="newStudentParentName" placeholder="Parent/Guardian name"></div>
+<div><label>Parent's Email</label><input id="newStudentEmail" type="email" placeholder="parent@email.com"></div>
+<div><label>English Level</label><select id="newStudentLevel"><option value="">Select level</option><option>Beginner</option><option>Elementary</option><option>Pre-Intermediate</option><option>Intermediate</option><option>Upper-Intermediate</option><option>Advanced</option></select></div>
+
+<div><label>Class Duration</label><select id="newStudentDuration">
+<option value="30 Minutes">30 Minutes</option>
+<option value="40 Minutes">40 Minutes</option>
+<option value="50 Minutes">50 Minutes</option>
+</select></div>
+<div><label>Package</label><input id="newStudentPackage" placeholder="e.g. 20 Classes"></div>
+
+<div><label>Status</label><select id="newStudentStatus"><option>Active</option><option>Completed</option></select></div>
+
+<div class="full">
+<label>Preferred Class Schedule</label>
+<div class="small" style="margin-top:4px">Select the day(s) and choose the class start time. No typing required.</div>
+<div id="newSchedulePicker" class="schedule-picker"></div>
+</div>
 
 </div>
 
 <div id="studentStatus" class="status"></div>
 
-<div
-id="studentList"
-class="student-list"
-style="margin-top:15px"
-></div>
+<div class="modal-actions">
+  <button type="button" class="modal-cancel" onclick="closeAddStudent()">Cancel</button>
+  <button id="addStudentBtn" type="button" class="modal-save" onclick="addStudent()">+ Add Student</button>
+</div>
+
+</div>
+</div>
+
+<div class="student-section-heading">ACTIVE STUDENTS</div>
+<div id="activeStudentList" class="student-card-list" style="margin-top:10px"></div>
+
+<div class="student-section-heading completed-heading">COMPLETED STUDENTS</div>
+<div id="completedStudentList" class="student-card-list" style="margin-top:10px"></div>
+
+<div id="studentList" style="display:none"></div>
 
 </div>
 </div>
 
 </div>
 
+<!-- STUDENT CONTRACT -->
+
+<div id="contractPage" class="page">
+
+<h2 style="margin-top:0">Student Contract</h2>
+
+<div class="page-back-wrap">
+<button type="button" class="page-back-btn" onclick="backToDashboard()">← Back to Dashboard</button>
+</div>
+
+<div class="panel contract-panel">
+<div class="panel-title">STUDENT CONTRACT</div>
+<div class="panel-body">
+  <div class="contract-toolbar">
+    <div>
+      <div style="font-weight:800;font-size:18px">Students Without Student Contract</div>
+      <div class="small" style="margin-top:4px">Add a student here to prepare and submit the signed contract.</div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><button type="button" class="primary-action" onclick="openContractStudentPicker()">+ ADD CONTRACT</button><div class="contract-status-box"><span>Selected Student</span><strong id="contractStatusText">Not Selected</strong></div></div>
+  </div>
+  <div id="contractPendingList" class="contract-list-section"></div>
+  <div id="contractCompletedList" class="contract-list-section"></div>
+
+  <div id="contractWorkspace" class="contract-workspace" style="display:none">
+    <div class="contract-document">
+      <div class="contract-header">
+        <h1>TEACHER DANYEAL PRIVATE ENGLISH CLASS</h1>
+        <h2>STUDENT CONTRACT</h2>
+      </div>
+
+      <div class="contract-student-info" id="contractStudentInfo"></div>
+
+      <div class="contract-section"><h3>CLASS ARRANGEMENT</h3>
+        <p>✓ Each class is 25 minutes long.</p>
+        <p>✓ Classes are conducted as private 1-on-1 sessions.</p>
+        <p>✓ The class schedule will be arranged by mutual agreement between the teacher and parent/student.</p>
+        <p>✓ There is no fixed completion period for the purchased classes unless otherwise agreed upon.</p>
+        <p>✓ The student is expected to attend the agreed class schedule on time.</p>
+      </div>
+
+      <div class="contract-section"><h3>LESSON MATERIALS</h3>
+        <p>✓ Learning materials will be prepared by Teacher Danyeal based on the student's learning needs, level, and/or the parent's requested topic.</p>
+        <p>✓ Parents may communicate their preferred learning goals or lesson topics before the class.</p>
+        <p>✓ Materials may include PPT lessons, worksheets, reading activities, vocabulary exercises, phonics, grammar, speaking practice, stories, and other appropriate activities.</p>
+      </div>
+
+      <div class="contract-section"><h3>PACKAGE &amp; PAYMENT POLICY</h3>
+        <p>✓ The purchased package is intended for one student only and cannot be transferred to another student without the teacher's approval.</p>
+        <p>✓ Once payment has been confirmed and the package has been activated, the classes are considered purchased.</p>
+        <p>✓ Parents are encouraged to communicate any concerns regarding the package or lessons directly with the teacher.</p>
+      </div>
+
+      <div class="contract-section"><h3>STUDENT LEARNING EXPECTATIONS</h3>
+        <p><strong>The student is encouraged to:</strong></p>
+        <p>✓ Attend classes regularly.</p><p>✓ Participate actively during lessons.</p><p>✓ Complete assigned activities or practice when applicable.</p><p>✓ Ask questions whenever they do not understand the lesson.</p><p>✓ Practice English outside class when possible.</p>
+      </div>
+
+      <div class="contract-section"><h3>CLASS CANCELLATION &amp; RESCHEDULING</h3>
+        <p>✓ If the student needs to cancel or reschedule a class, the parent/student should inform the teacher before the scheduled class whenever possible.</p>
+        <p>✓ Rescheduling is subject to the teacher's available schedule.</p>
+        <p>✓ If the student does not attend the class without prior notice, the class may be considered used.</p>
+        <p>✓ If the teacher needs to cancel a class due to an emergency or technical problem, the class will be rescheduled and will not be deducted from the student's package.</p>
+        <p>✓ Once the parent/student and teacher have agreed on a regular class schedule, the selected day and time will remain the student's regular schedule for the following weeks until all purchased class credits have been completed, unless a schedule change is requested and agreed upon by both parties.</p>
+      </div>
+
+      <div class="contract-section"><h3>ASSESSMENT, PROGRESS REPORT &amp; CERTIFICATE</h3>
+        <p>✓ <strong>Assessment/Test:</strong> Every 10th lesson will serve as an assessment, test, or review to evaluate the student's understanding and progress.</p>
+        <p>✓ <strong>Evaluation Feedback Report:</strong> After the student completes every 10 lessons, the teacher will provide an Evaluation and Feedback Report summarizing the student's progress, strengths, areas for improvement, and overall performance.</p>
+        <p>✓ <strong>Certificate of Completion:</strong> Upon successful completion of the enrolled lesson package or program, the student will receive a Certificate of Completion from the teacher.</p>
+      </div>
+
+      <div class="contract-section"><h3>AGREEMENT</h3>
+        <p>By signing this contract, the parent/student confirms that they have read, understood, and agreed to the terms and conditions of the Teacher Danyeal Private English Class.</p>
+        <div class="signature-grid">
+          <div><strong>Parent Name:</strong><div id="contractParentName">____________________________</div><strong>Signature:</strong><div>____________________________</div></div>
+          <div><strong>Teacher:</strong><div>Teacher Danyeal</div><strong>Teacher's Signature:</strong><div>____________________________</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contract-upload-panel">
+      <h3>SIGNED CONTRACT FILES</h3>
+      <p class="small">Upload the two signed copies separately: your signed copy and the parent's signed copy.</p>
+
+      <div class="contract-sign-upload">
+        <h4>1. Teacher's Signed Contract</h4>
+        <input id="teacherContractFileInput" type="file" accept="image/*,.pdf" onchange="handleContractFile(event,'teacher')">
+        <div id="teacherContractFileName" class="contract-sign-file"></div>
+        <div id="teacherContractPreview" class="contract-sign-preview"></div>
+      </div>
+
+      <div class="contract-sign-upload">
+        <h4>2. Parent's Signed Contract</h4>
+        <input id="parentContractFileInput" type="file" accept="image/*,.pdf" onchange="handleContractFile(event,'parent')">
+        <div id="parentContractFileName" class="contract-sign-file"></div>
+        <div id="parentContractPreview" class="contract-sign-preview"></div>
+      </div>
+
+      <div class="contract-actions">
+        <button type="button" class="modal-cancel" onclick="removeContractFile('teacher')">Remove Teacher File</button>
+        <button type="button" class="modal-cancel" onclick="removeContractFile('parent')">Remove Parent File</button>
+        <button type="button" class="modal-cancel" onclick="cancelStudentContract()">CANCEL</button>
+        <button type="button" class="modal-save" onclick="submitStudentContract()">SUBMIT CONTRACT</button>
+      </div>
+      <div id="contractError" class="modal-error"></div>
+      <div class="small" style="margin-top:10px">Both signed files are saved under this student's contract record. After submission, the parent receives an email notification through EmailJS.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+</div>
+
+<!-- APPOINTMENT -->
+
+<div id="appointmentPage" class="page">
+
+<h2 style="margin-top:0">Appointment</h2>
+
+<div class="page-back-wrap">
+<button type="button" class="page-back-btn" onclick="backToDashboard()">← Back to Dashboard</button>
+</div>
+
+<div class="panel">
+<div class="panel-title">APPOINTMENT / CLASS SCHEDULE</div>
+<div class="panel-body">
+
+<div class="appointment-toolbar">
+  <div class="appointment-toolbar-left">
+    <div>
+      <label for="appointmentSearch">Search Student</label>
+      <input id="appointmentSearch" class="appointment-search" type="search" placeholder="Search student name or ID..." oninput="renderAppointments()">
+    </div>
+    <div>
+      <label for="appointmentStatusFilter">Status</label>
+      <select id="appointmentStatusFilter" onchange="renderAppointments()">
+        <option value="all">All Status</option>
+        <option value="Scheduled">Scheduled</option>
+        <option value="Completed">Completed</option>
+        <option value="Cancelled">Cancelled</option>
+        <option value="No Show">No Show</option>
+      </select>
+    </div>
+  </div>
+  <div class="appointment-toolbar-right">
+    <button type="button" class="primary" onclick="openAppointmentModal()">+ ADD APPOINTMENT</button>
+    <button type="button" class="appointment-tools-btn" onclick="openAppointmentToolsModal()" aria-label="Appointment tools" title="Appointment tools">⋮</button>
+  </div>
+</div>
+
+<div class="appointment-nav">
+  <div class="appointment-nav-left">
+    <button type="button" onclick="moveAppointmentMonth(-1)">← Previous Month</button>
+    <button type="button" onclick="goAppointmentToday()">Today</button>
+    <button type="button" onclick="moveAppointmentMonth(1)">Next Month →</button>
+  </div>
+  <div id="appointmentRange" class="appointment-range">—</div>
+</div>
+
+<div id="appointmentCalendar" style="margin-top:12px"></div>
+
+</div>
+</div>
+
+<!-- APPOINTMENT DELETE TOOLS MODAL -->
+<div id="appointmentToolsModal" class="modal-backdrop" onclick="if(event.target===this) closeAppointmentToolsModal()">
+  <div class="modal appointment-tools-modal">
+    <div class="modal-header">
+      <h3>Appointment Tools</h3>
+      <button type="button" class="student-modal-close" onclick="closeAppointmentToolsModal()" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <p class="appointment-tools-note">Select a student first. The delete actions below affect <strong>only the selected student's appointments</strong>; they will not delete other students' appointments.</p>
+      <label for="appointmentDeleteStudent"><strong>Select Student</strong></label>
+      <select id="appointmentDeleteStudent" style="width:100%;margin-top:6px">
+        <option value="">Select student</option>
+      </select>
+      <div id="appointmentDeleteInfo" class="appointment-info-box" style="margin-top:10px">Select a student to continue.</div>
+      <div id="appointmentDeleteList" class="appointment-delete-list" style="margin-top:12px">
+        <div class="appointment-delete-empty">Select a student to see their appointments.</div>
+      </div>
+      <div class="appointment-select-tools" id="appointmentSelectTools" style="display:none">
+        <label class="appointment-check-all"><input type="checkbox" id="appointmentDeleteSelectAll" onchange="toggleSelectAllAppointmentDeletes(this.checked)"> <strong>Select All</strong></label>
+        <span id="appointmentDeleteSelectedCount">0 selected</span>
+      </div>
+      <div class="appointment-delete-reason" id="appointmentDeleteReasonWrap" style="display:none">
+        <label for="appointmentDeleteReason"><strong>Reason for deleting</strong></label>
+        <textarea id="appointmentDeleteReason" rows="3" placeholder="Please enter the reason before deleting the selected appointment(s)..."></textarea>
+      </div>
+      <div class="appointment-delete-actions appointment-delete-actions-single">
+        <button type="button" onclick="deleteSelectedStudentAppointmentsWithReason()">Delete Selected Appointments</button>
+      </div>
+      <div id="appointmentDeleteStatus" class="status" style="margin-top:10px"></div>
+    </div>
+    <div class="modal-actions">
+      <button type="button" class="modal-cancel" onclick="closeAppointmentToolsModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- NEW / EDIT APPOINTMENT MODAL -->
+<div id="appointmentModal" class="modal-backdrop" onclick="if(event.target===this) closeAppointmentModal()">
+<div class="modal appointment-modal">
+  <div class="student-add-modal-header">
+    <div>
+      <h3 id="appointmentModalTitle">New Appointment</h3>
+      <div class="small">Create a confirmed class schedule for an existing student.</div>
+    </div>
+    <button type="button" class="student-modal-close" onclick="closeAppointmentModal()" aria-label="Close">×</button>
+  </div>
+
+  <input id="appointmentOriginalId" type="hidden">
+
+  <div class="appointment-form-grid">
+    <div class="full">
+      <label for="appointmentStudent">Student</label>
+      <select id="appointmentStudent" onchange="onAppointmentStudentChange()">
+        <option value="">Select student</option>
+      </select>
+    </div>
+
+    <div class="full">
+      <div id="appointmentAutoInfo" class="appointment-info-box">Select a student to see the saved preferred schedule and package class limit.</div>
+    </div>
+
+    <div>
+      <label for="appointmentDate">Start Date (First Class)</label>
+      <input id="appointmentDate" type="date" onchange="onAppointmentDateChange()">
+    </div>
+
+    <div>
+      <label for="appointmentTime">Start Time (Automatic)</label>
+      <select id="appointmentTime" disabled onchange="updateAppointmentEndTime()"></select>
+    </div>
+
+    <div>
+      <label for="appointmentDuration">Class Duration</label>
+      <select id="appointmentDuration" disabled>
+        <option value="30 Minutes">30 Minutes</option>
+        <option value="40 Minutes">40 Minutes</option>
+        <option value="50 Minutes">50 Minutes</option>
+      </select>
+    </div>
+
+    <div>
+      <label>End Time (Automatic)</label>
+      <div id="appointmentEndTime" class="appointment-info-box">Select a start time.</div>
+    </div>
+
+    <div>
+      <label for="appointmentType">Class Type</label>
+      <select id="appointmentType">
+        <option>Trial Class</option>
+        <option>Regular Class</option>
+        <option>Assessment</option>
+      </select>
+    </div>
+
+    <div class="full">
+      <label>Selected Schedule</label>
+      <div id="appointmentSelectedSummary" class="appointment-info-box">Select a student to automatically find the first preferred class date and time.</div>
+      <div class="small">For a preferred schedule, choose the earliest date you want to start from. The system will automatically move the Start Date to the student's first saved class day on or after that date, then fill the Start Time and End Time automatically.</div>
+    </div>
+  </div>
+
+  <div id="appointmentConflict" class="appointment-conflict"></div>
+  <div id="appointmentStatusMessage" class="status"></div>
+
+  <div class="modal-actions">
+    <button type="button" class="modal-cancel" onclick="closeAppointmentModal()">Cancel</button>
+    <button id="appointmentSaveBtn" type="button" class="modal-save" onclick="saveAppointment()">Save Appointment</button>
+  </div>
+</div>
+</div>
+
+<!-- APPOINTMENT REASON MODAL -->
+<div id="appointmentReasonModal" class="modal-backdrop" onclick="if(event.target===this) closeAppointmentReasonModal()">
+<div class="modal appointment-reason-modal">
+  <div class="student-add-modal-header">
+    <div>
+      <h3 id="appointmentReasonTitle">Reason Required</h3>
+      <div id="appointmentReasonHelp" class="appointment-reason-help">Please enter a reason.</div>
+    </div>
+    <button type="button" class="student-modal-close" onclick="closeAppointmentReasonModal()" aria-label="Close">×</button>
+  </div>
+  <input id="appointmentReasonId" type="hidden">
+  <input id="appointmentReasonAction" type="hidden">
+  <div style="margin-top:12px">
+    <label for="appointmentReasonText">Reason</label>
+    <textarea id="appointmentReasonText" style="min-height:110px" placeholder="Enter the reason..."></textarea>
+  </div>
+  <div id="appointmentReasonStatus" class="status"></div>
+  <div class="modal-actions">
+    <button type="button" class="modal-cancel" onclick="closeAppointmentReasonModal()">Cancel</button>
+    <button type="button" class="modal-save" onclick="saveAppointmentReason()">Save</button>
+  </div>
+</div>
+</div>
+
+</div>
+
+<!-- PAYMENT -->
+
+<div id="paymentPage" class="page">
+
+<h2 style="margin-top:0">Payment</h2>
+
+<div class="page-back-wrap">
+<button type="button" class="page-back-btn" onclick="backToDashboard()">← Back to Dashboard</button>
+</div>
+
+<div class="panel">
+<div class="panel-title">PAYMENT RECORDS</div>
+<div class="panel-body">
+<p style="margin-top:0">Payment management will be placed here.</p>
+<p class="small">This section can later contain package, amount paid, payment date, balance, and payment status.</p>
+</div>
+</div>
+
+</div>
 
 <!-- EVALUATION -->
 
 <div id="evaluationPage" class="page">
+
+<div class="page-back-wrap">
+<button type="button" class="page-back-btn" onclick="backToDashboard()">← Back to Dashboard</button>
+</div>
 
 <h2 style="margin-top:0">
 Evaluation
@@ -2480,6 +3399,10 @@ EmailJS is connected. After you submit, the class memo will be emailed automatic
 
 <div id="recordsPage" class="page">
 
+<div class="page-back-wrap">
+<button type="button" class="page-back-btn" onclick="backToDashboard()">← Back to Dashboard</button>
+</div>
+
 <h2 style="margin-top:0">
 Record of Evaluation
 </h2>
@@ -2538,7 +3461,7 @@ class="profile-picture-large"
 <button
 type="button"
 class="profile-picture-btn"
-onclick="document.getElementById('profilePictureInput').click()"
+onclick="openProfilePicturePicker(event)"
 >
 Change Picture
 </button>
@@ -2547,7 +3470,8 @@ Change Picture
 id="profilePictureInput"
 type="file"
 accept="image/*"
-style="display:none"
+style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;"
+onchange="handleProfilePicture(event)"
 >
 
 </div>
@@ -2705,6 +3629,19 @@ Log Out
 
 
 <!-- =========================================================
+     STUDENT PROFILE MODAL
+========================================================= -->
+<div id="studentProfileModal" class="modal-backdrop" onclick="if(event.target===this) closeStudentProfile()">
+<div class="modal student-profile-modal">
+<h3 id="studentProfileTitle">Student Profile</h3>
+<div id="studentProfileContent"></div>
+<div class="modal-actions">
+<button type="button" class="modal-cancel" onclick="closeStudentProfile()">Close</button>
+</div>
+</div>
+</div>
+
+<!-- =========================================================
      EDIT STUDENT MODAL
 ========================================================= -->
 
@@ -2714,73 +3651,126 @@ class="modal-backdrop"
 onclick="if(event.target===this) closeEditStudent()"
 >
 
-<div class="modal">
+<div class="modal edit-student-landscape-modal">
 
 <h3>Edit Student</h3>
+<p>Update the student's saved information.</p>
 
-<p>
-Update the student's saved information.
-</p>
+<input type="hidden" id="editOriginalId">
 
-<input
-type="hidden"
-id="editOriginalId"
->
+<div class="edit-student-landscape">
+  <div class="edit-student-picture-panel">
+    <div id="editStudentPicturePreview" class="edit-student-picture">👤</div>
+    <div style="font-weight:800;margin-bottom:10px">Student Profile Picture</div>
+    <div class="edit-picture-buttons">
+      <button type="button" class="modal-save" onclick="openStudentPicturePicker()">Change Picture</button>
+      <button type="button" class="modal-cancel" onclick="removeStudentEditPicture()">Remove</button>
+    </div>
+    <input id="editStudentPictureInput" type="file" accept="image/*" style="display:none" onchange="handleStudentEditPicture(event)">
+    <div class="small" style="margin-top:10px">Choose a profile picture for this student.</div>
+  </div>
 
-<label>Student Name</label>
+  <div class="edit-student-fields">
+    <div class="edit-student-fields-grid">
+      <div class="edit-student-field"><label>Student Name</label><input id="editStudentName" placeholder="Student name"></div>
+      <div class="edit-student-field"><label>Parent's Email</label><input id="editStudentEmail" type="email" placeholder="parent@email.com"></div>
+      <div class="edit-student-field"><label>Student ID</label><input id="editStudentId" placeholder="Student ID"></div>
+      <div class="edit-student-field"><label>Age</label><input id="editStudentAge" type="number" min="1" max="100" placeholder="Age"></div>
+      <div class="edit-student-field"><label>Parent/Guardian Name</label><input id="editStudentParentName" placeholder="Parent/Guardian name"></div>
+      <div class="edit-student-field"><label>English Level</label><select id="editStudentLevel"><option value="">Select level</option><option>Beginner</option><option>Elementary</option><option>Pre-Intermediate</option><option>Intermediate</option><option>Upper-Intermediate</option><option>Advanced</option></select></div>
+      <div class="edit-student-field"><label>Class Duration</label><select id="editStudentDuration"><option value="30 Minutes">30 Minutes</option><option value="40 Minutes">40 Minutes</option><option value="50 Minutes">50 Minutes</option></select></div>
+      <div class="edit-student-field"><label>Package</label><input id="editStudentPackage" placeholder="e.g. 20 Classes"></div>
+      <div class="edit-student-field"><label>Start Date</label><input id="editStudentStartDate" type="date"><div class="small" style="margin-top:4px">The saved start date of the student's current package.</div></div>
+      <div class="edit-student-field"><label>Status</label><select id="editStudentStatus"><option>Active</option><option>Completed</option></select></div>
+      <div class="edit-student-field full"><label>Preferred Class Schedule</label><div class="small" style="margin-top:4px">Select the day(s) and choose the class start time. No typing required.</div><div id="editSchedulePicker" class="schedule-picker"></div></div>
+    </div>
+  </div>
+</div>
 
-<input
-id="editStudentName"
-placeholder="Student name"
->
-
-<label style="margin-top:10px">
-Parent's Email
-</label>
-
-<input
-id="editStudentEmail"
-type="email"
-placeholder="parent@email.com"
->
-
-<label style="margin-top:10px">
-Student ID
-</label>
-
-<input
-id="editStudentId"
-placeholder="Student ID"
->
-
-<div
-id="editStudentError"
-class="modal-error"
-></div>
+<div id="editStudentError" class="modal-error"></div>
 
 <div class="modal-actions">
-
-<button
-type="button"
-class="modal-cancel"
-onclick="closeEditStudent()"
->
-Cancel
-</button>
-
-<button
-type="button"
-class="modal-save"
-onclick="saveEditedStudent()"
->
-Save Changes
-</button>
-
+<button type="button" class="modal-cancel" onclick="closeEditStudent()">Cancel</button>
+<button type="button" class="modal-save" onclick="saveEditedStudent()">Save Changes</button>
 </div>
 
 </div>
 </div>
 
+
+<!-- =========================================================
+     RENEW STUDENT PACKAGE MODAL
+========================================================= -->
+<div id="renewPackageModal" class="modal-backdrop" onclick="if(event.target===this) closeRenewPackage()">
+<div class="modal renew-modal">
+<div class="student-add-modal-header">
+  <div>
+    <h3 style="margin:0">Renew Student Package</h3>
+    <div class="small" style="margin-top:4px">Create a new package without removing the student's previous package history. The new classes will be automatically booked in the Appointment Calendar after submission.</div>
+  </div>
+  <button type="button" class="student-modal-close" onclick="closeRenewPackage()" aria-label="Close">×</button>
+</div>
+<input type="hidden" id="renewStudentId">
+<div class="renew-summary" id="renewStudentSummary">Select a student.</div>
+<div class="student-add-grid">
+  <div>
+    <label>New Package</label>
+    <select id="renewPackageName" onchange="updateRenewPreview()">
+      <option value="10 Classes">10 Classes</option>
+      <option value="20 Classes">20 Classes</option>
+      <option value="30 Classes">30 Classes</option>
+      <option value="40 Classes">40 Classes</option>
+    </select>
+  </div>
+  <div>
+    <label>Renewal Date</label>
+    <input id="renewRenewalDate" type="date" readonly>
+  </div>
+  <div>
+    <label>New Package Start Date</label>
+    <input id="renewStartDate" type="date" readonly>
+    <div class="small" style="margin-top:5px">Automatically connected to the last scheduled remaining class from the previous package.</div>
+  </div>
+  <div>
+    <label>Class Duration</label>
+    <select id="renewDuration" disabled>
+      <option value="30 Minutes">30 Minutes</option>
+      <option value="40 Minutes">40 Minutes</option>
+      <option value="50 Minutes">50 Minutes</option>
+    </select>
+  </div>
+  <div>
+    <label>Class Type</label>
+    <select id="renewClassType" disabled><option value="Regular Class">Regular Class</option></select>
+  </div>
+</div>
+<div class="renew-preview"><strong>⚠️ Automatic Booking Notice</strong><br>After you click <strong>Submit Renew &amp; Book Classes</strong>, the system will automatically create the future classes in the Appointment Calendar based on the student's preferred class days and times. You do not need to add these appointments manually.</div>
+<div id="renewPreview" class="renew-preview">Select a student to see the first preferred class date/time.</div>
+<div id="renewPackageError" class="modal-error"></div>
+<div class="modal-actions">
+  <button type="button" class="modal-cancel" onclick="closeRenewPackage()">Cancel</button>
+  <button type="button" class="modal-save" onclick="confirmRenewPackage()">Submit Renew &amp; Book Classes</button>
+</div>
+</div>
+</div>
+
+<!-- =========================================================
+     RENEWAL SUCCESS / REFRESH NOTICE
+========================================================= -->
+<div id="renewRefreshModal" class="modal-backdrop" style="z-index:99999">
+  <div class="modal" style="max-width:520px;text-align:center">
+    <div style="font-size:46px;line-height:1;margin-bottom:10px">✅</div>
+    <h3 style="margin:0 0 10px">Renewal Submitted Successfully</h3>
+    <p id="renewRefreshMessage" style="margin:0 0 18px;line-height:1.6">
+      Your renewed package and automatically booked classes have been saved.
+      Please refresh the page to show the updated student record.
+    </p>
+    <div class="modal-actions" style="justify-content:center">
+      <button type="button" class="modal-cancel" onclick="closeRenewRefreshNotice()">Later</button>
+      <button type="button" class="modal-save" onclick="refreshAfterRenewal()">Refresh Page</button>
+    </div>
+  </div>
+</div>
 
 <!-- =========================================================
      DELETE STUDENT MODAL
@@ -3837,6 +4827,8 @@ menu.classList.remove('show');
 
 }
 
+let pendingProfilePicture='';
+
 function loadTeacherProfile(){
 
 if(!currentUser)
@@ -3893,10 +4885,12 @@ document.getElementById(
 
 document.getElementById(
 'currentTeacher'
-).textContent=username;
+).textContent=fullName;
+
+pendingProfilePicture=saved.picture || '';
 
 setProfilePicture(
-saved.picture || ''
+pendingProfilePicture
 );
 
 }
@@ -3958,19 +4952,73 @@ phone,
 gender,
 
 picture:
-old.picture || ''
+pendingProfilePicture || ''
 
 };
 
 saveTeacherProfileData(data);
 
-document.getElementById(
-'currentTeacher'
-).textContent=username;
+/* Update the visible profile immediately — no page refresh needed */
+/* Immediately sync the small upper-left account area */
+const currentTeacherEl =
+document.getElementById('currentTeacher');
 
+if(currentTeacherEl){
+currentTeacherEl.textContent =
+data.fullName || data.username || 'Teacher';
+}
+
+/* Sync the small upper-left profile picture immediately when Save Profile is clicked. */
+const topProfileIconEl =
+document.getElementById('profileIcon');
+
+if(topProfileIconEl){
+const topPicture =
+data.picture || data.profile_picture || '';
+
+if(topPicture){
+topProfileIconEl.innerHTML =
+`<img src="${String(topPicture)}" alt="Profile Picture">`;
+}else{
+topProfileIconEl.textContent='👤';
+}
+}
+
+const profileHeaderNameEl =
+document.getElementById('profileHeaderName');
+
+if(profileHeaderNameEl){
+profileHeaderNameEl.textContent =
+data.fullName || data.username || 'Teacher';
+}
+
+const dashboardUsernameEl=
 document.getElementById(
-'profileHeaderName'
-).textContent=fullName;
+'dashboardTeacherName'
+);
+
+if(dashboardUsernameEl){
+dashboardUsernameEl.textContent =
+data.username || 'Teacher';
+}
+
+/* Keep the dashboard profile picture synchronized immediately */
+const dashboardPhotoEl=
+document.getElementById(
+'dashboardTeacherPhoto'
+);
+
+if(dashboardPhotoEl){
+const savedPicture =
+data.picture || data.profile_picture || '';
+
+if(savedPicture){
+dashboardPhotoEl.innerHTML =
+`<img src="${String(savedPicture)}" alt="Teacher Profile Picture">`;
+}else{
+dashboardPhotoEl.textContent='👤';
+}
+}
 
 showProfileStatus(
 'Profile saved successfully.',
@@ -4005,72 +5053,94 @@ el.classList.remove('show');
 
 function setProfilePicture(src){
 
-const small=
-document.getElementById(
-'profileIcon'
-);
-
-const large=
-document.getElementById(
-'profilePictureLarge'
-);
+const small=document.getElementById('profileIcon');
+const large=document.getElementById('profilePictureLarge');
 
 if(src){
 
-small.innerHTML=
-`<img src="${src}" alt="Profile Picture">`;
+const safeSrc=String(src);
 
+if(small){
+small.innerHTML=
+`<img src="${safeSrc}" alt="Profile Picture">`;
+}
+
+if(large){
 large.innerHTML=
-`<img src="${src}" alt="Profile Picture">`;
+`<img src="${safeSrc}" alt="Profile Picture">`;
+}
 
 }else{
 
-small.textContent='👤';
-
-large.textContent='👤';
+if(small) small.textContent='👤';
+if(large) large.textContent='👤';
 
 }
+
+}
+
+function openProfilePicturePicker(event){
+
+if(event) event.stopPropagation();
+
+const input=document.getElementById('profilePictureInput');
+
+if(!input) return;
+
+input.value='';
+input.click();
 
 }
 
 function handleProfilePicture(event){
 
-const file=
-event.target.files &&
-event.target.files[0];
+const input=event && event.target;
+const file=input && input.files ? input.files[0] : null;
 
-if(!file)
-return;
+if(!file) return;
 
-if(!file.type.startsWith('image/')){
+if(!file.type || !file.type.startsWith('image/')){
 
-return showProfileStatus(
+showProfileStatus(
 'Please select an image file.',
 false
 );
 
+return;
+
 }
 
-const reader=
-new FileReader();
+const reader=new FileReader();
 
 reader.onload=function(){
 
-const old=
-getTeacherProfile();
+const result=reader.result;
 
-old.picture=
-reader.result;
+if(!result) return;
 
-saveTeacherProfileData(old);
+/* Keep the new picture as a temporary draft.
+   Nothing is saved to the profile until Save Profile is clicked. */
+pendingProfilePicture=result;
 
-setProfilePicture(
-reader.result
-);
+const large=document.getElementById('profilePictureLarge');
+
+if(large){
+large.innerHTML=
+`<img src="${String(result)}" alt="Profile Picture">`;
+}
 
 showProfileStatus(
-'Profile picture updated.',
+'Profile picture selected. Click Save Profile to apply it.',
 true
+);
+
+};
+
+reader.onerror=function(){
+
+showProfileStatus(
+'Unable to read the selected picture.',
+false
 );
 
 };
@@ -4078,7 +5148,6 @@ true
 reader.readAsDataURL(file);
 
 }
-
 
 /* =========================================================
    CHANGE PASSWORD FROM PROFILE
@@ -4245,19 +5314,28 @@ async function handleSignedIn(user){
 
 currentUser=user;
 
+/* One-time appointment reset requested for the current portal version.
+   This clears the old appointment/test data so the dashboard starts at 0.
+   Student records and evaluations are not affected. */
+const appointmentResetKey=`teacherDanyealAppointmentsReset_20261001_${currentUser.id}`;
+if(localStorage.getItem(appointmentResetKey)!=='done'){
+localStorage.removeItem(appointmentStorageKey());
+localStorage.setItem(appointmentResetKey,'done');
+}
+
 const savedProfile=
 getTeacherProfile();
 
-const username=
-savedProfile.username ||
-user.user_metadata?.username ||
+const fullName=
+savedProfile.fullName ||
+savedProfile.full_name ||
 user.user_metadata?.full_name ||
 user.email ||
 'Teacher';
 
 document.getElementById(
 'currentTeacher'
-).textContent=username;
+).textContent=fullName;
 
 document.getElementById(
 'authScreen'
@@ -4464,12 +5542,7 @@ updatePassword();
    PROFILE EVENT LISTENER
 ========================================================= */
 
-document.getElementById(
-'profilePictureInput'
-).addEventListener(
-'change',
-handleProfilePicture
-);
+
 
 
 /* =========================================================
@@ -4662,6 +5735,30 @@ showPage('dashboard');
 
 
 /* =========================================================
+   DASHBOARD MENU HELPERS
+========================================================= */
+
+function goDashboardTop(){
+  showPage('dashboard');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function openDashboardStudentSection(){
+  showPage('student');
+}
+
+
+/* =========================================================
+   DASHBOARD BACK BUTTON
+========================================================= */
+
+function backToDashboard(){
+  showPage('dashboard');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+
+/* =========================================================
    PAGE NAVIGATION
 ========================================================= */
 
@@ -4687,20 +5784,30 @@ document.querySelectorAll('.nav button')
 b=>b.classList.remove('active')
 );
 
-document.getElementById(
+const navButton=document.getElementById(
 'nav'+
 page.charAt(0).toUpperCase()+
 page.slice(1)
-).classList.add('active');
+);
+
+if(navButton){
+  navButton.classList.add('active');
+}
 
 if(page==='dashboard')
 renderDashboard();
+
+if(page==='student')
+renderStudents();
 
 if(page==='evaluation')
 populateStudentSelect();
 
 if(page==='records')
 renderRecords();
+
+if(page==='appointment')
+renderAppointments();
 
 window.scrollTo({
 top:0,
@@ -4733,98 +5840,311 @@ s.className=
    ADD STUDENT
 ========================================================= */
 
+function openAddStudent(){
+  const modal=document.getElementById('addStudentModal');
+  if(!modal)return;
+
+  const status=document.getElementById('studentStatus');
+  if(status){
+    status.textContent='';
+    status.className='status';
+  }
+
+  modal.classList.add('show');
+  setTimeout(()=>{
+    const name=document.getElementById('newStudentName');
+    if(name)name.focus();
+  },50);
+}
+
+function closeAddStudent(){
+  const modal=document.getElementById('addStudentModal');
+  if(modal)modal.classList.remove('show');
+}
+
+
+/* =========================================================
+   STUDENT SCHEDULE PICKER
+   Each selected day has its own start-time dropdown.
+   The end time is calculated automatically from the class duration.
+========================================================= */
+
+const SCHEDULE_DAYS=[
+'Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'
+];
+
+function buildTimeOptions(){
+let html='<option value="">Select start time</option>';
+
+for(let minutes=6*60;minutes<=23*60+30;minutes+=30){
+const h=Math.floor(minutes/60);
+const m=minutes%60;
+const hour12=(h%12)||12;
+const ampm=h<12?'AM':'PM';
+const label=`${hour12}:${String(m).padStart(2,'0')} ${ampm}`;
+html+=`<option value="${String(minutes).padStart(4,'0')}">${label}</option>`;
+}
+
+return html;
+}
+
+function minutesToTimeLabel(totalMinutes){
+let mins=totalMinutes%(24*60);
+const h=Math.floor(mins/60);
+const m=mins%60;
+const hour12=(h%12)||12;
+const ampm=h<12?'AM':'PM';
+return `${hour12}:${String(m).padStart(2,'0')} ${ampm}`;
+}
+
+function durationToMinutes(value){
+const match=String(value||'30 Minutes').match(/(\d+)/);
+return match?parseInt(match[1],10)||30:30;
+}
+
+function getSchedulePickerData(prefix){
+const details={};
+const selected=[];
+
+SCHEDULE_DAYS.forEach(day=>{
+const checkbox=document.getElementById(`${prefix}Schedule_${day}`);
+const select=document.getElementById(`${prefix}Time_${day}`);
+
+if(checkbox && checkbox.checked){
+selected.push(day);
+if(select && select.value){
+details[day]=parseInt(select.value,10);
+}
+}
+});
+
+return {selected,details};
+}
+
+function updateScheduleEndTime(prefix,day){
+const select=document.getElementById(`${prefix}Time_${day}`);
+const end=document.getElementById(`${prefix}End_${day}`);
+const checkbox=document.getElementById(`${prefix}Schedule_${day}`);
+
+if(!select||!end||!checkbox)return;
+
+const hasTime=checkbox.checked && select.value;
+if(!hasTime){
+end.innerHTML='Select a start time';
+return;
+}
+
+const start=parseInt(select.value,10);
+const duration=durationToMinutes(
+document.getElementById(`${prefix}StudentDuration`)?.value
+);
+
+end.innerHTML=`Ends at <strong>${minutesToTimeLabel(start+duration)}</strong>`;
+}
+
+function updateAllScheduleEndTimes(prefix){
+SCHEDULE_DAYS.forEach(day=>updateScheduleEndTime(prefix,day));
+}
+
+function buildSchedulePicker(prefix,containerId){
+const container=document.getElementById(containerId);
+if(!container)return;
+
+const options=buildTimeOptions();
+
+container.innerHTML=SCHEDULE_DAYS.map(day=>`
+<div class="schedule-row">
+  <label class="schedule-day-toggle">
+    <input
+      type="checkbox"
+      id="${prefix}Schedule_${day}"
+      onchange="toggleScheduleDay('${prefix}','${day}')"
+    >
+    ${day}
+  </label>
+
+  <select
+    id="${prefix}Time_${day}"
+    class="schedule-time-select"
+    disabled
+    onchange="updateScheduleEndTime('${prefix}','${day}')"
+  >
+    ${options}
+  </select>
+
+  <div id="${prefix}End_${day}" class="schedule-end-time">
+    Select a start time
+  </div>
+</div>
+`).join('');
+}
+
+function toggleScheduleDay(prefix,day){
+const checkbox=document.getElementById(`${prefix}Schedule_${day}`);
+const select=document.getElementById(`${prefix}Time_${day}`);
+
+if(!checkbox||!select)return;
+
+select.disabled=!checkbox.checked;
+
+if(!checkbox.checked){
+select.value='';
+}
+
+updateScheduleEndTime(prefix,day);
+}
+
+function setSchedulePicker(prefix,scheduleDetails,preferredSchedule){
+const details=scheduleDetails||{};
+const preferred=Array.isArray(preferredSchedule)?preferredSchedule:[];
+
+SCHEDULE_DAYS.forEach(day=>{
+const checkbox=document.getElementById(`${prefix}Schedule_${day}`);
+const select=document.getElementById(`${prefix}Time_${day}`);
+
+if(!checkbox||!select)return;
+
+const rawTime=details[day];
+const selectedTime=
+rawTime!==undefined && rawTime!==null
+?String(rawTime)
+:'';
+
+checkbox.checked=
+Object.prototype.hasOwnProperty.call(details,day) ||
+preferred.includes(day);
+
+select.disabled=!checkbox.checked;
+select.value=selectedTime;
+
+updateScheduleEndTime(prefix,day);
+});
+}
+
+function scheduleDataToText(scheduleDetails,preferredSchedule,duration){
+const details=scheduleDetails||{};
+const preferred=Array.isArray(preferredSchedule)?preferredSchedule:[];
+
+const days=SCHEDULE_DAYS.filter(day=>
+Object.prototype.hasOwnProperty.call(details,day) ||
+preferred.includes(day)
+);
+
+if(!days.length)return 'Schedule not set';
+
+return days.map(day=>{
+const start=details[day];
+if(start===undefined || start===null || start===''){
+return day;
+}
+const startMinutes=parseInt(start,10);
+const endMinutes=startMinutes+durationToMinutes(duration);
+return `${day} — ${minutesToTimeLabel(startMinutes)}–${minutesToTimeLabel(endMinutes)}`;
+}).join(' • ');
+}
+
 function addStudent(){
 
-const name=
-document.getElementById(
-'newStudentName'
-).value.trim();
+const name=document.getElementById('newStudentName').value.trim();
+const email=document.getElementById('newStudentEmail').value.trim();
+const id=document.getElementById('newStudentId').value.trim();
+const age=document.getElementById('newStudentAge').value.trim();
+const parentName=document.getElementById('newStudentParentName').value.trim();
+const level=document.getElementById('newStudentLevel').value;
+const duration=document.getElementById('newStudentDuration').value;
+const packageName=document.getElementById('newStudentPackage').value.trim();
+const status=document.getElementById('newStudentStatus').value;
+const scheduleData=getSchedulePickerData('new');
+const schedule=scheduleData.selected;
+const scheduleDetails=scheduleData.details;
 
-const email=
-document.getElementById(
-'newStudentEmail'
-).value.trim();
+if(!name)return showStudentStatus('Please enter the student name.',false);
+if(!email)return showStudentStatus("Please enter the parent's email.",false);
+if(!id)return showStudentStatus('Please enter the student ID.',false);
 
-const id=
-document.getElementById(
-'newStudentId'
-).value.trim();
+if(!schedule.length)
+return showStudentStatus('Please select at least one class day.',false);
 
-if(!name)
-return showStudentStatus(
-'Please enter the student name.',
-false
+const missingTime=schedule.some(day=>
+scheduleDetails[day]===undefined
 );
 
-if(!email)
-return showStudentStatus(
-"Please enter the parent's email.",
-false
-);
-
-if(!id)
-return showStudentStatus(
-'Please enter the student ID.',
-false
-);
+if(missingTime)
+return showStudentStatus('Please choose a start time for every selected day.',false);
 
 const students=getStudents();
 
-if(
-students.some(
-s=>s.id.toLowerCase()===id.toLowerCase()
-)
-){
+if(students.some(s=>s.id.toLowerCase()===id.toLowerCase()))
+return showStudentStatus('That Student ID already exists.',false);
 
-return showStudentStatus(
-'That Student ID already exists.',
-false
+const classTime=scheduleDataToText(
+scheduleDetails,
+schedule,
+duration
 );
 
-}
+const initialPackageCount=getPackageClassCount(packageName);
+const initialPackageId=`pkg_${Date.now()}_${Math.random().toString(36).slice(2,8)}`;
+const initialPackage={
+  id:initialPackageId,
+  packageName,
+  classCount:initialPackageCount,
+  startDate:getLocalDateString(new Date()),
+  status:'Active',
+  createdAt:new Date().toISOString()
+};
 
 students.push({
-
-id,
-
-name,
-
-email,
-
-createdAt:new Date().toISOString()
-
+  id,
+  name,
+  email,
+  age,
+  parentName,
+  level,
+  duration,
+  packageName,
+  status,
+  preferredSchedule:schedule,
+  scheduleDetails,
+  classTime,
+  currentPackageId:initialPackageId,
+  packageHistory:initialPackageCount?[initialPackage]:[],
+  createdAt:new Date().toISOString()
 });
 
 saveStudents(students);
 
-document.getElementById(
-'newStudentName'
-).value='';
+[
+'newStudentName',
+'newStudentEmail',
+'newStudentId',
+'newStudentAge',
+'newStudentParentName',
+'newStudentPackage'
+].forEach(id=>{
+const el=document.getElementById(id);
+if(el)el.value='';
+});
 
-document.getElementById(
-'newStudentEmail'
-).value='';
+document.getElementById('newStudentLevel').value='';
+document.getElementById('newStudentDuration').value='30 Minutes';
+document.getElementById('newStudentStatus').value='Active';
 
-document.getElementById(
-'newStudentId'
-).value='';
+setSchedulePicker('new',{},[]);
 
-showStudentStatus(
-'Student added successfully.',
-true
-);
-
+showStudentStatus('Student added successfully.',true);
+closeAddStudent();
 renderDashboard();
-
 populateStudentSelect();
-
 renderRecords();
-
+renderStudents();
 }
 
 
 /* =========================================================
    STUDENT MENU
+=========================================================
+
 ========================================================= */
 
 function toggleStudentMenu(id){
@@ -4860,159 +6180,156 @@ m=>m.classList.remove('show')
    EDIT STUDENT
 ========================================================= */
 
+let editStudentPendingPicture='';
+
+function openStudentPicturePicker(){
+ const input=document.getElementById('editStudentPictureInput');
+ if(input){input.value='';input.click();}
+}
+
+function renderEditStudentPicture(){
+ const el=document.getElementById('editStudentPicturePreview');
+ if(!el)return;
+ if(editStudentPendingPicture){
+   el.innerHTML=`<img src="${escapeAttr(editStudentPendingPicture)}" alt="Student Profile Picture">`;
+ }else{
+   const name=document.getElementById('editStudentName')?.value||'';
+   el.textContent=getStudentInitials(name)||'👤';
+ }
+}
+
+function handleStudentEditPicture(event){
+ const file=event?.target?.files?.[0];
+ if(!file)return;
+ if(!file.type.startsWith('image/')){
+   showStudentStatus('Please select an image file.',false);
+   return;
+ }
+ const reader=new FileReader();
+ reader.onload=()=>{editStudentPendingPicture=reader.result||'';renderEditStudentPicture();};
+ reader.readAsDataURL(file);
+}
+
+function removeStudentEditPicture(){
+ editStudentPendingPicture='';
+ renderEditStudentPicture();
+}
+
 function openEditStudent(id){
 
 closeStudentMenus();
-
-const student=
-getStudents().find(
-s=>s.id===id
-);
-
+const student=getStudents().find(s=>s.id===id);
 if(!student)return;
 
-document.getElementById(
-'editOriginalId'
-).value=student.id;
+document.getElementById('editOriginalId').value=student.id;
+document.getElementById('editStudentName').value=student.name||'';
+document.getElementById('editStudentEmail').value=student.email||'';
+document.getElementById('editStudentId').value=student.id||'';
+document.getElementById('editStudentAge').value=student.age||'';
+document.getElementById('editStudentParentName').value=student.parentName||'';
+document.getElementById('editStudentLevel').value=student.level||'';
+document.getElementById('editStudentDuration').value=
+['30 Minutes','40 Minutes','50 Minutes'].includes(student.duration)
+?student.duration
+:'30 Minutes';
 
-document.getElementById(
-'editStudentName'
-).value=student.name;
+document.getElementById('editStudentPackage').value=student.packageName||'';
 
-document.getElementById(
-'editStudentEmail'
-).value=student.email;
+const currentPackage=getCurrentStudentPackage(student);
+const savedStartDate=
+(currentPackage&&currentPackage.startDate) ||
+student.startDate ||
+(student.createdAt?String(student.createdAt).slice(0,10):getLocalDateString(new Date()));
+document.getElementById('editStudentStartDate').value=savedStartDate;
+editStudentPendingPicture=student.picture||student.profilePicture||student.photo||student.avatar||'';
+renderEditStudentPicture();
 
-document.getElementById(
-'editStudentId'
-).value=student.id;
+document.getElementById('editStudentStatus').value=student.status||'Active';
 
-document.getElementById(
-'editStudentError'
-).textContent='';
+setSchedulePicker(
+'edit',
+student.scheduleDetails||{},
+student.preferredSchedule||[]
+);
 
-document.getElementById(
-'editStudentError'
-).classList.remove('show');
-
-document.getElementById(
-'editStudentModal'
-).classList.add('show');
-
+document.getElementById('editStudentError').textContent='';
+document.getElementById('editStudentError').classList.remove('show');
+document.getElementById('editStudentModal').classList.add('show');
 }
 
 function closeEditStudent(){
-
-document.getElementById(
-'editStudentModal'
-).classList.remove('show');
-
+document.getElementById('editStudentModal').classList.remove('show');
 }
 
 function saveEditedStudent(){
+const originalId=document.getElementById('editOriginalId').value;
+const name=document.getElementById('editStudentName').value.trim();
+const email=document.getElementById('editStudentEmail').value.trim();
+const id=document.getElementById('editStudentId').value.trim();
+const err=document.getElementById('editStudentError');
+const fail=msg=>{err.textContent=msg;err.classList.add('show');};
 
-const originalId=
-document.getElementById(
-'editOriginalId'
-).value;
+if(!name)return fail('Please enter the student name.');
+if(!email)return fail("Please enter the parent's email.");
+if(!id)return fail('Please enter the student ID.');
 
-const name=
-document.getElementById(
-'editStudentName'
-).value.trim();
+const scheduleData=getSchedulePickerData('edit');
 
-const email=
-document.getElementById(
-'editStudentEmail'
-).value.trim();
+if(!scheduleData.selected.length)
+return fail('Please select at least one class day.');
 
-const id=
-document.getElementById(
-'editStudentId'
-).value.trim();
-
-const err=
-document.getElementById(
-'editStudentError'
-);
-
-const fail=msg=>{
-
-err.textContent=msg;
-
-err.classList.add('show');
-
-};
-
-if(!name)
-return fail(
-'Please enter the student name.'
-);
-
-if(!email)
-return fail(
-"Please enter the parent's email."
-);
-
-if(!id)
-return fail(
-'Please enter the student ID.'
-);
+if(scheduleData.selected.some(day=>
+scheduleData.details[day]===undefined
+))
+return fail('Please choose a start time for every selected day.');
 
 const students=getStudents();
+if(students.some(s=>s.id.toLowerCase()===id.toLowerCase()&&s.id!==originalId))
+return fail('That Student ID already exists.');
 
-if(
-students.some(
-s=>
-s.id.toLowerCase()===id.toLowerCase()
-&&
-s.id!==originalId
-)
-){
+const index=students.findIndex(s=>s.id===originalId);
+if(index<0)return fail('Student record could not be found.');
 
-return fail(
-'That Student ID already exists.'
-);
+const editedStartDate=document.getElementById('editStudentStartDate').value;
+if(!editedStartDate)return fail('Please select the package start date.');
 
-}
-
-const index=
-students.findIndex(
-s=>s.id===originalId
-);
-
-if(index<0)
-return fail(
-'Student record could not be found.'
-);
-
-students[index]={
-
+const editedStudent={
 ...students[index],
-
-name,
-
-email,
-
-id
-
+name,email,id,
+age:document.getElementById('editStudentAge').value.trim(),
+parentName:document.getElementById('editStudentParentName').value.trim(),
+level:document.getElementById('editStudentLevel').value,
+duration:document.getElementById('editStudentDuration').value,
+packageName:document.getElementById('editStudentPackage').value.trim(),
+status:document.getElementById('editStudentStatus').value,
+preferredSchedule:getSchedulePickerData('edit').selected,
+scheduleDetails:getSchedulePickerData('edit').details,
+classTime:scheduleDataToText(
+getSchedulePickerData('edit').details,
+getSchedulePickerData('edit').selected,
+document.getElementById('editStudentDuration').value
+),
+startDate:editedStartDate,
+picture:editStudentPendingPicture
 };
 
+const currentPackageForEdit=getCurrentStudentPackage(editedStudent);
+if(currentPackageForEdit){
+  editedStudent.packageHistory=(editedStudent.packageHistory||[]).map(pkg=>
+    pkg.id===currentPackageForEdit.id
+    ?{...pkg,startDate:editedStartDate}
+    :pkg
+  );
+}
+
+students[index]=editedStudent;
 saveStudents(students);
-
 closeEditStudent();
-
 renderDashboard();
-
 populateStudentSelect(id);
-
 renderRecords();
-
-showStudentStatus(
-'Student record updated successfully.',
-true
-);
-
+renderStudents();
+showStudentStatus('Student record updated successfully.',true);
 }
 
 
@@ -5126,120 +6443,1539 @@ true
 }
 
 
+
+/* =========================================================
+   APPOINTMENT / CLASS SCHEDULE
+========================================================= */
+
+let appointmentMonthDate=new Date();
+let selectedAppointmentDate=getLocalDateString(new Date());
+let editingAppointmentId='';
+let rebookingAppointment=false;
+
+function appointmentStorageKey(){
+return currentUser
+?`teacherDanyealAppointments_${currentUser.id}`
+:'teacherDanyealAppointments';
+}
+
+function getAppointments(){
+try{
+const data=JSON.parse(localStorage.getItem(appointmentStorageKey())||'[]');
+return Array.isArray(data)?data:[];
+}catch(error){return [];}
+}
+
+function saveAppointments(data){
+localStorage.setItem(appointmentStorageKey(),JSON.stringify(data));
+}
+
+function getLocalDateString(date){
+const d=new Date(date);
+const y=d.getFullYear();
+const m=String(d.getMonth()+1).padStart(2,'0');
+const day=String(d.getDate()).padStart(2,'0');
+return `${y}-${m}-${day}`;
+}
+
+function parseAppointmentDate(dateString,timeValue='00:00'){
+if(!dateString)return null;
+const rawTime=String(timeValue||'00:00');
+const match=rawTime.match(/^(\d{2}):(\d{2})$/);
+const d=new Date(`${dateString}T${match?rawTime:'00:00'}:00`);
+return isNaN(d.getTime())?null:d;
+}
+
+function appointmentStatusClass(status){
+return String(status||'Scheduled').toLowerCase().replace(/\s+/g,'-');
+}
+
+function getAppointmentStudent(id){
+return getStudents().find(s=>s.id===id)||null;
+}
+
+function populateAppointmentStudentSelect(selectedId=''){
+const select=document.getElementById('appointmentStudent');
+if(!select)return;
+const students=getStudents().slice().sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')));
+select.innerHTML='<option value="">Select student</option>'+students.map(s=>
+`<option value="${escapeAttr(s.id)}">${escapeHtml(s.name)} — ${escapeHtml(s.id)}</option>`
+).join('');
+if(selectedId)select.value=selectedId;
+}
+
+function getAppointmentDuration(){
+return document.getElementById('appointmentDuration')?.value||'30 Minutes';
+}
+
+function getAppointmentScheduleMode(){
+return editingAppointmentId?'manual':'preferred';
+}
+
+function setAppointmentScheduleMode(mode){
+const preferred=document.querySelector('input[name="appointmentScheduleMode"][value="preferred"]');
+const manual=document.querySelector('input[name="appointmentScheduleMode"][value="manual"]');
+if(preferred)preferred.checked=mode==='preferred';
+if(manual)manual.checked=mode==='manual';
+onAppointmentScheduleModeChange();
+}
+
+function onAppointmentScheduleModeChange(){
+const mode=getAppointmentScheduleMode();
+const preferredCard=document.getElementById('appointmentPreferredModeCard');
+const manualCard=document.getElementById('appointmentManualModeCard');
+if(preferredCard)preferredCard.classList.toggle('active',mode==='preferred');
+if(manualCard)manualCard.classList.toggle('active',mode==='manual');
+const time=document.getElementById('appointmentTime');
+const date=document.getElementById('appointmentDate');
+const student=getAppointmentStudent(document.getElementById('appointmentStudent')?.value||'');
+if(mode==='preferred'){
+if(time)time.disabled=true;
+if(student && date) applyPreferredTimeForDate(student,date.value,true);
+}else{
+if(time)time.disabled=false;
+}
+updateAppointmentAutoInfo();
+updateAppointmentEndTime();
+updateAppointmentSummary();
+updateAppointmentConflict();
+}
+
+function buildAppointmentTimeOptions(){
+let html='<option value="">Select start time</option>';
+for(let minutes=6*60;minutes<=23*60;minutes+=30){
+const h=Math.floor(minutes/60);
+const m=minutes%60;
+const hour12=(h%12)||12;
+const ampm=h<12?'AM':'PM';
+const value=`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
+html+=`<option value="${value}">${hour12}:${String(m).padStart(2,'0')} ${ampm}</option>`;
+}
+return html;
+}
+
+function appointmentMinutesToLabel(totalMinutes){
+const normalized=((totalMinutes%(24*60))+24*60)%(24*60);
+const h=Math.floor(normalized/60);
+const m=normalized%60;
+const hour12=(h%12)||12;
+const ampm=h<12?'AM':'PM';
+return `${hour12}:${String(m).padStart(2,'0')} ${ampm}`;
+}
+
+function formatAppointmentTime(value){
+if(!value)return '—';
+const match=String(value).match(/^(\d{2}):(\d{2})$/);
+if(!match)return String(value);
+return appointmentMinutesToLabel(parseInt(match[1],10)*60+parseInt(match[2],10));
+}
+
+function addMinutesToTime(time,minutes){
+if(!time)return '';
+const parts=String(time).split(':');
+if(parts.length<2)return '';
+const total=parseInt(parts[0],10)*60+parseInt(parts[1],10)+minutes;
+if(total>=24*60)return '23:59';
+return `${String(Math.floor(total/60)).padStart(2,'0')}:${String(total%60).padStart(2,'0')}`;
+}
+
+function appointmentDateDayName(dateString){
+const d=new Date(`${dateString}T00:00:00`);
+return SCHEDULE_DAYS[d.getDay()===0?6:d.getDay()-1];
+}
+
+function getPreferredStartTime(student,dateString){
+if(!student||!dateString)return null;
+const day=appointmentDateDayName(dateString);
+const raw=student.scheduleDetails?.[day];
+if(raw===undefined||raw===null||raw==='')return null;
+const mins=parseInt(raw,10);
+if(isNaN(mins))return null;
+return `${String(Math.floor(mins/60)).padStart(2,'0')}:${String(mins%60).padStart(2,'0')}`;
+}
+
+function applyPreferredTimeForDate(student,dateString,clearIfNone=false){
+const time=document.getElementById('appointmentTime');
+if(!time)return;
+const preferred=getPreferredStartTime(student,dateString);
+if(preferred){
+if(!time.innerHTML)time.innerHTML=buildAppointmentTimeOptions();
+time.value=preferred;
+}else if(clearIfNone){
+time.value='';
+}
+}
+
+function updateAppointmentEndTime(){
+const date=document.getElementById('appointmentDate')?.value||'';
+const time=document.getElementById('appointmentTime')?.value||'';
+const duration=durationToMinutes(getAppointmentDuration());
+const endBox=document.getElementById('appointmentEndTime');
+if(!time){
+if(endBox)endBox.textContent='Select a start time.';
+updateAppointmentConflict();
+return;
+}
+const [h,m]=time.split(':').map(Number);
+const endMinutes=h*60+m+duration;
+if(endMinutes>=24*60){
+if(endBox)endBox.innerHTML='<strong>Invalid time:</strong> class would end after midnight.';
+}else if(endBox){
+endBox.innerHTML=`Ends at <strong>${appointmentMinutesToLabel(endMinutes)}</strong>`;
+}
+updateAppointmentSummary();
+updateAppointmentConflict();
+}
+
+function updateAppointmentAutoInfo(){
+const box=document.getElementById('appointmentAutoInfo');
+if(!box)return;
+const student=getAppointmentStudent(document.getElementById('appointmentStudent')?.value||'');
+if(!student){box.textContent='Select a student to see the saved preferred schedule and package class limit.';return;}
+const packageCount=getPackageClassCount(student.packageName);
+const preferredDays=SCHEDULE_DAYS.filter(day=>Object.prototype.hasOwnProperty.call(student.scheduleDetails||{},day));
+const scheduleText=preferredDays.length
+?preferredDays.map(day=>`${day} — ${minutesToTimeLabel(parseInt(student.scheduleDetails[day],10))}`).join(' · ')
+:'No preferred schedule saved.';
+const existing=getStudentAppointmentCount(student.id);
+box.innerHTML=`<strong>${escapeHtml(student.name)}</strong><br>Package: <strong>${packageCount?packageCount+' classes':'No class limit found'}</strong> · Duration: <strong>${escapeHtml(student.duration||'30 Minutes')}</strong><br>Preferred schedule: ${escapeHtml(scheduleText)}<br>Already booked: <strong>${existing}</strong>${packageCount?` · Remaining automatic slots: <strong>${Math.max(0,packageCount-existing)}</strong>`:''}`;
+}
+
+function updateAppointmentSummary(){
+const studentId=document.getElementById('appointmentStudent')?.value||'';
+const date=document.getElementById('appointmentDate')?.value||'';
+const time=document.getElementById('appointmentTime')?.value||'';
+const summary=document.getElementById('appointmentSelectedSummary');
+if(!summary)return;
+if(!studentId||!date){summary.textContent='Select a student and date.';return;}
+const student=getAppointmentStudent(studentId);
+const d=new Date(`${date}T00:00:00`);
+const day=appointmentDateDayName(date);
+const saved=getPreferredStartTime(student,date);
+const savedText=saved?`Preferred for ${day}: ${formatAppointmentTime(saved)}`:`No preferred time saved for ${day}.`;
+const mode=getAppointmentScheduleMode();
+const timeText=time?formatAppointmentTime(time):'No time selected';
+summary.innerHTML=`<strong>${escapeHtml(student?.name||'Student')}</strong> · ${d.toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric',year:'numeric'})} · ${timeText}<br><span>${escapeHtml(savedText)} · Mode: ${mode==='preferred'?'Automatic preferred schedule':'Manual single appointment'}</span>`;
+}
+
+function getNextPreferredDate(student,baseDate){
+if(!student||!baseDate)return '';
+const preferredDays=SCHEDULE_DAYS.filter(day=>{
+const value=student.scheduleDetails?.[day];
+return value!==undefined&&value!==null&&value!==''&&!isNaN(parseInt(value,10));
+});
+if(!preferredDays.length)return '';
+let cursor=new Date(`${baseDate}T00:00:00`);
+for(let i=0;i<14;i++){
+const date=getLocalDateString(cursor);
+const day=appointmentDateDayName(date);
+if(preferredDays.includes(day))return date;
+cursor.setDate(cursor.getDate()+1);
+}
+return '';
+}
+
+function applyFirstPreferredSchedule(student,baseDate){
+if(!student||!baseDate)return '';
+const firstDate=getNextPreferredDate(student,baseDate);
+if(!firstDate)return '';
+const dateInput=document.getElementById('appointmentDate');
+if(dateInput)dateInput.value=firstDate;
+applyPreferredTimeForDate(student,firstDate,true);
+selectedAppointmentDate=firstDate;
+return firstDate;
+}
+
+function onAppointmentStudentChange(){
+const id=document.getElementById('appointmentStudent')?.value||'';
+const student=getAppointmentStudent(id);
+const duration=document.getElementById('appointmentDuration');
+if(student&&duration){
+const allowed=['30 Minutes','40 Minutes','50 Minutes'];
+duration.value=allowed.includes(student.duration)?student.duration:'30 Minutes';
+}
+const date=document.getElementById('appointmentDate')?.value||'';
+if(student&&date&&getAppointmentScheduleMode()==='preferred'){
+  applyFirstPreferredSchedule(student,date);
+}
+updateAppointmentAutoInfo();
+updateAppointmentEndTime();
+updateAppointmentSummary();
+updateAppointmentConflict();
+}
+
+function onAppointmentDateChange(){
+const student=getAppointmentStudent(document.getElementById('appointmentStudent')?.value||'');
+const date=document.getElementById('appointmentDate')?.value||'';
+if(student&&date&&getAppointmentScheduleMode()==='preferred'){
+  applyFirstPreferredSchedule(student,date);
+}else{
+  selectedAppointmentDate=date||selectedAppointmentDate;
+}
+updateAppointmentEndTime();
+updateAppointmentSummary();
+updateAppointmentConflict();
+}
+
+function updateAppointmentConflict(){
+const box=document.getElementById('appointmentConflict');
+if(!box)return false;
+const date=document.getElementById('appointmentDate')?.value||'';
+const time=document.getElementById('appointmentTime')?.value||'';
+const duration=durationToMinutes(getAppointmentDuration());
+if(!date||!time||getAppointmentScheduleMode()==='preferred'&&!getPreferredStartTime(getAppointmentStudent(document.getElementById('appointmentStudent')?.value||''),date)){
+box.classList.remove('show');box.textContent='';return false;
+}
+const start=parseAppointmentDate(date,time);
+if(!start){box.classList.remove('show');return false;}
+const end=new Date(start.getTime()+duration*60000);
+if(end.getDate()!==start.getDate()){
+box.textContent='Please choose an earlier start time so the class stays on the same day.';
+box.classList.add('show');return true;
+}
+const appointments=getAppointments();
+const conflict=appointments.find(item=>{
+if(item.id===editingAppointmentId)return false;
+if(item.status==='Cancelled')return false;
+const otherStart=getAppointmentDateTime(item);
+if(!otherStart)return false;
+const otherDuration=durationToMinutes(item.duration||'30 Minutes');
+const otherEnd=new Date(otherStart.getTime()+otherDuration*60000);
+return start<otherEnd&&end>otherStart;
+});
+if(conflict){
+const conflictName=conflict.studentName||'Another class';
+box.textContent=`⚠️ Schedule conflict: ${conflictName} is already scheduled for ${formatAppointmentTime(conflict.time)} on this date.`;
+box.classList.add('show');
+return true;
+}
+box.classList.remove('show');box.textContent='';return false;
+}
+
+function populateAppointmentDeleteStudentSelect(selectedId=''){
+const select=document.getElementById('appointmentDeleteStudent');
+if(!select)return;
+const students=getStudents().slice().sort((a,b)=>String(a.name||'').localeCompare(String(b.name||'')));
+select.innerHTML='<option value="">Select student</option>'+students.map(s=>
+`<option value="${escapeAttr(s.id)}">${escapeHtml(s.name)} — ${escapeHtml(s.id)}</option>`
+).join('');
+if(selectedId)select.value=selectedId;
+updateAppointmentDeleteInfo();
+}
+
+function getAppointmentDeleteStudentId(){
+return document.getElementById('appointmentDeleteStudent')?.value||'';
+}
+
+function updateAppointmentDeleteInfo(){
+const box=document.getElementById('appointmentDeleteInfo');
+const list=document.getElementById('appointmentDeleteList');
+const tools=document.getElementById('appointmentSelectTools');
+const reasonWrap=document.getElementById('appointmentDeleteReasonWrap');
+const selectAll=document.getElementById('appointmentDeleteSelectAll');
+const countBox=document.getElementById('appointmentDeleteSelectedCount');
+if(!box)return;
+const id=getAppointmentDeleteStudentId();
+if(!id){
+box.textContent='Select a student to continue.';
+if(list)list.innerHTML='<div class="appointment-delete-empty">Select a student to see their appointments.</div>';
+if(tools)tools.style.display='none';
+if(reasonWrap)reasonWrap.style.display='none';
+if(selectAll)selectAll.checked=false;
+if(countBox)countBox.textContent='0 selected';
+return;
+}
+const student=getAppointmentStudent(id);
+const all=getAppointments().filter(a=>a.studentId===id).sort((a,b)=>{
+const da=String(a.date||'').localeCompare(String(b.date||''));
+if(da!==0)return da;
+return String(a.time||'').localeCompare(String(b.time||''));
+});
+const active=all.filter(a=>a.status!=='Cancelled');
+box.innerHTML=`<strong>${escapeHtml(student?.name||'Student')}</strong><br>Total appointments: <strong>${all.length}</strong> · Active: <strong>${active.length}</strong><br>Select the appointment(s) you want to delete, or use <strong>Select All</strong>.`;
+
+if(list){
+if(!all.length){
+list.innerHTML='<div class="appointment-delete-empty">This student has no appointments.</div>';
+}else{
+list.innerHTML=all.map(a=>{
+const status=a.status||'Scheduled';
+const statusText=status==='No Show'?'Absent':status;
+return `<label class="appointment-delete-item">
+<input type="checkbox" class="appointment-delete-checkbox" value="${escapeAttr(a.id)}" onchange="updateAppointmentDeleteSelection()">
+<span class="appointment-delete-item-main"><b>${escapeHtml(a.date||'')} · ${escapeHtml(formatAppointmentTimeRange(a))}</b><span>${escapeHtml(a.type||'Regular Class')} · ${escapeHtml(statusText)}${a.cancelReason?` · Cancelled: ${escapeHtml(a.cancelReason)}`:''}</span></span>
+</label>`;
+}).join('');
+}
+}
+if(tools)tools.style.display=all.length?'flex':'none';
+if(reasonWrap)reasonWrap.style.display=all.length?'block':'none';
+if(selectAll)selectAll.checked=false;
+if(countBox)countBox.textContent='0 selected';
+}
+
+function formatAppointmentTimeRange(a){
+const start=String(a.time||'').trim();
+if(!start)return 'Time not set';
+try{
+const parts=start.split(':');
+if(parts.length<2)return start;
+const h=parseInt(parts[0],10),m=parseInt(parts[1],10);
+const dur=parseInt(String(a.duration||'30').match(/\d+/)?.[0]||'30',10);
+const startDate=new Date(2000,0,1,h,m);
+const endDate=new Date(startDate);
+endDate.setMinutes(endDate.getMinutes()+dur);
+const fmt=x=>x.toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
+return `${fmt(startDate)} – ${fmt(endDate)}`;
+}catch(e){return start;}
+}
+
+function updateAppointmentDeleteSelection(){
+const boxes=[...document.querySelectorAll('.appointment-delete-checkbox')];
+const selected=boxes.filter(b=>b.checked).length;
+const countBox=document.getElementById('appointmentDeleteSelectedCount');
+const selectAll=document.getElementById('appointmentDeleteSelectAll');
+if(countBox)countBox.textContent=`${selected} selected`;
+if(selectAll){
+selectAll.checked=boxes.length>0&&selected===boxes.length;
+selectAll.indeterminate=selected>0&&selected<boxes.length;
+}
+}
+
+function toggleSelectAllAppointmentDeletes(checked){
+const boxes=[...document.querySelectorAll('.appointment-delete-checkbox')];
+boxes.forEach(b=>b.checked=checked);
+updateAppointmentDeleteSelection();
+}
+
+function openAppointmentToolsModal(){
+populateAppointmentDeleteStudentSelect();
+const select=document.getElementById('appointmentDeleteStudent');
+if(select)select.onchange=updateAppointmentDeleteInfo;
+const reason=document.getElementById('appointmentDeleteReason');
+if(reason)reason.value='';
+const modal=document.getElementById('appointmentToolsModal');
+if(modal)modal.classList.add('show');
+}
+
+function closeAppointmentToolsModal(){
+const modal=document.getElementById('appointmentToolsModal');
+if(modal)modal.classList.remove('show');
+}
+
+function deleteSelectedStudentAppointmentsWithReason(){
+const studentId=getAppointmentDeleteStudentId();
+if(!studentId){alert('Please select a student first.');return;}
+const selected=[...document.querySelectorAll('.appointment-delete-checkbox:checked')].map(b=>b.value);
+if(!selected.length){alert('Please select at least one appointment, or use Select All.');return;}
+const reason=(document.getElementById('appointmentDeleteReason')?.value||'').trim();
+if(!reason){
+const status=document.getElementById('appointmentDeleteStatus');
+if(status){status.className='status error';status.textContent='Reason is required before deleting appointment(s).';}
+return;
+}
+const student=getAppointmentStudent(studentId);
+const appointments=getAppointments();
+const selectedSet=new Set(selected);
+const matches=appointments.filter(a=>selectedSet.has(a.id)&&a.studentId===studentId);
+if(!matches.length){alert('The selected appointments could not be found.');updateAppointmentDeleteInfo();return;}
+const ok=window.confirm(`Delete ${matches.length} appointment(s) for ${student?.name||'this student'}?\n\nReason: ${reason}`);
+if(!ok)return;
+const remaining=appointments.filter(a=>!(selectedSet.has(a.id)&&a.studentId===studentId));
+const deletedCount=matches.length;
+saveAppointments(remaining);
+setAppointmentDeleteStatus(`Deleted ${deletedCount} appointment(s) for ${student?.name||'this student'}.`);
+const reasonEl=document.getElementById('appointmentDeleteReason');
+if(reasonEl)reasonEl.value='';
+renderAppointments();
+renderDashboard();
+updateAppointmentDeleteInfo();
+}
+
+function getAppointmentWeekRange(dateString){
+const d=new Date(`${dateString}T00:00:00`);
+const day=d.getDay();
+const diffToMonday=day===0?-6:1-day;
+const monday=new Date(d);
+monday.setDate(d.getDate()+diffToMonday);
+const sunday=new Date(monday);
+sunday.setDate(monday.getDate()+6);
+return {start:getLocalDateString(monday),end:getLocalDateString(sunday)};
+}
+
+function setAppointmentDeleteStatus(message){
+const box=document.getElementById('appointmentDeleteStatus');
+if(!box)return;
+box.className='status success';
+box.textContent=message;
+}
+
+function openAppointmentModal(appointmentId=''){
+editingAppointmentId=appointmentId||'';
+rebookingAppointment=false;
+const modal=document.getElementById('appointmentModal');
+if(!modal)return;
+populateAppointmentStudentSelect();
+document.getElementById('appointmentModalTitle').textContent=appointmentId?'Edit Appointment':'New Appointment';
+document.getElementById('appointmentSaveBtn').textContent=appointmentId?'Save Changes':'Save Appointment';
+const appointmentDateInput=document.getElementById('appointmentDate');
+if(appointmentDateInput)appointmentDateInput.disabled=!!appointmentId;
+document.getElementById('appointmentStatusMessage').className='status';
+document.getElementById('appointmentStatusMessage').textContent='';
+document.getElementById('appointmentConflict').classList.remove('show');
+const timeSelect=document.getElementById('appointmentTime');
+timeSelect.innerHTML=buildAppointmentTimeOptions();
+timeSelect.disabled=false;
+if(appointmentId){
+const item=getAppointments().find(a=>a.id===appointmentId);
+if(!item)return;
+document.getElementById('appointmentOriginalId').value=item.id;
+document.getElementById('appointmentStudent').value=item.studentId||'';
+document.getElementById('appointmentDate').value=item.date||'';
+document.getElementById('appointmentTime').value=item.time||'';
+document.getElementById('appointmentDuration').value=item.duration||'30 Minutes';
+document.getElementById('appointmentType').value=item.type||'Regular Class';
+/* Editing is always for this single appointment only.
+   Keep the selected date fixed, but allow the teacher to change the time. */
+setAppointmentScheduleMode('manual');
+timeSelect.disabled=false;
+}else{
+document.getElementById('appointmentOriginalId').value='';
+document.getElementById('appointmentStudent').value='';
+document.getElementById('appointmentDate').value=selectedAppointmentDate||getLocalDateString(new Date());
+document.getElementById('appointmentTime').value='';
+document.getElementById('appointmentDuration').value='30 Minutes';
+document.getElementById('appointmentType').value='Regular Class';
+setAppointmentScheduleMode('preferred');
+timeSelect.disabled=true;
+}
+modal.classList.add('show');
+updateAppointmentAutoInfo();
+updateAppointmentEndTime();
+updateAppointmentSummary();
+if(appointmentId)onAppointmentStudentChange();
+}
+
+
+function rebookAppointment(id){
+const item=getAppointments().find(a=>a.id===id);
+if(!item||((item.status||'Scheduled')!=='Scheduled'))return;
+editingAppointmentId=id;
+rebookingAppointment=true;
+openAppointmentModal(id);
+const dateInput=document.getElementById('appointmentDate');
+const timeSelect=document.getElementById('appointmentTime');
+const title=document.getElementById('appointmentModalTitle');
+const saveBtn=document.getElementById('appointmentSaveBtn');
+if(dateInput)dateInput.disabled=false;
+if(timeSelect)timeSelect.disabled=false;
+if(title)title.textContent='Rebook Appointment';
+if(saveBtn)saveBtn.textContent='Save Rebooked Class';
+setAppointmentScheduleMode('manual');
+updateAppointmentAutoInfo();
+updateAppointmentEndTime();
+updateAppointmentSummary();
+}
+
+function closeAppointmentModal(){
+const modal=document.getElementById('appointmentModal');
+if(modal)modal.classList.remove('show');
+editingAppointmentId='';
+rebookingAppointment=false;
+}
+
+function getStudentAppointmentCount(studentId){
+return getAppointments().filter(a=>a.studentId===studentId&&a.status!=='Cancelled'&&(a.type||'Regular Class')==='Regular Class').length;
+}
+
+function hasAppointmentConflict(date,time,duration,ignoreId=''){
+const start=parseAppointmentDate(date,time);
+if(!start)return true;
+const end=new Date(start.getTime()+duration*60000);
+return getAppointments().some(item=>{
+if(item.id===ignoreId)return false;
+if(item.status==='Cancelled')return false;
+const otherStart=getAppointmentDateTime(item);
+if(!otherStart)return false;
+const otherEnd=new Date(otherStart.getTime()+durationToMinutes(item.duration||'30 Minutes')*60000);
+return start<otherEnd&&end>otherStart;
+});
+}
+
+function hasExactStudentAppointment(studentId,date,time){
+return getAppointments().some(a=>a.studentId===studentId&&a.date===date&&a.time===time&&a.status!=='Cancelled');
+}
+
+function generatePreferredAppointments(student,startDate,type){
+const packageLimit=getPackageClassCount(student.packageName);
+if(!packageLimit)return {created:0,remaining:0,reason:'No class limit was found in the Package field. Example: 30 Classes.'};
+const preferredDays=SCHEDULE_DAYS.filter(day=>student.scheduleDetails&&student.scheduleDetails[day]!==undefined&&student.scheduleDetails[day]!==null&&student.scheduleDetails[day]!=='');
+if(!preferredDays.length)return {created:0,remaining:packageLimit,reason:'This student has no preferred class days/times saved.'};
+let appointments=getAppointments();
+const existingCount=appointments.filter(a=>a.studentId===student.id&&a.status!=='Cancelled'&&(a.type||'Regular Class')==='Regular Class').length;
+let remaining=Math.max(0,packageLimit-existingCount);
+if(remaining===0)return {created:0,remaining:0,reason:'The package class limit has already been reached.'};
+let created=0;
+let cursor=new Date(`${startDate}T00:00:00`);
+for(let i=0;i<730&&created<remaining;i++){
+const date=getLocalDateString(cursor);
+const day=SCHEDULE_DAYS[cursor.getDay()===0?6:cursor.getDay()-1];
+if(preferredDays.includes(day)){
+const mins=parseInt(student.scheduleDetails[day],10);
+if(!isNaN(mins)){
+const time=`${String(Math.floor(mins/60)).padStart(2,'0')}:${String(mins%60).padStart(2,'0')}`;
+const duration=durationToMinutes(student.duration||'30 Minutes');
+if(!hasExactStudentAppointment(student.id,date,time)&&!hasAppointmentConflict(date,time,duration)){
+const now=new Date().toISOString();
+appointments.push({
+id:`appt_${Date.now()}_${Math.random().toString(36).slice(2,8)}_${created}`,
+studentId:student.id,studentName:student.name,date,time,duration:student.duration||'30 Minutes',type:type||'Regular Class',status:'Scheduled',scheduleMode:'preferred',packageId:student.currentPackageId||'',createdAt:now,updatedAt:now
+});
+created++;
+}
+}
+}
+cursor.setDate(cursor.getDate()+1);
+}
+saveAppointments(appointments);
+return {created,remaining:Math.max(0,remaining-created),reason:created<remaining?'Some future slots could not be booked because of schedule conflicts.':''};
+}
+
+function saveAppointment(){
+const studentId=document.getElementById('appointmentStudent').value;
+const date=document.getElementById('appointmentDate').value;
+const time=document.getElementById('appointmentTime').value;
+const duration=document.getElementById('appointmentDuration').value;
+const type=document.getElementById('appointmentType').value;
+const mode=getAppointmentScheduleMode();
+const message=document.getElementById('appointmentStatusMessage');
+const student=getAppointmentStudent(studentId);
+const fail=msg=>{message.textContent=msg;message.className='status show error';};
+if(!student)return fail('Please select a student.');
+if(!date)return fail('Please select the start date.');
+if(editingAppointmentId){
+if(!time)return fail('Please select the start time.');
+if(updateAppointmentConflict())return fail('Please choose another date or time.');
+const appointments=getAppointments();
+const old=appointments.find(a=>a.id===editingAppointmentId);
+const now=new Date().toISOString();
+const record={...old,studentId:student.id,studentName:student.name,date,time,duration,type,scheduleMode:mode,updatedAt:now};
+const index=appointments.findIndex(a=>a.id===editingAppointmentId);
+if(index>=0)appointments[index]=record;
+saveAppointments(appointments);
+const wasRebook=rebookingAppointment;
+closeAppointmentModal();
+selectedAppointmentDate=date;
+const movedDate=new Date(`${date}T00:00:00`);
+appointmentMonthDate=new Date(movedDate.getFullYear(),movedDate.getMonth(),1);
+apptShowMessage(wasRebook?`Appointment rebooked for ${student.name}. The old booking was moved to ${date} at ${formatAppointmentTime(time)}.`:`Appointment updated for ${student.name}.`);
+renderAppointments();
+renderDashboard();
+renderStudents();
+return;
+}
+if(mode==='preferred'){
+if(type==='Regular Class'){
+const result=generatePreferredAppointments(student,date,type);
+if(!result.created){
+return fail(result.reason||'No appointments were generated.');
+}
+closeAppointmentModal();
+selectedAppointmentDate=date;
+apptShowMessage(`${result.created} future class${result.created===1?'':'es'} booked automatically for ${student.name}. ${result.remaining?`${result.remaining} class${result.remaining===1?'':'es'} remaining.`:'Package limit reached.'}`);
+renderAppointments();renderDashboard();
+return;
+}
+
+// Trial Class and Assessment are one-time appointments even when Preferred Schedule is selected.
+if(!time)return fail('No preferred start time is available for the selected start date.');
+if(hasExactStudentAppointment(student.id,date,time)){
+return fail('This student already has an appointment at this date and time.');
+}
+if(updateAppointmentConflict())return fail('Please choose another date or time.');
+const now=new Date().toISOString();
+const appointments=getAppointments();
+appointments.push({
+id:`appt_${Date.now()}_${Math.random().toString(36).slice(2,8)}`,
+studentId:student.id,studentName:student.name,date,time,duration,type,scheduleMode:'preferred',createdAt:now,updatedAt:now
+});
+saveAppointments(appointments);
+closeAppointmentModal();
+selectedAppointmentDate=date;
+apptShowMessage(`${type} scheduled for ${student.name}.`);
+renderAppointments();renderDashboard();
+return;
+}
+if(!time)return fail('Please select the start time.');
+if(updateAppointmentConflict())return fail('Please choose another date or time.');
+const now=new Date().toISOString();
+const appointments=getAppointments();
+appointments.push({
+id:`appt_${Date.now()}_${Math.random().toString(36).slice(2,8)}`,
+studentId:student.id,studentName:student.name,date,time,duration,type,scheduleMode:'manual',createdAt:now,updatedAt:now
+});
+saveAppointments(appointments);
+closeAppointmentModal();
+selectedAppointmentDate=date;
+apptShowMessage(`Appointment saved for ${student.name}.`);
+renderAppointments();renderDashboard();
+}
+
+function aptFilterMatch(item){
+const search=(document.getElementById('appointmentSearch')?.value||'').trim().toLowerCase();
+const status=document.getElementById('appointmentStatusFilter')?.value||'all';
+const text=`${item.studentName||''} ${item.studentId||''}`.toLowerCase();
+return (!search||text.includes(search))&&(status==='all'||item.status===status);
+}
+
+function filteredAppointments(){return getAppointments().filter(aptFilterMatch);}
+
+function appointmentMiniCard(item){
+const status=item.status||'Scheduled';
+const cls=appointmentStatusClass(status);
+return `<div class="appointment-mini-card ${cls}" onclick="event.stopPropagation();openAppointmentModal('${escapeAttr(item.id)}')"><strong>${escapeHtml(formatAppointmentTime(item.time))}</strong> · ${escapeHtml(item.studentName||'Student')}</div>`;
+}
+
+function renderAppointmentMonth(items){
+const first=new Date(appointmentMonthDate.getFullYear(),appointmentMonthDate.getMonth(),1);
+const last=new Date(appointmentMonthDate.getFullYear(),appointmentMonthDate.getMonth()+1,0);
+const gridStart=new Date(first);
+const mondayOffset=(first.getDay()+6)%7;
+gridStart.setDate(first.getDate()-mondayOffset);
+const gridEnd=new Date(last);
+const sundayOffset=6-((last.getDay()+6)%7);
+gridEnd.setDate(last.getDate()+sundayOffset);
+const range=document.getElementById('appointmentRange');
+if(range)range.textContent=first.toLocaleDateString(undefined,{month:'long',year:'numeric'});
+const weekdays=SCHEDULE_DAYS.map(day=>`<div class="appointment-month-weekday">${day.slice(0,3)}</div>`).join('');
+let cells=weekdays;
+const cursor=new Date(gridStart);
+while(cursor<=gridEnd){
+const dateString=getLocalDateString(cursor);
+const inMonth=cursor.getMonth()===appointmentMonthDate.getMonth();
+const today=dateString===getLocalDateString(new Date());
+const selected=dateString===selectedAppointmentDate;
+const dayItems=items.filter(a=>a.date===dateString).sort((a,b)=>String(a.time).localeCompare(String(b.time)));
+const bookingCount=dayItems.length;
+const bookingLabel=bookingCount===1?'1 booking':`${bookingCount} bookings`;
+const bookingMarkup=bookingCount
+?`<div class="appointment-booking-count">${bookingLabel}</div>`
+:'';
+cells+=`<div class="appointment-month-day ${inMonth?'':'other-month'} ${today?'today':''} ${selected?'selected':''}" onclick="selectAppointmentDay('${dateString}')">
+<div class="appointment-month-number"><span>${cursor.getDate()}</span>${today?'<span class="appointment-today-badge">TODAY</span>':''}</div>
+${bookingMarkup}
+</div>`;
+cursor.setDate(cursor.getDate()+1);
+}
+return `<div class="appointment-month-wrap"><div class="appointment-month">${cells}</div></div>`;
+}
+
+function renderAppointmentDayDetail(items){
+const container=document.getElementById('appointmentDayDetail');
+if(!container)return;
+const date=selectedAppointmentDate||getLocalDateString(new Date());
+const d=new Date(`${date}T00:00:00`);
+const dayItems=items.filter(a=>a.date===date).sort((a,b)=>String(a.time).localeCompare(String(b.time)));
+const title=d.toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+const addButton=`<div class="appointment-day-detail-footer"><button type="button" class="primary" onclick="openAppointmentModalForDate('${date}')">+ Add Class</button></div>`;
+if(!dayItems.length){
+container.innerHTML=`<div class="appointment-day-detail"><div class="appointment-day-detail-head"><span>${title}</span></div><div class="appointment-empty-page">No classes or appointments for this date.</div>${addButton}</div>`;
+return;
+}
+container.innerHTML=`<div class="appointment-day-detail"><div class="appointment-day-detail-head"><span>${title}</span></div><div class="appointment-day-detail-body">${dayItems.map(item=>{
+const status=item.status||'Scheduled';
+const reason=item.cancelReason||'';
+const safeId=escapeAttr(item.id);
+let actionButtons='';
+if(status==='Scheduled'){
+/* Before the class end time: Edit, Cancel, and Rebook are available. */
+actionButtons=`<button class="edit" type="button" onclick="openAppointmentModal('${safeId}')">Edit</button><button class="cancel" type="button" onclick="openAppointmentReasonModal('${safeId}','cancel')">Cancel</button><button class="rebook" type="button" onclick="rebookAppointment('${safeId}')">Rebook</button>`;
+}else if(status==='Completed'){
+/* After the class end time: show only the 3-dot menu. Present confirms/completes the class; Absent marks it absent in red. */
+actionButtons=`<div class="appointment-more-wrap"><button class="appointment-more-btn" type="button" aria-label="More actions" onclick="toggleAppointmentMoreMenu(event,'${safeId}')">⋮</button><div id="appointmentMore_${safeId}" class="appointment-more-menu"><button type="button" onclick="markAppointmentPresent('${safeId}')">Present</button><button class="absent" type="button" onclick="openAppointmentReasonModal('${safeId}','absent')">Absent</button></div></div>`;
+}else{
+actionButtons='';
+}
+return `<div class="appointment-detail-row">
+<div class="appointment-detail-time">${escapeHtml(formatAppointmentTime(item.time))} – ${escapeHtml(formatAppointmentTime(addMinutesToTime(item.time,durationToMinutes(item.duration))))}</div>
+<div class="appointment-detail-main"><b>${escapeHtml(item.studentName||'Student')}</b><span>${escapeHtml(item.type||'Regular Class')} · ${escapeHtml(item.duration||'30 Minutes')} · ${escapeHtml(status)}</span>${item.scheduleMode==='preferred'?'<span>Automatic preferred schedule</span>':''}${reason?`<span><strong>Cancellation reason:</strong> ${escapeHtml(reason)}</span>`:''}${item.notes?`<span>${escapeHtml(item.notes)}</span>`:''}</div>
+<div class="appointment-actions">${actionButtons}</div>
+</div>`;
+}).join('')}</div>${addButton}</div>`;
+}
+
+function selectAppointmentDay(dateString){
+selectedAppointmentDate=dateString;
+const d=new Date(`${dateString}T00:00:00`);
+if(d.getMonth()!==appointmentMonthDate.getMonth()||d.getFullYear()!==appointmentMonthDate.getFullYear())appointmentMonthDate=new Date(d.getFullYear(),d.getMonth(),1);
+renderAppointments();
+setTimeout(()=>document.getElementById('appointmentDayDetail')?.scrollIntoView({behavior:'smooth',block:'nearest'}),0);
+}
+
+function openAppointmentModalForDate(dateString){
+selectedAppointmentDate=dateString;
+openAppointmentModal();
+const date=document.getElementById('appointmentDate');
+if(date){date.value=dateString;onAppointmentDateChange();}
+}
+
+function moveAppointmentMonth(offset){
+appointmentMonthDate=new Date(appointmentMonthDate.getFullYear(),appointmentMonthDate.getMonth()+offset,1);
+selectedAppointmentDate=getLocalDateString(new Date(appointmentMonthDate.getFullYear(),appointmentMonthDate.getMonth(),1));
+renderAppointments();
+}
+
+function goAppointmentToday(){
+const now=new Date();
+appointmentMonthDate=new Date(now.getFullYear(),now.getMonth(),1);
+selectedAppointmentDate=getLocalDateString(now);
+renderAppointments();
+}
+
+function renderAppointments(){
+autoCompleteFinishedAppointments();
+const container=document.getElementById('appointmentCalendar');
+if(!container)return;
+const items=filteredAppointments();
+container.innerHTML=renderAppointmentMonth(items)+`<div id="appointmentDayDetail"></div>`;
+renderAppointmentDayDetail(items);
+}
+
+function autoCompleteFinishedAppointments(){
+const now=new Date();
+const appointments=getAppointments();
+let changed=false;
+const updated=appointments.map(item=>{
+if((item.status||'Scheduled')!=='Scheduled')return item;
+const start=getAppointmentDateTime(item);
+if(!start)return item;
+const end=new Date(start.getTime()+durationToMinutes(item.duration||'30 Minutes')*60000);
+if(now>=end){
+changed=true;
+return {...item,status:'Completed',completedAt:now.toISOString(),updatedAt:now.toISOString()};
+}
+return item;
+});
+if(changed)saveAppointments(updated);
+return changed;
+}
+
+function toggleAppointmentMoreMenu(event,id){
+event.stopPropagation();
+document.querySelectorAll('.appointment-more-menu.show').forEach(menu=>{
+if(menu.id!==`appointmentMore_${id}`)menu.classList.remove('show');
+});
+const menu=document.getElementById(`appointmentMore_${id}`);
+if(menu)menu.classList.toggle('show');
+}
+
+document.addEventListener('click',()=>{
+document.querySelectorAll('.appointment-more-menu.show').forEach(menu=>menu.classList.remove('show'));
+});
+
+function markAppointmentPresent(id){
+const appointments=getAppointments();
+const index=appointments.findIndex(a=>a.id===id);
+if(index<0)return;
+const item=appointments[index];
+appointments[index]={...item,status:'Completed',attendance:'Present',presentAt:new Date().toISOString(),updatedAt:new Date().toISOString()};
+saveAppointments(appointments);
+renderAppointments();
+}
+
+function openAppointmentReasonModal(id,action){
+const item=getAppointments().find(a=>a.id===id);
+if(!item)return;
+const modal=document.getElementById('appointmentReasonModal');
+if(!modal)return;
+document.getElementById('appointmentReasonId').value=id;
+document.getElementById('appointmentReasonAction').value=action;
+document.getElementById('appointmentReasonText').value=action==='cancel'?(item.cancelReason||''):(item.absentReason||'');
+document.getElementById('appointmentReasonTitle').textContent=action==='cancel'?'Cancel Class':'Mark Student Absent';
+document.getElementById('appointmentReasonHelp').textContent=action==='cancel'?'Please enter the reason for the cancellation (for example, parent requested to cancel or reschedule).':'Please enter the reason why the student was absent.';
+document.getElementById('appointmentReasonStatus').className='status';
+document.getElementById('appointmentReasonStatus').textContent='';
+modal.classList.add('show');
+setTimeout(()=>document.getElementById('appointmentReasonText')?.focus(),50);
+}
+
+function closeAppointmentReasonModal(){
+const modal=document.getElementById('appointmentReasonModal');
+if(modal)modal.classList.remove('show');
+}
+
+function saveAppointmentReason(){
+const id=document.getElementById('appointmentReasonId').value;
+const action=document.getElementById('appointmentReasonAction').value;
+const reason=(document.getElementById('appointmentReasonText').value||'').trim();
+const statusBox=document.getElementById('appointmentReasonStatus');
+if(!reason){
+statusBox.className='status error';
+statusBox.textContent='Reason is required.';
+return;
+}
+const appointments=getAppointments();
+const index=appointments.findIndex(a=>a.id===id);
+if(index<0)return;
+const now=new Date().toISOString();
+if(action==='cancel'){
+appointments[index]={...appointments[index],status:'Cancelled',cancelReason:reason,cancelledAt:now,updatedAt:now};
+}else{
+appointments[index]={...appointments[index],status:'No Show',absentReason:reason,absentAt:now,updatedAt:now};
+}
+saveAppointments(appointments);
+closeAppointmentReasonModal();
+renderAppointments();
+renderDashboard();
+}
+
+function cancelAppointment(id){
+const item=getAppointments().find(a=>a.id===id);
+if(!item||((item.status||'Scheduled')!=='Scheduled'))return;
+openAppointmentReasonModal(id,'cancel');
+}
+
+function updateAppointmentStatus(id,status){
+const appointments=getAppointments();
+const index=appointments.findIndex(a=>a.id===id);
+if(index<0)return;
+appointments[index]={...appointments[index],status,updatedAt:new Date().toISOString()};
+saveAppointments(appointments);
+renderAppointments();
+renderDashboard();
+}
+
+function deleteAppointment(id){
+const item=getAppointments().find(a=>a.id===id);
+if(!item)return;
+if(!confirm(`Delete the appointment for ${item.studentName||'this student'}?`))return;
+saveAppointments(getAppointments().filter(a=>a.id!==id));
+renderAppointments();
+renderDashboard();
+}
+
+function aptShowMessage(message){
+const range=document.getElementById('appointmentRange');
+if(range){
+const old=range.textContent;
+range.textContent=message;
+setTimeout(()=>{if(document.getElementById('appointmentRange'))renderAppointments();},1800);
+}
+}
+
 /* =========================================================
    DASHBOARD
 ========================================================= */
 
-function renderDashboard(){
+function getDashboardAppointments(){
 
-const students=getStudents();
-
-const evals=getEvaluations();
-
-document.getElementById(
-'studentCount'
-).textContent=students.length;
-
-document.getElementById(
-'evaluationCount'
-).textContent=evals.length;
-
-const latestEvaluation=
-evals.length
-?evals
-.slice()
-.sort(
-(a,b)=>
-getEvaluationTimestamp(b)-
-getEvaluationTimestamp(a)
-)[0]
-:null;
-
-document.getElementById(
-'lastEvaluation'
-).textContent=
-latestEvaluation
-?formatDateTime(
-latestEvaluation.dateTime ||
-latestEvaluation.createdAt
-)
-:'—';
-
-const list=
-document.getElementById(
-'studentList'
-);
-
-if(!students.length){
-
-list.innerHTML=
-'<div class="empty">No students yet. Add your first student above.</div>';
-
-return;
+try{
+const key=currentUser
+?`teacherDanyealAppointments_${currentUser.id}`
+:'teacherDanyealAppointments';
+const data=JSON.parse(localStorage.getItem(key)||'[]');
+return Array.isArray(data)?data:[];
+}catch(error){
+return [];
+}
 
 }
 
-list.innerHTML=
-students.map(
-s=>`
+function getAppointmentDateTime(item){
 
+const raw=item?.dateTime || item?.scheduledAt || item?.startDateTime || '';
+if(raw){
+const d=new Date(raw);
+if(!isNaN(d.getTime())) return d;
+}
+
+const date=item?.date || item?.appointmentDate || item?.classDate || '';
+const time=item?.time || item?.appointmentTime || item?.classTime || '00:00';
+if(date){
+const d=new Date(`${date}T${time}`);
+if(!isNaN(d.getTime())) return d;
+}
+
+return null;
+}
+
+function renderDashboard(){
+
+const students=getStudents();
+const evals=getEvaluations();
+
+const studentCountEl=document.getElementById('studentCount');
+const evaluationCountEl=document.getElementById('evaluationCount');
+const lastEvaluationEl=document.getElementById('lastEvaluation');
+
+if(studentCountEl) studentCountEl.textContent=students.length;
+if(evaluationCountEl) evaluationCountEl.textContent=evals.length;
+
+const latestEvaluation=evals.length
+?evals.slice().sort((a,b)=>getEvaluationTimestamp(b)-getEvaluationTimestamp(a))[0]
+:null;
+
+if(lastEvaluationEl){
+lastEvaluationEl.textContent=latestEvaluation
+?formatDateTime(latestEvaluation.dateTime || latestEvaluation.createdAt)
+:'—';
+}
+
+const profile=getTeacherProfile();
+const username=profile.username || currentUser?.user_metadata?.username || defaultUsername(currentUser?.email) || 'Teacher';
+
+const teacherNameEl=document.getElementById('dashboardTeacherName');
+if(teacherNameEl) teacherNameEl.textContent=username;
+
+const photoEl=document.getElementById('dashboardTeacherPhoto');
+const picture=profile.picture || profile.profile_picture || '';
+if(photoEl){
+if(picture){
+photoEl.innerHTML=`<img src="${String(picture)}" alt="Teacher Profile Picture">`;
+}else{
+photoEl.textContent='👤';
+}
+}
+
+const studentCountDash=document.getElementById('dashboardStudentCount');
+if(studentCountDash) studentCountDash.textContent=students.length;
+
+const appointments=getDashboardAppointments();
+const now=new Date();
+const validAppointments=appointments
+.map(item=>({item,date:getAppointmentDateTime(item)}))
+.filter(x=>x.date && !isNaN(x.date.getTime()));
+
+const todayCount=validAppointments.filter(x=>
+ x.date.getFullYear()===now.getFullYear() &&
+ x.date.getMonth()===now.getMonth() &&
+ x.date.getDate()===now.getDate()
+).length;
+
+const appointmentCountDash=document.getElementById('dashboardAppointmentCount');
+if(appointmentCountDash) appointmentCountDash.textContent=appointments.length;
+
+const todayClassCountDash=document.getElementById('dashboardTodayClassCount');
+if(todayClassCountDash) todayClassCountDash.textContent=todayCount;
+
+const next=validAppointments
+.filter(x=>x.date.getTime()>=now.getTime())
+.sort((a,b)=>a.date-b.date)[0];
+
+const nextMain=document.getElementById('dashboardNextClass');
+const nextSub=document.getElementById('dashboardNextClassSub');
+
+if(next){
+const item=next.item;
+const studentName=item.studentName || item.student || item.name || 'Student';
+const label=item.title || item.subject || 'Class / Appointment';
+if(nextMain) nextMain.textContent=`${label} — ${studentName}`;
+if(nextSub) nextSub.textContent=formatDateTime(next.date.toISOString());
+}else{
+if(nextMain) nextMain.textContent='No upcoming class.';
+if(nextSub) nextSub.textContent='Your next class or appointment will appear here.';
+}
+
+const list=document.getElementById('studentList');
+if(!students.length){
+if(list) list.innerHTML='<div class="empty">No students yet. Add your first student above.</div>';
+return;
+}
+
+if(list){
+list.innerHTML=students.map(s=>`
 <div class="student-row">
-
 <div class="student-info">
-
-<b>
-${escapeHtml(s.name)}
-</b>
-
-<span>
-ID: ${escapeHtml(s.id)}
-·
-${escapeHtml(s.email)}
-</span>
-
+<b>${escapeHtml(s.name)}</b>
+<span>ID: ${escapeHtml(s.id)} · ${escapeHtml(s.email)}</span>
 </div>
-
 <div class="student-actions">
-
-<button
-type="button"
-class="dots-btn"
-aria-label="Student options"
-onclick="event.stopPropagation();toggleStudentMenu('${escapeAttr(s.id)}')"
->
-⋮
-</button>
-
-<div
-id="studentMenu-${encodeURIComponent(s.id)}"
-class="student-menu"
->
-
-<button
-type="button"
-onclick="openEditStudent('${escapeAttr(s.id)}')"
->
-Edit
-</button>
-
-<button
-type="button"
-class="delete-option"
-onclick="openDeleteStudent('${escapeAttr(s.id)}')"
->
-Delete
-</button>
-
+<button type="button" class="dots-btn" aria-label="Student options" onclick="event.stopPropagation();toggleStudentMenu('${escapeAttr(s.id)}')">⋮</button>
+<div id="studentMenu-${encodeURIComponent(s.id)}" class="student-menu">
+<button type="button" onclick="openEditStudent('${escapeAttr(s.id)}')">Edit</button>
+<button type="button" class="delete-option" onclick="openDeleteStudent('${escapeAttr(s.id)}')">Delete</button>
 </div>
-
 </div>
-
 </div>
+`).join('');
+}
 
-`
-)
-.join('');
+}
 
+
+
+/* =========================================================
+   STUDENT PAGE
+========================================================= */
+
+function getPackageClassCount(packageName){
+const matches=String(packageName||'').match(/\d+/g)||[];
+if(!matches.length)return 0;
+/* Package labels may be written as P1 - 20 Classes, P2 - 30 Classes, etc.
+   Use the final number as the actual class quantity. */
+return Math.max(0,parseInt(matches[matches.length-1],10)||0);
+}
+
+function ensureStudentPackageState(student){
+const history=Array.isArray(student.packageHistory)?student.packageHistory:[];
+if(history.length)return history;
+const count=getPackageClassCount(student.packageName);
+if(!count)return [];
+const id=student.currentPackageId||`pkg_${student.createdAt||Date.now()}`;
+return [{id,packageName:student.packageName||`${count} Classes`,classCount:count,startDate:student.createdAt?String(student.createdAt).slice(0,10):getLocalDateString(new Date()),status:'Active',createdAt:student.createdAt||new Date().toISOString()}];
+}
+
+function getCurrentStudentPackage(student){
+const history=ensureStudentPackageState(student);
+if(!history.length)return null;
+return history.find(p=>p.id===student.currentPackageId)||history[history.length-1];
+}
+
+function getStudentProgress(student){
+const current=getCurrentStudentPackage(student);
+const packageCount=current?Math.max(0,parseInt(current.classCount,10)||getPackageClassCount(current.packageName)):getPackageClassCount(student.packageName);
+const appointments=getAppointments();
+let completed=0;
+if(current){
+  completed=appointments.filter(a=>a.studentId===student.id&&a.packageId===current.id&&a.type==='Regular Class'&&a.status==='Completed').length;
+}
+/* Legacy students without package-linked appointments keep the previous evaluation-based progress until renewed. */
+if(current && completed===0 && !appointments.some(a=>a.studentId===student.id&&a.packageId===current.id) && !Array.isArray(student.packageHistory)){
+  completed=getStudentEvaluations(student.id).length;
+}
+const remaining=Math.max(0,packageCount-completed);
+const percent=packageCount?Math.min(100,Math.round((completed/packageCount)*100)):0;
+return {purchased:packageCount,completed,remaining,percent,currentPackage:current,history:ensureStudentPackageState(student)};
+}
+
+function openStudentProfile(id){
+const student=getStudents().find(s=>s.id===id);
+if(!student)return;
+const p=getStudentProgress(student);
+const schedule=scheduleDataToText(student.scheduleDetails,student.preferredSchedule,student.duration);
+const content=document.getElementById('studentProfileContent');
+const title=document.getElementById('studentProfileTitle');
+if(title)title.textContent=`${student.name||'Student'} — Profile`;
+if(!content)return;
+
+const avatar=getStudentAvatarHtml(student,'student-profile-avatar');
+const appointments=getAppointments().filter(a=>a.studentId===student.id).sort((a,b)=>{
+ const da=getAppointmentDateTime(a),db=getAppointmentDateTime(b);
+ return (db?db.getTime():0)-(da?da.getTime():0);
+});
+const recentAppointments=appointments.slice(0,30);
+const currentPackage=getCurrentStudentPackage(student);
+const currentStart=(currentPackage&&currentPackage.startDate)||student.startDate||'—';
+const evaluations=getStudentEvaluations(student.id);
+
+content.innerHTML=`
+<div class="student-profile-landscape">
+ <div class="student-profile-side">
+  ${avatar}
+  <div style="min-width:0;flex:1">
+   <div class="student-profile-name">${escapeHtml(student.name||'Unnamed Student')}</div>
+   <div class="student-profile-id">Student ID: ${escapeHtml(student.id||'—')}</div>
+   <div style="margin-top:10px"><span class="student-status-badge ${escapeAttr((student.status||'Active').toLowerCase())}">${escapeHtml(student.status||'Active')}</span></div>
+   <div class="student-card-actions" style="margin-top:14px">
+    <button type="button" class="primary-action" onclick="closeStudentProfile();openEditStudent('${escapeAttr(student.id)}')">Edit Student</button>
+    <button type="button" class="primary-action" onclick="closeStudentProfile();openRenewPackage('${escapeAttr(student.id)}')">Renew Package</button>
+    <button type="button" class="primary-action" onclick="closeStudentProfile();openStudentContract('${escapeAttr(student.id)}')">Student Contract</button>
+    <button type="button" class="danger-action" onclick="closeStudentProfile();openDeleteStudent('${escapeAttr(student.id)}')">Delete Student</button>
+   </div>
+  </div>
+ </div>
+
+ <div class="student-profile-main">
+  <div class="student-profile-section">
+   <h4>STUDENT INFORMATION</h4>
+   <div class="student-profile-info-grid">
+    <div class="student-profile-info-box"><label>Student ID</label><div>${escapeHtml(student.id||'—')}</div></div>
+    <div class="student-profile-info-box"><label>Age</label><div>${escapeHtml(student.age||'Not set')}</div></div>
+    <div class="student-profile-info-box"><label>English Level</label><div>${escapeHtml(student.level||'Not set')}</div></div>
+    <div class="student-profile-info-box"><label>Status</label><div>${escapeHtml(student.status||'Active')}</div></div>
+    <div class="student-profile-info-box"><label>Parent / Guardian</label><div>${escapeHtml(student.parentName||'Not set')}</div></div>
+    <div class="student-profile-info-box"><label>Parent Gmail</label><div>${escapeHtml(student.email||'Not set')}</div></div>
+    <div class="student-profile-info-box"><label>Class Duration</label><div>${escapeHtml(student.duration||'Not set')}</div></div>
+    <div class="student-profile-info-box"><label>Package</label><div>${escapeHtml(student.packageName||'Not set')}</div></div>
+    <div class="student-profile-info-box"><label>Start Date</label><div>${escapeHtml(currentStart)}</div></div>
+    <div class="student-profile-info-box" style="grid-column:span 3"><label>Preferred Class Schedule</label><div>${escapeHtml(schedule)}</div></div>
+   </div>
+  </div>
+
+  <div class="student-profile-section">
+   <h4>CLASS SUMMARY</h4>
+   <div class="student-detail-summary" style="margin:0">
+    <div class="student-detail-stat"><b>${p.purchased}</b><span>Classes Purchased</span></div>
+    <div class="student-detail-stat"><b>${p.completed}</b><span>Classes Completed</span></div>
+    <div class="student-detail-stat"><b>${p.remaining}</b><span>Classes Remaining</span></div>
+   </div>
+   <div class="student-progress" style="margin-top:12px">
+    <div class="student-progress-head"><span>Course Progress</span><span>${p.percent}%</span></div>
+    <div class="student-progress-track"><div class="student-progress-fill" style="width:${p.percent}%"></div></div>
+   </div>
+  </div>
+
+  <div class="student-profile-section">
+   <h4>CLASSES / APPOINTMENTS (${appointments.length})</h4>
+   ${recentAppointments.length?`<div style="overflow:auto"><table class="student-class-table"><thead><tr><th>Date</th><th>Day</th><th>Time</th><th>Type</th><th>Duration</th></tr></thead><tbody>${recentAppointments.map(a=>{
+     const dt=getAppointmentDateTime(a); const date=dt?getLocalDateString(dt):a.date||'—';
+     const time=a.time|| (dt?dt.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}):'—');
+     const day=dt?dt.toLocaleDateString([], {weekday:'long'}):(a.day||'—');
+     return `<tr><td>${escapeHtml(date)}</td><td>${escapeHtml(day)}</td><td>${escapeHtml(time)}</td><td>${escapeHtml(a.type||'Regular Class')}</td><td>${escapeHtml(a.duration||student.duration||'—')}</td></tr>`;
+   }).join('')}</tbody></table></div>`:'<div class="small">No classes or appointments recorded yet.</div>'}
+  </div>
+
+  <div class="student-profile-section">
+   <h4>PACKAGE HISTORY</h4>
+   ${(p.history||[]).slice().reverse().map(pkg=>{
+    const pkgCount=Math.max(0,parseInt(pkg.classCount,10)||getPackageClassCount(pkg.packageName));
+    const pkgCompleted=getAppointments().filter(a=>a.studentId===student.id&&a.packageId===pkg.id&&a.type==='Regular Class'&&a.status==='Completed').length;
+    const pkgStatus=pkg.id===student.currentPackageId?'Active':(pkg.status||'Completed');
+    return `<div class="package-history-item"><div><b>${escapeHtml(pkg.packageName||`${pkgCount} Classes`)}</b><div class="package-history-meta">${pkgCompleted} / ${pkgCount} completed · Started ${escapeHtml(pkg.startDate||'—')}${pkg.renewalDate?` · Renewed ${escapeHtml(pkg.renewalDate)}`:''}</div></div><span class="package-history-badge ${pkg.id===student.currentPackageId?'':'old'}">${escapeHtml(pkgStatus)}</span></div>`;
+   }).join('')||'<div class="small">No package history yet.</div>'}
+  </div>
+
+  <div class="student-profile-section">
+   <h4>EVALUATIONS (${evaluations.length})</h4>
+   <div class="small">${evaluations.length?`This student has ${evaluations.length} saved evaluation record${evaluations.length===1?'':'s'}.`:'No evaluation records yet.'}</div>
+   <div class="student-card-actions" style="justify-content:flex-start">
+    <button type="button" onclick="closeStudentProfile();openStudentClassRecord('${escapeAttr(student.id)}')">View Class Records</button>
+   </div>
+  </div>
+ </div>
+</div>`;
+
+document.getElementById('studentProfileModal').classList.add('show');
+}
+function getRenewalStartDate(student, renewalDate){
+if(!student||!renewalDate)return '';
+const current=getCurrentStudentPackage(student);
+const appointments=getAppointments();
+const renewalMs=new Date(`${renewalDate}T00:00:00`).getTime();
+let futureOld=appointments.filter(a=>{
+  if(a.studentId!==student.id)return false;
+  if((a.type||'Regular Class')!=='Regular Class')return false;
+  if(a.status==='Completed'||a.status==='Cancelled')return false;
+  if(current && a.packageId && a.packageId!==current.id)return false;
+  const dt=getAppointmentDateTime(a);
+  return dt && dt.getTime()>=renewalMs;
+});
+futureOld.sort((a,b)=>getAppointmentDateTime(a)-getAppointmentDateTime(b));
+if(futureOld.length){
+  const last=getAppointmentDateTime(futureOld[futureOld.length-1]);
+  const nextBase=new Date(`${getLocalDateString(last)}T00:00:00`);
+  nextBase.setDate(nextBase.getDate()+1);
+  return getNextPreferredDate(student,getLocalDateString(nextBase));
+}
+return getNextPreferredDate(student,renewalDate);
+}
+
+function openRenewPackage(id){
+const student=getStudents().find(s=>s.id===id);
+if(!student)return;
+const modal=document.getElementById('renewPackageModal');
+if(!modal)return;
+document.getElementById('renewStudentId').value=student.id;
+const current=getCurrentStudentPackage(student);
+const currentCount=current?current.classCount:getPackageClassCount(student.packageName);
+const currentProgress=getStudentProgress(student);
+document.getElementById('renewStudentSummary').innerHTML=`<strong>${escapeHtml(student.name)}</strong><br>Current package: <strong>${escapeHtml(student.packageName||'Not set')}</strong> · ${currentProgress.completed} / ${currentCount||0} completed · <strong>${currentProgress.remaining} remaining</strong>`;
+document.getElementById('renewPackageName').value='20 Classes';
+document.getElementById('renewDuration').value=['30 Minutes','40 Minutes','50 Minutes'].includes(student.duration)?student.duration:'30 Minutes';
+const today=getLocalDateString(new Date());
+const renewalDate=document.getElementById('renewRenewalDate');
+if(renewalDate)renewalDate.value=today;
+const startDate=document.getElementById('renewStartDate');
+if(startDate)startDate.value=getRenewalStartDate(student,today)||'';
+document.getElementById('renewPackageError').textContent='';
+document.getElementById('renewPackageError').classList.remove('show');
+modal.classList.add('show');
+updateRenewPreview();
+}
+function closeRenewPackage(){
+const modal=document.getElementById('renewPackageModal');
+if(modal)modal.classList.remove('show');
+}
+
+function onRenewStartDateChange(){
+const id=document.getElementById('renewStudentId')?.value||'';
+const student=getStudents().find(s=>s.id===id);
+const renewalDate=document.getElementById('renewRenewalDate')?.value||'';
+const input=document.getElementById('renewStartDate');
+if(student&&input&&renewalDate)input.value=getRenewalStartDate(student,renewalDate)||'';
+updateRenewPreview();
+}
+function updateRenewPreview(){
+const id=document.getElementById('renewStudentId')?.value||'';
+const student=getStudents().find(s=>s.id===id);
+const box=document.getElementById('renewPreview');
+if(!student||!box)return;
+const count=getPackageClassCount(document.getElementById('renewPackageName')?.value||'');
+const date=document.getElementById('renewStartDate')?.value||'';
+const time=getPreferredStartTime(student,date);
+const end=time?addMinutesToTime(time,durationToMinutes(student.duration||'30 Minutes')):'';
+box.innerHTML=count?`<strong>${count} future classes</strong> will be generated automatically from the first preferred class.<br>First class: <strong>${date?new Date(`${date}T00:00:00`).toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric',year:'numeric'}):'—'}</strong>${time?` · <strong>${formatAppointmentTime(time)}–${formatAppointmentTime(end)}</strong>`:' · No preferred time found for this date.'}`:'Select a package.';
+}
+
+function confirmRenewPackage(){
+const id=document.getElementById('renewStudentId')?.value||'';
+const student=getStudents().find(s=>s.id===id);
+const err=document.getElementById('renewPackageError');
+const fail=msg=>{err.textContent=msg;err.classList.add('show');};
+if(!student)return fail('Student record could not be found.');
+
+const packageName=document.getElementById('renewPackageName').value;
+const addedClasses=getPackageClassCount(packageName);
+const renewalDate=document.getElementById('renewRenewalDate')?.value||getLocalDateString(new Date());
+let startDate=getRenewalStartDate(student,renewalDate);
+
+if(!addedClasses)return fail('Please select a valid package.');
+if(!renewalDate)return fail('Renewal date is required.');
+if(!startDate)return fail('This student has no preferred class schedule. Please add a preferred day and time first.');
+
+const preferredTime=getPreferredStartTime(student,startDate);
+if(!preferredTime)return fail('No preferred class time is saved for the first class date.');
+
+const students=getStudents();
+const index=students.findIndex(s=>s.id===student.id);
+if(index<0)return fail('Student record could not be found.');
+
+/* =========================================================
+   RENEWAL LOGIC
+   Old unused/remaining classes are carried forward.
+   Example: 10 remaining + 20 renewed = 30 total remaining.
+   Existing future regular appointments are preserved and counted;
+   only the missing appointments are generated.
+========================================================= */
+const current=getCurrentStudentPackage(student);
+const currentProgress=getStudentProgress(student);
+const oldRemaining=Math.max(0,currentProgress.remaining||0);
+const targetRemaining=oldRemaining+addedClasses;
+
+const history=ensureStudentPackageState(student).map(p=>({...p}));
+if(current){
+ const currentIdx=history.findIndex(p=>p.id===current.id);
+ if(currentIdx>=0){
+   history[currentIdx]={
+     ...history[currentIdx],
+     status:'Renewed',
+     renewedAt:new Date().toISOString(),
+     remainingCarriedForward:oldRemaining
+   };
+ }
+}
+
+const newPackageId=`pkg_${Date.now()}_${Math.random().toString(36).slice(2,8)}`;
+
+/* The new active package represents the total active remaining balance:
+   old remaining classes + newly purchased classes. */
+const newPackageName=`${targetRemaining} Classes`;
+history.push({
+ id:newPackageId,
+ packageName:newPackageName,
+ classCount:targetRemaining,
+ addedClassCount:addedClasses,
+ carriedForward:oldRemaining,
+ renewalDate,
+ startDate,
+ status:'Active',
+ createdAt:new Date().toISOString()
+});
+
+students[index]={
+ ...students[index],
+ packageName:newPackageName,
+ currentPackageId:newPackageId,
+ packageHistory:history,
+ status:'Active'
+};
+saveStudents(students);
+
+let appointments=getAppointments();
+
+/* Carry all still-upcoming regular classes into the new active package.
+   This prevents the old remaining classes from being lost and prevents
+   duplicate booking when the renewal is submitted. */
+const nowMs=Date.now();
+appointments=appointments.map(a=>{
+ if(a.studentId!==student.id)return a;
+ if((a.type||'Regular Class')!=='Regular Class')return a;
+ if(a.status==='Completed'||a.status==='Cancelled')return a;
+ const dt=getAppointmentDateTime(a);
+ if(dt && dt.getTime()>=nowMs){
+   return {...a,packageId:newPackageId,updatedAt:new Date().toISOString()};
+ }
+ return a;
+});
+
+/* Count the student's existing active/future regular classes after carry-over. */
+const activeFutureCount=appointments.filter(a=>{
+ if(a.studentId!==student.id)return false;
+ if((a.type||'Regular Class')!=='Regular Class')return false;
+ if(a.status==='Completed'||a.status==='Cancelled')return false;
+ const dt=getAppointmentDateTime(a);
+ return dt ? dt.getTime()>=nowMs : false;
+}).length;
+
+let needed=Math.max(0,targetRemaining-activeFutureCount);
+let created=0;
+let cursor=new Date(`${startDate}T00:00:00`);
+
+for(let i=0;i<1095&&created<needed;i++){
+ const date=getLocalDateString(cursor);
+ const day=SCHEDULE_DAYS[cursor.getDay()===0?6:cursor.getDay()-1];
+ if(student.scheduleDetails && student.scheduleDetails[day]!==undefined && student.scheduleDetails[day]!==null && student.scheduleDetails[day]!==''){
+   const mins=parseInt(student.scheduleDetails[day],10);
+   if(!isNaN(mins)){
+     const time=`${String(Math.floor(mins/60)).padStart(2,'0')}:${String(mins%60).padStart(2,'0')}`;
+     const duration=durationToMinutes(student.duration||'30 Minutes');
+     if(!hasExactStudentAppointment(student.id,date,time)&&!hasAppointmentConflict(date,time,duration)){
+       const now=new Date().toISOString();
+       appointments.push({
+         id:`appt_${Date.now()}_${Math.random().toString(36).slice(2,8)}_${created}`,
+         studentId:student.id,
+         studentName:student.name,
+         date,
+         time,
+         duration:student.duration||'30 Minutes',
+         type:'Regular Class',
+         status:'Scheduled',
+         scheduleMode:'preferred',
+         packageId:newPackageId,
+         createdAt:now,
+         updatedAt:now
+       });
+       created++;
+     }
+   }
+ }
+ cursor.setDate(cursor.getDate()+1);
+}
+
+saveAppointments(appointments);
+closeRenewPackage();
+renderStudents();
+renderDashboard();
+populateStudentSelect(student.id);
+renderRecords();
+
+const totalBooked=activeFutureCount+created;
+const bookingMessage=created
+ ? `${created} new future class${created===1?'':'es'} booked. ${oldRemaining} previous remaining class${oldRemaining===1?'':'es'} carried forward + ${addedClasses} renewed = ${targetRemaining} total remaining.`
+ : `${oldRemaining} previous remaining class${oldRemaining===1?'':'es'} carried forward + ${addedClasses} renewed = ${targetRemaining} total remaining. Existing future appointments were kept; no duplicate classes were created.`;
+
+const successMessage=`${student.name}'s package was renewed successfully. ${bookingMessage} ${totalBooked>=targetRemaining?'The active schedule now covers the full remaining balance.':'Some classes could not be booked because of schedule conflicts.'}`;
+showStudentStatus(successMessage,true);
+
+/* The renewal is already saved before this notice appears.
+   Ask the user to refresh so the Student Management view reloads the
+   latest package/history data cleanly instead of leaving a stale card. */
+const refreshModal=document.getElementById('renewRefreshModal');
+const refreshMessage=document.getElementById('renewRefreshMessage');
+if(refreshMessage){
+  refreshMessage.innerHTML=
+    `<strong>${escapeHtml(successMessage)}</strong><br><br>`+
+    `The renewal and automatic appointments are already saved. `+
+    `<strong>Please refresh the page</strong> to display the updated student record and package history.`;
+}
+if(refreshModal)refreshModal.classList.add('show');
+}
+
+function closeRenewRefreshNotice(){
+const modal=document.getElementById('renewRefreshModal');
+if(modal)modal.classList.remove('show');
+}
+
+function refreshAfterRenewal(){
+window.location.reload();
+}
+
+function closeStudentProfile(){
+const el=document.getElementById('studentProfileModal');
+if(el)el.classList.remove('show');
+}
+
+let studentSortMode='az';
+
+function toggleStudentSortMenu(event){
+  event.stopPropagation();
+  const menu=document.getElementById('studentSortMenu');
+  if(!menu)return;
+  document.querySelectorAll('.student-sort-menu.show').forEach(m=>{
+    if(m!==menu)m.classList.remove('show');
+  });
+  menu.classList.toggle('show');
+}
+
+function setStudentSort(mode){
+  studentSortMode=mode||'az';
+  const menu=document.getElementById('studentSortMenu');
+  if(menu)menu.classList.remove('show');
+  renderStudents();
+}
+
+document.addEventListener('click',event=>{
+  if(!event.target.closest('.student-sort-wrap')){
+    document.querySelectorAll('.student-sort-menu.show').forEach(menu=>menu.classList.remove('show'));
+  }
+});
+
+function sortStudentsForDisplay(items){
+  return [...items].sort((a,b)=>{
+    if(studentSortMode==='id'){
+      return String(a.id||'').localeCompare(String(b.id||''),undefined,{numeric:true,sensitivity:'base'});
+    }
+    const result=String(a.name||'').localeCompare(String(b.name||''),undefined,{numeric:true,sensitivity:'base'});
+    return studentSortMode==='za' ? -result : result;
+  });
+}
+
+function renderStudentCard(s){
+  const status=s.status||'Active';
+  const statusClass=status.toLowerCase();
+  const avatar=getStudentAvatarHtml(s,'student-avatar-circle');
+  return `<div class="student-card" role="button" tabindex="0" onclick="openStudentProfile('${escapeAttr(s.id)}')" onkeydown="if(event.key==='Enter'||event.key===' ')openStudentProfile('${escapeAttr(s.id)}')">
+  <div class="student-card-top">
+   ${avatar}
+   <div>
+    <div class="student-card-name">${escapeHtml(s.name||'Unnamed Student')}</div>
+    <div class="student-card-id">Student ID: ${escapeHtml(s.id||'—')}</div>
+    <span class="student-status-badge ${escapeAttr(statusClass)}">${escapeHtml(status)}</span>
+   </div>
+  </div>
+  <div class="student-progress">
+   <div class="student-card-actions">
+    <button type="button" class="primary-action" onclick="event.stopPropagation();openStudentProfile('${escapeAttr(s.id)}')">Student Profile</button>
+   </div>
+  </div>
+ </div>`;
+}
+
+function renderStudents(){
+  const students=getStudents();
+  const activeList=document.getElementById('activeStudentList');
+  const completedList=document.getElementById('completedStudentList');
+  const legacyList=document.getElementById('studentList');
+  if(!activeList||!completedList)return;
+
+  const search=(document.getElementById('studentSearch')?.value||'').trim().toLowerCase();
+  const filtered=students.filter(s=>{
+    const text=`${s.name||''} ${s.id||''}`.toLowerCase();
+    return !search||text.includes(search);
+  });
+
+  const active=sortStudentsForDisplay(filtered.filter(s=>(s.status||'Active')==='Active'));
+  const completed=sortStudentsForDisplay(filtered.filter(s=>(s.status||'Active')==='Completed'));
+
+  activeList.innerHTML=active.length
+    ?active.map(renderStudentCard).join('')
+    :`<div class="empty" style="grid-column:1/-1">${search?'No active students match your search.':'No active students yet.'}</div>`;
+
+  completedList.innerHTML=completed.length
+    ?completed.map(renderStudentCard).join('')
+    :`<div class="empty" style="grid-column:1/-1">${search?'No completed students match your search.':'No completed students yet.'}</div>`;
+
+  if(legacyList)legacyList.innerHTML='';
 }
 
 
@@ -7145,8 +9881,108 @@ false
    START APPLICATION
 ========================================================= */
 
+buildSchedulePicker('new','newSchedulePicker');
+buildSchedulePicker('edit','editSchedulePicker');
+
+const appointmentTimeEl=document.getElementById('appointmentTime');
+if(appointmentTimeEl)appointmentTimeEl.innerHTML=buildAppointmentTimeOptions();
+
+appointmentWeekDate=new Date();
+
+document.getElementById('newStudentDuration')?.addEventListener(
+'change',
+()=>updateAllScheduleEndTimes('new')
+);
+
+document.getElementById('editStudentDuration')?.addEventListener(
+'change',
+()=>updateAllScheduleEndTimes('edit')
+);
+
 initAuth();
 
+
+/* Automatically mark scheduled classes as Completed once their class end time has passed. */
+setInterval(()=>{
+  const changed=autoCompleteFinishedAppointments();
+  if(changed){
+    renderAppointments();
+    renderDashboard();
+  }
+},30000);
+/* =========================================================
+   STUDENT CONTRACT
+========================================================= */
+const STUDENT_CONTRACTS_BASE_KEY='teacherDanyealStudentContracts_v1';
+let contractSelectedStudentId='';
+let contractFileData={teacher:null,parent:null};
+function contractStorageKey(){return currentUser?`${STUDENT_CONTRACTS_BASE_KEY}_${currentUser.id}`:STUDENT_CONTRACTS_BASE_KEY;}
+function getStudentContracts(){try{return JSON.parse(localStorage.getItem(contractStorageKey())||'{}')||{};}catch(e){return {};}}
+function saveStudentContracts(data){localStorage.setItem(contractStorageKey(),JSON.stringify(data));}
+function renderContractStudentLists(){
+ const p=document.getElementById('contractPendingList'),c=document.getElementById('contractCompletedList');if(!p||!c)return;
+ const students=getStudents().slice().sort((a,b)=>String(a.name||'').localeCompare(String(b.name||''),undefined,{sensitivity:'base'})), contracts=getStudentContracts();
+ const pending=students.filter(s=>!contracts[s.id]?.submittedAt), completed=students.filter(s=>!!contracts[s.id]?.submittedAt);
+ p.innerHTML=`<div class="contract-list-title">⚠ STUDENTS FOR CONTRACT SIGNING <span class="small">(${pending.length})</span></div>`+
+ (pending.length?pending.map(s=>`<div class="contract-student-card pending"><div class="contract-student-meta"><strong>${escapeHtml(s.name||'Unnamed Student')}</strong><span>Student ID: ${escapeHtml(s.id||'—')}</span><span class="contract-badge pending">Contract Not Submitted</span></div><div class="contract-list-actions"><button type="button" class="primary-action" onclick="openStudentContract('${escapeAttr(s.id)}')">ADD STUDENT TO SIGN A CONTRACT</button></div></div>`).join(''):`<div class="contract-list-empty">All added students already have a Student Contract record.</div>`);
+ c.innerHTML=`<div class="contract-list-title">✓ COMPLETED / SIGNED CONTRACTS <span class="small">(${completed.length})</span></div>`+
+ (completed.length?completed.map(s=>`<div class="contract-student-card completed"><div class="contract-student-meta"><strong>${escapeHtml(s.name||'Unnamed Student')}</strong><span>Student ID: ${escapeHtml(s.id||'—')}</span><span class="contract-badge completed">Contract Submitted</span></div><div class="contract-list-actions"><button type="button" class="secondary-action" onclick="openStudentContract('${escapeAttr(s.id)}')">VIEW CONTRACT</button></div></div>`).join(''):`<div class="contract-list-empty">No completed Student Contracts yet.</div>`);
+}
+function openStudentContract(studentId=''){showPage('contract');renderContractStudentLists();if(studentId)loadStudentContractById(studentId);}
+function openContractStudentPicker(){
+ const students=getStudents().slice().sort((a,b)=>String(a.name||'').localeCompare(String(b.name||''),undefined,{sensitivity:'base'}));
+ const contracts=getStudentContracts();
+ const pending=students.filter(s=>!contracts[s.id]?.submittedAt);
+ if(!pending.length){showContractSuccess('All students already have a submitted Student Contract.');return;}
+ const choices=pending.map(s=>`<button type=\"button\" class=\"contract-picker-item\" onclick=\"closeContractStudentPicker();openStudentContract('${escapeAttr(s.id)}')\"><strong>${escapeHtml(s.name||'Unnamed Student')}</strong><span>Student ID: ${escapeHtml(s.id||'—')}</span></button>`).join('');
+ let modal=document.getElementById('contractStudentPickerModal');
+ if(!modal){
+  modal=document.createElement('div');modal.id='contractStudentPickerModal';modal.className='modal-backdrop';
+  modal.onclick=e=>{if(e.target===modal)closeContractStudentPicker();};
+  modal.innerHTML=`<div class=\"modal renew-modal\" style=\"max-width:650px\"><div class=\"student-add-modal-header\"><div><h3 style=\"margin:0\">Add Student Contract</h3><div class=\"small\" style=\"margin-top:4px\">Select a student who does not yet have a Student Contract record.</div></div><button type=\"button\" class=\"student-modal-close\" onclick=\"closeContractStudentPicker()\">×</button></div><div id=\"contractPickerList\" class=\"contract-picker-list\"></div></div>`;
+  document.body.appendChild(modal);
+ }
+ const list=document.getElementById('contractPickerList');if(list)list.innerHTML=choices;modal.classList.add('show');
+}
+function closeContractStudentPicker(){const m=document.getElementById('contractStudentPickerModal');if(m)m.classList.remove('show');}
+function loadStudentContractById(id){contractSelectedStudentId=id||'';const student=getStudents().find(s=>s.id===id);if(!student)return;loadStudentContractDetails(id);}
+function loadStudentContract(){loadStudentContractDetails(contractSelectedStudentId);}
+function loadStudentContractDetails(id){
+ contractSelectedStudentId=id||'';contractFileData={teacher:null,parent:null};const w=document.getElementById('contractWorkspace'),e=document.getElementById('contractError'),input=document.getElementById('contractFileInput'),preview=document.getElementById('contractPreview'),name=document.getElementById('contractFileName'),status=document.getElementById('contractStatusText');
+ if(e)e.textContent='';
+ ['teacher','parent'].forEach(role=>{
+   const fi=document.getElementById(role+'ContractFileInput');if(fi)fi.value='';
+   const pv=document.getElementById(role+'ContractPreview');if(pv)pv.innerHTML='';
+   const nm=document.getElementById(role+'ContractFileName');if(nm)nm.textContent='';
+ });
+ if(!id){if(w)w.style.display='none';if(status)status.textContent='Not Selected';return;} if(w)w.style.display='grid';
+ const student=getStudents().find(s=>s.id===id);if(!student)return;const current=getCurrentStudentPackage(student),info=document.getElementById('contractStudentInfo');
+ if(status)status.textContent=student.name||'Selected';
+ if(info)info.innerHTML=`<div class="contract-info-box"><label>Student Name</label><div>${escapeHtml(student.name||'—')}</div></div><div class="contract-info-box"><label>Student ID</label><div>${escapeHtml(student.id||'—')}</div></div><div class="contract-info-box"><label>Parent / Guardian</label><div>${escapeHtml(student.parentName||'—')}</div></div><div class="contract-info-box"><label>Parent Gmail</label><div>${escapeHtml(student.email||'—')}</div></div><div class="contract-info-box"><label>Package</label><div>${escapeHtml(student.packageName||'—')}</div></div><div class="contract-info-box"><label>Start Date</label><div>${escapeHtml((current&&current.startDate)||student.startDate||'—')}</div></div><div class="contract-info-box"><label>Class Duration</label><div>${escapeHtml(['25 Minutes','50 Minutes'].includes(student.duration)?student.duration:(student.duration==='30 Minutes'?'25 Minutes':(student.duration||'25 Minutes')))}</div></div>`;
+ const pn=document.getElementById('contractParentName');if(pn)pn.textContent=student.parentName||'____________________________';const record=getStudentContracts()[id];
+ if(status&&record?.submittedAt)status.textContent=`${student.name} — Submitted`;
+ if(record?.teacherFileData){contractFileData.teacher={name:record.teacherFileName||'Teacher Signed Contract',type:record.teacherFileType||'',data:record.teacherFileData};renderContractPreview(contractFileData.teacher,'teacher');}
+ if(record?.parentFileData){contractFileData.parent={name:record.parentFileName||'Parent Signed Contract',type:record.parentFileType||'',data:record.parentFileData};renderContractPreview(contractFileData.parent,'parent');}
+}
+function handleContractFile(event,role){const file=event.target.files?.[0];if(!file)return;if(file.size>8*1024*1024){showContractError('Please upload a file smaller than 8 MB.');event.target.value='';return;}const r=new FileReader();r.onload=()=>{contractFileData[role]={name:file.name,type:file.type,data:r.result};const n=document.getElementById(role+'ContractFileName');if(n)n.textContent=`Selected: ${file.name}`;renderContractPreview(contractFileData[role],role);};r.readAsDataURL(file);}
+function renderContractPreview(file,role){const p=document.getElementById(role+'ContractPreview');if(!p)return;if(!file){p.innerHTML='';return;}if(file.type==='application/pdf')p.innerHTML=`<iframe title="${role} Signed Contract Preview" src="${file.data}"></iframe>`;else if(file.type.startsWith('image/'))p.innerHTML=`<img src="${file.data}" alt="${role} Signed Student Contract">`;else p.innerHTML='<div class="small">File selected. Preview is not available for this file type.</div>';}
+function removeContractFile(role){contractFileData[role]=null;const i=document.getElementById(role+'ContractFileInput');if(i)i.value='';const n=document.getElementById(role+'ContractFileName');if(n)n.textContent='';const p=document.getElementById(role+'ContractPreview');if(p)p.innerHTML='';}
+function cancelStudentContract(){
+  contractSelectedStudentId='';
+  contractFileData={teacher:null,parent:null};
+  const w=document.getElementById('contractWorkspace');
+  if(w)w.style.display='none';
+  ['teacher','parent'].forEach(role=>{
+    const i=document.getElementById(role+'ContractFileInput');if(i)i.value='';
+    const n=document.getElementById(role+'ContractFileName');if(n)n.textContent='';
+    const p=document.getElementById(role+'ContractPreview');if(p)p.innerHTML='';
+  });
+  const e=document.getElementById('contractError');if(e)e.textContent='';
+  renderContractStudentLists();
+}
+async function submitStudentContract(){const e=document.getElementById('contractError');if(e)e.textContent='';const student=getStudents().find(s=>s.id===contractSelectedStudentId);if(!student)return showContractError('Please select a student first.');if(!student.email)return showContractError('This student does not have a Parent Gmail address. Please edit the student information first.');if(!contractFileData.teacher||!contractFileData.parent)return showContractError("Please upload both signed contract files: Teacher's Signed Contract and Parent's Signed Contract.");const contracts=getStudentContracts(),submittedAt=new Date().toISOString();contracts[student.id]={studentId:student.id,studentName:student.name,parentEmail:student.email,teacherFileName:contractFileData.teacher.name,teacherFileType:contractFileData.teacher.type,teacherFileData:contractFileData.teacher.data,parentFileName:contractFileData.parent.name,parentFileType:contractFileData.parent.type,parentFileData:contractFileData.parent.data,submittedAt,status:'Submitted'};saveStudentContracts(contracts);renderContractStudentLists();if(!window.emailjs){showContractError('Contract saved, but EmailJS is still loading. Please try again to send the parent email.');return;}try{emailjs.init({publicKey:EMAILJS_PUBLIC_KEY});await emailjs.send(EMAILJS_SERVICE_ID,EMAILJS_TEMPLATE_ID,{parent_email:student.email,student_name:student.name||'',student_id:student.id||'',contract_status:'Student Contract Submitted',contract_submitted_at:new Date(submittedAt).toLocaleString(),teacher_contract_file_name:contractFileData.teacher.name||'',parent_contract_file_name:contractFileData.parent.name||'',contract_message:`The signed Student Contract for ${student.name||'the student'} has been successfully submitted and recorded. Thank you for completing the contract.`});const st=document.getElementById('contractStatusText');if(st)st.textContent=`${student.name} — Submitted & Email Sent`;showContractSuccess(`Student Contract for ${student.name} was saved and an email notification was sent to ${student.email}.`);}catch(err){const st=document.getElementById('contractStatusText');if(st)st.textContent=`${student.name} — Submitted / Email Pending`;showContractSuccess(`Student Contract for ${student.name} was saved successfully. EmailJS could not send the notification yet: ${err?.text||err?.message||'unknown error'}`);}}
+function showContractError(msg){const e=document.getElementById('contractError');if(e){e.textContent=msg;e.style.color='';e.style.background='';e.style.borderColor='';}}
+function showContractSuccess(msg){const e=document.getElementById('contractError');if(e){e.textContent=msg;e.style.color='#067647';e.style.background='#ecfdf3';e.style.borderColor='#abefc6';e.style.padding='10px';e.style.borderRadius='8px';}}
 </script>
 
 </body>
